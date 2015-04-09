@@ -1,0 +1,75 @@
+package bussinesslogic.test.transfer;
+
+import junit.framework.TestCase;
+import PO.TeamTechPO;
+import bussinesslogic.TeamTech.TeamTechLineItem;
+import bussinesslogic.Transfer.L2P.TeamTechL2P;
+
+public class TestTeamTechL2P extends TestCase{
+	public void testL2P(){
+		TeamTechL2P l2p = new TeamTechL2P();
+		TeamTechLineItem ttli = new TeamTechLineItem();
+		ttli.name = "Haha";
+		ttli.season = "13-14";
+		ttli.gameNum = 82;
+		ttli.shotInRate = 1;
+		ttli.threeShotInRate = 2;
+		ttli.penaltyShotInRate = 3;
+		ttli.winningRate = 4;
+		ttli.offensiveEfficiency = 5;
+		ttli.defensiveEfficiency = 6;
+		ttli.reboundEfficiency = 7;
+		ttli.stealEfficiency = 8;
+		ttli.secondaryAttackEfficiency = 9;
+		ttli.winningNum = 10;
+		ttli.shotInNum = 82*11;
+		ttli.shotNum = 82*12;
+		ttli.threeShotInNum = 82*13;
+		ttli.threeShotNum = 82*14;
+		ttli.penaltyShotInNum = 82*15;
+		ttli.penaltyShotNum = 82*16;
+		ttli.offensiveRebound = 82*17;
+		ttli.defensiveRebound = 82*18;
+		ttli.rebound = 82*19;
+		ttli.secondaryAttack = 82*20;
+		ttli.steal = 82*21;
+		ttli.blockShot = 82*22;
+		ttli.fault = 82*23;
+		ttli.foul = 82*24;
+		ttli.score = 82*25;
+		ttli.offensiveRound = 82*26;
+		TeamTechPO result = l2p.l2p(ttli);
+		TeamTechPO expected = new TeamTechPO();
+		expected.name = "Haha";
+		expected.season = "13-14";
+		expected.gameNum = 82;
+		expected.shotInRate = 1;
+		expected.threeShotInRate = 2;
+		expected.penaltyShotInRate = 3;
+		expected.winningRate = 4;
+		expected.offensiveEfficiency = 5;
+		expected.defensiveEfficiency = 6;
+		expected.reboundEfficiency = 7;
+		expected.stealEfficiency = 8;
+		expected.secondaryAttackEfficiency = 9;
+		expected.winningNum = 10;
+		expected.shotInNum = 82*11;
+		expected.shotNum = 82*12;
+		expected.threeShotInNum = 82*13;
+		expected.threeShotNum = 82*14;
+		expected.penaltyShotInNum = 82*15;
+		expected.penaltyShotNum = 82*16;
+		expected.offensiveRebound = 82*17;
+		expected.defensiveRebound = 82*18;
+		expected.rebound = 82*19;
+		expected.secondaryAttack = 82*20;
+		expected.steal = 82*21;
+		expected.blockShot = 82*22;
+		expected.fault = 82*23;
+		expected.foul = 82*24;
+		expected.score = 82*25;
+		expected.offensiveRound = 82*26;
+		boolean test = expected.equals(result);
+		assertTrue("tell me WHY!",test);
+	}
+}

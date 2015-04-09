@@ -1,0 +1,100 @@
+package bussinesslogic.test.transfer;
+
+import junit.framework.TestCase;
+import VO.PlayerTechVO;
+import bussinesslogic.PlayerTechBL.PlayerTechLineItem;
+import bussinesslogic.Transfer.V2L.PlayerTechV2L;
+
+public class TestPlayerTechV2L extends TestCase{
+	public void testV2L(){
+		PlayerTechV2L v2l = new PlayerTechV2L();
+		PlayerTechVO ptvo = new PlayerTechVO();
+		ptvo.name = "ShouShou Bin";
+		ptvo.season = "13-14";
+		ptvo.team = "JiLao";
+		ptvo.gameNum = 82;
+		ptvo.startingNum = 81;
+		ptvo.shotInRate = 1;
+		ptvo.threeShotInRate = 2;
+		ptvo.penaltyShotInRate = 3;
+		ptvo.efficiency = 4;
+		ptvo.GmScEfficiency = 5;
+		ptvo.trueShotInRate = 6;
+		ptvo.shootingEfficiency = 7;
+		ptvo.reboundRate = 8;
+		ptvo.offensiveReboundRate = 9;
+		ptvo.defensiveReboundRate = 10;
+		ptvo.secondaryAttackRate = 11;
+		ptvo.stealRate = 12;
+		ptvo.blockShotRate = 13;
+		ptvo.faultRate = 14;
+		ptvo.usageRate = 15;
+		
+		ptvo.offensiveNum = 82*16;
+		ptvo.defensiveNum = 82*17;
+		ptvo.steal = 82*18;
+		ptvo.blockShot = 82*19;
+		ptvo.fault = 82*20;
+		ptvo.foul = 82*21;
+		ptvo.score = 82*22;
+		ptvo.rebound = 82*23;
+		ptvo.secondaryAttack = 82*24;
+		ptvo.time = 82*25;
+		
+		ptvo.offensiveNumave = 16;
+		ptvo.defensiveNumave = 17;
+		ptvo.stealave = 18;
+		ptvo.blockShotave = 19;
+		ptvo.faultave = 20;
+		ptvo.foulave = 21;
+		ptvo.scoreave = 22;
+		ptvo.reboundave = 23;
+		ptvo.secondaryAttackave = 24;
+		ptvo.timeave = 25;
+		
+		PlayerTechLineItem result = v2l.v2l(ptvo);
+		PlayerTechLineItem expected = new PlayerTechLineItem();
+		expected.name = "ShouShou Bin";
+		expected.season = "13-14";
+		expected.team = "JiLao";
+		expected.gameNum = 82;
+		expected.startingNum = 81;
+		expected.shotInRate = 1;
+		expected.threeShotInRate = 2;
+		expected.penaltyShotInRate = 3;
+		expected.efficiency = 4;
+		expected.GmScEfficiency = 5;
+		expected.trueShotInRate = 6;
+		expected.shootingEfficiency = 7;
+		expected.reboundRate = 8;
+		expected.offensiveReboundRate = 9;
+		expected.defensiveReboundRate = 10;
+		expected.secondaryAttackRate = 11;
+		expected.stealRate = 12;
+		expected.blockShotRate = 13;
+		expected.faultRate = 14;
+		expected.usageRate = 15;
+		expected.offensiveNum = 82*16;
+		expected.defensiveNum = 82*17;
+		expected.steal = 82*18;
+		expected.blockShot = 82*19;
+		expected.fault = 82*20;
+		expected.foul = 82*21;
+		expected.score = 82*22;
+		expected.rebound = 82*23;
+		expected.secondaryAttack = 82*24;
+		expected.time = 82*25;
+		expected.offensiveNumave = 16;
+		expected.defensiveNumave = 17;
+		expected.stealave = 18;
+		expected.blockShotave = 19;
+		expected.faultave = 20;
+		expected.foulave = 21;
+		expected.scoreave = 22;
+		expected.reboundave = 23;
+		expected.secondaryAttackave = 24;
+		expected.timeave = 25;
+		boolean test = expected.equals(result);
+		assertTrue("tell me WHY!",test);
+	}
+}
