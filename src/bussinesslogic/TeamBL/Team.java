@@ -1,19 +1,19 @@
 package bussinesslogic.TeamBL;
 
+import java.rmi.RemoteException;
+
 import PO.TeamPO;
-import Rmi.LinkTeamService;
 import VO.TeamVO;
 import blservice.TeamBLservice;
 import bussinesslogic.Transfer.L2P.TeamL2P;
 import bussinesslogic.Transfer.L2V.TeamL2V;
 import bussinesslogic.Transfer.P2L.TeamP2L;
 import bussinesslogic.Transfer.V2L.TeamV2L;
+import data.TeamData;
+import dataservice.TeamDataService;
 
 public class Team implements TeamBLservice{
-	LinkTeamService tdservice;
-	public Team(){
-			tdservice=new LinkTeamService();
-	}
+	TeamDataService tdservice = new TeamData();
 	
 	@Override
 	public TeamVO Show(TeamVO tvo) {
@@ -26,7 +26,12 @@ public class Team implements TeamBLservice{
 		TeamLineItem temptli = V2L.v2l(tvo);
 		TeamPO tpo = L2P.l2p(temptli);
 		TeamPO resultpo = new TeamPO();
-		resultpo = tdservice.find(tpo);
+		try {
+			resultpo = tdservice.find(tpo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		TeamLineItem tli = P2L.p2l(resultpo);
 		TeamVO result = L2V.l2v(tli);
 		

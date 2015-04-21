@@ -3,20 +3,15 @@ package bussinesslogic.TeamTech;
 import java.util.ArrayList;
 
 import PO.TeamTechPO;
-import Rmi.LinkTeamTechService;
 import TypeEnum.TeamTechEnum;
 import VO.TeamTechVO;
-import blservice.TeamTechBLservice;
-import bussinesslogic.TeamBL.TeamLineItem;
 import bussinesslogic.Transfer.L2V.TeamTechL2V;
 import bussinesslogic.Transfer.P2L.TeamTechP2L;
 
 public class TeamTech implements TeamTechBLservice{
 
-	LinkTeamTechService ttdataservice;
- 	public TeamTech(){
-			ttdataservice=new LinkTeamTechService();
-	}
+	TeamTechDataservice ttdataservice = new TeamTechData();
+
 	@Override
 	public ArrayList<TeamTechVO> Ascend(TeamTechEnum DataType) {
 		ArrayList<TeamTechPO> resultpo = new ArrayList<TeamTechPO>();
