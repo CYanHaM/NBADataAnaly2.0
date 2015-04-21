@@ -24,8 +24,9 @@ public class TeamTechData implements TeamTechDataService{
 				MatchPO match = new MatchPO();
 				match = source.get(j);
 				if(match.homeTeam.equals(ttpo.name)){
-					ttpo.gameNum++;
-					if(match.ifHomeTeamWin==1)ttpo.winningNum++;
+					ttpo.gameNum++;											//比赛场数
+					if(match.ifHomeTeamWin==1)ttpo.winningNum++;			//胜场数
+					
 				}else if(match.guestTeam.equals(ttpo.name)){
 					
 				}
