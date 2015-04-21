@@ -34,12 +34,20 @@ public class MatchPO implements Serializable{
 	public int guestAllTime;             //客队全员上场时间
 	public int homeShotIn;              //主队总进球数
 	public int guestShotIn;              //客队总进球数
-	public int homeTwoShot;             //主队两分出手次数
-	public int guestTwoShot;            //客队两分出手次数
 	public int homeShot;             //主队出手次数
 	public int guestShot;            //客队出手次数
+	public int homeTwoShot;             //主队两分出手次数
+	public int guestTwoShot;            //客队两分出手次数
+	public int homeTwoShotIn;             //主队两分进球数
+	public int guestTwoShotIn;            //客队两分进球数
+	public int homeThreeShot;             //主队三分出手次数
+	public int guestThreeShot;            //客队三分出手次数
+	public int homeThreeShotIn;             //主队三分进球数
+	public int guestThreeShotIn;            //客队三分进球数
 	public int homePenaltyShot;         //主队罚球次数
 	public int guestPenaltyShot;        //客队罚球次数
+	public int homePenaltyShotIn;         //主队罚球进球数
+	public int guestPenaltyShotIn;        //客队罚球进球数
 	public int homeFoul;                //主队失误次数
 	public int guestFoul;               //客队失误次数
 
