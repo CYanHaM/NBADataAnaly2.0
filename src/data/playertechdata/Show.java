@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.PlayerTechPO;
-import dataservice.playertechdataservice.ShowPlayerTech;
+import dataservice.playertechdataservice.ShowDataService;
 
-public class Show implements ShowPlayerTech {
+public class Show implements ShowDataService {
 
 	@Override
 	public ArrayList<PlayerTechPO> showSeasonPlayerData() {

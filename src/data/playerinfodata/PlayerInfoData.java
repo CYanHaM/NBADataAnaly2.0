@@ -3,9 +3,9 @@ package data.playerinfodata;
 import java.util.ArrayList;
 
 import PO.PlayerPO;
-import dataservice.playerinfodataservice.FindPlayerInfo;
+import dataservice.playerinfodataservice.PlayerInfoDataService;
 
-public class PlayerInfo implements FindPlayerInfo {
+public class PlayerInfoData implements PlayerInfoDataService {
 
 	@Override
 	public ArrayList<PlayerPO> findAll() {

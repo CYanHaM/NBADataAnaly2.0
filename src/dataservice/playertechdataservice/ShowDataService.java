@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import PO.PlayerTechPO;
 
-public interface ShowPlayerTech {
+public interface ShowDataService {
 	
 	   //返回赛季球员数据
 		public ArrayList<PlayerTechPO> showSeasonPlayerData ();

@@ -3,9 +3,9 @@ package data.playertechdata;
 import java.util.ArrayList;
 
 import PO.PlayerTechPO;
-import dataservice.playertechdataservice.FindPlayerTech;
+import dataservice.playertechdataservice.FindDataService;
 
-public class Find implements FindPlayerTech {
+public class Find implements FindDataService {
 
 	@Override
 	public ArrayList<PlayerTechPO> findHotPlayerToday(String date) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import PO.PlayerPO;
 
-public interface FindPlayerInfo {
+public interface PlayerInfoDataService {
 	
 	public ArrayList<PlayerPO> findAll();
 	

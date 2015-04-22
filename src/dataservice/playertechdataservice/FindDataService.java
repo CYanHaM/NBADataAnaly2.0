@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import PO.PlayerTechPO;
 
-public interface FindPlayerTech {
+public interface FindDataService {
 	
 	public ArrayList<PlayerTechPO> findHotPlayerToday(String date);
 	
