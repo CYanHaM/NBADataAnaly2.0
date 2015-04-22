@@ -7,19 +7,16 @@ import PO.PlayerTechPO;
 
 public interface ShowDataService {
 	
-	   //返回赛季球员数据
+	   //杩斿洖璧涘鐞冨憳鏁版嵁
 		public ArrayList<PlayerTechPO> showSeasonPlayerData ();
 		
-		//查看某一球员关键数据
+		//鏌ョ湅鏌愪竴鐞冨憳鍏抽敭鏁版嵁
 		public PlayerTechPO showKeyData (String name,String team );
 		
-		//刷新赛季球员数据列表
-		public void refresh ();
+		public ArrayList<PlayerTechPO> ascend(String type);
+		//鎸夌収type鎵�绀烘潯浠跺崌搴忔帓搴�
 		
-		public ArrayList<PlayerTechPO> ascend(String type)throws RemoteException;
-		//按照type所示条件升序排序
-		
-		public ArrayList<PlayerTechPO> descend(String type)throws RemoteException;
-		//按照type所示条件降序排序
+		public ArrayList<PlayerTechPO> descend(String type);
+		//鎸夌収type鎵�绀烘潯浠堕檷搴忔帓搴�
 
 }
