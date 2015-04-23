@@ -1,9 +1,6 @@
 package PO;
 import java.io.Serializable;
 
-import VO.PlayerVO;
-
-
 public class PlayerPO implements Serializable{
 	
 	/**

@@ -8,6 +8,6 @@ public interface PlayerInfoDataService {
 	
 	public ArrayList<PlayerPO> findAll();
 	
-	public PlayerPO findOne(String name, String team);
+	public PlayerPO findOne(String name);
 
 }

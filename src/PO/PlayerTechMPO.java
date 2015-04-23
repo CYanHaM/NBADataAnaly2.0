@@ -10,6 +10,7 @@ public class PlayerTechMPO implements Serializable{
 	
 	public String name;                         //姓名
 	public String team;                         //队伍
+	public String date;
 	public String position;                     //位置
 	public int time;                         //在场时间
 	public int shotIn;                       //投篮命中数

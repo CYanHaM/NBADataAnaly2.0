@@ -8,11 +8,31 @@ import VO.PlayerVO;
 public class PO2VO {
 	
 	public PlayerVO po2vo (PlayerPO po){
-		return null;
+	
+		PlayerVO vo = new PlayerVO();
+		vo.name = po.name;
+		vo.uniformNum = po.uniformNum;
+		vo.position = po.position;
+		vo.height = po.height;
+		vo.weight = po.weight;
+		vo.birth = po.birth;
+		vo.age = po.age;
+		vo.exp = po.exp;
+		vo.school = po.school;
+		
+		return vo;
+		
 	}
 	
 	public ArrayList<PlayerVO> list2vo (ArrayList<PlayerPO> list){
-		return null;
+		int size = list.size();
+		ArrayList<PlayerVO> res = new ArrayList<PlayerVO>();
+		for(int i=0;i<size;i++){
+			//待解决，直接调用快还是多个赋值快？？
+			PlayerVO vo = po2vo(list.get(i));
+			res.add(vo);
+		}
+		return res;
 	}
 
 }
