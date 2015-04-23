@@ -1,7 +1,7 @@
 package bussinesslogic.Transfer.P2L;
 
 import PO.PlayerTechPO;
-import bussinesslogic.PlayerTechBL.PlayerTechLineItem;
+import bussinesslogic.playertechbl.PlayerTechLineItem;
 
 public class PlayerTechP2L {
 	PlayerTechLineItem ptli = new PlayerTechLineItem();
