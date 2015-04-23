@@ -2,16 +2,13 @@ package presentation.teamui;
 
 import java.util.ArrayList;
 
-import blservice.PlayerBLservice;
-import blservice.TeamBLservice;
-import blservice.TeamTechBLservice;
-import bussinesslogic.PlayerBL.Player;
-import bussinesslogic.TeamBL.Team;
-import bussinesslogic.TeamTech.TeamTech;
 import TypeEnum.TeamTechEnum;
 import VO.PlayerVO;
 import VO.TeamTechVO;
 import VO.TeamVO;
+import blservice.teamblservice.TeamBLservice;
+import bussinesslogic.TeamBL.Team;
+import bussinesslogic.TeamTech.TeamTech;
 
 public class ImportTeam {
 /**
