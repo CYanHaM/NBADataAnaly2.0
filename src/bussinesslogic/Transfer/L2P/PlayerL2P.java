@@ -1,7 +1,7 @@
 package bussinesslogic.Transfer.L2P;
 
 import PO.PlayerPO;
-import bussinesslogic.PlayerBL.PlayerLineItem;
+import bussinesslogic.playerinfobl.PlayerLineItem;
 
 public class PlayerL2P {
 	PlayerPO ppo = new PlayerPO();

@@ -1,7 +1,7 @@
 package bussinesslogic.Transfer.L2V;
 
 import VO.PlayerVO;
-import bussinesslogic.PlayerBL.PlayerLineItem;
+import bussinesslogic.playerinfobl.PlayerLineItem;
 
 public class PlayerL2V {
 	PlayerVO pvo = new PlayerVO();
