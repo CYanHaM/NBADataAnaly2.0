@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-import PO.PlayerPO;
 import PO.PlayerTechPO;
 
 public class OperateWithFile {
