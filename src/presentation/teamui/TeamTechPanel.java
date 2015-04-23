@@ -9,7 +9,7 @@ import javax.swing.table.*;
 
 import TypeEnum.TeamTechEnum;
 import VO.TeamTechVO;
-import presentation.Preset.TeamTechPre;
+import presentation.preset.TeamTechPre;
 import presentation.playerui.PlayerTechPanel;
 
 
