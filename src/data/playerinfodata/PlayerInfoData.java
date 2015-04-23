@@ -24,7 +24,7 @@ public class PlayerInfoData implements PlayerInfoDataService {
 
 	//待修改，不考虑team
 	@Override
-	public PlayerPO findOne(String name, String team) {
+	public PlayerPO findOne(String name) {
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> list = read();
 		int size = list.size();

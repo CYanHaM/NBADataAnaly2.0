@@ -35,7 +35,7 @@ public class Show implements ShowDataService {
 	}
 
 	@Override
-	public ArrayList<PlayerTechPO> descend(String type) throws {
+	public ArrayList<PlayerTechPO> descend(String type){
 		// TODO Auto-generated method stub
 		return null;
 	}

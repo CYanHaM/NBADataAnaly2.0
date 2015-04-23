@@ -1,16 +1,12 @@
 package PO;
 import java.io.Serializable;
 
-import VO.PlayerTechVO;
-
 
 public class PlayerTechPO implements Serializable{
 	/**
 	 * 赛季球员总数据
 	 */
 	public static final long serialVersionUID = 1L;
-	public int index ;                             //编号
-	public String date;
 	public String name;                            //球员名称
 	public String season;                          //赛季
 	public String team;                            //所属球队

@@ -23,9 +23,9 @@ public class PlayerInfo implements PlayerInfoService {
 	}
 
 	@Override
-	public PlayerVO showPlayerInfo(String name, String team) {
+	public PlayerVO showPlayerInfo(String name) {
 		// TODO Auto-generated method stub
-		PlayerPO po = fp.findOne(name, team);
+		PlayerPO po = fp.findOne(name);
 		PlayerVO vo = p2v.po2vo(po);
 		return vo;
 	}

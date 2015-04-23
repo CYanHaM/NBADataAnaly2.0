@@ -2,17 +2,20 @@ package blservice.playertechblservice;
 
 import java.util.ArrayList;
 
+import VO.PlayerTechMVO;
 import VO.PlayerTechVO;
 
 public interface FindPlayerTechService {
 	
-	//当天热点球员
-	public ArrayList<PlayerTechVO> findHotPlayerToday(String date);
+	//褰撳ぉ鐑偣鐞冨憳
+	public ArrayList<PlayerTechMVO> findHotPlayerToday(String date, String keyword);
 	
-	//赛季热点球员
+	//璧涘鐑偣鐞冨憳
 	public ArrayList<PlayerTechVO> findSeasonHotPlayer();
 	
-	//进步最快球员
+	//杩涙鏈�蹇悆鍛�
 	public ArrayList<PlayerTechVO> findFastImprovingPlayer();
+	
+	public ArrayList<PlayerTechVO> sift(PlayerTechVO vo);
 
 }

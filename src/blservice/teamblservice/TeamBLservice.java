@@ -1,4 +1,4 @@
-package blservice;
+package blservice.teamblservice;
 
 import VO.TeamVO;
 

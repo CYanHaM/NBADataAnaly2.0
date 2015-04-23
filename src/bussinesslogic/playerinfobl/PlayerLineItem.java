@@ -1,12 +1,6 @@
-package PO;
-import java.io.Serializable;
+package bussinesslogic.playerinfobl;
 
-public class PlayerPO implements Serializable{
-	
-	/**
-	 * 球员基本信息
-	 */
-	public static final long serialVersionUID = 1L;
+public class PlayerLineItem {
 	public String name;            //姓名
 	public int uniformNum;      //球衣号码
 	public String position;        //位置
@@ -17,40 +11,40 @@ public class PlayerPO implements Serializable{
 	public int exp;             //球龄
 	public String school;          //毕业学校
 	
-	public boolean equals(PlayerPO ppo){
-		if(!this.name.equals(ppo.name)){
+	public boolean equals(PlayerLineItem plt){
+		if(!this.name.equals(plt.name)){
 			System.out.println("name");
 			return false;
 		}
-		if(this.uniformNum!=ppo.uniformNum){
+		if(this.uniformNum!=plt.uniformNum){
 			System.out.println("uniformNum");
 			return false;
 		}
-		if(!this.position.equals(ppo.position)){
+		if(!this.position.equals(plt.position)){
 			System.out.println("position");
 			return false;
 		}
-		if(!this.height.equals(ppo.height)){
+		if(!this.height.equals(plt.height)){
 			System.out.println("height");
 			return false;
 		}
-		if(this.weight!=ppo.weight){
+		if(this.weight!=plt.weight){
 			System.out.println("weight");
 			return false;
 		}
-		if(!this.birth.equals(ppo.birth)){
+		if(!this.birth.equals(plt.birth)){
 			System.out.println("birth");
 			return false;
 		}
-		if(this.age!=ppo.age){
+		if(this.age!=plt.age){
 			System.out.println("age");
 			return false;
 		}
-		if(this.exp!=ppo.exp){
+		if(this.exp!=plt.exp){
 			System.out.println("exp");
 			return false;
 		}
-		if(!this.school.equals(ppo.school)){
+		if(!this.school.equals(plt.school)){
 			System.out.println("school");
 			return false;
 		}

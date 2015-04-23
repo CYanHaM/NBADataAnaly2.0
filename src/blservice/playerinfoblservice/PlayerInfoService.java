@@ -8,6 +8,6 @@ public interface PlayerInfoService {
 	
 	public ArrayList<PlayerVO> showAllPlayerInfo ();
 	
-	public PlayerVO showPlayerInfo (String name,String team);
+	public PlayerVO showPlayerInfo (String name);
 
 }

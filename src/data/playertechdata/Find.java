@@ -2,6 +2,7 @@ package data.playertechdata;
 
 import java.util.ArrayList;
 
+import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
 import dataservice.playertechdataservice.FindDataService;
 import dataservice.playertechdataservice.ShowDataService;
@@ -12,22 +13,9 @@ public class Find implements FindDataService {
 	
 	//待修改，将字符串改为筛选条件
 	@Override
-	public ArrayList<PlayerTechPO> findHotPlayerToday(String date)  {
+	public ArrayList<PlayerTechMPO> findHotPlayerToday(String date, String keyword)  {
 		// TODO Auto-generated method stub
-		String type = "";
-		ArrayList<PlayerTechPO> list = sh.descend(type);
-		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
-		int index = 0;
-		int size = list.size();
-		for(int i=0;i<size;i++){
-			PlayerTechPO po = list.get(i);
-		    if(po.date.equals(date)){
-				res.add(list.get(i));
-				index++;
-				if(index==5)
-					return res;
-				}
-			}
+		
     	return null;
 	}
 
@@ -45,6 +33,12 @@ public class Find implements FindDataService {
 
 	@Override
 	public ArrayList<PlayerTechPO> findFastImprovingPlayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<PlayerTechPO> sift(PlayerTechPO po) {
 		// TODO Auto-generated method stub
 		return null;
 	}
