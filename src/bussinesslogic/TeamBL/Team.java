@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import PO.TeamPO;
 import VO.TeamVO;
-import blservice.TeamBLservice;
+import blservice.teamblservice.TeamBLservice;
 import bussinesslogic.Transfer.L2P.TeamL2P;
 import bussinesslogic.Transfer.L2V.TeamL2V;
 import bussinesslogic.Transfer.P2L.TeamP2L;
