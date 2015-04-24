@@ -13,7 +13,7 @@ public interface FindDataService {
 	public ArrayList<PlayerTechPO> findSeasonHotPlayer(String keyword);
 	
 	//杩涙鏈�蹇悆鍛�
-	public ArrayList<PlayerTechPO> findFastImprovingPlayer();
+	public ArrayList<PlayerTechMPO> findFastImprovingPlayer();
 	
 	public ArrayList<PlayerTechPO> sift(PlayerTechPO po);
 }

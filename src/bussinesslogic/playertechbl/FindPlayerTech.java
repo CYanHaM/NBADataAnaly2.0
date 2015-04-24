@@ -44,9 +44,55 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	public ArrayList<PlayerTechVO> findFastImprovingPlayer() {
+	public ArrayList<PlayerTechVO> findFastImprovingPlayer(String keyword) {
 		// TODO Auto-generated method stub
-		 ArrayList<PlayerTechPO> list = fd.findFastImprovingPlayer();
+		 ArrayList<PlayerTechMPO> list = fd.findFastImprovingPlayer();
+		//最近5场比赛数据
+		 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
+		 //list为之前数据
+		int num=0;
+		while(num<5){
+			latest.add(list.get(0));
+			list.remove(0);
+			num++;
+		}
+		
+		int latestScore = 0;
+		int latestSteal=0;
+		int latestBlockShot=0;
+		int latestSecondaryAttack=0;
+		int latestRebound=0;
+		int score = 0;
+		int steal=0;
+		int blockShot=0;
+		int secondaryAttack=0;
+		int rebound=0;
+		
+		for(int i=0;i<5;i++){
+			PlayerTechMPO mp =  latest.get(i);
+			latestScore += mp.score;
+			latestSteal += mp.steal;
+			latestBlockShot += mp.blockShot;
+			latestSecondaryAttack +=mp.secondaryAttack;
+			latestRebound += mp.rebound;
+		}
+		
+		int listSize = list.size();
+		for(int i=0;i<listSize;i++){
+			PlayerTechMPO mp =  list.get(i);
+			score = mp.score;
+			steal=mp.steal;
+			blockShot=mp.blockShot;
+			secondaryAttack=mp.secondaryAttack;
+			rebound=mp.rebound;
+		}
+		
+		double scoreImproving=((latestScore/5)-score/listSize)/(score/listSize);
+	    double stealImproving=((latestSteal/5)-steal/listSize)/(steal/listSize);
+		double blockShotImproving=((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize);
+		double secondaryAttackImproving=((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize);
+		double reboundImproving=((rebound/5)-rebound/listSize)/(rebound/listSize);
+			
 		 ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
 		 int size = list.size();
 		 for(int i=0;i<size;i++){

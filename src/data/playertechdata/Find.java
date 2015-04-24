@@ -3,6 +3,7 @@ package data.playertechdata;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
@@ -90,9 +91,18 @@ public class Find implements FindDataService {
 	}
 
 	@Override
-	public ArrayList<PlayerTechPO> findFastImprovingPlayer() {
+	public ArrayList<PlayerTechMPO> findFastImprovingPlayer() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<PlayerTechMPO> list = owf.readMPO();
+		//进行排序
+		Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
+			public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
+				//重写比较方法,降序比较日期
+				return p2.date.compareTo(p2.date);
+			}
+		}; 
+		Collections.sort(list, comparator);
+		return list;
 	}
 
 	@Override
