@@ -22,8 +22,7 @@ public class Find implements FindDataService {
 	@Override
 	public ArrayList<PlayerTechPO> findSeasonHotPlayer(String keyword) {
 		// TODO Auto-generated method stub
-		String type = "";
-		ArrayList<PlayerTechPO> list = sh.descend(type);
+		ArrayList<PlayerTechPO> list = sh.descend(keyword);
 		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
 		for(int i=0;i<5;i++){
 			res.add(list.get(i));

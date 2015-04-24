@@ -1,7 +1,5 @@
 package VO;
 
-import bussinesslogic.PlayerBL.PlayerLineItem;
-
 public class PlayerVO {
 	public String name;            //ĞÕÃû
 	public int uniformNum;      //ÇòÒÂºÅÂë
