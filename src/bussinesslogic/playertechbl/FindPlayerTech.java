@@ -31,9 +31,9 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	public ArrayList<PlayerTechVO> findSeasonHotPlayer() {
+	public ArrayList<PlayerTechVO> findSeasonHotPlayer(String keyword) {
 		// TODO Auto-generated method stub
-		 ArrayList<PlayerTechPO> list = fd.findSeasonHotPlayer();
+		 ArrayList<PlayerTechPO> list = fd.findSeasonHotPlayer(keyword);
 		 ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
 		 int size = list.size();
 		 for(int i=0;i<size;i++){

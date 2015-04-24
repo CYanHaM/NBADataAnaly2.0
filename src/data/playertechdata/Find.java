@@ -10,8 +10,8 @@ import dataservice.playertechdataservice.ShowDataService;
 public class Find implements FindDataService {
 
 	ShowDataService sh = new Show();
+	OperateWithFile owf = new OperateWithFile();
 	
-	//待修改，将字符串改为筛选条件
 	@Override
 	public ArrayList<PlayerTechMPO> findHotPlayerToday(String date, String keyword)  {
 		// TODO Auto-generated method stub
@@ -20,7 +20,7 @@ public class Find implements FindDataService {
 	}
 
 	@Override
-	public ArrayList<PlayerTechPO> findSeasonHotPlayer() {
+	public ArrayList<PlayerTechPO> findSeasonHotPlayer(String keyword) {
 		// TODO Auto-generated method stub
 		String type = "";
 		ArrayList<PlayerTechPO> list = sh.descend(type);
@@ -40,7 +40,17 @@ public class Find implements FindDataService {
 	@Override
 	public ArrayList<PlayerTechPO> sift(PlayerTechPO po) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
+		ArrayList<PlayerTechPO> list = owf.read();
+		int size = list.size();
+		for(int i=0;i<size;i++){
+			PlayerTechPO temp = list.get(i);
+			if(temp.score>=po.score&&temp.blockShot>=po.blockShot&&temp.rebound>=po.rebound
+					&&temp.steal>=po.steal&&temp.secondaryAttack>=po.secondaryAttack){
+				res.add(temp);
+			}
+		}
+		return res;
 	}
 
 }

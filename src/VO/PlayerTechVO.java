@@ -1,7 +1,5 @@
 package VO;
 
-import bussinesslogic.PlayerTechBL.PlayerTechLineItem;
-
 public class PlayerTechVO {
 	public String name;                            //ÇòÔ±Ãû³Æ
 	public String season;                          //Èü¼¾
