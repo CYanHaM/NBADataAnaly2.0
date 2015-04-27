@@ -1,9 +1,13 @@
 package data.playertechdata;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
@@ -91,17 +95,9 @@ public class Find implements FindDataService {
 	}
 
 	@Override
-	public ArrayList<PlayerTechMPO> findFastImprovingPlayer() {
+	public ArrayList<PlayerTechPO> findFastImprovingPlayer() {
 		// TODO Auto-generated method stub
-		ArrayList<PlayerTechMPO> list = owf.readMPO();
-		//进行排序
-		Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
-			public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
-				//重写比较方法,降序比较日期
-				return p2.date.compareTo(p2.date);
-			}
-		}; 
-		Collections.sort(list, comparator);
+		 ArrayList<PlayerTechPO> list = owf.readPO();
 		return list;
 	}
 
@@ -109,7 +105,7 @@ public class Find implements FindDataService {
 	public ArrayList<PlayerTechPO> sift(PlayerTechPO po) {
 		// TODO Auto-generated method stub
 		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
-		ArrayList<PlayerTechPO> list = owf.read();
+		ArrayList<PlayerTechPO> list = owf.readPO();
 		int size = list.size();
 		for(int i=0;i<size;i++){
 			PlayerTechPO temp = list.get(i);

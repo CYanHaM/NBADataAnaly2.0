@@ -48,7 +48,6 @@ public class PlayerTechPO implements Serializable{
 	public double faultRate;                       //失误率	
 	public double usageRate;                       //使用率
 	
-	//意义不明？？
 	public int teamAllTime;                  //全队上场时间
 	public int teamOffensiveRebound;                  //全队进攻篮板
 	public int teamDefensiveRebound;                //全队防守篮板
@@ -60,6 +59,13 @@ public class PlayerTechPO implements Serializable{
 	public int teamShot;                          //全队出手次数
 	public int teamPenaltyShot;                   //全队罚球次数
 	public int teamFault;                          //全队失误次数    
+	
+	//以下为提升率
+		public double scoreImproving;
+		public double stealImproving;
+		public double blockShotImproving;
+		public double secondaryAttackImproving;
+		public double reboundImproving;
 	
 	public boolean equals(PlayerTechPO ptpo){
 		if(!this.name.equals(ptpo.name)){

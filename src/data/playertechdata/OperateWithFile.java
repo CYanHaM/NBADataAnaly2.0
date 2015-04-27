@@ -4,8 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 import data.DataProcessing;
 import data.readFrom;
@@ -22,6 +28,7 @@ public class OperateWithFile {
 		ArrayList<PlayerTechMPO> mpoList = calculateTeam();
 		ArrayList<PlayerTechPO> poList = new ArrayList<PlayerTechPO>();
 
+		ArrayList<ArrayList<PlayerTechMPO> > div = new ArrayList<ArrayList<PlayerTechMPO> >();
 		while(mpoList.size()!=0){
 			int mpoSize = mpoList.size();
 			//暂存同一球员的每场比赛数据。一轮处理完后丢弃。
@@ -45,6 +52,7 @@ public class OperateWithFile {
 			    it.remove();  
 			    }  
 			} 
+			div.add(temp);
 			//对temp进行处理。
 			PlayerTechPO ptp = new PlayerTechPO();
 			ptp.name = name;
@@ -148,11 +156,17 @@ public class OperateWithFile {
 					(ptp.teamShot+0.44*ptp.teamPenaltyShot+ptp.teamFault);
 		
 			poList.add(ptp);
-		}
+	   }
 	  try {
+			  FileOutputStream fos2 = new FileOutputStream("PlayerTechMPODiv.ser");
+	          ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+	          oos2.writeObject(div);
+	          oos2.flush();
+	          oos2.close();
+	          
         	FileOutputStream fos = new FileOutputStream("PlayerTechPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(poList);
+            oos.writeObject(calculateImproving(poList));
             oos.flush();
             oos.close();
         } catch (Exception e) {
@@ -161,7 +175,7 @@ public class OperateWithFile {
 		
 	}
 	
-	public ArrayList<PlayerTechPO> read(){
+	public ArrayList<PlayerTechPO> readPO(){
 		ArrayList<PlayerTechPO> list = new ArrayList<PlayerTechPO>(); 
 		try{
 			FileInputStream fis = new FileInputStream("PlayerTech.ser");
@@ -175,8 +189,22 @@ public class OperateWithFile {
          return list;
 	}
 	
+	public ArrayList<ArrayList<PlayerTechMPO>> readDiv(){
+		ArrayList<ArrayList<PlayerTechMPO>> res = new ArrayList<ArrayList<PlayerTechMPO>>(); 
+		try{
+			FileInputStream fis = new FileInputStream("PlayerTechMPODiv.ser");
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        res=  (ArrayList<ArrayList<PlayerTechMPO>>) ois.readObject();
+	        ois.close();
+		} catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+         return res;
+	}
+	
 	public ArrayList<PlayerTechMPO> readMPO(){
-		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>(); 
+	    ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>(); 
 		try{
 			FileInputStream fis = new FileInputStream("PlayerTechMPO.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
@@ -229,20 +257,115 @@ public class OperateWithFile {
 				mp.teamFault = teamFault;
 				res.add(mp);
 			}
-			
-			//写入文件
-	        try {
-	        	FileOutputStream fos = new FileOutputStream("PlayerTechMPO.ser");
-	            ObjectOutputStream oos = new ObjectOutputStream(fos);
-	            oos.writeObject(res);
-	            oos.flush();
-	            oos.close();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
 		}
 		
+		try {
+        	FileOutputStream fos = new FileOutputStream("PlayerTechMPO.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(res);
+            oos.flush();
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
 		return res;
+	}
+	
+	public ArrayList<PlayerTechPO> calculateImproving(ArrayList<PlayerTechPO> poList){
+		 //计算按时间排序、按姓名分类的技术统计
+		 ArrayList<ArrayList<PlayerTechMPO>> li = readDiv();
+			int size = li.size();
+			for(int i=0;i<size;i++){
+				ArrayList<PlayerTechMPO> list = li.get(i);
+				//进行排序
+				Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
+					public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
+						//重写比较方法,降序比较日期
+						 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd",Locale.CHINA);
+						 Date dt1;
+						 Date dt2;
+						try {
+							dt1 = sdf.parse(p1.date);
+							dt2 = sdf.parse(p2.date);
+							 if(dt2.getTime()>dt1.getTime())
+								 return 1;
+							 else
+								 return -1;
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return 0;
+					}
+				}; 
+				Collections.sort(list, comparator);
+			}
+		 
+		 int amount = li.size();
+		 for(int j=0;j<amount;j++){
+			 ArrayList<PlayerTechMPO> list= li.get(j);
+			 String name = list.get(0).name;
+			 //开始计算每一个球员的提升率
+			//最近5场比赛数据
+			 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
+			 //list为之前数据
+			int num=0;
+			while(num<5){
+				latest.add(list.get(0));
+				list.remove(0);
+				num++;
+			}
+			
+			int latestScore = 0;
+			int latestSteal=0;
+			int latestBlockShot=0;
+			int latestSecondaryAttack=0;
+			int latestRebound=0;
+			int score = 0;
+			int steal=0;
+			int blockShot=0;
+			int secondaryAttack=0;
+			int rebound=0;
+			
+			for(int i=0;i<5;i++){
+				PlayerTechMPO mp =  latest.get(i);
+				latestScore += mp.score;
+				latestSteal += mp.steal;
+				latestBlockShot += mp.blockShot;
+				latestSecondaryAttack +=mp.secondaryAttack;
+				latestRebound += mp.rebound;
+			}
+			
+			int listSize = list.size();
+			for(int i=0;i<listSize;i++){
+				PlayerTechMPO mp =  list.get(i);
+				score = mp.score;
+				steal=mp.steal;
+				blockShot=mp.blockShot;
+				secondaryAttack=mp.secondaryAttack;
+				rebound=mp.rebound;
+			}
+			
+			double scoreImproving=((latestScore/5)-score/listSize)/(score/listSize);
+		    double stealImproving=((latestSteal/5)-steal/listSize)/(steal/listSize);
+			double blockShotImproving=((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize);
+			double secondaryAttackImproving=((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize);
+			double reboundImproving=((rebound/5)-rebound/listSize)/(rebound/listSize);
+			
+			int poSize = list.size();
+			for(int m=0;m<poSize;m++){
+				PlayerTechPO po = poList.get(m); 
+				if(po.name.equals(name)){
+					po.scoreImproving = scoreImproving;
+					po.stealImproving = stealImproving;
+					po.blockShotImproving = blockShotImproving;
+					po.secondaryAttackImproving = secondaryAttackImproving;
+					po.reboundImproving = reboundImproving;
+				}
+			}
+		 }
+		 return poList;
 	}
 
 }

@@ -13,14 +13,14 @@ public class Show implements ShowDataService {
 	@Override
 	public ArrayList<PlayerTechPO> showSeasonPlayerData() {
 		// TODO Auto-generated method stub
-		ArrayList<PlayerTechPO> list = owf.read();
+		ArrayList<PlayerTechPO> list = owf.readPO();
 		return list;
 	}
 
 	@Override
 	public PlayerTechPO showKeyData(String name, String team) {
 		// TODO Auto-generated method stub
-		ArrayList<PlayerTechPO> list = owf.read();
+		ArrayList<PlayerTechPO> list = owf.readPO();
 		int size = list.size();
 		for(int i=0;i<size;i++){
 			PlayerTechPO po = list.get(i);
@@ -109,7 +109,7 @@ public class Show implements ShowDataService {
 				}
 			}  
 		}; 
-		ArrayList<PlayerTechPO> list = owf.read();
+		ArrayList<PlayerTechPO> list = owf.readPO();
 		Collections.sort(list, comparator);
 		return list;
 	}
@@ -193,7 +193,7 @@ public class Show implements ShowDataService {
 				}
 			}  
 		}; 
-		ArrayList<PlayerTechPO> list = owf.read();
+		ArrayList<PlayerTechPO> list = owf.readPO();
 		Collections.sort(list, comparator);
 		return list;
 	}

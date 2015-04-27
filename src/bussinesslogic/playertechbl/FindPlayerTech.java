@@ -1,6 +1,8 @@
 package bussinesslogic.playertechbl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import data.playertechdata.Find;
 import dataservice.playertechdataservice.FindDataService;
@@ -44,61 +46,37 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	public ArrayList<PlayerTechVO> findFastImprovingPlayer(String keyword) {
+	//根据姓名分类。
+	public ArrayList<PlayerTechVO> findFastImprovingPlayer(final String keyword) {
 		// TODO Auto-generated method stub
-		 ArrayList<PlayerTechMPO> list = fd.findFastImprovingPlayer();
-		//最近5场比赛数据
-		 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
-		 //list为之前数据
-		int num=0;
-		while(num<5){
-			latest.add(list.get(0));
-			list.remove(0);
-			num++;
-		}
-		
-		int latestScore = 0;
-		int latestSteal=0;
-		int latestBlockShot=0;
-		int latestSecondaryAttack=0;
-		int latestRebound=0;
-		int score = 0;
-		int steal=0;
-		int blockShot=0;
-		int secondaryAttack=0;
-		int rebound=0;
-		
+		ShowPlayerTech sh = new ShowPlayerTech();
+		ArrayList<PlayerTechVO> list = sh.showSeasonPlayerData();
+		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
+		//降序排列
+		Comparator<PlayerTechVO> comparator = new Comparator<PlayerTechVO>(){  
+			public int compare(PlayerTechVO p1, PlayerTechVO p2) {   
+				//重写比较方法
+				switch(keyword){
+				case "score":
+					return  (p2.scoreImproving>p1.scoreImproving)?1:-1;
+				case "blockshot":
+					return p2.blockShotImproving>p1.blockShotImproving?1:-1;
+				case "rebound":
+					return p2.reboundImproving>p1.reboundImproving?1:-1;
+				case "secondaryAttack":
+					return p2.secondaryAttackImproving>p1.secondaryAttackImproving?1:-1;
+				case "steal":
+					return p2.stealImproving>p1.stealImproving?1:-1;
+				default:
+					System.out.println("wrong type");
+					return 0;
+				}
+			}  
+		}; 
+		Collections.sort(list, comparator);
 		for(int i=0;i<5;i++){
-			PlayerTechMPO mp =  latest.get(i);
-			latestScore += mp.score;
-			latestSteal += mp.steal;
-			latestBlockShot += mp.blockShot;
-			latestSecondaryAttack +=mp.secondaryAttack;
-			latestRebound += mp.rebound;
+			res.add(list.get(i));
 		}
-		
-		int listSize = list.size();
-		for(int i=0;i<listSize;i++){
-			PlayerTechMPO mp =  list.get(i);
-			score = mp.score;
-			steal=mp.steal;
-			blockShot=mp.blockShot;
-			secondaryAttack=mp.secondaryAttack;
-			rebound=mp.rebound;
-		}
-		
-		double scoreImproving=((latestScore/5)-score/listSize)/(score/listSize);
-	    double stealImproving=((latestSteal/5)-steal/listSize)/(steal/listSize);
-		double blockShotImproving=((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize);
-		double secondaryAttackImproving=((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize);
-		double reboundImproving=((rebound/5)-rebound/listSize)/(rebound/listSize);
-			
-		 ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
-		 int size = list.size();
-		 for(int i=0;i<size;i++){
-			 PlayerTechVO vo = l2v.l2v(p2l.p2l(list.get(i)));
-			 res.add(vo);
-		 }
 		return res;
 	}
 
