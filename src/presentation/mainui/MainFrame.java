@@ -1,19 +1,20 @@
 package presentation.mainui;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.*;
 
-import com.sun.awt.AWTUtilities;
+//import com.sun.awt.AWTUtilities;
 
 public class MainFrame extends JFrame{
 	/**
 	 * 系统主界面，包括界面大小，布局方式，鼠标点击拖动事件
 	 * @author blisscry
-	 * @date 2015年3月18日18:51:30
-	 * @version 1.2
+	 * @date 2015年4月20日20:46:02
+	 * @version 1.0
 	 */
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +47,11 @@ public class MainFrame extends JFrame{
 		Frame=this;
 
 		//窗体透明（此处引用了com.sun.awt.AWTUtilities，需引包）
-		AWTUtilities.setWindowOpaque(this, false);
+		//AWTUtilities.setWindowOpaque(this, false);
+		//窗体透明方法目前得到改进
+		this.setBackground(new Color(0,0,0,0));
+		
+		
 
 		//鼠标事件，用于获取鼠标拖动的位置
 		addMouseListener(new MouseAdapter(){
@@ -86,9 +91,10 @@ public class MainFrame extends JFrame{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
 		MessageFrame messageframe=new MessageFrame();
-		LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
-		messageframe.add(loginmsgpanel);
+//		LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
+//		messageframe.add(loginmsgpanel);
 		messageframe.repaint();
 	}
 

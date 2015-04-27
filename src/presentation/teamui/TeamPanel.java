@@ -17,7 +17,7 @@ import javax.swing.table.TableColumnModel;
 
 import VO.PlayerVO;
 import VO.TeamVO;
-import presentation.Preset.PlayerPre;
+import presentation.preset.PlayerPre;
 import presentation.playerui.PlayerTechPanel;
 
 public class TeamPanel extends JPanel implements ActionListener{
