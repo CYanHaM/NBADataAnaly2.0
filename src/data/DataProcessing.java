@@ -27,7 +27,7 @@ public class DataProcessing implements readFrom{
 	public ArrayList<MatchPO> matchRead(){
 		try {
 			String encoding = "GBK";
-			File file = new File("matchData");
+			File file = new File("MatchData");
 			File filelist[]=file.listFiles();
 			for(int i=0;i<filelist.length;i++){
 				
@@ -47,7 +47,11 @@ public class DataProcessing implements readFrom{
 				for(int j=0;j<info.size();j++){
 					data[j]=info.get(j).split(";");
 				}
-				matchpo.date=data[0][0];
+				String filename[]=filelist[i].getName().split("_");
+				if(Integer.valueOf(filename[1].split("-")[0])<=7)
+					matchpo.date="20"+filename[0].split("-")[1]+"-"+filename[1];
+				else
+					matchpo.date="20"+filename[0].split("-")[0]+"-"+filename[1];
 				matchpo.guestTeam=data[0][1].split("-")[0];
 				matchpo.homeTeam=data[0][1].split("-")[1];
 				matchpo.score=data[0][2];
@@ -101,6 +105,7 @@ public class DataProcessing implements readFrom{
 						ptmp.time=0;
 					}
 				//	System.out.println(ptmp.time);
+					ptmp.date=matchpo.date;
 					ptmp.shotIn=Integer.parseInt(data[k][3]);
 					ptmp.shot=Integer.parseInt(data[k][4]);
 					ptmp.threeShotIn=Integer.parseInt(data[k][5]);
@@ -145,7 +150,8 @@ public class DataProcessing implements readFrom{
 						ptmp.time=Integer.parseInt(data[k][2].split(":")[0]);
 					}catch (NumberFormatException e){
 						ptmp.time=0;
-					}					
+					}			
+					ptmp.date=matchpo.date;
 					ptmp.shotIn=Integer.parseInt(data[k][3]);
 					ptmp.shot=Integer.parseInt(data[k][4]);
 					ptmp.threeShotIn=Integer.parseInt(data[k][5]);
