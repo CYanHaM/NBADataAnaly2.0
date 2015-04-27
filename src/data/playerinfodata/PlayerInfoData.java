@@ -7,13 +7,13 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import PO.PlayerPO;
+import data.DataProcessing;
 import data.readFrom;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
 
 public class PlayerInfoData implements PlayerInfoDataService {
 
-	//待修改
-	readFrom rf ;
+	readFrom rf  = new DataProcessing();
 	
 	@Override
 	public ArrayList<PlayerPO> findAll() {

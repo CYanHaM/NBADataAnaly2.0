@@ -10,14 +10,13 @@ public class PlayerTechPO implements Serializable{
 	public String name;                            //球员名称
 	public String season;                          //赛季
 	public String team;                            //所属球队
+	
+	//根据场均数据相加
 	public int gameNum;                         //参赛场数
 	public int startingNum;                     //先发场数
 	public int rebound;                         //篮板数
 	public int secondaryAttack;                 //助攻数
 	public int time;                            //在场时间
-	public double shotInRate;                      //投篮命中率
-	public double threeShotInRate;                 //三分命中率
-	public double penaltyShotInRate;               //罚球命中率
 	public int offensiveNum;                    //进攻数
 	public int defensiveNum;                    //防守数
 	public int steal;                           //抢断数
@@ -25,6 +24,17 @@ public class PlayerTechPO implements Serializable{
 	public int fault;                           //失误数
 	public int foul;                            //犯规数
 	public int score;                           //得分
+	public int shotIn;                       //投篮命中数
+	public int shot;                         //投篮出手数
+	public int threeShotIn;                  //三分命中数
+	public int threeShot;                    //三分出手数
+	public int penaltyShotIn;                //罚球命中数
+	public int penaltyShot;                  //罚球出手数
+	
+	//根据公式计算
+	public double shotInRate;                      //投篮命中率
+	public double threeShotInRate;                 //三分命中率
+	public double penaltyShotInRate;               //罚球命中率
 	public double efficiency;                        //效率
 	public double GmScEfficiency;                    //GmSc效率值
 	public double trueShotInRate;                  //真实命中率
@@ -37,12 +47,7 @@ public class PlayerTechPO implements Serializable{
 	public double blockShotRate;                   //盖帽率
 	public double faultRate;                       //失误率	
 	public double usageRate;                       //使用率
-	public int shotIn;                       //投篮命中数
-	public int shot;                         //投篮出手数
-	public int threeShotIn;                  //三分命中数
-	public int threeShot;                    //三分出手数
-	public int penaltyShotIn;                //罚球命中数
-	public int penaltyShot;                  //罚球出手数
+	
 	public int teamAllTime;                  //全队上场时间
 	public int teamOffensiveRebound;                  //全队进攻篮板
 	public int teamDefensiveRebound;                //全队防守篮板
@@ -54,7 +59,13 @@ public class PlayerTechPO implements Serializable{
 	public int teamShot;                          //全队出手次数
 	public int teamPenaltyShot;                   //全队罚球次数
 	public int teamFault;                          //全队失误次数    
-
+	
+	//以下为提升率
+		public double scoreImproving;
+		public double stealImproving;
+		public double blockShotImproving;
+		public double secondaryAttackImproving;
+		public double reboundImproving;
 	
 	public boolean equals(PlayerTechPO ptpo){
 		if(!this.name.equals(ptpo.name)){
