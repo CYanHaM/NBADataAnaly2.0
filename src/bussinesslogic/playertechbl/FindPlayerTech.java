@@ -11,18 +11,13 @@ import PO.PlayerTechPO;
 import VO.PlayerTechMVO;
 import VO.PlayerTechVO;
 import blservice.playertechblservice.FindPlayerTechService;
-import bussinesslogic.Transfer.L2P.PlayerTechL2P;
-import bussinesslogic.Transfer.L2V.PlayerTechL2V;
+import bussinesslogic.Transfer.PlayerTechTransfer;
 import bussinesslogic.Transfer.P2L.MPO2MVO;
-import bussinesslogic.Transfer.P2L.PlayerTechP2L;
-import bussinesslogic.Transfer.V2L.PlayerTechV2L;
 
 public class FindPlayerTech implements FindPlayerTechService{
 
 	FindDataService fd = new Find();
-	PlayerTechP2L p2l = new PlayerTechP2L();
-	PlayerTechL2V l2v = new PlayerTechL2V();
-	
+	PlayerTechTransfer tr = new PlayerTechTransfer();
 	@Override
 	public ArrayList<PlayerTechMVO> findHotPlayerToday(String date, String keyword) {
 		// TODO Auto-generated method stub
@@ -36,12 +31,7 @@ public class FindPlayerTech implements FindPlayerTechService{
 	public ArrayList<PlayerTechVO> findSeasonHotPlayer(String keyword) {
 		// TODO Auto-generated method stub
 		 ArrayList<PlayerTechPO> list = fd.findSeasonHotPlayer(keyword);
-		 ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
-		 int size = list.size();
-		 for(int i=0;i<size;i++){
-			 PlayerTechVO vo = l2v.l2v(p2l.p2l(list.get(i)));
-			 res.add(vo);
-		 }
+		 ArrayList<PlayerTechVO> res = tr.list2vo(list);
 		return res;
 	}
 
@@ -83,16 +73,9 @@ public class FindPlayerTech implements FindPlayerTechService{
 	@Override
 	public ArrayList<PlayerTechVO> sift(PlayerTechVO vo) {
 		// TODO Auto-generated method stub
-		PlayerTechV2L v2l = new PlayerTechV2L();
-		PlayerTechL2P l2p = new PlayerTechL2P();
-		PlayerTechPO po = l2p.l2p(v2l.v2l(vo));
+		PlayerTechPO po = tr.vo2po(vo);
 		ArrayList<PlayerTechPO> list= fd.sift(po);
-		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
-		 int size = list.size();
-		 for(int i=0;i<size;i++){
-			 PlayerTechVO v = l2v.l2v(p2l.p2l(list.get(i)));
-			 res.add(v);
-		 }
+		ArrayList<PlayerTechVO> res = tr.list2vo(list);
 		return res;
 	}
 
