@@ -24,14 +24,15 @@ public class OperateWithFile {
 	public void write(){
 		
 		
-		
+		//calculateteam计算各种率
 		ArrayList<PlayerTechMPO> mpoList = calculateTeam();
 		ArrayList<PlayerTechPO> poList = new ArrayList<PlayerTechPO>();
 
+		//div储存每个球员的所有比赛数据
 		ArrayList<ArrayList<PlayerTechMPO> > div = new ArrayList<ArrayList<PlayerTechMPO> >();
 		while(mpoList.size()!=0){
 			int mpoSize = mpoList.size();
-			//暂存同一球员的每场比赛数据。一轮处理完后丢弃。
+			//暂存同一球员的每场比赛数据。
 			ArrayList<PlayerTechMPO> temp = new ArrayList<PlayerTechMPO>();
 			temp.add(mpoList.get(0));
 			String name = mpoList.get(0).name;
@@ -129,7 +130,6 @@ public class OperateWithFile {
 				
 			}
 			//根据公式计算
-			//公式疑问 球员出手数=投篮出手数还是=投篮出手数+罚球出手数？
 			//除数不能为0
 			ptp.shotInRate = (ptp.shot==0?0:ptp.shotIn/ptp.shot);
 			ptp.threeShotInRate = (ptp.threeShot==0?0:ptp.threeShotIn/ptp.threeShot);
@@ -142,13 +142,11 @@ public class OperateWithFile {
 			ptp.shootingEfficiency = (ptp.shotIn+0.5*ptp.threeShotIn)/ptp.shot;
 			ptp.reboundRate = (ptp.offensiveNum+ptp.defensiveNum)*(ptp.teamAllTime/5)/ptp.time/(ptp.teamOffensiveRebound+
 					ptp.teamDefensiveRebound+ptp.opponentOffensiveRebound+ptp.opponentDefensiveRebound);
-			//对公式的疑问，只改篮板数？
 			ptp.offensiveReboundRate = ptp.offensiveNum*(ptp.teamAllTime/5)/ptp.time/(ptp.teamOffensiveRebound+
-					ptp.teamDefensiveRebound+ptp.opponentOffensiveRebound+ptp.opponentDefensiveRebound);
-			ptp.defensiveReboundRate = ptp.defensiveNum*(ptp.teamAllTime/5)/ptp.time/(ptp.teamOffensiveRebound+
-					ptp.teamDefensiveRebound+ptp.opponentOffensiveRebound+ptp.opponentDefensiveRebound);
+					ptp.opponentOffensiveRebound);
+			ptp.defensiveReboundRate = ptp.defensiveNum*(ptp.teamAllTime/5)/ptp.time/(ptp.teamDefensiveRebound+
+					ptp.opponentDefensiveRebound);
 			ptp.secondaryAttackRate = ptp.secondaryAttack/(ptp.time/(ptp.teamAllTime/5)*ptp.teamShotIn-ptp.shotIn);
-			//公式疑问，多了个闭括号
 			ptp.stealRate = ptp.steal*(ptp.teamAllTime/5)/ptp.time/ptp.opponentOffensiveNum;
 			ptp.blockShotRate = ptp.blockShot*(ptp.teamAllTime/5)/ptp.time/ptp.opponentTwoShot;
 			ptp.faultRate = ptp.fault/(ptp.shot-ptp.threeShot+0.44*ptp.penaltyShot+ptp.fault);
@@ -234,8 +232,7 @@ public class OperateWithFile {
 			int opponentOffensiveRebound = ma.guestTeamOffensiveRebound;                  //对手进攻篮板
 			int opponentDefensiveRebound =ma.guestTeamDeffensiveRebound;                //对手防守篮板
 		    int teamShotIn = ma.homeTwoShotIn+ma.homeThreeShotIn;                             //全队进球数
-		    //疑问 进攻次数为进攻回合?单位不一致
-			int opponentOffensiveNum = (int)ma.guestTeamOffensiveRound;                     //对手进攻次数
+			double opponentOffensiveNum = ma.guestTeamOffensiveRound;                     //对手进攻次数
 			int opponentTwoShot =ma.guestTwoShot;                     //对手进攻两分球出手次数
 			int teamShot = ma.homeShot;                          //全队出手次数
 		    int teamPenaltyShot =ma.homePenaltyShot;                   //全队罚球次数

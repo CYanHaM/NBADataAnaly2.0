@@ -197,5 +197,10 @@ public class Show implements ShowDataService {
 		Collections.sort(list, comparator);
 		return list;
 	}
+	
+	public void refresh(){
+		owf.write();
+		
+	}
 
 }

@@ -34,6 +34,7 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
+		sd.refresh();
 		showSeasonPlayerData();
 	}
 
