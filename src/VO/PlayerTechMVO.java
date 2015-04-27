@@ -29,4 +29,17 @@ public class PlayerTechMVO implements Serializable {
 		public int score;                        //个人得分
 		public int ifFirstLineUp;                 //是否先发
 		public int ifParticipate;                 //是否参赛
+		
+		//场均的球队数据
+		public int teamAllTime;                  //全队上场时间
+		public int teamOffensiveRebound;                  //全队进攻篮板
+		public int teamDefensiveRebound;                //全队防守篮板
+		public int opponentOffensiveRebound;                  //对手进攻篮板
+		public int opponentDefensiveRebound;                //对手防守篮板
+		public int teamShotIn;                             //全队进球数
+		public int opponentOffensiveNum;                     //对手进攻次数
+		public int opponentTwoShot;                     //对手进攻两分球出手次数
+		public int teamShot;                          //全队出手次数
+		public int teamPenaltyShot;                   //全队罚球次数
+		public int teamFault;                          //全队失误次数  
 }

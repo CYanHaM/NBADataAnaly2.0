@@ -11,8 +11,8 @@ import presentation.teamui.TeamInfoPanel;
 import presentation.teamui.TeamPanel;
 import presentation.teamui.TeamTechPanel;
 import VO.TeamVO;
-import blservice.LoginBLservice;
-import bussinesslogic.LoginBL.Login;
+//import blservice.LoginBLservice;
+//import bussinesslogic.LoginBL.Login;
 
 public class LoginMsgPanel extends JPanel implements ActionListener{
 	/**
@@ -31,7 +31,7 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 	JLabel messagetextl;
 	JButton affirm;
 	JButton cancel;
-	LoginBLservice lbs;
+//	LoginBLservice lbs;
 
 	public LoginMsgPanel(JFrame frame){
 		Frame=frame;
@@ -44,9 +44,9 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 		message.setFont(new Font("Ó×Ô²",0,15));
 		message.setForeground(Color.WHITE);
 
-		lbs=new Login();
-		String url=lbs.getURL();
-		messagetext=new JTextField(url);
+//		lbs=new Login();
+//		String url=lbs.getURL();
+//		messagetext=new JTextField(url);
 		messagetext.setBounds(60, 100, 235, 30);
 		messagetext.setFont(new Font("Ó×Ô²",0,15));
 		messagetext.setForeground(Color.WHITE);
@@ -101,7 +101,7 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 			if(newURL.equals("")){
 				JOptionPane.showMessageDialog(null ,"IP²»¿ÉÎª¿Õ","ÊäÈë´íÎó",JOptionPane.ERROR_MESSAGE);
 			}else{
-				lbs.setURL(newURL);
+//				lbs.setURL(newURL);
 				MainFrame mf=new MainFrame();
 //				TeamTechPanel ttp=new TeamTechPanel(mf);
 				PlayerTechPanel ttp=new PlayerTechPanel(mf);

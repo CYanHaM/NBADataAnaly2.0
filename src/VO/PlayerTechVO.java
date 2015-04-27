@@ -1,7 +1,5 @@
 package VO;
 
-import bussinesslogic.PlayerTechBL.PlayerTechLineItem;
-
 public class PlayerTechVO {
 	public String name;                            //球员名称
 	public String season;                          //赛季
@@ -49,6 +47,13 @@ public class PlayerTechVO {
 	public double reboundave;                         //篮板数
 	public double secondaryAttackave;                 //助攻数
 	public double timeave;                            //在场时间
+	
+	//以下为提升率
+	public double scoreImproving;
+	public double stealImproving;
+	public double blockShotImproving;
+	public double secondaryAttackImproving;
+	public double reboundImproving;
 	
 	public boolean equals(PlayerTechVO ptvo){
 		if(!this.name.equals(ptvo.name)){
