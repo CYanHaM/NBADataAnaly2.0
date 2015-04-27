@@ -12,6 +12,13 @@ import data.readFrom;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
 
 public class PlayerInfoData implements PlayerInfoDataService {
+	
+	public static void main(String[] args){
+		PlayerInfoData pd = new PlayerInfoData();
+		pd.write();
+		ArrayList<PlayerPO> list = pd.read();
+		System.out.println(list.size()+" "+list.get(0));
+	}
 
 	readFrom rf  = new DataProcessing();
 	
