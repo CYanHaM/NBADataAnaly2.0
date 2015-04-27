@@ -93,8 +93,8 @@ public class MainFrame extends JFrame{
 		}
 		
 		MessageFrame messageframe=new MessageFrame();
-		LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
-		messageframe.add(loginmsgpanel);
+//		LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
+//		messageframe.add(loginmsgpanel);
 		messageframe.repaint();
 	}
 
