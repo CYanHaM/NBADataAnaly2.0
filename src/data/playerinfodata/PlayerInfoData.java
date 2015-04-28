@@ -17,7 +17,8 @@ public class PlayerInfoData implements PlayerInfoDataService {
 		PlayerInfoData pd = new PlayerInfoData();
 		pd.write();
 		ArrayList<PlayerPO> list = pd.read();
-		System.out.println(list.size()+" "+list.get(0));
+		for(int i=0;i<list.size();i++)
+			System.out.println(list.get(i).name);
 	}
 
 	readFrom rf  = new DataProcessing();
