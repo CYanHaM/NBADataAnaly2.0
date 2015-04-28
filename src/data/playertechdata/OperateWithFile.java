@@ -156,13 +156,13 @@ public class OperateWithFile {
 			poList.add(ptp);
 	   }
 	  try {
-			  FileOutputStream fos2 = new FileOutputStream("PlayerTechMPODiv.ser");
+			  FileOutputStream fos2 = new FileOutputStream("database/PlayerTechMPODiv.ser");
 	          ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
 	          oos2.writeObject(div);
 	          oos2.flush();
 	          oos2.close();
 	          
-        	FileOutputStream fos = new FileOutputStream("PlayerTechPO.ser");
+        	FileOutputStream fos = new FileOutputStream("database/PlayerTechPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(calculateImproving(poList));
             oos.flush();
@@ -176,7 +176,7 @@ public class OperateWithFile {
 	public ArrayList<PlayerTechPO> readPO(){
 		ArrayList<PlayerTechPO> list = new ArrayList<PlayerTechPO>(); 
 		try{
-			FileInputStream fis = new FileInputStream("PlayerTech.ser");
+			FileInputStream fis = new FileInputStream("database/PlayerTech.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        list =  (ArrayList<PlayerTechPO>) ois.readObject();
 	        ois.close();
@@ -190,7 +190,7 @@ public class OperateWithFile {
 	public ArrayList<ArrayList<PlayerTechMPO>> readDiv(){
 		ArrayList<ArrayList<PlayerTechMPO>> res = new ArrayList<ArrayList<PlayerTechMPO>>(); 
 		try{
-			FileInputStream fis = new FileInputStream("PlayerTechMPODiv.ser");
+			FileInputStream fis = new FileInputStream("database/PlayerTechMPODiv.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        res=  (ArrayList<ArrayList<PlayerTechMPO>>) ois.readObject();
 	        ois.close();
@@ -204,7 +204,7 @@ public class OperateWithFile {
 	public ArrayList<PlayerTechMPO> readMPO(){
 	    ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>(); 
 		try{
-			FileInputStream fis = new FileInputStream("PlayerTechMPO.ser");
+			FileInputStream fis = new FileInputStream("database/PlayerTechMPO.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        res=  (ArrayList<PlayerTechMPO>) ois.readObject();
 	        ois.close();
@@ -257,7 +257,7 @@ public class OperateWithFile {
 		}
 		
 		try {
-        	FileOutputStream fos = new FileOutputStream("PlayerTechMPO.ser");
+        	FileOutputStream fos = new FileOutputStream("database/PlayerTechMPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(res);
             oos.flush();
