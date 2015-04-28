@@ -250,8 +250,8 @@ public class DataProcessing implements readFrom{
 				matchpo.guestPenaltyShot=guestPShot;
 				matchpo.homePenaltyShotIn=homePShotIn;
 				matchpo.guestPenaltyShotIn=guestPShotIn;
-				matchpo.homeFoul=homeFault;
-				matchpo.guestFoul=guestFault;
+				matchpo.homeFault=homeFault;
+				matchpo.guestFault=guestFault;
 				matchpo.guestTeamDeffensiveRebound=guestDeRebound;
 				matchpo.homeTeamDeffensiveRebound=homeDeRebound;
 				matchpo.guestTeamOffensiveRebound=guestOfRebound;

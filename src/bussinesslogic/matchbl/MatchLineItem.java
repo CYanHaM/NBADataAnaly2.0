@@ -7,51 +7,51 @@ import PO.PlayerTechMPO;
 public class MatchLineItem {
 
 	/**
-	 * Ã¿³¡±ÈÈüµÄÊý¾Ý
+	 * Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
-	public String season;                                 //Èü¼¾
-	public String date;                                   //ÈÕÆÚ
-	public String homeTeam;                               //Ö÷³¡¶ÓÎé
-	public String guestTeam;                              //¿Í³¡¶ÓÎé
-	public String score;                                  //±È·Ö
-	public String score1;                                 //µÚÒ»½Ú±È·Ö
-	public String score2;                                 //µÚ¶þ½Ú±È·Ö
-	public String score3;                                 //µÚÈý½Ú±È·Ö
-	public String score4;                                 //µÚËÄ½Ú±È·Ö
-	public String scoreExtra;                             //¼ÓÊ±Èü±È·Ö
-	public ArrayList<PlayerTechMPO> playerStatistic;      //ÇòÔ±¼¼ÊõÍ³¼Æ
-	public String scoringChampion;                            //µÃ·ÖÍõ
-	public String reboundChampion;                          //Àº°åÍõ
-	public String assistChampion;                      //Öú¹¥Íõ
-	public int ifHomeTeamWin;                         //Ö÷¶ÓÊÇ·ñÊ¤Àû
-	public int ifGuestTeamWin;                        //¿Í¶ÓÊÇ·ñÊ¤Àû
-	public int homeTeamDeffensiveRebound;              //Ö÷¶Ó·ÀÊØÀº°å
-	public int guestTeamDeffensiveRebound;              //¿Í¶Ó·ÀÊØÀº°å
-	public int homeTeamOffensiveRebound;              //Ö÷¶Ó½ø¹¥Àº°å
-	public int guestTeamOffensiveRebound;              //¿Í¶Ó½ø¹¥Àº°å
-	public double homeTeamOffensiveRound;              //Ö÷¶Ó½ø¹¥»ØºÏ
-	public double guestTeamOffensiveRound;              //¿Í¶Ó½ø¹¥»ØºÏ
-	public int homeScore;               //Ö÷¶ÓµÃ·Ö
-	public int guestScore;               //¿Í¶ÓµÃ·Ö
-	public int homeAllTime;              //Ö÷¶ÓÈ«Ô±ÉÏ³¡Ê±¼ä
-	public int guestAllTime;             //¿Í¶ÓÈ«Ô±ÉÏ³¡Ê±¼ä
-	public int homeShotIn;              //Ö÷¶Ó×Ü½øÇòÊý
-	public int guestShotIn;              //¿Í¶Ó×Ü½øÇòÊý
-	public int homeShot;             //Ö÷¶Ó³öÊÖ´ÎÊý
-	public int guestShot;            //¿Í¶Ó³öÊÖ´ÎÊý
-	public int homeTwoShot;             //Ö÷¶ÓÁ½·Ö³öÊÖ´ÎÊý
-	public int guestTwoShot;            //¿Í¶ÓÁ½·Ö³öÊÖ´ÎÊý
-	public int homeTwoShotIn;             //Ö÷¶ÓÁ½·Ö½øÇòÊý
-	public int guestTwoShotIn;            //¿Í¶ÓÁ½·Ö½øÇòÊý
-	public int homeThreeShot;             //Ö÷¶ÓÈý·Ö³öÊÖ´ÎÊý
-	public int guestThreeShot;            //¿Í¶ÓÈý·Ö³öÊÖ´ÎÊý
-	public int homeThreeShotIn;             //Ö÷¶ÓÈý·Ö½øÇòÊý
-	public int guestThreeShotIn;            //¿Í¶ÓÈý·Ö½øÇòÊý
-	public int homePenaltyShot;         //Ö÷¶Ó·£Çò´ÎÊý
-	public int guestPenaltyShot;        //¿Í¶Ó·£Çò´ÎÊý
-	public int homePenaltyShotIn;         //Ö÷¶Ó·£Çò½øÇòÊý
-	public int guestPenaltyShotIn;        //¿Í¶Ó·£Çò½øÇòÊý
-	public int homeFoul;                //Ö÷¶ÓÊ§Îó´ÎÊý
-	public int guestFoul;               //¿Í¶ÓÊ§Îó´ÎÊý
+	public String season;                                 //ï¿½ï¿½ï¿½ï¿½
+	public String date;                                   //ï¿½ï¿½ï¿½ï¿½
+	public String homeTeam;                               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public String guestTeam;                              //ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½
+	public String score;                                  //ï¿½È·ï¿½
+	public String score1;                                 //ï¿½ï¿½Ò»ï¿½Ú±È·ï¿½
+	public String score2;                                 //ï¿½Ú¶ï¿½ï¿½Ú±È·ï¿½
+	public String score3;                                 //ï¿½ï¿½ï¿½ï¿½ï¿½Ú±È·ï¿½
+	public String score4;                                 //ï¿½ï¿½ï¿½Ä½Ú±È·ï¿½
+	public String scoreExtra;                             //ï¿½ï¿½Ê±ï¿½ï¿½ï¿½È·ï¿½
+	public ArrayList<PlayerTechMPO> playerStatistic;      //ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
+	public String scoringChampion;                            //ï¿½Ã·ï¿½ï¿½ï¿½
+	public String reboundChampion;                          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public String assistChampion;                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int ifHomeTeamWin;                         //ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ê¤ï¿½ï¿½
+	public int ifGuestTeamWin;                        //ï¿½Í¶ï¿½ï¿½Ç·ï¿½Ê¤ï¿½ï¿½
+	public int homeTeamDeffensiveRebound;              //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestTeamDeffensiveRebound;              //ï¿½Í¶Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homeTeamOffensiveRebound;              //ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestTeamOffensiveRebound;              //ï¿½Í¶Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public double homeTeamOffensiveRound;              //ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Øºï¿½
+	public double guestTeamOffensiveRound;              //ï¿½Í¶Ó½ï¿½ï¿½ï¿½ï¿½Øºï¿½
+	public int homeScore;               //ï¿½ï¿½ï¿½ÓµÃ·ï¿½
+	public int guestScore;               //ï¿½Í¶ÓµÃ·ï¿½
+	public int homeAllTime;              //ï¿½ï¿½ï¿½ï¿½È«Ô±ï¿½Ï³ï¿½Ê±ï¿½ï¿½
+	public int guestAllTime;             //ï¿½Í¶ï¿½È«Ô±ï¿½Ï³ï¿½Ê±ï¿½ï¿½
+	public int homeShotIn;              //ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestShotIn;              //ï¿½Í¶ï¿½ï¿½Ü½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homeShot;             //ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int guestShot;            //ï¿½Í¶Ó³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int homeTwoShot;             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int guestTwoShot;            //ï¿½Í¶ï¿½ï¿½ï¿½ï¿½Ö³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int homeTwoShotIn;             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestTwoShotIn;            //ï¿½Í¶ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homeThreeShot;             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int guestThreeShot;            //ï¿½Í¶ï¿½ï¿½ï¿½ï¿½Ö³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+	public int homeThreeShotIn;             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestThreeShotIn;            //ï¿½Í¶ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homePenaltyShot;         //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestPenaltyShot;        //ï¿½Í¶Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homePenaltyShotIn;         //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestPenaltyShotIn;        //ï¿½Í¶Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int homeFault;                //ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½
+	public int guestFault;               //ï¿½Í¶ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }
