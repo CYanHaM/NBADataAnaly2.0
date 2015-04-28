@@ -1,6 +1,5 @@
 package dataservice.playertechdataservice;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.PlayerTechPO;
@@ -19,4 +18,5 @@ public interface ShowDataService {
 		public ArrayList<PlayerTechPO> descend(String type);
 		//鎸夌収type鎵�绀烘潯浠堕檷搴忔帓搴�
 
+		public void refresh();
 }

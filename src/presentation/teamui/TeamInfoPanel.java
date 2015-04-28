@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import VO.TeamVO;
-import presentation.Preset.PlayerPre;
+import presentation.preset.PlayerPre;
 import presentation.playerui.PlayerTechPanel;
 
 public class TeamInfoPanel extends JPanel implements ActionListener{
