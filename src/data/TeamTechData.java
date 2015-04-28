@@ -1,8 +1,10 @@
 package data;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class TeamTechData implements TeamTechDataService{
 	void WriteIn(){
 		ArrayList<MatchPO> source = new ArrayList<MatchPO>();
 		source = rf.matchRead();
-		ArrayList<TeamPO> teams = new ArrayList<TeamPO>();
+		ArrayList<TeamPO> teams = rf.teamRead();
 		ArrayList<TeamTechPO> result = new ArrayList<TeamTechPO>();
 		for(int i = 0; i<teams.size(); i++){
 			TeamTechPO ttpo = new TeamTechPO();
@@ -92,28 +94,41 @@ public class TeamTechData implements TeamTechDataService{
 				ttpo.secondaryAttackEfficiency = ttpo.secondaryAttack/(ttpo.offensiveRound/100);
 			}
 			result.add(ttpo);
-			try{
-				FileOutputStream fos = new FileOutputStream(file);
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(result);
-				oos.close();
-				oos.flush();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
+		}
+		try{
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(result);
+			oos.close();
+			oos.flush();
+		}catch(IOException e){
+			e.printStackTrace();
 		}
 	}
 	
-	@Override
-	public ArrayList<TeamTechPO> ascend(String type) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TeamTechPO> readin(){
+		ArrayList<TeamTechPO> result = new ArrayList<TeamTechPO>();
+		try{
+            FileInputStream fis = new FileInputStream("database/teamtech.txt");
+            @SuppressWarnings("resource")
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			result.clear();
+			result = (ArrayList<TeamTechPO>)ois.readObject();
+			return result;
+		}catch(Exception e){
+			e.printStackTrace();
+			return result;
+		}
 	}
 
 	@Override
-	public ArrayList<TeamTechPO> descend(String type) throws RemoteException {
+	public ArrayList<TeamTechPO> list() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<TeamTechPO> result = new ArrayList<TeamTechPO>();
+		result = readin();
+		return result;
 	}
+	
+
 
 }
