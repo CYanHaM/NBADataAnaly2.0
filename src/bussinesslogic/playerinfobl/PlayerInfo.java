@@ -30,4 +30,17 @@ public class PlayerInfo implements PlayerInfoService {
 		return vo;
 	}
 
+	@Override
+	public ArrayList<PlayerVO> findPlayerByLetter(char letter) {
+		// TODO Auto-generated method stub
+		ArrayList<PlayerVO> all = showAllPlayerInfo();
+		ArrayList<PlayerVO> res = new ArrayList<PlayerVO>();
+		int size = all.size();
+		for(int i=0;i<size;i++){
+			if(all.get(i).name.charAt(0)==letter)
+				res.add(all.get(i));
+		}
+		return res;
+	}
+
 }

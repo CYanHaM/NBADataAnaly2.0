@@ -10,6 +10,7 @@ import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
 import VO.PlayerTechMVO;
 import VO.PlayerTechVO;
+import VO.ScreeningConditionVO;
 import blservice.playertechblservice.FindPlayerTechService;
 import bussinesslogic.Transfer.PlayerTechTransfer;
 import bussinesslogic.Transfer.P2L.MPO2MVO;
@@ -71,11 +72,83 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	public ArrayList<PlayerTechVO> sift(PlayerTechVO vo) {
+	public ArrayList<PlayerTechVO> sift(ScreeningConditionVO vo) {
 		// TODO Auto-generated method stub
-		PlayerTechPO po = tr.vo2po(vo);
-		ArrayList<PlayerTechPO> list= fd.sift(po);
-		ArrayList<PlayerTechVO> res = tr.list2vo(list);
+		ShowPlayerTech sh = new ShowPlayerTech();
+		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
+		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
+		int size = all.size();
+		for(int i=0;i<size;i++){
+			PlayerTechVO pt = all.get(i);
+			if(vo.condition.equals("score")){
+				if(vo.comparison.equals(">=")){
+					if(pt.score>=vo.number){
+						res.add(pt);
+					}
+				}else{
+					if(pt.score<=vo.number){
+						res.add(pt);
+					}
+				}
+			}else if(vo.condition.equals("blockshot")){
+				if(vo.comparison.equals(">=")){
+					if(pt.blockShot>=vo.number){
+						res.add(pt);
+					}
+				}else{
+					if(pt.blockShot<=vo.number){
+						res.add(pt);
+					}
+				}
+			}else if(vo.condition.equals("steal")){
+				if(vo.comparison.equals(">=")){
+					if(pt.steal>=vo.number){
+						res.add(pt);
+					}
+				}else{
+					if(pt.steal<=vo.number){
+						res.add(pt);
+					}
+				}
+			}else if(vo.condition.equals("secondaryattack")){
+				if(vo.comparison.equals(">=")){
+					if(pt.secondaryAttack>=vo.number){
+						res.add(pt);
+					}
+				}else{
+					if(pt.secondaryAttack<=vo.number){
+						res.add(pt);
+					}
+				}
+			}else if(vo.condition.equals("rebound")){
+				if(vo.comparison.equals(">=")){
+					if(pt.rebound>=vo.number){
+						res.add(pt);
+					}
+				}else{
+					if(pt.rebound<=vo.number){
+						res.add(pt);
+					}
+				}
+			}else{
+				System.out.println("wrong condition");
+			}
+		}
+		
+		return res;
+	}
+
+	@Override
+	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter) {
+		// TODO Auto-generated method stub
+		ShowPlayerTech sh = new ShowPlayerTech();
+		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
+		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
+		int size = all.size();
+		for(int i=0;i<size;i++){
+			if(all.get(i).name.charAt(0)==letter)
+				res.add(all.get(i));
+		}
 		return res;
 	}
 
