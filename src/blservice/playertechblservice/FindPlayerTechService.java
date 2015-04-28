@@ -17,5 +17,7 @@ public interface FindPlayerTechService {
 	public ArrayList<PlayerTechVO> findFastImprovingPlayer(String keyword);
 	
 	public ArrayList<PlayerTechVO> sift(PlayerTechVO vo);
+	
+	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter);   //按照字母查询
 
 }
