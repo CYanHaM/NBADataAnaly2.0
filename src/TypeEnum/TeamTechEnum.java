@@ -20,6 +20,7 @@ public enum TeamTechEnum {
 	shotInRate,                      //投篮命中率
 	threeShotInRate,                 //三分命中率
 	penaltyShotInRate,               //罚球命中率
+	winningNum,						 //胜场
 	winningRate,                     //胜率
 	offensiveRound,                  //进攻回合
 	offensiveEfficiency,               //进攻效率
