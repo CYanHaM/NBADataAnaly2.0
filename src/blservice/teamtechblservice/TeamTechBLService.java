@@ -8,22 +8,22 @@ import VO.TeamTechVO;
 
 public interface TeamTechBLService {
     public ArrayList<TeamTechVO> Ascend(TeamTechEnum DataType);
-	/* ´«ÈëÅÅĞòµÄÀàĞÍ
-	 * °´Èü¼¾×ÜÊı¾İÅÅĞò
-	 * ÉıĞò
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½
      * */
     
     public ArrayList<TeamTechVO> Descend(TeamTechEnum DataType);
-	/* ´«ÈëÅÅĞòµÄÀàĞÍ
-	 * °´Èü¼¾×ÜÊı¾İÅÅĞò
-	 * ½µĞò
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½
      * */
     
     public ArrayList<TeamTechVO> refresh(SortEnum sort, TeamTechEnum DataType);
-    /* ´«ÈëÅÅĞòµÄÀàĞÍ£¬ÒÔ¼°ÉıĞò»òÊÇ½µĞò
+    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½
      * */
     
-    public ArrayList<TeamTechVO> findSeasonHotTeam(String condition);
-    /* ´«ÈëÉ¸Ñ¡ÀàĞÍ
+    public ArrayList<TeamTechVO> findSeasonHotTeam(TeamTechEnum DataType);
+    /* ï¿½ï¿½ï¿½ï¿½É¸Ñ¡ï¿½ï¿½ï¿½ï¿½
      * */
 }

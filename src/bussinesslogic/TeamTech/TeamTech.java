@@ -16,11 +16,10 @@ import dataservice.TeamTechDataService;
 public class TeamTech implements TeamTechBLService{
 
 	TeamTechDataService ttdataservice = new TeamTechData();
-	TeamTechP2L p2l = new TeamTechP2L();
+	
 	ArrayList<TeamTechLineItem> forSort = new ArrayList<TeamTechLineItem>();
-	TeamTechL2V l2v = new TeamTechL2V();
+	
 	boolean isInt = false;
-	boolean isString = false;
 	boolean isDouble = false;
 	
 	ArrayList readIn(TeamTechEnum DataType, ArrayList<TeamTechPO> polist){
@@ -28,6 +27,7 @@ public class TeamTech implements TeamTechBLService{
 		switch(DataType){
 			case shotInNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).shotInNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -35,6 +35,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case shotNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).shotNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -42,6 +43,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case threeShotInNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).threeShotInNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -49,6 +51,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case threeShotNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).threeShotNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -56,6 +59,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case penaltyShotInNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).penaltyShotInNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -63,6 +67,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case penaltyShotNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).penaltyShotNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -70,6 +75,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case offensiveRebound: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).offensiveRebound);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -77,6 +83,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case defensiveRebound: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).defensiveRebound);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -84,6 +91,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case rebound: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).rebound);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -91,6 +99,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case secondaryAttack: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).secondaryAttack);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -98,6 +107,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case steal: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).steal);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -105,6 +115,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case blockShot: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).blockShot);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -112,6 +123,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case fault: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).fault);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -119,6 +131,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case foul: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).foul);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -126,6 +139,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case score: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).score);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -133,21 +147,16 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case winningNum: 
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).winningNum);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
 				isInt = true;
 				return result;
 			//int到这里
-			case name:
-				for(int i = 0 ;i<30; i++){
-					result.add(polist.get(i).name);
-					forSort.add(p2l.p2l(polist.get(i)));
-				}
-				isString = true;
-				return result;
 			case shotInRate:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).shotInRate);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -155,6 +164,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case threeShotInRate:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).threeShotInRate);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -162,6 +172,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case penaltyShotInRate:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).penaltyShotInRate);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -169,6 +180,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case winningRate:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).winningRate);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -176,6 +188,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case offensiveRound:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).offensiveRound);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -183,6 +196,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case offensiveEfficiency:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).offensiveEfficiency);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -190,6 +204,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case defensiveEfficiency:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).defensiveEfficiency);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -197,6 +212,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case reboundEfficiency:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).reboundEfficiency);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -204,6 +220,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case stealEfficiency:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).stealEfficiency);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -211,6 +228,7 @@ public class TeamTech implements TeamTechBLService{
 				return result;
 			case secondaryAttackEfficiency:
 				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
 					result.add(polist.get(i).secondaryAttackEfficiency);
 					forSort.add(p2l.p2l(polist.get(i)));
 				}
@@ -223,6 +241,25 @@ public class TeamTech implements TeamTechBLService{
 	
 	@Override
 	public ArrayList<TeamTechVO> Ascend(TeamTechEnum DataType) {
+		ArrayList<TeamTechVO> result = new ArrayList<TeamTechVO>();
+		if(DataType==TeamTechEnum.name){
+			ArrayList<TeamTechPO> resultlist = new ArrayList<TeamTechPO>();
+			try {
+				resultlist = ttdataservice.list();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for(int i = 0; i<30; i++){
+				TeamTechVO ttvo = new TeamTechVO();
+				TeamTechP2L p2l = new TeamTechP2L();
+				TeamTechL2V l2v = new TeamTechL2V();
+				ttvo = l2v.l2v(p2l.p2l(resultlist.get(i)));
+				result.add(ttvo);
+			}
+			return result;
+		}
+		
 		ArrayList<TeamTechPO> middle = new ArrayList<TeamTechPO>();
 		try {
 			middle = ttdataservice.list();
@@ -240,8 +277,9 @@ public class TeamTech implements TeamTechBLService{
 		else if(isDouble){
 			mergeAscendDouble(datalist, forSort, 0, middle.size()-1, tempd, templi);
 		}
-		ArrayList<TeamTechVO> result = new ArrayList<TeamTechVO>();
+		
 		for(int i = 0; i<30; i++){
+			TeamTechL2V l2v = new TeamTechL2V();
 			result.add(l2v.l2v(forSort.get(i)));
 		}
 		isInt = false;
@@ -285,11 +323,12 @@ public class TeamTech implements TeamTechBLService{
 			templi.add(polist.get(j));
 			j++;
 		}
-		
 		for(int l = 0; l<temp.size(); l++){
 			datalist.set(first+l, temp.get(l));
 			polist.set(first+l, templi.get(l));
 		}
+		temp.clear();
+		templi.clear();
 	}
 	
 	void mergeAscendDouble(ArrayList<Double> datalist, ArrayList<TeamTechLineItem> polist, int first, int last, ArrayList<Double> temp, ArrayList<TeamTechLineItem> templi){
@@ -306,7 +345,7 @@ public class TeamTech implements TeamTechBLService{
 		int m = mid, n = last;
 		
 		while(i <= m && j <= n){
-			if(datalist.get(i) >= datalist.get(j)){
+			if(datalist.get(i) <= datalist.get(j)){
 				temp.add(datalist.get(i));
 				templi.add(polist.get(i));
 				i++;
@@ -333,29 +372,42 @@ public class TeamTech implements TeamTechBLService{
 			datalist.set(first+l, temp.get(l));
 			polist.set(first+l, templi.get(l));
 		}
+		temp.clear();
+		templi.clear();
 	}
 
 	@Override
 	public ArrayList<TeamTechVO> Descend(TeamTechEnum DataType) {
 		ArrayList<TeamTechPO> middle = new ArrayList<TeamTechPO>();
+		ArrayList<TeamTechLineItem> templi = new ArrayList<TeamTechLineItem>();
+		ArrayList<TeamTechVO> result = new ArrayList<TeamTechVO>();
+
 		try {
 			middle = ttdataservice.list();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(DataType==TeamTechEnum.name){
+			for(int i = 0; i<30; i++){
+				TeamTechP2L p2l = new TeamTechP2L();
+				TeamTechL2V l2v = new TeamTechL2V();
+				result.add(l2v.l2v(p2l.p2l(middle.get(29-i))));
+			}
+			return result;
+		}
 		ArrayList datalist = readIn(DataType, middle);
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		ArrayList<Double> tempd = new ArrayList<Double>();
-		ArrayList<TeamTechLineItem> templi = new ArrayList<TeamTechLineItem>();
 		if(isInt){
 			mergeDescendInt(datalist, forSort, 0, middle.size()-1,temp, templi);
 		}
 		else if(isDouble){
 			mergeDescendDouble(datalist, forSort, 0, middle.size()-1,tempd, templi);
 		}
-		ArrayList<TeamTechVO> result = new ArrayList<TeamTechVO>();
+
 		for(int i = 0; i<30; i++){
+			TeamTechL2V l2v = new TeamTechL2V();
 			result.add(l2v.l2v(forSort.get(i)));
 		}
 		isInt = false;
@@ -404,6 +456,8 @@ public class TeamTech implements TeamTechBLService{
 			datalist.set(first+l, temp.get(l));
 			polist.set(first+l, templi.get(l));
 		}
+		temp.clear();
+		templi.clear();
 	}
 	
 	void mergeDescendDouble(ArrayList<Double> datalist, ArrayList<TeamTechLineItem> polist, int first, int last, ArrayList<Double> temp, ArrayList<TeamTechLineItem> templi){
@@ -420,7 +474,7 @@ public class TeamTech implements TeamTechBLService{
 		int m = mid, n = last;
 		
 		while(i <= m && j <= n){
-			if(datalist.get(i) <= datalist.get(j)){
+			if(datalist.get(i) >= datalist.get(j)){
 				temp.add(datalist.get(i));
 				templi.add(polist.get(i));
 				i++;
@@ -447,18 +501,28 @@ public class TeamTech implements TeamTechBLService{
 			datalist.set(first+l, temp.get(l));
 			polist.set(first+l, templi.get(l));
 		}
+		temp.clear();
+		templi.clear();
 	}
 
 	@Override
 	public ArrayList<TeamTechVO> refresh(SortEnum sort, TeamTechEnum DataType) {
-		// TODO Auto-generated method stub
+		if(sort==SortEnum.ascend){
+			return Ascend(DataType);
+		}else if(sort==SortEnum.descend){
+			return Descend(DataType);
+		}
 		return null;
 	}
 
 	@Override
-	public ArrayList<TeamTechVO> findSeasonHotTeam(String condition) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TeamTechVO> findSeasonHotTeam(TeamTechEnum DataType) {
+		ArrayList<TeamTechVO> result = new ArrayList<TeamTechVO>();
+		ArrayList<TeamTechVO> all = Descend(DataType);
+		for(int i = 0; i<5 ; i++){
+			result.add(all.get(i));
+		}
+		return result;
 	}
 	
 }
