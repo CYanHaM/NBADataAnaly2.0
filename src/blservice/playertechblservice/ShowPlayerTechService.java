@@ -15,4 +15,5 @@ public interface ShowPlayerTechService {
 	//刷新赛季球员数据列表
 	public void refresh ();
 
+	public void PlayerTechIni();
 }

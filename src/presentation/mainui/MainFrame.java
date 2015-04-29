@@ -101,7 +101,7 @@ public class MainFrame extends JFrame{
 		 */
 		
 		MainFrame mf=new MainFrame();
-		MatchPanel mp=new MatchPanel();
+		MatchPanel mp=new MatchPanel(mf);
 		mf.add(mp);
 		mf.repaint();
 	}

@@ -26,4 +26,6 @@ public interface TeamTechBLService {
     public ArrayList<TeamTechVO> findSeasonHotTeam(TeamTechEnum DataType);
     /* ����ɸѡ����
      * */
+    
+    public void init();
 }

@@ -2,7 +2,9 @@ package bussinesslogic.playertechbl;
 
 import java.util.ArrayList;
 
+import data.playertechdata.OperateWithFile;
 import data.playertechdata.Show;
+import dataservice.playertechdataservice.PlayerTechInitial;
 import dataservice.playertechdataservice.ShowDataService;
 import PO.PlayerTechPO;
 import VO.PlayerTechVO;
@@ -36,6 +38,13 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 		// TODO Auto-generated method stub
 		sd.refresh();
 		showSeasonPlayerData();
+	}
+
+	@Override
+	public void PlayerTechIni() {
+		// TODO Auto-generated method stub
+		PlayerTechInitial ini = new OperateWithFile();
+		ini.write();
 	}
 
 }

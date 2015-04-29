@@ -78,7 +78,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 	public TeamVO teamvo;
 	public ArrayList<PlayerVO> playerlist;
 	public TeamPanel(TeamVO tvo,JFrame frame){
-		
+//		teamvo=tvo;
 //		teamvo=new TeamVO();
 //		teamvo.fullName="Adsj csacsaw";
 //		teamvo.abbreviation="SAS";
@@ -94,15 +94,15 @@ public class TeamPanel extends JPanel implements ActionListener{
 		//创建颜色预设对象
 		PPre=new PlayerPre();
 		//导入数据
-//		importdata=new ImportTeam();
+		importdata=new ImportTeam();
 //		System.out.println(tvo.fullName);
-//		teamvo=importdata.getTeamVO(tvo);
-//		playerlist=importdata.findByTeam(teamvo);
+		teamvo=importdata.getTeamVO(tvo);
+		playerlist=importdata.findByTeam(teamvo.abbreviation);
 		
-//		playerinfo=new Object[playerlist.size()][columnName.length];
-		playerinfo=new Object[20][columnName.length];
+		playerinfo=new Object[playerlist.size()][columnName.length];
+//		playerinfo=new Object[20][columnName.length];
 		//初始化数据，以便放入table中
-//		handleinitial(playerlist);
+		handleinitial(playerlist);
 		//加载表格配置
 		table_config();
 		//加载滑动面板配置
@@ -158,6 +158,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 	 
 	//定义所有显示及渲染球队信息的lablel
 	private void addlabel(){
+		System.out.println(teamvo.abbreviation);
 		Icon=new JLabel(new ImageIcon("images/teams/"+teamvo.abbreviation+".png"));
 		Icon.setBounds(210, 135, 300, 200);
 		

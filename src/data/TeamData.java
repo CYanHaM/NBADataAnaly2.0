@@ -24,7 +24,7 @@ public class TeamData implements TeamDataService, Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	void WriteIn(){
+	public void WriteIn(){
 		readFrom init = new DataProcessing();
 		ArrayList<TeamPO> list = new ArrayList<TeamPO>();
 		list = rf.teamRead();
@@ -42,7 +42,7 @@ public class TeamData implements TeamDataService, Serializable{
 	ArrayList<TeamPO> read(){
 		ArrayList<TeamPO> result = new ArrayList<TeamPO>();
 		try{
-            FileInputStream fis = new FileInputStream("database/stockbill.txt");
+            FileInputStream fis = new FileInputStream("database/team.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
 			result.clear();
 			result = (ArrayList<TeamPO>)ois.readObject();

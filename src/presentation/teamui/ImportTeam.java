@@ -6,25 +6,27 @@ import TypeEnum.TeamTechEnum;
 import VO.PlayerVO;
 import VO.TeamTechVO;
 import VO.TeamVO;
+import blservice.playerinfoblservice.PlayerInfoService;
 import blservice.teamblservice.TeamBLservice;
 import bussinesslogic.TeamBL.Team;
+import bussinesslogic.playerinfobl.PlayerInfo;
 
 public class ImportTeam {
 /**
- * ½çÃæ²ãÍ¨¹ýBL²ãµÄ½Ó¿Úµ¼Èë²¢´¦ÀíÊý¾Ý
+ * team panel import data
  * @author blisscry
- * @date 2015Äê3ÔÂ20ÈÕ20:59:42
- * @version 1.0
+ * @date 2015å¹´4æœˆ29æ—¥21:07:23
+ * @version 1.2
  */
-	//¶¨Òå²ã¼ä´«Êä½Ó¿Ú
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ä´«ï¿½ï¿½Ó¿ï¿½
 //	TeamTechBLservice TTbs;
 	TeamBLservice Tbs;
-//	PlayerBLservice pbs;
+	PlayerInfoService pis;
 
 	public ImportTeam(){
 //		TTbs = new TeamTech();
 		Tbs = new Team();
-//		pbs=new Player();
+		pis=new PlayerInfo();
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechAscend(TeamTechEnum DataType){
@@ -42,12 +44,10 @@ public class ImportTeam {
 	}
 	
 	public PlayerVO Show(PlayerVO vo){
-//		return pbs.Show(vo);
-		return null;
+		return pis.showPlayerInfo(vo.name);
 	}
 	
-	public ArrayList<PlayerVO> findByTeam(TeamVO tvo){
-//		return pbs.findByTeam(tvo);
-		return null;
+	public ArrayList<PlayerVO> findByTeam(String teamname){
+		return pis.findByTeam(teamname);
 	}
 }

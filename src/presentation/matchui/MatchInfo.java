@@ -3,9 +3,12 @@ package presentation.matchui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import blservice.matchblservice.MatchBLService;
+import bussinesslogic.matchbl.Match;
 import VO.MatchVO;
 import presentation.preset.MatchPre;
 
@@ -21,16 +24,37 @@ public class MatchInfo extends JPanel{
 	//定义滑动面板动态大小
 	private int panel_width=750;
 	private int panel_height=451;
-	//
-	private JLabel waterline;
 	
-	public MatchInfo() {
+	private int label_width=760;
+	private int label_height=150;
+	//
+	private MatchBLService mbs;
+	private String Date;
+	private ArrayList<MatchVO> matches;
+	
+	JFrame Frame;
+	
+	public MatchInfo(String date,JFrame frame) {
+		Frame=frame;
+		mbs=new Match();
+		Date=date;
+		
 		MatchPre MP=new MatchPre();
 //		this.setOpaque(false);
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(panel_width,panel_height));
 		this.setBackground(MP.MatchInfobg);
 		
+		//TODO change the matches when testing
+		//get matches from interface
+		matches=mbs.showMatchList(Date);
+//		testmatches();
+		showMatchinfo(matches);
+		
+		
+	}
+	
+	private void testmatches(){
 		MatchVO mvo1=new MatchVO();
 		mvo1.guestTeam="CHA";
 		mvo1.homeTeam="BOS";
@@ -38,12 +62,6 @@ public class MatchInfo extends JPanel{
 		mvo1.scoringChampion="Anderu Howards_30_CHA";
 		mvo1.reboundChampion="Johns Harden_20_BOS";
 		mvo1.assistChampion="Jam Wels_14_CHA";
-		
-		MatchLabel ml=new MatchLabel(mvo1);
-		ml.setBounds(0, 0, 760, 150);
-		
-//		waterline=new JLabel(new ImageIcon("images/system_img/waterline.png"));
-//		waterline.setBounds(2, 150, 750, 2);
 		
 		MatchVO mvo2=new MatchVO();
 		mvo2.guestTeam="BKN";
@@ -53,15 +71,37 @@ public class MatchInfo extends JPanel{
 		mvo2.reboundChampion="Johns Harden_20_BOS";
 		mvo2.assistChampion="Jam Wels_14_CHA";
 		
-		MatchLabel m2=new MatchLabel(mvo2);
-		m2.setBounds(0, 150, 760, 150);
+		MatchVO mvo3=new MatchVO();
+		mvo3.guestTeam="BKN";
+		mvo3.homeTeam="ATL";
+		mvo3.score="103-74";
+		mvo3.scoringChampion="Anderu Howards_30_CHA";
+		mvo3.reboundChampion="Johns Harden_20_BOS";
+		mvo3.assistChampion="Jam Wels_14_CHA";
 		
-		this.add(ml);
-		this.add(m2);
-//		this.add(waterline);
-		
+		matches = new ArrayList<MatchVO>();
+		matches.add(mvo1);
+		matches.add(mvo2);
+		matches.add(mvo3);
+		matches.add(mvo3);
 	}
 	
+	private void showMatchinfo(ArrayList<MatchVO> matches){
+		//change the dynamic panel_height when size>3
+		if(matches.size()>3){
+		panel_height=150*matches.size();
+		this.setPreferredSize(new Dimension(panel_width,panel_height));
+		this.repaint();
+		}
+		
+		int i=0;
+		for(MatchVO mvo:matches){
+			MatchLabel ml=new MatchLabel(mvo,Frame);
+			ml.setBounds(0, i*label_height, label_width, label_height);
+			this.add(ml);
+			i++;
+		}
+	}
 	
 	
 	

@@ -14,4 +14,5 @@ public interface PlayerInfoService {
 
 	public ArrayList<PlayerVO> findByTeam(String team);
 	
+	public void PlayerInfoIni();
 }

@@ -15,11 +15,12 @@ import java.util.Locale;
 
 import data.DataProcessing;
 import data.readFrom;
+import dataservice.playertechdataservice.PlayerTechInitial;
 import PO.MatchPO;
 import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
 
-public class OperateWithFile {
+public class OperateWithFile implements PlayerTechInitial {
 	
 	public static void main(String[] args){
 		OperateWithFile owf = new OperateWithFile();

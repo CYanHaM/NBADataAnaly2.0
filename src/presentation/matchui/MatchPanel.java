@@ -4,15 +4,10 @@ package presentation.matchui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
-import blservice.matchblservice.MatchBLService;
-import bussinesslogic.matchbl.Match;
 import presentation.mainui.DateLabel;
 import presentation.preset.MatchPre;
 
@@ -30,16 +25,18 @@ public class MatchPanel extends JPanel implements ActionListener{
 
 	//define kits
 	private JLabel showcal;
-	private JLabel callendar;
+	private JLabel calendar;
 	private JButton yesterday;
 	private JButton tomorrow;
-	private JScrollPane jsp;
+	private JButton refresh;
 	
-	private MatchBLService mbs;
+	private MatchInfo matchinfo;
+	private JScrollPane jsp;
+	private DateLabel datelabel;
+	JFrame Frame;
 
-
-	public MatchPanel() {
-		mbs=new Match();
+	public MatchPanel(JFrame frame) {
+		Frame=frame;
 		this.setLayout(null);
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		//定义比赛面板预设
@@ -50,27 +47,54 @@ public class MatchPanel extends JPanel implements ActionListener{
 		showcal.setForeground(MP.CallendarinitColor);
 		showcal.setFont(MP.CallendarinitFont);
 		showcal.setBounds(192, 115, 95, 30);
-		callendar = new JLabel();
-		callendar.setBounds(208, 140, 90, 30);
-		callendar.setFont(MP.CallendarinitFont);
-		callendar.setForeground(MP.CallendarinitColor);
-		DateLabel date=DateLabel.getInstance();
-		date.register(callendar);
-		callendar.setText(date.getSelectedDate());
+		calendar = new JLabel();
+		calendar.setBounds(208, 140, 90, 30);
+		calendar.setFont(MP.CallendarinitFont);
+		calendar.setForeground(MP.CallendarinitColor);
+		
+		//TODO change the lastdate when testing 
+		String lastdate="2014-02-18";
+		datelabel=DateLabel.getInstance(lastdate);
+		datelabel.register(calendar);
+		calendar.setText(datelabel.getSelectedDate());
 
-		yesterday = new JButton();
+		yesterday = new JButton(new ImageIcon("images/matches/yesterday_1.png"));
 		yesterday.setBounds(310, 140, 60, 25);
+		yesterday.setBorderPainted(false);
+		yesterday.setContentAreaFilled(false);
+		yesterday.setFocusPainted(false);
+		yesterday.setRolloverIcon(new ImageIcon("images/matches/yesterday_2.png"));
+		yesterday.setPressedIcon(new ImageIcon("images/matches/yesterday_3.png"));
+		yesterday.addActionListener(this);
+		yesterday.setVisible(false);
 		
 		
-		tomorrow = new JButton();
+		tomorrow = new JButton(new ImageIcon("images/matches/tomorrow_1.png"));
 		tomorrow.setBounds(370, 140, 60, 25);
+		tomorrow.setBorderPainted(false);
+		tomorrow.setContentAreaFilled(false);
+		tomorrow.setFocusPainted(false);
+		tomorrow.setRolloverIcon(new ImageIcon("images/matches/tomorrow_2.png"));
+		tomorrow.setPressedIcon(new ImageIcon("images/matches/tomorrow_3.png"));
+		tomorrow.addActionListener(this);
+		tomorrow.setVisible(false);
+		
+		refresh = new JButton("刷新");
+		refresh.setBounds(310, 140, 60, 25);
+		refresh.addActionListener(this);
 		
 		this.add(showcal);
-		this.add(callendar);
+		this.add(calendar);
 		this.add(yesterday);
 		this.add(tomorrow);
+		this.add(refresh);
 
-		MatchInfo mi=new MatchInfo();
+		matchinfo=new MatchInfo(calendar.getText(),Frame);
+		JScrollPane_config();
+		
+	}
+
+	private void JScrollPane_config(){
 		jsp = new JScrollPane();
 		jsp.setBounds(208, 175, 770, 450);
 		jsp.setHorizontalScrollBarPolicy( 
@@ -80,13 +104,20 @@ public class MatchPanel extends JPanel implements ActionListener{
 		jsp.setOpaque(false);
 		jsp.getViewport().setOpaque(false);
 		jsp.setBorder(null);
-//		jsp.revalidate();
-//		jsp.repaint();
 		
-		jsp.setViewportView(mi);
+		jsp.setViewportView(matchinfo);
 		this.add(jsp);
+		this.repaint();
+		
 	}
-
+	
+	private void refresh(){
+		matchinfo=new MatchInfo(calendar.getText(),Frame);
+		jsp.setViewportView(matchinfo);
+		jsp.repaint();
+		Frame.repaint();
+	}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
@@ -94,13 +125,56 @@ public class MatchPanel extends JPanel implements ActionListener{
 		g.drawImage(im.getImage(),0,0,this);
 	}
 
+	private String checkdate(Calendar cl){
+		String[] temp=new String[3];
+		temp[0]=String.valueOf(cl.get(Calendar.YEAR));
+		temp[1]=String.valueOf(cl.get(Calendar.MONTH)+1);
+		temp[2]=String.valueOf(cl.get(Calendar.DATE));
+		String resultdate;
+		if(cl.get(Calendar.MONTH)+1<10){
+			if(cl.get(Calendar.DATE)<10){
+				resultdate=temp[0]+"-0"+temp[1]+"-0"+temp[2];
+			}else
+				resultdate=temp[0]+"-0"+temp[1]+"-"+temp[2];
+		}else
+			resultdate=temp[0]+"-"+temp[1]+"-"+temp[2];
+		
+		return resultdate;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()==yesterday){
+			String[] tempdate=calendar.getText().split("-");
+			Calendar cl=Calendar.getInstance();
+			cl.set(Integer.parseInt(tempdate[0]),Integer.parseInt(tempdate[1])-1,Integer.parseInt(tempdate[2]));
+			int day=cl.get(Calendar.DATE);
+			cl.set(Calendar.DATE,day-1);
+			
+			String result=checkdate(cl);
+			calendar.setText(result);
+			datelabel=DateLabel.getInstance(result);
+			datelabel.register(calendar);
+			this.repaint();
 			
 		}
 		if(arg0.getSource()==tomorrow){
+			String[] tempdate=calendar.getText().split("-");
+			Calendar cl=Calendar.getInstance();
+			cl.set(Integer.parseInt(tempdate[0]),Integer.parseInt(tempdate[1])-1,Integer.parseInt(tempdate[2]));
+			int day=cl.get(Calendar.DATE);
+			cl.set(Calendar.DATE,day+1);
 			
+			String result=checkdate(cl);
+			calendar.setText(result);
+			datelabel=DateLabel.getInstance(result);
+			datelabel.register(calendar);
+			this.repaint();
+			
+		}
+		
+		if(arg0.getSource()==refresh){
+			refresh();
 		}
 	}
 
