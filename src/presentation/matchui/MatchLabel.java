@@ -48,7 +48,9 @@ public class MatchLabel extends JPanel implements ActionListener{
 	private MatchPre MP;
 
 	JFrame Frame;
+	MatchVO Matchinfo;
 	public MatchLabel(MatchVO matchinfo,JFrame frame) {
+		Matchinfo=matchinfo;
 		Frame=frame;
 		MP = new MatchPre();
 		this.setOpaque(false);
@@ -121,7 +123,6 @@ public class MatchLabel extends JPanel implements ActionListener{
 	private void champion_config(MatchVO matchinfo){
 		//------------------add Champions and scores---------------------
 		String sC[]=matchinfo.scoringChampion.split("_");
-		System.out.println(sC[2]);
 		scoringChampion = new JLabel[3];
 		scoringChampion[0] = new JLabel(sC[0]);
 		scoringChampion[0].setBounds(530, 33, 130, 30);
@@ -138,7 +139,6 @@ public class MatchLabel extends JPanel implements ActionListener{
 
 
 		String rC[]=matchinfo.reboundChampion.split("_");
-		System.out.println(rC[2]);
 		reboundChampion = new JLabel[3];
 		reboundChampion[0] = new JLabel(rC[0]);
 		reboundChampion[0].setBounds(530, 65, 130, 30);
@@ -155,7 +155,6 @@ public class MatchLabel extends JPanel implements ActionListener{
 
 
 		String aC[]=matchinfo.assistChampion.split("_");
-		System.out.println(aC[2]);
 		assistChampion = new JLabel[3];
 		assistChampion[0] = new JLabel(aC[0]);
 		assistChampion[0].setBounds(530, 97, 130, 30);
@@ -348,7 +347,10 @@ public class MatchLabel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()==details){
-			
+			Frame.removeAll();
+			MatchDetail md=new MatchDetail(Frame, Matchinfo);
+			Frame.add(md);
+			Frame.repaint();
 		}
 	}
 }

@@ -8,6 +8,8 @@ import java.util.Calendar;
 
 import javax.swing.*;
 
+import blservice.matchblservice.MatchBLService;
+import bussinesslogic.matchbl.Match;
 import presentation.mainui.DateLabel;
 import presentation.preset.MatchPre;
 
@@ -33,10 +35,13 @@ public class MatchPanel extends JPanel implements ActionListener{
 	private MatchInfo matchinfo;
 	private JScrollPane jsp;
 	private DateLabel datelabel;
+	MatchBLService mbs;
 	JFrame Frame;
 
 	public MatchPanel(JFrame frame) {
 		Frame=frame;
+		mbs=new Match();
+		
 		this.setLayout(null);
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		//定义比赛面板预设
@@ -53,7 +58,8 @@ public class MatchPanel extends JPanel implements ActionListener{
 		calendar.setForeground(MP.CallendarinitColor);
 		
 		//TODO change the lastdate when testing 
-		String lastdate="2014-02-18";
+//		String lastdate="2014-02-18";
+		String lastdate=mbs.returnPresentDate();
 		datelabel=DateLabel.getInstance(lastdate);
 		datelabel.register(calendar);
 		calendar.setText(datelabel.getSelectedDate());
