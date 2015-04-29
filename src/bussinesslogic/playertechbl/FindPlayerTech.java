@@ -15,9 +15,19 @@ import bussinesslogic.Transfer.PlayerTechTransfer;
 import bussinesslogic.Transfer.P2L.MPO2MVO;
 
 public class FindPlayerTech implements FindPlayerTechService{
-
+/*
+	public static void main(String[] args){
+		FindPlayerTech fi = new FindPlayerTech();
+		ArrayList<PlayerTechMVO> all = fi.findHotPlayerToday("2014-01-03", "blockshot");
+		for(PlayerTechMVO mvo:all){
+			System.out.println(mvo.name+" "+mvo.date);
+		}
+	}
+*/
+	
 	FindDataService fd = new Find();
 	PlayerTechTransfer tr = new PlayerTechTransfer();
+	
 	@Override
 	public ArrayList<PlayerTechMVO> findHotPlayerToday(String date, String keyword) {
 		// TODO Auto-generated method stub
@@ -56,7 +66,7 @@ public class FindPlayerTech implements FindPlayerTechService{
 				case "penaltyshotinrate":
 					return (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
 				case "double":
-					return (p1.ifDouble-p2.ifDouble)>=0?1:-1;
+					return p1.ifDouble-p2.ifDouble;
 				default:
 					System.out.println("wrong type");
 					return 0;
@@ -72,7 +82,6 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	//根据姓名分类。
 	public ArrayList<PlayerTechVO> findFastImprovingPlayer(final String keyword) {
 		// TODO Auto-generated method stub
 		ShowPlayerTech sh = new ShowPlayerTech();

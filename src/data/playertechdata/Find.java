@@ -16,13 +16,12 @@ public class Find implements FindDataService {
 	
 	@Override
 	public ArrayList<PlayerTechMPO> findHotPlayerToday(String date, final String keyword)  {
-		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		// TODO Auto-generated method stub
 		//筛选今天的比赛数据
 		ArrayList<PlayerTechMPO> list = owf.readMPO();
 		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>();
 		int size = list.size();
-		for(int i=0;i<size;i++){   
+		for(int i=0;i<size;i++){     System.out.println(list.get(i).date);
 			if(list.get(i).date.equals(date)){
 				res.add(list.get(i));
 			}

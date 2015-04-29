@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import data.playerinfodata.PlayerInfoData;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
 import PO.PlayerPO;
+import VO.PlayerTechVO;
 import VO.PlayerVO;
 import blservice.playerinfoblservice.PlayerInfoService;
 import bussinesslogic.Transfer.playerinfotrans.PO2VO;
+import bussinesslogic.playertechbl.ShowPlayerTech;
 
 public class PlayerInfo implements PlayerInfoService {
 	
@@ -46,6 +48,21 @@ public class PlayerInfo implements PlayerInfoService {
 		for(int i=0;i<size;i++){
 			if(all.get(i).name.charAt(0)==letter)
 				res.add(all.get(i));
+		}
+		return res;
+	}
+
+	@Override
+	public ArrayList<PlayerVO> findByTeam(String team) {
+		// TODO Auto-generated method stub
+		ShowPlayerTech sh = new ShowPlayerTech();
+		ArrayList<PlayerTechVO> tech = sh.showSeasonPlayerData();
+		ArrayList<PlayerVO> res = new ArrayList<PlayerVO>();
+		int s = tech.size();
+		for(int i=0;i<s;i++){
+			if(tech.get(i).team.equals(team)){
+				res.add(showPlayerInfo(tech.get(i).name));
+			}
 		}
 		return res;
 	}
