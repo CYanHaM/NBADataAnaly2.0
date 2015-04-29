@@ -224,7 +224,6 @@ public class Show implements ShowDataService {
 	
 	public void refresh(){
 		owf.write();
-		
 	}
 
 }

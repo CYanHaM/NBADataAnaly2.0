@@ -67,4 +67,10 @@ public class PlayerInfo implements PlayerInfoService {
 		return res;
 	}
 
+	@Override
+	public void PlayerInfoIni() {
+		// TODO Auto-generated method stub
+		fp.write();
+	}
+
 }
