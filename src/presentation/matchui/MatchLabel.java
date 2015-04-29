@@ -2,18 +2,23 @@ package presentation.matchui;
 
 import java.awt.Cursor;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import presentation.preset.MatchPre;
+import presentation.teamui.TeamPanel;
 import VO.MatchVO;
+import VO.TeamVO;
 
-public class MatchLabel extends JPanel{
+public class MatchLabel extends JPanel implements ActionListener{
 	/**
 	 * 继承JPanel的比赛面板类
 	 * @author blisscry
@@ -34,6 +39,7 @@ public class MatchLabel extends JPanel{
 	private JLabel guestTeam_name2;
 	private JLabel homeTeam_name1;
 	private JLabel homeTeam_name2;
+	private JButton details;
 	//define the labels of the best players
 	private JLabel[] scoringChampion;
 	private JLabel[] reboundChampion;
@@ -41,7 +47,9 @@ public class MatchLabel extends JPanel{
 
 	private MatchPre MP;
 
-	public MatchLabel(MatchVO matchinfo) {
+	JFrame Frame;
+	public MatchLabel(MatchVO matchinfo,JFrame frame) {
+		Frame=frame;
 		MP = new MatchPre();
 		this.setOpaque(false);
 		this.setLayout(null);
@@ -50,7 +58,7 @@ public class MatchLabel extends JPanel{
 
 		team_config(matchinfo);
 		champion_config(matchinfo);
-		addlabels();
+		addkits();
 
 	}
 
@@ -66,7 +74,7 @@ public class MatchLabel extends JPanel{
 		//--------------------add team scores---------------------------
 		String scoretemp[]=matchinfo.score.split("-");
 		guestTeam_score = new JLabel(scoretemp[0]);
-		guestTeam_score.setBounds(170, 40, 100, 30);
+		guestTeam_score.setBounds(168, 40, 100, 30);
 		guestTeam_score.setFont(MP.Score);
 		if(Integer.parseInt(scoretemp[0])>Integer.parseInt(scoretemp[1]))
 			guestTeam_score.setForeground(MP.Red);
@@ -74,7 +82,7 @@ public class MatchLabel extends JPanel{
 			guestTeam_score.setForeground(MP.White);
 
 		homeTeam_score = new JLabel(scoretemp[1]);
-		homeTeam_score.setBounds(240, 40, 100, 30);
+		homeTeam_score.setBounds(245, 40, 100, 30);
 		homeTeam_score.setFont(MP.Score);
 		if(Integer.parseInt(scoretemp[0])>Integer.parseInt(scoretemp[1]))
 			homeTeam_score.setForeground(MP.White);
@@ -103,12 +111,17 @@ public class MatchLabel extends JPanel{
 		homeTeam_name2.setBounds(301, 112, 50, 20);
 		homeTeam_name2.setFont(MP.Teamabb);
 		homeTeam_name2.setForeground(MP.White);
+		
+		details = new JButton("更多");
+		details.setBounds(685, 5, 60, 25);
+		details.addActionListener(this);
 	}
 
 	//the kits to show the champion players'info
 	private void champion_config(MatchVO matchinfo){
 		//------------------add Champions and scores---------------------
 		String sC[]=matchinfo.scoringChampion.split("_");
+		System.out.println(sC[2]);
 		scoringChampion = new JLabel[3];
 		scoringChampion[0] = new JLabel(sC[0]);
 		scoringChampion[0].setBounds(530, 33, 130, 30);
@@ -125,6 +138,7 @@ public class MatchLabel extends JPanel{
 
 
 		String rC[]=matchinfo.reboundChampion.split("_");
+		System.out.println(rC[2]);
 		reboundChampion = new JLabel[3];
 		reboundChampion[0] = new JLabel(rC[0]);
 		reboundChampion[0].setBounds(530, 65, 130, 30);
@@ -141,6 +155,7 @@ public class MatchLabel extends JPanel{
 
 
 		String aC[]=matchinfo.assistChampion.split("_");
+		System.out.println(aC[2]);
 		assistChampion = new JLabel[3];
 		assistChampion[0] = new JLabel(aC[0]);
 		assistChampion[0].setBounds(530, 97, 130, 30);
@@ -157,7 +172,7 @@ public class MatchLabel extends JPanel{
 
 	}
 
-	private void addlabels(){
+	private void addkits(){
 		this.add(guestTeam_img);
 		this.add(homeTeam_img);
 
@@ -169,6 +184,8 @@ public class MatchLabel extends JPanel{
 		this.add(guestTeam_name2);
 		this.add(homeTeam_name1);
 		this.add(homeTeam_name2);
+		
+		this.add(details);
 
 		this.add(scoringChampion[0]);
 		this.add(scoringChampion[1]);
@@ -275,7 +292,7 @@ public class MatchLabel extends JPanel{
 		}
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println(choosenlabel.getText());
+//			System.out.println(choosenlabel.getText());
 		}
 		@Override
 		public void mouseExited(MouseEvent arg0) {
@@ -305,7 +322,13 @@ public class MatchLabel extends JPanel{
 		}
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println(teamname);
+			Frame.removeAll();
+			TeamVO tvo=new TeamVO();
+			tvo.abbreviation=teamname;
+			TeamPanel tp=new TeamPanel(tvo,Frame);
+			Frame.add(tp);
+			Frame.repaint();
+//			System.out.println(teamname);
 		}
 
 		@Override
@@ -320,5 +343,12 @@ public class MatchLabel extends JPanel{
 		public void mouseReleased(MouseEvent arg0) {
 		}
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource()==details){
+			
+		}
 	}
 }

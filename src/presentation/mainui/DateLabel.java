@@ -18,6 +18,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,7 +69,7 @@ public class DateLabel extends JLabel{
 	//定义初始label颜色
 	private static Color initColor = new  Color(235,235,235);
 
-	public DateLabel(java.util.Date date, String format, int startDAY) {
+	public DateLabel(java.util.Date date, String format, int startDAY,String lastdate) {
 		if(startDAY > -1 && startDAY < 7) defaultStartDAY = startDAY;
 		int dayIndex = defaultStartDAY;
 		for(int i=0; i<7; i++){
@@ -78,21 +79,40 @@ public class DateLabel extends JLabel{
 		}
 		sdf = new java.text.SimpleDateFormat(format);
 		calendar = Calendar.getInstance();
-		calendar.setTime(date);
+//		String[] tempdate=lastdate.split("-");
+		
+		setTime(lastdate);
 		initCalendarPanel();
 	}
+	
+	public void setTime(String lastdate){
+		Date lastDate=null;
+		try {
+			lastDate=sdf.parse(lastdate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		calendar.setTime(lastDate);
+	}
 	//使用getinstance单例模式以节省空间
-	public static DateLabel getInstance(java.util.Date date, String format){
-		return new DateLabel(date, format, defaultStartDAY);
+	public static DateLabel getInstance(java.util.Date date, String format,String lastdate){
+		return new DateLabel(date, format, defaultStartDAY,lastdate);
 	}
-	public static DateLabel getInstance(java.util.Date date){
-		return getInstance(date, DEFAULTFORMAT);
+	public static DateLabel getInstance(java.util.Date date,String lastdate){
+		return getInstance(date, DEFAULTFORMAT,lastdate);
 	}
-	public static DateLabel getInstance(String format){
-		return getInstance(new java.util.Date(), format);
+	public static DateLabel getInstance(String format,String lastdate){
+		return getInstance(new java.util.Date(), format,lastdate);
+	}
+	public static DateLabel getInstance(String lastdate){
+		return getInstance(new java.util.Date(), DEFAULTFORMAT,lastdate);
 	}
 	public static DateLabel getInstance(){
-		return getInstance(new java.util.Date(), DEFAULTFORMAT);
+		Calendar cal=Calendar.getInstance();
+		
+		String lastdate=String.valueOf(cal.get(Calendar.YEAR))+"-"+String.valueOf(cal.get(Calendar.MONTH)+1)+"-"+String.valueOf(cal.get(Calendar.DATE));
+		return getInstance(new java.util.Date(), DEFAULTFORMAT,lastdate);
 	}
 
 	private void initCalendarPanel(){
