@@ -269,27 +269,31 @@ public class DataProcessing implements readFrom{
 				//计算主客队进攻回合
 				matchpo.homeTeamOffensiveRound=(double)homeShot+0.4*(double)homePShot-1.07*((double)homeOfRebound/((double)homeOfRebound+(double)guestDeRebound)*((double)homeShot-(double)homeShotin))+1.07*(double)homeFault;
 				matchpo.guestTeamOffensiveRound=(double)guestShot+0.4*(double)guestPShot-1.07*((double)guestOfRebound/((double)guestOfRebound+(double)homeDeRebound)*((double)guestShot-(double)guestShotin))+1.07*(double)guestFault;
-				String scoreKing=null;
-				String reboundKing=null;
-				String assistKing=null;
-				for(int k=0;k<matchpo.playerStatistic.size()-1;k++){
-					if(matchpo.playerStatistic.get(k).score<matchpo.playerStatistic.get(k+1).score)
-						scoreKing=matchpo.playerStatistic.get(k+1).name+"_"+Integer.toString(matchpo.playerStatistic.get(k+1).score)+"_"+matchpo.playerStatistic.get(k+1).team;
-					else
-						scoreKing=matchpo.playerStatistic.get(k).name+"_"+Integer.toString(matchpo.playerStatistic.get(k).score)+"_"+matchpo.playerStatistic.get(k).team;
-					if(matchpo.playerStatistic.get(k).rebound<matchpo.playerStatistic.get(k+1).rebound)
-						reboundKing=matchpo.playerStatistic.get(k+1).name+"_"+Integer.toString(matchpo.playerStatistic.get(k+1).rebound)+"_"+matchpo.playerStatistic.get(k+1).team;
-					else
-						reboundKing=matchpo.playerStatistic.get(k).name+"_"+Integer.toString(matchpo.playerStatistic.get(k).rebound)+"_"+matchpo.playerStatistic.get(k).team;
-					if(matchpo.playerStatistic.get(k).secondaryAttack<matchpo.playerStatistic.get(k+1).secondaryAttack)
-						assistKing=matchpo.playerStatistic.get(k+1).name+"_"+Integer.toString(matchpo.playerStatistic.get(k+1).secondaryAttack)+"_"+matchpo.playerStatistic.get(k+1).team;
-					else
-						assistKing=matchpo.playerStatistic.get(k).name+"_"+Integer.toString(matchpo.playerStatistic.get(k).secondaryAttack)+"_"+matchpo.playerStatistic.get(k).team;
+				int scoreKing=0;
+				int reboundKing=0;
+				int assistKing=0;
+				int mostScore=matchpo.playerStatistic.get(0).score;
+				int mostRebound=matchpo.playerStatistic.get(0).rebound;
+				int mostSecondaryAttack=matchpo.playerStatistic.get(0).secondaryAttack;
 
+				for(int k=0;k<matchpo.playerStatistic.size()-1;k++){
+					if(matchpo.playerStatistic.get(k+1).score>mostScore){
+						mostScore=matchpo.playerStatistic.get(k+1).score;
+						scoreKing=k+1;
+					}
+					if(matchpo.playerStatistic.get(k+1).rebound>mostRebound){
+						reboundKing=matchpo.playerStatistic.get(k+1).rebound;
+						reboundKing=k+1;
+					}
+					if(matchpo.playerStatistic.get(k+1).secondaryAttack>mostSecondaryAttack){
+						assistKing=matchpo.playerStatistic.get(k+1).secondaryAttack;
+						assistKing=k+1;
+					}
 				}
-				matchpo.scoringChampion=scoreKing;
-				matchpo.assistChampion=assistKing;
-				matchpo.reboundChampion=reboundKing;
+				matchpo.scoringChampion=matchpo.playerStatistic.get(scoreKing).name+"_"+Integer.toString(matchpo.playerStatistic.get(scoreKing).score)+"_"+matchpo.playerStatistic.get(scoreKing).team;
+				matchpo.assistChampion=matchpo.playerStatistic.get(assistKing).name+"_"+Integer.toString(matchpo.playerStatistic.get(assistKing).secondaryAttack)+"_"+matchpo.playerStatistic.get(assistKing).team;;
+				matchpo.reboundChampion=matchpo.playerStatistic.get(reboundKing).name+"_"+Integer.toString(matchpo.playerStatistic.get(reboundKing).rebound)+"_"+matchpo.playerStatistic.get(reboundKing).team;
+
 
 				mlist.add(matchpo);
 				
