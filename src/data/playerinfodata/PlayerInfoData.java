@@ -17,7 +17,8 @@ public class PlayerInfoData implements PlayerInfoDataService {
 		PlayerInfoData pd = new PlayerInfoData();
 		pd.write();
 		ArrayList<PlayerPO> list = pd.read();
-		System.out.println(list.size()+" "+list.get(0));
+		for(int i=0;i<list.size();i++)
+			System.out.println(list.get(i).name);
 	}
 
 	readFrom rf  = new DataProcessing();
@@ -47,7 +48,7 @@ public class PlayerInfoData implements PlayerInfoDataService {
 		ArrayList<PlayerPO> po = rf.playerRead();
 		FileOutputStream fos;
         try {
-            fos = new FileOutputStream("Player.ser");
+            fos = new FileOutputStream("database/Player.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(po);
             oos.flush();
@@ -60,7 +61,7 @@ public class PlayerInfoData implements PlayerInfoDataService {
 	public ArrayList<PlayerPO> read(){
 		ArrayList<PlayerPO> list = new ArrayList<PlayerPO>(); 
 		try{
-			FileInputStream fis = new FileInputStream("Player.ser");
+			FileInputStream fis = new FileInputStream("database/Player.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        list =  (ArrayList<PlayerPO>) ois.readObject();
 	        ois.close();

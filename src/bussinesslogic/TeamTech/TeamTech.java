@@ -138,7 +138,7 @@ public class TeamTech implements TeamTechBLService{
 				}
 				isInt = true;
 				return result;
-			//intĞÍµÄµ½ÕâÀï½áÊø
+			//intåˆ°è¿™é‡Œ
 			case name:
 				for(int i = 0 ;i<30; i++){
 					result.add(polist.get(i).name);
