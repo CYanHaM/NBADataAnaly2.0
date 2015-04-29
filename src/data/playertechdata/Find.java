@@ -10,13 +10,6 @@ import dataservice.playertechdataservice.FindDataService;
 import dataservice.playertechdataservice.ShowDataService;
 
 public class Find implements FindDataService {
-	public static void main(String[] args){
-		Find fi = new Find();
-		ArrayList<PlayerTechPO> all = fi.findSeasonHotPlayer("score");
-		for(PlayerTechPO mpo:all){
-			System.out.println(mpo.name+" "+mpo.score);
-		}
-	}
 
 	ShowDataService sh = new Show();
 	OperateWithFile owf = new OperateWithFile();
@@ -50,6 +43,12 @@ public class Find implements FindDataService {
 					return p1.blockShot-p2.blockShot;
 				case "score":
 					return p1.score-p2.score;
+				case "doubledouble":
+					return ;
+				case "defenbi":
+					return;
+				case "efficiency":
+					return;
 				default:
 					System.out.println("wrong type");
 					return 0;
@@ -65,37 +64,10 @@ public class Find implements FindDataService {
 	}
 
 	@Override
-	public ArrayList<PlayerTechPO> findSeasonHotPlayer(String keyword) {
-		// TODO Auto-generated method stub
-		ArrayList<PlayerTechPO> list = sh.descend(keyword);
-		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
-		for(int i=0;i<5;i++){
-			res.add(list.get(i));
-		}
-		return res;
-	}
-
-	@Override
 	public ArrayList<PlayerTechPO> findFastImprovingPlayer() {
 		// TODO Auto-generated method stub
 		 ArrayList<PlayerTechPO> list = owf.readPO();
 		return list;
-	}
-
-	@Override
-	public ArrayList<PlayerTechPO> sift(PlayerTechPO po) {
-		// TODO Auto-generated method stub
-		ArrayList<PlayerTechPO> res = new ArrayList<PlayerTechPO>();
-		ArrayList<PlayerTechPO> list = owf.readPO();
-		int size = list.size();
-		for(int i=0;i<size;i++){
-			PlayerTechPO temp = list.get(i);
-			if(temp.score>=po.score&&temp.blockShot>=po.blockShot&&temp.rebound>=po.rebound
-					&&temp.steal>=po.steal&&temp.secondaryAttack>=po.secondaryAttack){
-				res.add(temp);
-			}
-		}
-		return res;
 	}
 
 }
