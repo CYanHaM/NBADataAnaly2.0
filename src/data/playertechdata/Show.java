@@ -57,7 +57,6 @@ public class Show implements ShowDataService {
 	@Override
 	public ArrayList<PlayerTechPO> ascend(final String type)  {
 		// TODO Auto-generated method stub
-		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p1, PlayerTechPO p2) {   
 				//重写比较方法
@@ -65,33 +64,33 @@ public class Show implements ShowDataService {
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
 				case "startingnum":
-					return (p1.startingNum-p2.startingNum>=0)?1:-1;
+					return p1.startingNum-p2.startingNum;
 				case "rebound":
-					return (p1.rebound-p2.rebound>=0)?1:-1;
+					return p1.rebound-p2.rebound;
 				case "secondaryAttack":
-					return (p1.secondaryAttack-p2.secondaryAttack>=0)?1:-1;
+					return p1.secondaryAttack-p2.secondaryAttack;
 				case "time":
-					return (p1.time-p2.time>=0)?1:-1;
+					return p1.time-p2.time;
 				case "offensivenum":
-					return (p1.offensiveNum-p2.offensiveNum>=0)?1:-1;
+					return p1.offensiveNum-p2.offensiveNum;
 				case "defensivenum":
-					return (p1.defensiveNum-p2.defensiveNum>=0)?1:-1;
+					return p1.defensiveNum-p2.defensiveNum;
 				case "steal":
-					return (p1.steal-p2.steal>=0)?1:-1;
+					return p1.steal-p2.steal;
 				case "blockshot":
-					return (p1.blockShot-p2.blockShot>=0)?1:-1;
+					return p1.blockShot-p2.blockShot;
 				case "fault":
-					return (p1.fault-p2.fault>=0)?1:-1;
+					return p1.fault-p2.fault;
 				case "foul":
-					return (p1.foul-p2.foul>=0)?1:-1;
+					return p1.foul-p2.foul;
 				case "score":
-					return (p1.score-p2.score>=0)?1:-1;
+					return p1.score-p2.score;
 				case "shotin":
-					return (p1.shotIn-p2.shotIn>=0)?1:-1;
+					return p1.shotIn-p2.shotIn;
 				case "shot":
-					return (p1.shot-p2.shot>=0)?1:-1;
+					return p1.shot-p2.shot;
 				case "threeshotin":
-					return (p1.threeShotIn-p2.threeShotIn>=0)?1:-1;
+					return p1.threeShotIn-p2.threeShotIn;
 				case "threeshot":
 					return p1.threeShot-p2.threeShot;
 				case "penaltyshotin":
@@ -123,7 +122,7 @@ public class Show implements ShowDataService {
 				case "stealrate":
 					return (p1.stealRate-p2.stealRate)>=0?1:-1;
 				case "blockshotrate":
-					return (p1.blockShotRate-p2.blockShotRate)>0?1:-1;
+					return (p1.blockShotRate-p2.blockShotRate)>=0?1:-1;
 				case "faultrate":
 					return (p1.faultRate-p2.faultRate)>=0?1:-1;
 				case "usagerate":
@@ -142,8 +141,6 @@ public class Show implements ShowDataService {
 	@Override
 	public ArrayList<PlayerTechPO> descend(final String type){
 		// TODO Auto-generated method stub
-		//???????????????????????????????????????
-		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p2, PlayerTechPO p1) {   
 				//重写比较方法
