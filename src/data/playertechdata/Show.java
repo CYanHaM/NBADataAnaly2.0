@@ -4,11 +4,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
 import dataservice.playertechdataservice.ShowDataService;
 
 public class Show implements ShowDataService {
 
+	public static void main(String[] args){
+		Show sh = new Show();
+	/*ArrayList<PlayerTechPO> all = sh.showSeasonPlayerData();
+		for(int i=0;i<30;i++){
+			PlayerTechPO mpo = all.get(i);
+			System.out.println(mpo.name+" "+mpo.blockShot+" "+mpo.blockShotRate+" "+mpo.team);
+		}*/
+		
+	/*
+		PlayerTechPO po = sh.showKeyData("DeMarre Carroll", "ATL");
+		System.out.println(po.name+" "+po.blockShotRate+" "+po.team);
+		*/
+	/*	ArrayList<PlayerTechPO> all = sh.ascend("blockshot");
+		for(int i=400;i<430;i++){
+			PlayerTechPO mpo = all.get(i);
+			System.out.println(mpo.name+" "+mpo.blockShot+" "+mpo.blockShotRate+" "+mpo.team);
+		}*/
+		ArrayList<PlayerTechPO> all = sh.descend("blockshotrate");
+		for(int i=0;i<30;i++){
+			PlayerTechPO mpo = all.get(i);
+			System.out.println(mpo.name+" "+mpo.blockShotRate+" "+mpo.team);
+		}
+	}
 	OperateWithFile owf = new OperateWithFile();
 	@Override
 	public ArrayList<PlayerTechPO> showSeasonPlayerData() {
@@ -33,6 +57,7 @@ public class Show implements ShowDataService {
 	@Override
 	public ArrayList<PlayerTechPO> ascend(final String type)  {
 		// TODO Auto-generated method stub
+		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p1, PlayerTechPO p2) {   
 				//重写比较方法
@@ -40,33 +65,33 @@ public class Show implements ShowDataService {
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
 				case "startingnum":
-					return p1.startingNum-p2.startingNum;
+					return (p1.startingNum-p2.startingNum>=0)?1:-1;
 				case "rebound":
-					return p1.rebound-p2.rebound;
+					return (p1.rebound-p2.rebound>=0)?1:-1;
 				case "secondaryAttack":
-					return p1.secondaryAttack-p2.secondaryAttack;
+					return (p1.secondaryAttack-p2.secondaryAttack>=0)?1:-1;
 				case "time":
-					return p1.time-p2.time;
+					return (p1.time-p2.time>=0)?1:-1;
 				case "offensivenum":
-					return p1.offensiveNum-p2.offensiveNum;
+					return (p1.offensiveNum-p2.offensiveNum>=0)?1:-1;
 				case "defensivenum":
-					return p1.defensiveNum-p2.defensiveNum;
+					return (p1.defensiveNum-p2.defensiveNum>=0)?1:-1;
 				case "steal":
-					return p1.steal-p2.steal;
+					return (p1.steal-p2.steal>=0)?1:-1;
 				case "blockshot":
-					return p1.blockShot-p2.blockShot;
+					return (p1.blockShot-p2.blockShot>=0)?1:-1;
 				case "fault":
-					return p1.fault-p2.fault;
+					return (p1.fault-p2.fault>=0)?1:-1;
 				case "foul":
-					return p1.foul-p2.foul;
+					return (p1.foul-p2.foul>=0)?1:-1;
 				case "score":
-					return p1.score-p2.score;
+					return (p1.score-p2.score>=0)?1:-1;
 				case "shotin":
-					return p1.shotIn-p2.shotIn;
+					return (p1.shotIn-p2.shotIn>=0)?1:-1;
 				case "shot":
-					return p1.shot-p2.shot;
+					return (p1.shot-p2.shot>=0)?1:-1;
 				case "threeshotin":
-					return p1.threeShotIn-p2.threeShotIn;
+					return (p1.threeShotIn-p2.threeShotIn>=0)?1:-1;
 				case "threeshot":
 					return p1.threeShot-p2.threeShot;
 				case "penaltyshotin":
@@ -74,35 +99,35 @@ public class Show implements ShowDataService {
 				case "penaltyshot":
 					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
-					return (int) (p1.shotInRate-p2.shotInRate);
+					return  (p1.shotInRate-p2.shotInRate)>=0?1:-1;
 				case "threeshotinrate":
-					return (int) (p1.threeShotInRate-p2.threeShotInRate);
+					return  (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
 				case "penaltyshotinrate":
-					return (int) (p1.penaltyShotInRate-p2.penaltyShotInRate);
+					return  (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
 				case "efficiency":
-					return (int) (p1.efficiency-p2.efficiency);
+					return  (p1.efficiency-p2.efficiency)>=0?1:-1;
 				case "gmscefficiency":
-					return (int) (p1.GmScEfficiency-p2.GmScEfficiency);
+					return (p1.GmScEfficiency-p2.GmScEfficiency)>=0?1:-1;
 				case "trueshotinrate":
-					return (int) (p1.trueShotInRate-p2.trueShotInRate);
+					return  (p1.trueShotInRate-p2.trueShotInRate)>=0?1:-1;
 				case "shootingefficiency":
-					return (int) (p1.shootingEfficiency-p2.shootingEfficiency);
+					return  (p1.shootingEfficiency-p2.shootingEfficiency)>=0?1:-1;
 				case "reboundrate":
-					return (int) (p1.reboundRate-p2.reboundRate);
+					return  (p1.reboundRate-p2.reboundRate)>=0?1:-1;
 				case "offensivereboundrate":
-					return (int) (p1.offensiveReboundRate-p2.offensiveReboundRate);
+					return (p1.offensiveReboundRate-p2.offensiveReboundRate)>=0?1:-1;
 				case "defensivereboundrate":
-					return (int) (p1.defensiveReboundRate-p2.defensiveReboundRate);
+					return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>=0?1:-1;
 				case "secondaryattackrate":
-					return (int) (p1.secondaryAttackRate-p2.secondaryAttackRate);
+					return (p1.secondaryAttackRate-p2.secondaryAttackRate)>=0?1:-1;
 				case "stealrate":
-					return (int) (p1.stealRate-p2.stealRate);
+					return (p1.stealRate-p2.stealRate)>=0?1:-1;
 				case "blockshotrate":
-					return (int) (p1.blockShotRate-p2.blockShotRate);
+					return (p1.blockShotRate-p2.blockShotRate)>0?1:-1;
 				case "faultrate":
-					return (int) (p1.faultRate-p2.faultRate);
+					return (p1.faultRate-p2.faultRate)>=0?1:-1;
 				case "usagerate":
-					return (int) (p1.usageRate-p2.usageRate);
+					return  (p1.usageRate-p2.usageRate)>=0?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;
@@ -117,6 +142,8 @@ public class Show implements ShowDataService {
 	@Override
 	public ArrayList<PlayerTechPO> descend(final String type){
 		// TODO Auto-generated method stub
+		//???????????????????????????????????????
+		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p2, PlayerTechPO p1) {   
 				//重写比较方法
@@ -158,35 +185,35 @@ public class Show implements ShowDataService {
 				case "penaltyshot":
 					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
-					return (int) (p1.shotInRate-p2.shotInRate);
+					return  (p1.shotInRate-p2.shotInRate)>=0?1:-1;
 				case "threeshotinrate":
-					return (int) (p1.threeShotInRate-p2.threeShotInRate);
+					return  (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
 				case "penaltyshotinrate":
-					return (int) (p1.penaltyShotInRate-p2.penaltyShotInRate);
+					return (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
 				case "efficiency":
-					return (int) (p1.efficiency-p2.efficiency);
+					return  (p1.efficiency-p2.efficiency)>=0?1:-1;
 				case "gmscefficiency":
-					return (int) (p1.GmScEfficiency-p2.GmScEfficiency);
+					return (p1.GmScEfficiency-p2.GmScEfficiency)>=0?1:-1;
 				case "trueshotinrate":
-					return (int) (p1.trueShotInRate-p2.trueShotInRate);
+					return  (p1.trueShotInRate-p2.trueShotInRate)>=0?1:-1;
 				case "shootingefficiency":
-					return (int) (p1.shootingEfficiency-p2.shootingEfficiency);
+					return (p1.shootingEfficiency-p2.shootingEfficiency)>=0?1:-1;
 				case "reboundrate":
-					return (int) (p1.reboundRate-p2.reboundRate);
+					return  (p1.reboundRate-p2.reboundRate)>=0?1:-1;
 				case "offensivereboundrate":
-					return (int) (p1.offensiveReboundRate-p2.offensiveReboundRate);
+					return  (p1.offensiveReboundRate-p2.offensiveReboundRate)>=0?1:-1;
 				case "defensivereboundrate":
-					return (int) (p1.defensiveReboundRate-p2.defensiveReboundRate);
+					return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>=0?1:-1;
 				case "secondaryattackrate":
-					return (int) (p1.secondaryAttackRate-p2.secondaryAttackRate);
+					return  (p1.secondaryAttackRate-p2.secondaryAttackRate)>=0?1:-1;
 				case "stealrate":
-					return (int) (p1.stealRate-p2.stealRate);
+					return  (p1.stealRate-p2.stealRate)>=0?1:-1;
 				case "blockshotrate":
-					return (int) (p1.blockShotRate-p2.blockShotRate);
+					return  (p1.blockShotRate-p2.blockShotRate)>=0?1:-1;
 				case "faultrate":
-					return (int) (p1.faultRate-p2.faultRate);
+					return  (p1.faultRate-p2.faultRate)>=0?1:-1;
 				case "usagerate":
-					return (int) (p1.usageRate-p2.usageRate);
+					return  (p1.usageRate-p2.usageRate)>=0?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;

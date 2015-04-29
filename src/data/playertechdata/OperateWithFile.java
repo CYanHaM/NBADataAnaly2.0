@@ -21,6 +21,17 @@ import PO.PlayerTechPO;
 
 public class OperateWithFile {
 	
+	public static void main(String[] args){
+		OperateWithFile owf = new OperateWithFile();
+		owf.write();
+		ArrayList<PlayerTechMPO> all = owf.readMPO();
+		System.out.println(all.size());
+		for(int i=0;i<30;i++){
+			PlayerTechMPO mpo = all.get(i);
+			System.out.println(mpo.name+" "+mpo.date+" "+mpo.team);
+		}
+	}
+	
 	public void write(){
 		
 		
@@ -101,7 +112,7 @@ public class OperateWithFile {
 				ptp.startingNum += mp.ifFirstLineUp;
 				ptp.rebound += mp.rebound;
 				ptp.secondaryAttack += mp.secondaryAttack;
-				ptp.time += mp.time;
+				ptp.time += mp.time;                                                 
 				ptp.offensiveNum += mp.offensiveRebound;
 				ptp.defensiveNum += mp.defensiveRebound;
 				ptp.steal += mp.steal;
@@ -129,30 +140,75 @@ public class OperateWithFile {
 				ptp.teamFault = mp.teamFault;
 				
 			}
+			
 			//根据公式计算
 			//除数不能为0
-			ptp.shotInRate = (ptp.shot==0?0:ptp.shotIn/ptp.shot);
-			ptp.threeShotInRate = (ptp.threeShot==0?0:ptp.threeShotIn/ptp.threeShot);
-			ptp.penaltyShotInRate = (ptp.penaltyShot==0?0:ptp.penaltyShotIn/ptp.penaltyShot);
-			ptp.efficiency = (ptp.score+ptp.rebound+ptp.secondaryAttack+ptp.steal+ptp.blockShot)-(ptp.shot-ptp.shotIn)
-										-(ptp.penaltyShot-ptp.penaltyShotIn)-ptp.fault;
-			ptp.GmScEfficiency = ptp.score+0.4*ptp.shotIn-0.7*ptp.shot-0.4*(ptp.penaltyShot-ptp.penaltyShotIn)+0.7*ptp.offensiveNum
-					+0.3*ptp.defensiveNum+ptp.steal+0.7*ptp.secondaryAttack+0.7*ptp.blockShot-0.4*ptp.foul-ptp.fault;
-			ptp.trueShotInRate = ptp.score/(2*(ptp.shot+0.44*ptp.penaltyShot));
-			ptp.shootingEfficiency = (ptp.shotIn+0.5*ptp.threeShotIn)/ptp.shot;
-			ptp.reboundRate = (ptp.offensiveNum+ptp.defensiveNum)*(ptp.teamAllTime/5)/ptp.time/(ptp.teamOffensiveRebound+
-					ptp.teamDefensiveRebound+ptp.opponentOffensiveRebound+ptp.opponentDefensiveRebound);
-			ptp.offensiveReboundRate = ptp.offensiveNum*(ptp.teamAllTime/5)/ptp.time/(ptp.teamOffensiveRebound+
-					ptp.opponentOffensiveRebound);
-			ptp.defensiveReboundRate = ptp.defensiveNum*(ptp.teamAllTime/5)/ptp.time/(ptp.teamDefensiveRebound+
-					ptp.opponentDefensiveRebound);
-			ptp.secondaryAttackRate = ptp.secondaryAttack/(ptp.time/(ptp.teamAllTime/5)*ptp.teamShotIn-ptp.shotIn);
-			ptp.stealRate = ptp.steal*(ptp.teamAllTime/5)/ptp.time/ptp.opponentOffensiveNum;
-			ptp.blockShotRate = ptp.blockShot*(ptp.teamAllTime/5)/ptp.time/ptp.opponentTwoShot;
-			ptp.faultRate = ptp.fault/(ptp.shot-ptp.threeShot+0.44*ptp.penaltyShot+ptp.fault);
-			ptp.usageRate = (ptp.shot+0.44*ptp.penaltyShot+ptp.fault)*(ptp.teamAllTime/5)/ptp.time/
-					(ptp.teamShot+0.44*ptp.teamPenaltyShot+ptp.teamFault);
-		
+			if(ptp.threeShot==0){					
+				ptp.threeShotInRate=0;
+				}else{
+					ptp.threeShotInRate=(double)ptp.threeShotIn/(double)ptp.threeShot;
+				}
+			ptp.penaltyShot=ptp.penaltyShot;
+			ptp.penaltyShotIn=ptp.penaltyShotIn;
+			if(ptp.penaltyShot==0){					
+				ptp.penaltyShotInRate=0;
+				}else{
+					ptp.penaltyShotInRate=(double)ptp.penaltyShotIn/(double)ptp.penaltyShot;
+				}
+			ptp.efficiency=(ptp.score+ptp.rebound+ptp.secondaryAttack+ptp.steal+ptp.blockShot)-(ptp.shot-ptp.shotIn)-(ptp.penaltyShot-ptp.penaltyShotIn)-ptp.fault;
+			ptp.GmScEfficiency=(double)ptp.score+0.4*(double)ptp.shotIn-0.7*(double)ptp.shot-0.4*((double)ptp.penaltyShot-(double)ptp.penaltyShotIn)+0.7*(double)ptp.offensiveNum+0.3*(double)ptp.defensiveNum+(double)ptp.steal+0.7*(double)ptp.secondaryAttack+0.7*(double)ptp.blockShot-0.4*(double)ptp.foul-(double)ptp.fault;
+			if(2*((double)ptp.shot+0.44*(double)ptp.penaltyShot)==0){
+					ptp.trueShotInRate=0;
+				}else{
+					ptp.trueShotInRate=(double)ptp.score/(2*((double)ptp.shot+0.44*(double)ptp.penaltyShot));
+					}
+			if((double)ptp.shot==0){
+				ptp.shootingEfficiency=0;
+			}else{
+				ptp.shootingEfficiency=((double)ptp.shotIn+0.5*(double)ptp.threeShotIn)/(double)ptp.shot;
+			}
+			if(ptp.time==0){
+				ptp.reboundRate=0;
+			}else{
+				ptp.reboundRate=(double)ptp.rebound*((double)ptp.teamAllTime/5)/(double)ptp.time/((double)ptp.teamDefensiveRebound+(double)ptp.teamOffensiveRebound+(double)ptp.opponentDefensiveRebound+(double)ptp.opponentOffensiveRebound);
+			}
+			if((double)ptp.time==0){
+				ptp.offensiveReboundRate=0;
+			}else{
+				ptp.offensiveReboundRate=(double)ptp.offensiveNum*((double)ptp.teamAllTime/5)/(double)ptp.time/((double)ptp.teamOffensiveRebound+(double)ptp.opponentOffensiveRebound);
+			}
+			if((double)ptp.time==0){
+				ptp.defensiveReboundRate=0;
+			}else{
+				ptp.defensiveReboundRate=(double)ptp.defensiveNum*((double)ptp.teamAllTime/5)/(double)ptp.time/((double)ptp.teamDefensiveRebound+(double)ptp.opponentDefensiveRebound);
+			}
+			if((double)ptp.time==0){
+				ptp.secondaryAttackRate=0;
+			}else{
+				ptp.secondaryAttackRate=(double)ptp.secondaryAttack/((double)ptp.time/((double)ptp.teamAllTime/5)*(double)ptp.teamShotIn-(double)ptp.shotIn);
+			}
+			if((double)ptp.time==0){
+				ptp.stealRate=0;
+			}else{
+				ptp.stealRate=(double)ptp.steal*((double)ptp.teamAllTime/5)/(double)ptp.time/(double)ptp.opponentOffensiveNum;
+			}
+			
+			if(ptp.time==0){
+				ptp.blockShotRate=0;
+			}else{    
+				ptp.blockShotRate=(double)ptp.blockShot*((double)ptp.teamAllTime/5)/(double)ptp.time/(double)ptp.opponentTwoShot;
+			}
+			if(((double)ptp.shot==0)){
+				ptp.faultRate=0;
+				}else{
+					ptp.faultRate=(double)ptp.fault/((double)ptp.shot-(double)ptp.threeShot+0.44*(double)ptp.penaltyShot+(double)ptp.fault);
+			}
+			if((double)ptp.time==0){
+				ptp.usageRate=0;
+			}else{
+				ptp.usageRate=((double)ptp.shot+0.44*(double)ptp.penaltyShot+(double)ptp.fault)*((double)ptp.teamAllTime/5)/(double)ptp.time/((double)ptp.teamShot+0.44*(double)ptp.teamPenaltyShot+(double)ptp.teamFault);
+			}
+			
 			poList.add(ptp);
 	   }
 	  try {
@@ -176,7 +232,7 @@ public class OperateWithFile {
 	public ArrayList<PlayerTechPO> readPO(){
 		ArrayList<PlayerTechPO> list = new ArrayList<PlayerTechPO>(); 
 		try{
-			FileInputStream fis = new FileInputStream("database/PlayerTech.ser");
+			FileInputStream fis = new FileInputStream("database/PlayerTechPO.ser");
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        list =  (ArrayList<PlayerTechPO>) ois.readObject();
 	        ois.close();
@@ -273,7 +329,16 @@ public class OperateWithFile {
 		 //计算按时间排序、按姓名分类的技术统计
 		 ArrayList<ArrayList<PlayerTechMPO>> li = readDiv();
 			int size = li.size();
-			for(int i=0;i<size;i++){
+			/*
+			 * 暂定
+			 */
+			Iterator<ArrayList<PlayerTechMPO>> it = li.iterator();
+			while(it.hasNext()){
+				if(it.next().size()<=5){
+					it.remove();
+				}
+			}
+			for(int i=0;i<li.size();i++){
 				ArrayList<PlayerTechMPO> list = li.get(i);
 				//进行排序
 				Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
@@ -302,13 +367,15 @@ public class OperateWithFile {
 		 int amount = li.size();
 		 for(int j=0;j<amount;j++){
 			 ArrayList<PlayerTechMPO> list= li.get(j);
+			 //测使用
+		//	 System.out.println(list.size());
 			 String name = list.get(0).name;
 			 //开始计算每一个球员的提升率
 			//最近5场比赛数据
 			 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
 			 //list为之前数据
 			int num=0;
-			while(num<5){
+			while(num<5){     
 				latest.add(list.get(0));
 				list.remove(0);
 				num++;
@@ -344,11 +411,11 @@ public class OperateWithFile {
 				rebound=mp.rebound;
 			}
 			
-			double scoreImproving=((latestScore/5)-score/listSize)/(score/listSize);
-		    double stealImproving=((latestSteal/5)-steal/listSize)/(steal/listSize);
-			double blockShotImproving=((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize);
-			double secondaryAttackImproving=((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize);
-			double reboundImproving=((rebound/5)-rebound/listSize)/(rebound/listSize);
+			double scoreImproving=(score/listSize)==0?0:(((latestScore/5)-score/listSize)/(score/listSize));
+		    double stealImproving=(steal/listSize)==0?0:(((latestSteal/5)-steal/listSize)/(steal/listSize));
+			double blockShotImproving=(blockShot/listSize)==0?0:(((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize));
+			double secondaryAttackImproving=(secondaryAttack/listSize)==0?0:(((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize));
+			double reboundImproving=(rebound/listSize)==0?0:(((rebound/5)-rebound/listSize)/(rebound/listSize));
 			
 			int poSize = list.size();
 			for(int m=0;m<poSize;m++){

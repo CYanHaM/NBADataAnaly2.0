@@ -10,6 +10,13 @@ import blservice.playerinfoblservice.PlayerInfoService;
 import bussinesslogic.Transfer.playerinfotrans.PO2VO;
 
 public class PlayerInfo implements PlayerInfoService {
+	
+	public static void main(String[] args){
+		PlayerInfo pi = new PlayerInfo();
+		PlayerVO res = pi.showPlayerInfo("Arnett Moultrie");
+		System.out.println(res.name+" "+res.position+" "+res.uniformNum);
+		
+	}
 
 	PlayerInfoDataService fp = new PlayerInfoData();
 	PO2VO p2v = new PO2VO();
