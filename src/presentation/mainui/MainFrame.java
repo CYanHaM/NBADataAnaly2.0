@@ -7,24 +7,26 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.*;
 
+import presentation.matchui.MatchPanel;
+
 //import com.sun.awt.AWTUtilities;
 
 public class MainFrame extends JFrame{
 	/**
-	 * ÏµÍ³Ö÷½çÃæ£¬°üÀ¨½çÃæ´óĞ¡£¬²¼¾Ö·½Ê½£¬Êó±êµã»÷ÍÏ¶¯ÊÂ¼ş
+	 * ç³»ç»Ÿä¸»ç•Œé¢ï¼ŒåŒ…æ‹¬ç•Œé¢å¤§å°ï¼Œå¸ƒå±€æ–¹å¼ï¼Œé¼ æ ‡ç‚¹å‡»æ‹–åŠ¨äº‹ä»¶
 	 * @author blisscry
-	 * @date 2015Äê4ÔÂ20ÈÕ20:46:02
-	 * @version 1.0
+	 * @date 2015å¹´4æœˆ27æ—¥19:38:56
+	 * @version 2.0
 	 */
 
 	private static final long serialVersionUID = 1L;
-	//¶¨ÒåÖ÷¿ò¼Ü´óĞ¡
+	//å®šä¹‰ä¸»æ¡†æ¶å¤§å°
 	public static int FRAME_WIDTH=1020;
 	public static int FRAME_HEIGHT=670;
-	//¶¨ÒåÊó±ê×ø±êÎ»ÖÃ
+	//å®šä¹‰é¼ æ ‡åæ ‡ä½ç½®
 	int X;
 	int Y;
-	//ÅĞ¶ÏÊÇ·ñÔÚÍÏ¶¯½çÃæ
+	//åˆ¤æ–­æ˜¯å¦åœ¨æ‹–åŠ¨ç•Œé¢
 	boolean isDraging;
 
 	JButton MINIMIZE;
@@ -32,28 +34,26 @@ public class MainFrame extends JFrame{
 	JFrame Frame;
 
 	public MainFrame(){
-		//¶¨ÒåÕû¸ö½çÃæ´óĞ¡
+		//å®šä¹‰æ•´ä¸ªç•Œé¢å¤§å°
 		this.setLayout(null);
 		this.setTitle("CYan HaM");
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setResizable(false);
-		//²»ÏÔÊ¾windows×Ô´ø±ß¿ò
+		//ä¸æ˜¾ç¤ºwindowsè‡ªå¸¦è¾¹æ¡†
 		this.setUndecorated(true);
-		//ÉèÖÃ´°Ìå¾ÓÖĞ
+		//è®¾ç½®çª—ä½“å±…ä¸­
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
-
 		Frame=this;
 
-		//´°ÌåÍ¸Ã÷£¨´Ë´¦ÒıÓÃÁËcom.sun.awt.AWTUtilities£¬ĞèÒı°ü£©
+		//çª—ä½“é€æ˜ï¼ˆæ­¤å¤„å¼•ç”¨äº†com.sun.awt.AWTUtilitiesï¼Œéœ€å¼•åŒ…ï¼‰
 		//AWTUtilities.setWindowOpaque(this, false);
-		//´°ÌåÍ¸Ã÷·½·¨Ä¿Ç°µÃµ½¸Ä½ø
+		//çª—ä½“é€æ˜æ–¹æ³•ç›®å‰å¾—åˆ°æ”¹è¿›
 		this.setBackground(new Color(0,0,0,0));
 		
-		
 
-		//Êó±êÊÂ¼ş£¬ÓÃÓÚ»ñÈ¡Êó±êÍÏ¶¯µÄÎ»ÖÃ
+		//é¼ æ ‡äº‹ä»¶ï¼Œç”¨äºè·å–é¼ æ ‡æ‹–åŠ¨çš„ä½ç½®
 		addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e) {
 				isDraging = true;
@@ -63,11 +63,11 @@ public class MainFrame extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				isDraging = false;
 			}});
-		//Êó±êÒÆ¶¯ÊÂ¼ş£¬ÓÃÓÚ»ñÈ¡ÒÆ¶¯µÄÂ·¾¶³¤¶È
+		//é¼ æ ‡ç§»åŠ¨äº‹ä»¶ï¼Œç”¨äºè·å–ç§»åŠ¨çš„è·¯å¾„é•¿åº¦
 		addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				if (isDraging) { 
-					//»ñÈ¡µ±Ç°¿ò¼ÜµÄÎ»ÖÃ×ø±ê
+					//è·å–å½“å‰æ¡†æ¶çš„ä½ç½®åæ ‡
 					int frame_x= getLocation().x;
 					int frame_y= getLocation().y;
 					setLocation(frame_x+e.getX()-X, frame_y+e.getY()-Y);
@@ -84,18 +84,26 @@ public class MainFrame extends JFrame{
 
 	public static void main(String[] args){
 
-		//¼ÓÔØÏµÍ³½çÃæ
+		//åŠ è½½ç³»ç»Ÿç•Œé¢
 		try {
-			// ½«LookAndFeelÉèÖÃ³ÉWindowsÑùÊ½
+			// å°†LookAndFeelè®¾ç½®æˆWindowsæ ·å¼
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
+		/*
+		 * è¿­ä»£1æ‰€ä½¿ç”¨çš„ç™»å½•ç•Œé¢ï¼Œè¿­ä»£2å–æ¶ˆäº†RMIï¼Œå°†ä¹‹åˆ å»
+		 * MessageFrame messageframe=new MessageFrame();
+		 * LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
+		 * messageframe.add(loginmsgpanel);
+		 * messageframe.repaint();
+		 */
 		
-		MessageFrame messageframe=new MessageFrame();
-//		LoginMsgPanel loginmsgpanel=new LoginMsgPanel(messageframe);
-//		messageframe.add(loginmsgpanel);
-		messageframe.repaint();
+		MainFrame mf=new MainFrame();
+		MatchPanel mp=new MatchPanel();
+		mf.add(mp);
+		mf.repaint();
 	}
 
 }

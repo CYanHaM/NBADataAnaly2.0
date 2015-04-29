@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class PlayerInfoPanel extends JPanel{
 	/**
-	 * ÇòÔ±ĞÅÏ¢ÏÔÊ¾½çÃæ
+	 * çƒå‘˜ä¿¡æ¯æ˜¾ç¤ºç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê4ÔÂ1ÈÕ00:55:39
+	 * @date 2015å¹´4æœˆ1æ—¥00:55:39
 	 * @version 1.0
 	 */
 	private static final long serialVersionUID = 1L;
@@ -80,104 +80,104 @@ public class PlayerInfoPanel extends JPanel{
 	}
 	
 	public void addbutton(){
-		ATL=new JButton("ÀÏÓ¥");
+		ATL=new JButton("è€é¹°");
 		ATL.setBounds(locx, locy, Button_width, Button_height);
 		button_config(ATL);
-		CHA=new JButton("»Æ·ä");
+		CHA=new JButton("é»„èœ‚");
 		CHA.setBounds(locx, locy+13+Button_height, Button_width, Button_height);
 		button_config(CHA);
-		MIA=new JButton("ÈÈ»ğ");
+		MIA=new JButton("çƒ­ç«");
 		MIA.setBounds(locx, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(MIA);
-		ORL=new JButton("Ä§Êõ");
+		ORL=new JButton("é­”æœ¯");
 		ORL.setBounds(locx, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(ORL);
-		WAS=new JButton("Ææ²Å");
+		WAS=new JButton("å¥‡æ‰");
 		WAS.setBounds(locx, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(WAS);
 		
-		CHI=new JButton("¹«Å£");
+		CHI=new JButton("å…¬ç‰›");
 		CHI.setBounds(locx+20+Button_width, locy, Button_width, Button_height);
 		button_config(CHI);
-		CLE=new JButton("ÆïÊ¿");
+		CLE=new JButton("éª‘å£«");
 		CLE.setBounds(locx+20+Button_width, locy+13+Button_height, Button_width, Button_height);
 		button_config(CLE);
-		DET=new JButton("»îÈû");
+		DET=new JButton("æ´»å¡");
 		DET.setBounds(locx+20+Button_width, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(DET);
-		IND=new JButton("²½ĞĞÕß");
+		IND=new JButton("æ­¥è¡Œè€…");
 		IND.setBounds(locx+20+Button_width, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(IND);
-		MIL=new JButton("ĞÛÂ¹");
+		MIL=new JButton("é›„é¹¿");
 		MIL.setBounds(locx+20+Button_width, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(MIL);
 		
-		BOS=new JButton("¿­¶ûÌØÈË");
+		BOS=new JButton("å‡¯å°”ç‰¹äºº");
 		BOS.setBounds(locx+(20+Button_width)*2, locy, Button_width, Button_height);
 		button_config(BOS);
-		BKN=new JButton("ÀºÍø");
+		BKN=new JButton("ç¯®ç½‘");
 		BKN.setBounds(locx+(20+Button_width)*2, locy+13+Button_height, Button_width, Button_height);
 		button_config(BKN);
-		NYK=new JButton("Äá¿ËË¹");
+		NYK=new JButton("å°¼å…‹æ–¯");
 		NYK.setBounds(locx+(20+Button_width)*2, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(NYK);
-		PHI=new JButton("76ÈË");
+		PHI=new JButton("76äºº");
 		PHI.setBounds(locx+(20+Button_width)*2, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(PHI);
-		TOR=new JButton("ÃÍÁú");
+		TOR=new JButton("çŒ›é¾™");
 		TOR.setBounds(locx+(20+Button_width)*2, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(TOR);
 		
-		GSW=new JButton("ÓÂÊ¿");
+		GSW=new JButton("å‹‡å£«");
 		GSW.setBounds(locx+(20+Button_width)*3, locy, Button_width, Button_height);
 		button_config(GSW);
-		LAC=new JButton("¿ì´¬");
+		LAC=new JButton("å¿«èˆ¹");
 		LAC.setBounds(locx+(20+Button_width)*3, locy+13+Button_height, Button_width, Button_height);
 		button_config(LAC);
-		LAL=new JButton("ºşÈË");
+		LAL=new JButton("æ¹–äºº");
 		LAL.setBounds(locx+(20+Button_width)*3, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(LAL);
-		PHX=new JButton("Ì«Ñô");
+		PHX=new JButton("å¤ªé˜³");
 		PHX.setBounds(locx+(20+Button_width)*3, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(PHX);
-		SAC=new JButton("¹úÍõ");
+		SAC=new JButton("å›½ç‹");
 		SAC.setBounds(locx+(20+Button_width)*3, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(SAC);
 		
-		DEN=new JButton("¾ò½ğ");
+		DEN=new JButton("æ˜é‡‘");
 		DEN.setBounds(locx+(20+Button_width)*4, locy, Button_width, Button_height);
 		button_config(DEN);
-		MIN=new JButton("É­ÁÖÀÇ");
+		MIN=new JButton("æ£®æ—ç‹¼");
 		MIN.setBounds(locx+(20+Button_width)*4, locy+13+Button_height, Button_width, Button_height);
 		button_config(MIN);
-		OKC=new JButton("À×öª");
+		OKC=new JButton("é›·éœ†");
 		OKC.setBounds(locx+(20+Button_width)*4, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(OKC);
-		POR=new JButton("¿ªÍØÕß");
+		POR=new JButton("å¼€æ‹“è€…");
 		POR.setBounds(locx+(20+Button_width)*4, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(POR);
-		UTA=new JButton("¾ôÊ¿");
+		UTA=new JButton("çˆµå£«");
 		UTA.setBounds(locx+(20+Button_width)*4, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(UTA);
 		
-		DAL=new JButton("Ğ¡Å£");
+		DAL=new JButton("å°ç‰›");
 		DAL.setBounds(locx+(20+Button_width)*5, locy, Button_width, Button_height);
 		button_config(DAL);
-		HOU=new JButton("»ğ¼ı");
+		HOU=new JButton("ç«ç®­");
 		HOU.setBounds(locx+(20+Button_width)*5, locy+13+Button_height, Button_width, Button_height);
 		button_config(HOU);
-		MEM=new JButton("»ÒĞÜ");
+		MEM=new JButton("ç°ç†Š");
 		MEM.setBounds(locx+(20+Button_width)*5, locy+(13+Button_height)*2, Button_width, Button_height);
 		button_config(MEM);
-		NOP=new JButton("ğÃğÉ");
+		NOP=new JButton("é¹ˆé¹•");
 		NOP.setBounds(locx+(20+Button_width)*5, locy+(13+Button_height)*3, Button_width, Button_height);
 		button_config(NOP);
-		SAS=new JButton("Âí´Ì");
+		SAS=new JButton("é©¬åˆº");
 		SAS.setBounds(locx+(20+Button_width)*5, locy+(13+Button_height)*4, Button_width, Button_height);
 		button_config(SAS);
 	}
 	
-	//»æÖÆÈü¼¾Êı¾İ½çÃæ±³¾°
+	//ç»˜åˆ¶èµ›å­£æ•°æ®ç•Œé¢èƒŒæ™¯
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
 		ImageIcon im1=new ImageIcon("images/system_img/teams_bg.png");

@@ -8,7 +8,6 @@ import VO.TeamTechVO;
 import VO.TeamVO;
 import blservice.teamblservice.TeamBLservice;
 import bussinesslogic.TeamBL.Team;
-import bussinesslogic.TeamTech.TeamTech;
 
 public class ImportTeam {
 /**
@@ -18,22 +17,24 @@ public class ImportTeam {
  * @version 1.0
  */
 	//定义层间传输接口
-	TeamTechBLservice TTbs;
+//	TeamTechBLservice TTbs;
 	TeamBLservice Tbs;
-	PlayerBLservice pbs;
+//	PlayerBLservice pbs;
 
 	public ImportTeam(){
-		TTbs = new TeamTech();
+//		TTbs = new TeamTech();
 		Tbs = new Team();
-		pbs=new Player();
+//		pbs=new Player();
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechAscend(TeamTechEnum DataType){
-		return TTbs.Ascend(DataType);
+//		return TTbs.Ascend(DataType);
+		return null;
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechDescend(TeamTechEnum DataType){
-		return TTbs.Descend(DataType);
+//		return TTbs.Descend(DataType);
+		return null;
 	}
 	
 	public TeamVO getTeamVO(TeamVO tvo){
@@ -41,10 +42,12 @@ public class ImportTeam {
 	}
 	
 	public PlayerVO Show(PlayerVO vo){
-		return pbs.Show(vo);
+//		return pbs.Show(vo);
+		return null;
 	}
 	
 	public ArrayList<PlayerVO> findByTeam(TeamVO tvo){
-		return pbs.findByTeam(tvo);
+//		return pbs.findByTeam(tvo);
+		return null;
 	}
 }

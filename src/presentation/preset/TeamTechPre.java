@@ -5,39 +5,39 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class TeamTechPre{
-	//ÑÕÉ«Ô¤Éè
-	public Color OddTableLine;//ÆæÊıĞĞÑÕÉ«
-	public Color EvenTableLine;//Å¼ÊıĞĞÑÕÉ«
-	public Color LineSelected;//µ¥ÔªĞĞÑ¡ÖĞÑÕÉ«
-	public Color TableFg;//±í¸ñ±êÌâÀ¸×ÖÌåÑÕÉ«
-	public Color CellFg;//±í¸ñµ¥Ôª¸ñ×ÖÌåÑÕÉ«
-	public Color TableBg;//±í¸ñ±êÌâÀ¸±³¾°ÑÕÉ«
-	public Color TableSelBg;//±í¸ñ±êÌâÀ¸Ñ¡ÖĞ±³¾°
-	//×ÖÌåÔ¤Éè
-	public Font switchbox;//ÏÂÀ­¿ò×ÖÌå
-	public Font CellFont;//µ¥Ôª¸ñ×ÖÌå
-	public Font HeaderFont;//±íÍ·×ÖÌå
+	//é¢œè‰²é¢„è®¾
+	public Color OddTableLine;//å¥‡æ•°è¡Œé¢œè‰²
+	public Color EvenTableLine;//å¶æ•°è¡Œé¢œè‰²
+	public Color LineSelected;//å•å…ƒè¡Œé€‰ä¸­é¢œè‰²
+	public Color TableFg;//è¡¨æ ¼æ ‡é¢˜æ å­—ä½“é¢œè‰²
+	public Color CellFg;//è¡¨æ ¼å•å…ƒæ ¼å­—ä½“é¢œè‰²
+	public Color TableBg;//è¡¨æ ¼æ ‡é¢˜æ èƒŒæ™¯é¢œè‰²
+	public Color TableSelBg;//è¡¨æ ¼æ ‡é¢˜æ é€‰ä¸­èƒŒæ™¯
+	//å­—ä½“é¢„è®¾
+	public Font switchbox;//ä¸‹æ‹‰æ¡†å­—ä½“
+	public Font CellFont;//å•å…ƒæ ¼å­—ä½“
+	public Font HeaderFont;//è¡¨å¤´å­—ä½“
 
 	public TeamTechPre(){
 		
-		//Å¼ÊıĞĞ»ÒÀ¶É«RGB 211,221,240
+		//å¶æ•°è¡Œç°è“è‰²RGB 211,221,240
 		OddTableLine=new Color(255,255,255);
-		//ÆæÊıĞĞ°×É«RGB 255,255,255
+		//å¥‡æ•°è¡Œç™½è‰²RGB 255,255,255
 		EvenTableLine=new Color(211,221,240);
-		//Ñ¡ÖĞĞĞÎª»ÒÉ«RGB 210,210,210
+		//é€‰ä¸­è¡Œä¸ºç°è‰²RGB 210,210,210
 		LineSelected=new Color(210,210,210);
-		//±êÌâÀ¸×ÖÌåÑÕÉ«°×É«RGB 255,255,255
+		//æ ‡é¢˜æ å­—ä½“é¢œè‰²ç™½è‰²RGB 255,255,255
 		TableFg=new Color(255,255,255);
-		//±êÌâÀ¸×ÖÌåÑÕÉ«ºÚÉ«RGB 40,40,40
+		//æ ‡é¢˜æ å­—ä½“é¢œè‰²é»‘è‰²RGB 40,40,40
 		CellFg=new Color(80,80,80);
-		//±êÌâÀ¸±³¾°ÑÕÉ«»ÒºÚÉ«RGB 135,138,143
+		//æ ‡é¢˜æ èƒŒæ™¯é¢œè‰²ç°é»‘è‰²RGB 135,138,143
 		TableBg=new Color(135,138,143);
-		//±êÌâÀ¸Ñ¡ÖĞ±³¾°ÑÕÉ«»Ò°×É«RGB 
+		//æ ‡é¢˜æ é€‰ä¸­èƒŒæ™¯é¢œè‰²ç°ç™½è‰²RGB 
 		TableSelBg=new Color(153,153,153);
 		
-		switchbox=new Font("Ó×Ô²",0,12);
-		CellFont=new Font("Ó×Ô²",0,12);
-		HeaderFont=new Font("ºÚÌå",0,11);
+		switchbox=new Font("å¹¼åœ†",0,12);
+		CellFont=new Font("å¹¼åœ†",0,12);
+		HeaderFont=new Font("é»‘ä½“",0,11);
 		
 	}
 	

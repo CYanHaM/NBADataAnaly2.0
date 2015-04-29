@@ -6,42 +6,42 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
 
-import com.sun.awt.AWTUtilities;
+//import com.sun.awt.AWTUtilities;
 
 public class MessageFrame extends JFrame{
 	/**
-	 * ĞÅÏ¢ÌáÊ¾´°
+	 * ä¿¡æ¯æç¤ºçª—
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ26ÈÕ17:26:37
+	 * @date 2015å¹´3æœˆ26æ—¥17:26:37
 	 * @version 1.0
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//¶¨ÒåµÇÂ½¿ò¼Ü´óĞ¡
+	//å®šä¹‰ç™»é™†æ¡†æ¶å¤§å°
 		public final int POPFRAME_WIDTH=350;
 		public final int POPFRAME_HEIGHT=200;
-		//ÏÂÃæ¼¸¸ö¶¨ÒåÓÃÓÚÉèÖÃ¿ò¼ÜµÄ¿ÉÒÆ¶¯
-		//¶¨ÒåÊó±ê×ø±êÎ»ÖÃ
+		//ä¸‹é¢å‡ ä¸ªå®šä¹‰ç”¨äºè®¾ç½®æ¡†æ¶çš„å¯ç§»åŠ¨
+		//å®šä¹‰é¼ æ ‡åæ ‡ä½ç½®
 		int X;
 		int Y;
-		//ÅĞ¶ÏÊÇ·ñÔÚÍÏ¶¯½çÃæ
+		//åˆ¤æ–­æ˜¯å¦åœ¨æ‹–åŠ¨ç•Œé¢
 		boolean isDraging;
 
 		public MessageFrame(){
 			this.setTitle("MESSAGE");
 			this.setSize(POPFRAME_WIDTH, POPFRAME_HEIGHT);
 			this.setResizable(false);
-			//²»ÏÔÊ¾windows×Ô´ø±ß¿ò
+			//ä¸æ˜¾ç¤ºwindowsè‡ªå¸¦è¾¹æ¡†
 			this.setUndecorated(true);
 			this.setVisible(true);
-			//ÉèÖÃ´°Ìå¾ÓÖĞ
+			//è®¾ç½®çª—ä½“å±…ä¸­
 			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-			//´°ÌåÍ¸Ã÷£¨´Ë´¦ÒıÓÃÁËcom.sun.awt.AWTUtilities£¬ĞèÒı°ü£©
-			AWTUtilities.setWindowOpaque(this, false);
+			//çª—ä½“é€æ˜ï¼ˆæ­¤å¤„å¼•ç”¨äº†com.sun.awt.AWTUtilitiesï¼Œéœ€å¼•åŒ…ï¼‰
+//			AWTUtilities.setWindowOpaque(this, false);
 
-			//Êó±êÊÂ¼ş£¬ÓÃÓÚ»ñÈ¡Êó±êÍÏ¶¯µÄÎ»ÖÃ
+			//é¼ æ ‡äº‹ä»¶ï¼Œç”¨äºè·å–é¼ æ ‡æ‹–åŠ¨çš„ä½ç½®
 			addMouseListener(new MouseAdapter(){
 				public void mousePressed(MouseEvent e) {
 					isDraging = true;
@@ -51,11 +51,11 @@ public class MessageFrame extends JFrame{
 				public void mouseReleased(MouseEvent e) {
 					isDraging = false;
 				}});
-			//Êó±êÒÆ¶¯ÊÂ¼ş£¬ÓÃÓÚ»ñÈ¡ÒÆ¶¯µÄÂ·¾¶³¤¶È
+			//é¼ æ ‡ç§»åŠ¨äº‹ä»¶ï¼Œç”¨äºè·å–ç§»åŠ¨çš„è·¯å¾„é•¿åº¦
 			addMouseMotionListener(new MouseMotionAdapter() {
 				public void mouseDragged(MouseEvent e) {
 					if (isDraging) { 
-						//»ñÈ¡µ±Ç°¿ò¼ÜµÄÎ»ÖÃ×ø±ê
+						//è·å–å½“å‰æ¡†æ¶çš„ä½ç½®åæ ‡
 						int frame_x= getLocation().x;
 						int frame_y= getLocation().y;
 						setLocation(frame_x+e.getX()-X, frame_y+e.getY()-Y);

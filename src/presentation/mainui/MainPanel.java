@@ -7,16 +7,16 @@ import javax.swing.*;
 
 public class MainPanel extends JPanel{
 	/**
-	 * Ö÷½çÃæ×îĞ¡»¯¼°¹Ø±Õ°´Å¥ÒÔ¼°±³¾°ÉèÖÃ
+	 * ä¸»ç•Œé¢æœ€å°åŒ–åŠå…³é—­æŒ‰é’®ä»¥åŠèƒŒæ™¯è®¾ç½®
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ20ÈÕ21:00:56
+	 * @date 2015å¹´3æœˆ20æ—¥21:00:56
 	 * @version 1.3
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//¶¨Òå±ßÔµÍ¸Ã÷¿Õ°×ÇøÓò±ß½ç´óĞ¡£¬µ¥Î»px
+	//å®šä¹‰è¾¹ç¼˜é€æ˜ç©ºç™½åŒºåŸŸè¾¹ç•Œå¤§å°ï¼Œå•ä½px
 	public static int e_space=10;
-	//¹Ø±ÕÓë×îĞ¡»¯°´Å¥±ØĞëÊÇÕı·½ĞÎ£¬¶¨Òå±ß³¤´óĞ¡
+	//å…³é—­ä¸æœ€å°åŒ–æŒ‰é’®å¿…é¡»æ˜¯æ­£æ–¹å½¢ï¼Œå®šä¹‰è¾¹é•¿å¤§å°
 	public static int sidelength=25;
 	JButton MINIMIZE;
 	JButton CLOSE;
@@ -28,7 +28,7 @@ public class MainPanel extends JPanel{
 		this.setLayout(null);
 		this.setOpaque(false);
 		
-		//-----------------------Ìí¼Ó×îĞ¡»¯¼°¹Ø±Õ°´Å¥-------------------------------
+		//-----------------------æ·»åŠ æœ€å°åŒ–åŠå…³é—­æŒ‰é’®-------------------------------
 		MINIMIZE=new JButton(new ImageIcon("images/system_img/MINIMIZE_1.png"));
 		MINIMIZE.setBounds(WIDTH-e_space-sidelength*2 , e_space , sidelength , sidelength);
 		MINIMIZE.setBorderPainted(false);

@@ -1,24 +1,27 @@
 package presentation.mainui;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import presentation.playerui.PlayerTechPanel;
-import presentation.playerui.PlayerInfoPanel;
-import presentation.teamui.TeamInfoPanel;
-import presentation.teamui.TeamPanel;
-import presentation.teamui.TeamTechPanel;
-import VO.TeamVO;
 //import blservice.LoginBLservice;
 //import bussinesslogic.LoginBL.Login;
 
 public class LoginMsgPanel extends JPanel implements ActionListener{
 	/**
-	 * ¿ªÆôÈí¼şÊäÈëIPµØÖ·½çÃæ
+	 * å¼€å¯è½¯ä»¶è¾“å…¥IPåœ°å€ç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ26ÈÕ20:03:01
+	 * @date 2015å¹´3æœˆ26æ—¥20:03:01
 	 * @version 1.0
 	 */
 	private static final long serialVersionUID = 1L;
@@ -39,16 +42,16 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 		this.setSize(POPFRAME_WIDTH, POPFRAME_HEIGHT);
 		this.setLayout(null);
 
-		message=new JLabel("ÇëÊäÈë·şÎñÆ÷¶ËIPµØÖ·£º");
+		message=new JLabel("è¯·è¾“å…¥æœåŠ¡å™¨ç«¯IPåœ°å€ï¼š");
 		message.setBounds(58, 75, 180, 15);
-		message.setFont(new Font("Ó×Ô²",0,15));
+		message.setFont(new Font("å¹¼åœ†",0,15));
 		message.setForeground(Color.WHITE);
 
 //		lbs=new Login();
 //		String url=lbs.getURL();
 //		messagetext=new JTextField(url);
 		messagetext.setBounds(60, 100, 235, 30);
-		messagetext.setFont(new Font("Ó×Ô²",0,15));
+		messagetext.setFont(new Font("å¹¼åœ†",0,15));
 		messagetext.setForeground(Color.WHITE);
 		messagetext.setOpaque(false);
 		messagetext.setBorder(null);
@@ -86,7 +89,7 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 
 	}
 
-	//»æÖÆ±³¾°
+	//ç»˜åˆ¶èƒŒæ™¯
 	ImageIcon im=new ImageIcon("images/messageframe/caution.png");
 	public void paintComponent(Graphics g){
 		super.paintComponent(g); 
@@ -99,7 +102,7 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 		if(arg0.getSource()==affirm){
 			String newURL=messagetext.getText();
 			if(newURL.equals("")){
-				JOptionPane.showMessageDialog(null ,"IP²»¿ÉÎª¿Õ","ÊäÈë´íÎó",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null ,"IPä¸å¯ä¸ºç©º","è¾“å…¥é”™è¯¯",JOptionPane.ERROR_MESSAGE);
 			}else{
 //				lbs.setURL(newURL);
 				MainFrame mf=new MainFrame();
@@ -107,7 +110,6 @@ public class LoginMsgPanel extends JPanel implements ActionListener{
 				PlayerTechPanel ttp=new PlayerTechPanel(mf);
 //				TeamInfoPanel ttp=new TeamInfoPanel(mf);
 //				TeamVO tvo=new TeamVO();
-//				tvo.fullName="asdasd";
 //				TeamPanel ttp=new TeamPanel(tvo,mf);
 				mf.add(ttp);
 				mf.repaint();
