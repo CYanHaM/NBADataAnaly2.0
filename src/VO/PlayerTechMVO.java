@@ -3,43 +3,45 @@ import java.io.Serializable;
 
 public class PlayerTechMVO implements Serializable {
 		/**
-		 *Ã¿³¡±ÈÈüÇòÔ±¼¼ÊõÍ³¼Æ 
+		 *Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ 
 		 */
 		private static final long serialVersionUID = 1L;
 		
-		public String name;                         //ÐÕÃû
-		public String team;                         //¶ÓÎé
+		public String name;                         //ï¿½ï¿½ï¿½ï¿½
+		public String team;                         //ï¿½ï¿½ï¿½ï¿½
 		public String date;
-		public String position;                     //Î»ÖÃ
-		public int time;                         //ÔÚ³¡Ê±¼ä
-		public int shotIn;                       //Í¶ÀºÃüÖÐÊý
-		public int shot;                         //Í¶Àº³öÊÖÊý
-		public int threeShotIn;                  //Èý·ÖÃüÖÐÊý
-		public int threeShot;                    //Èý·Ö³öÊÖÊý
-		public int penaltyShotIn;                //·£ÇòÃüÖÐÊý
-		public int penaltyShot;                  //·£Çò³öÊÖÊý
-		public int offensiveRebound;             //Ç°³¡Àº°åÊý
-		public int defensiveRebound;             //ºó³¡Àº°åÊý
-		public int rebound;                      //×ÜÀº°åÊý
-		public int secondaryAttack;              //Öú¹¥Êý
-		public int steal;                        //ÇÀ¶ÏÊý
-		public int blockShot;                    //¸ÇÃ±Êý
-		public int fault;                        //Ê§ÎóÊý
-		public int foul;                         //·¸¹æÊý
-		public int score;                        //¸öÈËµÃ·Ö
-		public int ifFirstLineUp;                 //ÊÇ·ñÏÈ·¢
-		public int ifParticipate;                 //ÊÇ·ñ²ÎÈü
+		public String position;                     //Î»ï¿½ï¿½
+		public int time;                         //ï¿½Ú³ï¿½Ê±ï¿½ï¿½
+		public int shotIn;                       //Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int shot;                         //Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int threeShotIn;                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int threeShot;                    //ï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int penaltyShotIn;                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int penaltyShot;                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int offensiveRebound;             //Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int defensiveRebound;             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int rebound;                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int secondaryAttack;              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int steal;                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int blockShot;                    //ï¿½ï¿½Ã±ï¿½ï¿½
+		public int fault;                        //Ê§ï¿½ï¿½ï¿½ï¿½
+		public int foul;                         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int score;                        //ï¿½ï¿½ï¿½ËµÃ·ï¿½
+		public int ifFirstLineUp;                 //ï¿½Ç·ï¿½ï¿½È·ï¿½
+		public int ifParticipate;                 //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 		
-		//³¡¾ùµÄÇò¶ÓÊý¾Ý
-		public int teamAllTime;                  //È«¶ÓÉÏ³¡Ê±¼ä
-		public int teamOffensiveRebound;                  //È«¶Ó½ø¹¥Àº°å
-		public int teamDefensiveRebound;                //È«¶Ó·ÀÊØÀº°å
-		public int opponentOffensiveRebound;                  //¶ÔÊÖ½ø¹¥Àº°å
-		public int opponentDefensiveRebound;                //¶ÔÊÖ·ÀÊØÀº°å
-		public int teamShotIn;                             //È«¶Ó½øÇòÊý
-		public int opponentOffensiveNum;                     //¶ÔÊÖ½ø¹¥´ÎÊý
-		public int opponentTwoShot;                     //¶ÔÊÖ½ø¹¥Á½·ÖÇò³öÊÖ´ÎÊý
-		public int teamShot;                          //È«¶Ó³öÊÖ´ÎÊý
-		public int teamPenaltyShot;                   //È«¶Ó·£Çò´ÎÊý
-		public int teamFault;                          //È«¶ÓÊ§Îó´ÎÊý  
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int teamAllTime;                  //È«ï¿½ï¿½ï¿½Ï³ï¿½Ê±ï¿½ï¿½
+		public int teamOffensiveRebound;                  //È«ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int teamDefensiveRebound;                //È«ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int opponentOffensiveRebound;                  //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int opponentDefensiveRebound;                //ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int teamShotIn;                             //È«ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int opponentOffensiveNum;                     //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int opponentTwoShot;                     //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+		public int teamShot;                          //È«ï¿½Ó³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+		public int teamPenaltyShot;                   //È«ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public int teamFault;                          //È«ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½  
+		public int ifDouble;
+
 }
