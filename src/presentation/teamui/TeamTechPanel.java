@@ -15,50 +15,50 @@ import presentation.playerui.PlayerTechPanel;
 
 public class TeamTechPanel extends JPanel implements ActionListener{
 	/**
-	 * Çò¶ÓÍ³¼ÆÊı¾İ½çÃæ
+	 * çƒé˜Ÿç»Ÿè®¡æ•°æ®ç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ21ÈÕ16:35:28
+	 * @date 2015å¹´3æœˆ21æ—¥16:35:28
 	 * @version 1.6
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//-------------------------½çÃæ³£Á¿-------------------
+	//-------------------------ç•Œé¢å¸¸é‡-------------------
 	public static int WIDTH=1020;
 	public static int HEIGHT=670;
-	//¶¨Òå±ßÔµÍ¸Ã÷¿Õ°×ÇøÓò±ß½ç´óĞ¡£¬µ¥Î»px
+	//å®šä¹‰è¾¹ç¼˜é€æ˜ç©ºç™½åŒºåŸŸè¾¹ç•Œå¤§å°ï¼Œå•ä½px
 	public static int e_space=10;
-	//¶¨Òå¿Õ³öÎ»ÖÃ´óĞ¡
+	//å®šä¹‰ç©ºå‡ºä½ç½®å¤§å°
 	private static int space=20;
-	//ÉèÖÃÇò¶Ó×ÜÊı³£Á¿
+	//è®¾ç½®çƒé˜Ÿæ€»æ•°å¸¸é‡
 	private static int TEAMNUM=30;
 	
-	//±í¸ñ´óĞ¡
+	//è¡¨æ ¼å¤§å°
 	private static int TABLEWIDTH=800;
 	private static int TABLEHEIGHT=450;
-	//±í¸ñĞĞ¸ß
+	//è¡¨æ ¼è¡Œé«˜
 	private static int ROWHEIGHT=28;
-	//±í¸ñÁĞ¿í
+	//è¡¨æ ¼åˆ—å®½
 	private static int[] COLUMNWIDTH={50,200,60,80,80,80,80,80,80,80,80,60,60,60,60,60,60,80,80,80,80,80,80,80,80,80};
 
-	//ÏÂÀ­¿ò´óĞ¡
+	//ä¸‹æ‹‰æ¡†å¤§å°
 	private static int BOXWIDTH=160;
 	private static int BOXHEIGHT=30;
 	//----------------------------------------------------
 
-	//-------------------------½çÃæ×é¼ş--------------------
-	//ÉèÖÃ±í¸ñÊôĞÔ
+	//-------------------------ç•Œé¢ç»„ä»¶--------------------
+	//è®¾ç½®è¡¨æ ¼å±æ€§
 	private static JTable teamtable;
 	private static Object[][] teaminfo;
 	private JScrollPane teams;
 	private String[] columnName={
-			"ÅÅÃû","Çò¶ÓÃû³Æ","±ÈÈü³¡Êı","Í¶ÀºÃüÖĞÊı","Í¶Àº³öÊÖ´ÎÊı","Èı·ÖÃüÖĞÊı",
-			"Èı·Ö³öÊÖÊı","·£ÇòÃüÖĞÊı","·£Çò³öÊÖÊı","½ø¹¥Àº°åÊı","·ÀÊØÀº°åÊı",
-			"Àº°åÊı","Öú¹¥Êı","ÇÀ¶ÏÊı","¸ÇÃ±Êı","Ê§ÎóÊı","·¸¹æÊı","±ÈÈüµÃ·Ö",
-			"Í¶ÀºÃüÖĞÂÊ","Èı·ÖÃüÖĞÂÊ","·£ÇòÃüÖĞÂÊ","Ê¤ÂÊ","½ø¹¥»ØºÏ",
-			"½ø¹¥Ğ§ÂÊ","·ÀÊØĞ§ÂÊ","Àº°åĞ§ÂÊ","ÇÀ¶ÏĞ§ÂÊ","Öú¹¥Ğ§ÂÊ"};
+			"æ’å","çƒé˜Ÿåç§°","æ¯”èµ›åœºæ•°","æŠ•ç¯®å‘½ä¸­æ•°","æŠ•ç¯®å‡ºæ‰‹æ¬¡æ•°","ä¸‰åˆ†å‘½ä¸­æ•°",
+			"ä¸‰åˆ†å‡ºæ‰‹æ•°","ç½šçƒå‘½ä¸­æ•°","ç½šçƒå‡ºæ‰‹æ•°","è¿›æ”»ç¯®æ¿æ•°","é˜²å®ˆç¯®æ¿æ•°",
+			"ç¯®æ¿æ•°","åŠ©æ”»æ•°","æŠ¢æ–­æ•°","ç›–å¸½æ•°","å¤±è¯¯æ•°","çŠ¯è§„æ•°","æ¯”èµ›å¾—åˆ†",
+			"æŠ•ç¯®å‘½ä¸­ç‡","ä¸‰åˆ†å‘½ä¸­ç‡","ç½šçƒå‘½ä¸­ç‡","èƒœç‡","è¿›æ”»å›åˆ",
+			"è¿›æ”»æ•ˆç‡","é˜²å®ˆæ•ˆç‡","ç¯®æ¿æ•ˆç‡","æŠ¢æ–­æ•ˆç‡","åŠ©æ”»æ•ˆç‡"};
 	//	
 	//	private String[] columnName={"","","","","","","","","","","","","","","","",""};
-	//×ÜÊı¾İÓë³¡¾ùÊı¾İÇĞ»»ÏÂÀ­¿ò
+	//æ€»æ•°æ®ä¸åœºå‡æ•°æ®åˆ‡æ¢ä¸‹æ‹‰æ¡†
 	private JComboBox<String> switchbox;
 //	private JComboBox<String> search;
 	
@@ -85,7 +85,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
 		this.setOpaque(false);
-		//´´½¨ÑÕÉ«Ô¤Éè¶ÔÏó
+		//åˆ›å»ºé¢œè‰²é¢„è®¾å¯¹è±¡
 		TTPre=new TeamTechPre();
 //		importdata=new ImportTeam();
 //		initial_data=importdata.getTeamTechAscend(TeamTechEnum.name);
@@ -93,18 +93,18 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 
 //		teaminfo=new Object[initial_data.size()][columnName.length];
 		teaminfo=new Object[TEAMNUM][columnName.length];
-		//¼ÓÔØ³õÊ¼±í¸ñ£¬ÏÔÊ¾¶ÓÎé×ÜÊı¾İ
+		//åŠ è½½åˆå§‹è¡¨æ ¼ï¼Œæ˜¾ç¤ºé˜Ÿä¼æ€»æ•°æ®
 //		handleinitial(initial_data);
 
-		//¼ÓÔØ±í¸ñÅäÖÃ
+		//åŠ è½½è¡¨æ ¼é…ç½®
 		table_config();
-		//¼ÓÔØ»¬¶¯Ãæ°åÅäÖÃ
+		//åŠ è½½æ»‘åŠ¨é¢æ¿é…ç½®
 		scrollpane_config();
-		//Ìí¼ÓÏÂÀ­¿ò
+		//æ·»åŠ ä¸‹æ‹‰æ¡†
 		addbox();
-		//Ìí¼Óµ¥Ñ¡°´Å¥
+		//æ·»åŠ å•é€‰æŒ‰é’®
 		addradiobutton();
-		//Ìí¼Ó²à±ßÀ¸°´Å¥
+		//æ·»åŠ ä¾§è¾¹æ æŒ‰é’®
 		addbutton();
 		
 		message=new JLabel();
@@ -147,12 +147,12 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	}
 
 	private void addbox(){
-		//ÏÂÀ­¿ò
+		//ä¸‹æ‹‰æ¡†
 		switchbox=new JComboBox<String>();
 		switchbox.setFocusable(false);
 		switchbox.setBackground(TTPre.LineSelected);
-		switchbox.addItem("Èü¼¾×ÜÊı¾İ");
-		switchbox.addItem("³¡¾ùÊı¾İ");
+		switchbox.addItem("èµ›å­£æ€»æ•°æ®");
+		switchbox.addItem("åœºå‡æ•°æ®");
 		switchbox.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
 		switchbox.setFont(TTPre.switchbox);
 		switchbox.addItemListener(new ItemListener(){
@@ -160,12 +160,12 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
 				if(arg0.getStateChange()==ItemEvent.SELECTED){
-					if(switchbox.getSelectedItem().equals("Èü¼¾×ÜÊı¾İ")){
-						//								System.out.println("Èü¼¾×ÜÊı¾İ");
+					if(switchbox.getSelectedItem().equals("èµ›å­£æ€»æ•°æ®")){
+						//								System.out.println("èµ›å­£æ€»æ•°æ®");
 						handleTotalData(initial_data);
 					}
-					if(switchbox.getSelectedItem().equals("³¡¾ùÊı¾İ")){
-						//								System.out.println("³¡¾ùÊı¾İ");
+					if(switchbox.getSelectedItem().equals("åœºå‡æ•°æ®")){
+						//								System.out.println("åœºå‡æ•°æ®");
 						handleAverageData(initial_data);
 					}
 				}
@@ -176,7 +176,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addradiobutton(){
-		order_Asc=new JRadioButton("ÉıĞò");
+		order_Asc=new JRadioButton("å‡åº");
 		order_Asc.setFont(TTPre.switchbox);
 		order_Asc.setForeground(TTPre.TableFg);
 		order_Asc.setBorderPainted(false);
@@ -185,7 +185,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 //		order_Asc.setSelected(true);
 		order_Asc.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+10,HEIGHT-TABLEHEIGHT-e_space-space-42,50,15);
 		
-		order_Des=new JRadioButton("½µĞò");
+		order_Des=new JRadioButton("é™åº");
 		order_Des.setFont(TTPre.switchbox);
 		order_Des.setForeground(TTPre.TableFg);
 		order_Des.setBorderPainted(false);
@@ -309,111 +309,111 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	private String switchTeamName(String name){
 		switch(name){
 		case "ATL":
-			return "ÀÏÓ¥ Atlanta-Hawks";
+			return "è€é¹° Atlanta-Hawks";
 		case "CHA":
-			return "»Æ·ä Charlotte-Hornets";
+			return "é»„èœ‚ Charlotte-Hornets";
 		case "MIA":
-			return "ÈÈ»ğ Miami-Heat";
+			return "çƒ­ç« Miami-Heat";
 		case "ORL":
-			return "Ä§Êõ Orlando-Magic";
+			return "é­”æœ¯ Orlando-Magic";
 		case "WAS":
-			return "Ææ²Å Washington-Wizards";
+			return "å¥‡æ‰ Washington-Wizards";
 			
 		case "CHI":
-			return "¹«Å£ Chicago-Bulls";
+			return "å…¬ç‰› Chicago-Bulls";
 		case "CLE":
-			return "ÆïÊ¿ Cleveland-Cavaliers";
+			return "éª‘å£« Cleveland-Cavaliers";
 		case "DET":
-			return "»îÈû Detroit-Pistons";
+			return "æ´»å¡ Detroit-Pistons";
 		case "IND":
-			return "²½ĞĞÕß Indiana-Pacers";
+			return "æ­¥è¡Œè€… Indiana-Pacers";
 		case "MIL":
-			return "ĞÛÂ¹ Milwaukee-Bucks";
+			return "é›„é¹¿ Milwaukee-Bucks";
 			
 		case "BOS":
-			return "¿­¶ûÌØÈË Boston-Celtics";
+			return "å‡¯å°”ç‰¹äºº Boston-Celtics";
 		case "BKN":
-			return "ÀºÍø Brooklyn-Nets";
+			return "ç¯®ç½‘ Brooklyn-Nets";
 		case "NYK":
-			return "Äá¿ËË¹ New York-Knicks";
+			return "å°¼å…‹æ–¯ New York-Knicks";
 		case "PHI":
-			return "76ÈË Philadelphia-76ers";
+			return "76äºº Philadelphia-76ers";
 		case "TOR":
-			return "ÃÍÁú Toronto-Raptors";
+			return "çŒ›é¾™ Toronto-Raptors";
 			
 			
 		case "GSW":
-			return "ÓÂÊ¿ Golden State-Warriors";
+			return "å‹‡å£« Golden State-Warriors";
 		case "LAC":
-			return "¿ì´¬ Los Angeles-Clippers";
+			return "å¿«èˆ¹ Los Angeles-Clippers";
 		case "LAL":
-			return "ºşÈË Los Angeles-Lakers";
+			return "æ¹–äºº Los Angeles-Lakers";
 		case "PHX":
-			return "Ì«Ñô Phoenix-Suns";
+			return "å¤ªé˜³ Phoenix-Suns";
 		case "SAC":
-			return "¹úÍõ Sacramento-Kings";
+			return "å›½ç‹ Sacramento-Kings";
 			
 		case "DEN":
-			return "¾ò½ğ Denver-Nuggets";
+			return "æ˜é‡‘ Denver-Nuggets";
 		case "MIN":
-			return "É­ÁÖÀÇ Minnesota-Timberwolves";
+			return "æ£®æ—ç‹¼ Minnesota-Timberwolves";
 		case "OKC":
-			return "À×öª Oklahoma City-Thunder";
+			return "é›·éœ† Oklahoma City-Thunder";
 		case "POR":
-			return "¿ªÍØÕß Portland-Trail Blazers";
+			return "å¼€æ‹“è€… Portland-Trail Blazers";
 		case "UTA":
-			return "ÓÂÊ¿ Utah-Jazz";
+			return "å‹‡å£« Utah-Jazz";
 			
 		case "DAL":
-			return "Ğ¡Å£ Dallas-Mavericks";
+			return "å°ç‰› Dallas-Mavericks";
 		case "HOU":
-			return "»ğ¼ı Houston-Rockets";
+			return "ç«ç®­ Houston-Rockets";
 		case "MEM":
-			return "»ÒĞÜ Memphis-Grizzlies";
+			return "ç°ç†Š Memphis-Grizzlies";
 		case "NOP":
-			return "ğÃğÉ New Orleans-Pelicans";
+			return "é¹ˆé¹• New Orleans-Pelicans";
 		case "SAS":
-			return "Âí´Ì San Antonio-Spurs";
+			return "é©¬åˆº San Antonio-Spurs";
 		default :
 				return null;
 		}
 	}
 	
-	//±í¸ñÅäÖÃ
+	//è¡¨æ ¼é…ç½®
 	public void table_config(){
-		//------------------------------±í¸ñ»ù±¾ÊôĞÔ--------------------------
+		//------------------------------è¡¨æ ¼åŸºæœ¬å±æ€§--------------------------
 //		for(int i=0;i<initial_data.size();i++){
 //			teaminfo[i][0]=i+1;
 //		}
 		for(int i=0;i<TEAMNUM;i++){
 			teaminfo[i][0]=i+1;
 		}
-		//±í¸ñÊôĞÔÉèÖÃ
+		//è¡¨æ ¼å±æ€§è®¾ç½®
 		teamtable=new JTable(teaminfo, columnName){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) { 
 				return false;
 			}
 		};
-		//¸ù¾İÌõÄ¿Ãû×Ô¶¯µ÷ÕûÁĞ¿í
+		//æ ¹æ®æ¡ç›®åè‡ªåŠ¨è°ƒæ•´åˆ—å®½
 		teamtable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		//ÉèÖÃ±í¸ñÁĞ²»¿ÉÒÆ¶¯
+		//è®¾ç½®è¡¨æ ¼åˆ—ä¸å¯ç§»åŠ¨
 		teamtable.getTableHeader().setReorderingAllowed(false);
-		//ÉèÖÃÁĞÃû¾ÓÖĞ
+		//è®¾ç½®åˆ—åå±…ä¸­
 		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-		//ÉèÖÃ±í¸ñÊı¾İ¼°±íÍ·×ÖÌå×ÖºÅ
+		//è®¾ç½®è¡¨æ ¼æ•°æ®åŠè¡¨å¤´å­—ä½“å­—å·
 		teamtable.setFont(TTPre.CellFont);
 		teamtable.setForeground(TTPre.CellFg);
 		teamtable.getTableHeader().setFont(TTPre.HeaderFont);
 		teamtable.getTableHeader().setForeground(TTPre.TableFg);
 		teamtable.getTableHeader().setOpaque(false);
 		teamtable.getTableHeader().setBackground(TTPre.TableBg);
-		//È¥³ı±ß¿ò
+		//å»é™¤è¾¹æ¡†
 		teamtable.setBorder(null);
 
-		//°´ĞĞĞŞ¸Ä±í¸ñ±³¾°
+		//æŒ‰è¡Œä¿®æ”¹è¡¨æ ¼èƒŒæ™¯
 		TableColumnModel model = teamtable.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
@@ -421,29 +421,29 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			column.setCellRenderer(new RowRenderer());
 		}
 
-		//²»ÏÔÊ¾µ¥Ôª¸ñ±ß¿òÏß
+		//ä¸æ˜¾ç¤ºå•å…ƒæ ¼è¾¹æ¡†çº¿
 		teamtable.setShowHorizontalLines(false);
 		teamtable.setShowVerticalLines(false);
-		//ÉèÖÃÑ¡ÖĞÑÕÉ«
+		//è®¾ç½®é€‰ä¸­é¢œè‰²
 		teamtable.setSelectionBackground(TTPre.LineSelected);
 		
-		//ÉèÖÃĞĞ¸ß
+		//è®¾ç½®è¡Œé«˜
 		teamtable.setRowHeight(ROWHEIGHT);
-		//ÉèÖÃÁĞ¿í
+		//è®¾ç½®åˆ—å®½
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 		teamtable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
 		
 		//-----------------------------------------------------------------
 
-		//Ìí¼Ótable±íÍ·µã»÷ÊÂ¼ş
+		//æ·»åŠ tableè¡¨å¤´ç‚¹å‡»äº‹ä»¶
 		teamtable.getTableHeader().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				HeaderColumn=teamtable.columnAtPoint(e.getPoint());
 				String orderSource=teamtable.getColumnName(HeaderColumn);
 //				System.out.println(orderSource);
-				if(!orderSource.equals("ÅÅÃû")&&!orderSource.equals("±ÈÈü³¡Êı")){
-					message.setText("µ±Ç°ÅÅĞòÒÀ¾İ:"+orderSource);
+				if(!orderSource.equals("æ’å")&&!orderSource.equals("æ¯”èµ›åœºæ•°")){
+					message.setText("å½“å‰æ’åºä¾æ®:"+orderSource);
 				judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
 				}
 				
@@ -462,82 +462,82 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		ArrayList<TeamTechVO> orderTeamTechVO = null;
 		if(order_Asc.isSelected()){
 		switch(ordersource){
-		case "Çò¶ÓÃû³Æ":
+		case "çƒé˜Ÿåç§°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.name);
 			break;
-		case "Í¶ÀºÃüÖĞÊı":
+		case "æŠ•ç¯®å‘½ä¸­æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNum);
 			break;
-		case "Í¶Àº³öÊÖ´ÎÊı":
+		case "æŠ•ç¯®å‡ºæ‰‹æ¬¡æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNum);
 			break;
-		case "Èı·ÖÃüÖĞÊı":
+		case "ä¸‰åˆ†å‘½ä¸­æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNum);
 			break;
-		case "Èı·Ö³öÊÖÊı":
+		case "ä¸‰åˆ†å‡ºæ‰‹æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNum);
 			break;
-		case "·£ÇòÃüÖĞÊı":
+		case "ç½šçƒå‘½ä¸­æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNum);
 			break;
-		case "·£Çò³öÊÖÊı":
+		case "ç½šçƒå‡ºæ‰‹æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNum);
 			break;
-		case "½ø¹¥Àº°åÊı":
+		case "è¿›æ”»ç¯®æ¿æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRebound);
 			break;
-		case "·ÀÊØÀº°åÊı":
+		case "é˜²å®ˆç¯®æ¿æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveRebound);
 			break;
-		case "Àº°åÊı":
+		case "ç¯®æ¿æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.rebound);
 			break;
-		case "Öú¹¥Êı":
+		case "åŠ©æ”»æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttack);
 			break;
-		case "ÇÀ¶ÏÊı":
+		case "æŠ¢æ–­æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.steal);
 			break;
-		case "¸ÇÃ±Êı":
+		case "ç›–å¸½æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShot);
 			break;
-		case "Ê§ÎóÊı":
+		case "å¤±è¯¯æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.fault);
 			break;
-		case "·¸¹æÊı":
+		case "çŠ¯è§„æ•°":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foul);
 			break;
-		case "±ÈÈüµÃ·Ö":
+		case "æ¯”èµ›å¾—åˆ†":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.score);
 			break;
-		case "Í¶ÀºÃüÖĞÂÊ":
+		case "æŠ•ç¯®å‘½ä¸­ç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInRate);
 			break;
-		case "Èı·ÖÃüÖĞÂÊ":
+		case "ä¸‰åˆ†å‘½ä¸­ç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInRate);
 			break;
-		case "·£ÇòÃüÖĞÂÊ":
+		case "ç½šçƒå‘½ä¸­ç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInRate);
 			break;
-		case "Ê¤ÂÊ":
+		case "èƒœç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.winningRate);
 			break;
-		case "½ø¹¥»ØºÏ":
+		case "è¿›æ”»å›åˆ":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRound);
 			break;
-		case "½ø¹¥Ğ§ÂÊ":
+		case "è¿›æ”»æ•ˆç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveEfficiency);
 			break;
-		case "·ÀÊØĞ§ÂÊ":
+		case "é˜²å®ˆæ•ˆç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveEfficiency);
 			break;
-		case "Àº°åĞ§ÂÊ":
+		case "ç¯®æ¿æ•ˆç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.reboundEfficiency);
 			break;
-		case "ÇÀ¶ÏĞ§ÂÊ":
+		case "æŠ¢æ–­æ•ˆç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.stealEfficiency);
 			break;
-		case "Öú¹¥Ğ§ÂÊ":
+		case "åŠ©æ”»æ•ˆç‡":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttackEfficiency);
 			break;
 		}
@@ -545,100 +545,100 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		}
 		if(order_Des.isSelected()){
 			switch(ordersource){
-			case "Çò¶ÓÃû³Æ":
+			case "çƒé˜Ÿåç§°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.name);
 				break;
-			case "±ÈÈü³¡Êı":
+			case "æ¯”èµ›åœºæ•°":
 //				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.gameNum);
 				break;
-			case "Í¶ÀºÃüÖĞÊı":
+			case "æŠ•ç¯®å‘½ä¸­æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNum);
 				break;
-			case "Í¶Àº³öÊÖ´ÎÊı":
+			case "æŠ•ç¯®å‡ºæ‰‹æ¬¡æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNum);
 				break;
-			case "Èı·ÖÃüÖĞÊı":
+			case "ä¸‰åˆ†å‘½ä¸­æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNum);
 				break;
-			case "Èı·Ö³öÊÖÊı":
+			case "ä¸‰åˆ†å‡ºæ‰‹æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNum);
 				break;
-			case "·£ÇòÃüÖĞÊı":
+			case "ç½šçƒå‘½ä¸­æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNum);
 				break;
-			case "·£Çò³öÊÖÊı":
+			case "ç½šçƒå‡ºæ‰‹æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNum);
 				break;
-			case "½ø¹¥Àº°åÊı":
+			case "è¿›æ”»ç¯®æ¿æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRebound);
 				break;
-			case "·ÀÊØÀº°åÊı":
+			case "é˜²å®ˆç¯®æ¿æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveRebound);
 				break;
-			case "Àº°åÊı":
+			case "ç¯®æ¿æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.rebound);
 				break;
-			case "Öú¹¥Êı":
+			case "åŠ©æ”»æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttack);
 				break;
-			case "ÇÀ¶ÏÊı":
+			case "æŠ¢æ–­æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.steal);
 				break;
-			case "¸ÇÃ±Êı":
+			case "ç›–å¸½æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShot);
 				break;
-			case "Ê§ÎóÊı":
+			case "å¤±è¯¯æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.fault);
 				break;
-			case "·¸¹æÊı":
+			case "çŠ¯è§„æ•°":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foul);
 				break;
-			case "±ÈÈüµÃ·Ö":
+			case "æ¯”èµ›å¾—åˆ†":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.score);
 				break;
-			case "Í¶ÀºÃüÖĞÂÊ":
+			case "æŠ•ç¯®å‘½ä¸­ç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInRate);
 				break;
-			case "Èı·ÖÃüÖĞÂÊ":
+			case "ä¸‰åˆ†å‘½ä¸­ç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInRate);
 				break;
-			case "·£ÇòÃüÖĞÂÊ":
+			case "ç½šçƒå‘½ä¸­ç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInRate);
 				break;
-			case "Ê¤ÂÊ":
+			case "èƒœç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.winningRate);
 				break;
-			case "½ø¹¥»ØºÏ":
+			case "è¿›æ”»å›åˆ":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRound);
 				break;
-			case "½ø¹¥Ğ§ÂÊ":
+			case "è¿›æ”»æ•ˆç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveEfficiency);
 				break;
-			case "·ÀÊØĞ§ÂÊ":
+			case "é˜²å®ˆæ•ˆç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveEfficiency);
 				break;
-			case "Àº°åĞ§ÂÊ":
+			case "ç¯®æ¿æ•ˆç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.reboundEfficiency);
 				break;
-			case "ÇÀ¶ÏĞ§ÂÊ":
+			case "æŠ¢æ–­æ•ˆç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.stealEfficiency);
 				break;
-			case "Öú¹¥Ğ§ÂÊ":
+			case "åŠ©æ”»æ•ˆç‡":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttackEfficiency);
 				break;
 			}
 		}
 		
-		if(AvgOrTotal.equals("Èü¼¾×ÜÊı¾İ")){
+		if(AvgOrTotal.equals("èµ›å­£æ€»æ•°æ®")){
 			handleTotalData(orderTeamTechVO);
-			}else if(AvgOrTotal.equals("³¡¾ùÊı¾İ")){
+			}else if(AvgOrTotal.equals("åœºå‡æ•°æ®")){
 				handleAverageData(orderTeamTechVO);
 			}
 	}
 
-	//»¬¶¯Ãæ°åÅäÖÃ
+	//æ»‘åŠ¨é¢æ¿é…ç½®
 	public void scrollpane_config(){
-		//»¬¶¯Ãæ°åĞÅÏ¢
+		//æ»‘åŠ¨é¢æ¿ä¿¡æ¯
 		teams=new JScrollPane(teamtable);
 		teams.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space,TABLEWIDTH,TABLEHEIGHT);
 		teams.setHorizontalScrollBarPolicy( 
@@ -691,7 +691,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		this.add(teams);
 	}
 
-	//ÖØÔØµ¥Ôª¸ñ±ê×¼Àà,ÓÃÓÚ¸Ä±äµ¥Ôª¸ñ±³¾°ÑÕÉ«
+	//é‡è½½å•å…ƒæ ¼æ ‡å‡†ç±»,ç”¨äºæ”¹å˜å•å…ƒæ ¼èƒŒæ™¯é¢œè‰²
 	private class RowRenderer extends DefaultTableCellRenderer 
 	{
 		private static final long serialVersionUID = 1L;
@@ -699,9 +699,9 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		public Component getTableCellRendererComponent(JTable t, Object value,
 				boolean isSelected, boolean hasFocus, int row, int column) 
 		{
-			//µ¥Ôª¸ñ¾ÓÖĞ
+			//å•å…ƒæ ¼å±…ä¸­
 			setHorizontalAlignment(JLabel.CENTER);
-			//ÉèÖÃÆæÅ¼ĞĞµÄ±³¾°É«
+			//è®¾ç½®å¥‡å¶è¡Œçš„èƒŒæ™¯è‰²
 			if (row % 2 == 0)
 				setBackground(TTPre.EvenTableLine);
 			else
@@ -711,7 +711,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		}
 	}
 
-	//»æÖÆÈü¼¾Êı¾İ½çÃæ±³¾°
+	//ç»˜åˆ¶èµ›å­£æ•°æ®ç•Œé¢èƒŒæ™¯
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
 		ImageIcon im1=new ImageIcon("images/system_img/main_bg.png");

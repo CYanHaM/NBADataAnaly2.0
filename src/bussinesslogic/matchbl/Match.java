@@ -2,6 +2,7 @@ package bussinesslogic.matchbl;
 
 import java.util.ArrayList;
 
+import blservice.matchblservice.MatchBLService;
 import bussinesslogic.Transfer.L2V.MatchL2V;
 import bussinesslogic.Transfer.P2L.MatchP2L;
 import data.MatchData;
@@ -9,8 +10,8 @@ import dataservice.MatchDataService;
 import PO.MatchPO;
 import VO.MatchVO;
 
-public class Match {
-//²éÑ¯Ä³Ò»ÌìµÄ±ÈÈü
+public class Match implements MatchBLService{
+//ï¿½ï¿½Ñ¯Ä³Ò»ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 	public ArrayList<MatchVO> showMatchList(String date){
 		MatchDataService mds=new MatchData();
 		ArrayList<MatchPO> mplist=new ArrayList<MatchPO>();
@@ -35,7 +36,7 @@ public class Match {
 		
 	}
 	
-//²éÑ¯Ä³Ò»³¡±ÈÈüÊý¾Ý
+//ï¿½ï¿½Ñ¯Ä³Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public MatchVO showMatch(String team,String date){
 		MatchDataService mds=new MatchData();
 		ArrayList<MatchPO> mplist=new ArrayList<MatchPO>();
@@ -62,7 +63,7 @@ public class Match {
 		
 	}
 	
-//¸üÐÂÊý¾ÝÁÐ±í
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	public ArrayList<MatchVO> refresh(String date){
 		ArrayList<MatchVO> mvlist=new ArrayList<MatchVO>();
 		mvlist=showMatchList(date);

@@ -17,74 +17,74 @@ import VO.PlayerTechVO;
 
 public class PlayerTechPanel extends JPanel implements ActionListener{
 	/**
-	 * ÇòÔ±Í³¼ÆÊı¾İ½çÃæ
+	 * çƒå‘˜ç»Ÿè®¡æ•°æ®ç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ30ÈÕ15:40:16
+	 * @date 2015å¹´3æœˆ30æ—¥15:40:16
 	 * @version 1.3
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//-------------------------½çÃæ³£Á¿-------------------
+	//-------------------------ç•Œé¢å¸¸é‡-------------------
 	public static int WIDTH=1020;
 	public static int HEIGHT=670;
-	//¶¨Òå±ßÔµÍ¸Ã÷¿Õ°×ÇøÓò±ß½ç´óĞ¡£¬µ¥Î»px
+	//å®šä¹‰è¾¹ç¼˜é€æ˜ç©ºç™½åŒºåŸŸè¾¹ç•Œå¤§å°ï¼Œå•ä½px
 	public static int e_space=10;
-	//¶¨Òå¿Õ³öÎ»ÖÃ´óĞ¡
+	//å®šä¹‰ç©ºå‡ºä½ç½®å¤§å°
 	private static int space=20;
-	//ÉèÖÃÇòÔ±×ÜÊı³£Á¿
+	//è®¾ç½®çƒå‘˜æ€»æ•°å¸¸é‡
 	private static int PLAYERNUM=443;
 
-	//±í¸ñ´óĞ¡
+	//è¡¨æ ¼å¤§å°
 	private static int TABLEWIDTH=800;
 	private static int TABLEHEIGHT=450;
-	//±í¸ñĞĞ¸ß
+	//è¡¨æ ¼è¡Œé«˜
 	private static int ROWHEIGHT=28;
-	//±í¸ñÁĞ¿í
+	//è¡¨æ ¼åˆ—å®½
 	private static int[] COLUMNWIDTH={50,120,200,
 		60,60,60,60,60,
 		70,70,70,
 		60,60,60,60,60,60,60,
 		70,80,70,70,70,70,70,70,70,70,70,70};
 
-	//ÏÂÀ­¿ò´óĞ¡
+	//ä¸‹æ‹‰æ¡†å¤§å°
 	private static int BOXWIDTH=160;
 	private static int BOXHEIGHT=30;
 	//----------------------------------------------------
 
-	//-------------------------½çÃæ×é¼ş--------------------
-	//ÉèÖÃ±í¸ñÊôĞÔ
+	//-------------------------ç•Œé¢ç»„ä»¶--------------------
+	//è®¾ç½®è¡¨æ ¼å±æ€§
 	private JTable playertable;
 	private Object[][] playerinfo;
 	private JScrollPane players;
 	private String[] columnName={
-			"ÅÅÃû","ÇòÔ±Ãû³Æ","ËùÊôÇò¶Ó",
-			"²ÎÈü³¡Êı","ÏÈ·¢³¡Êı","Àº°åÊı","Öú¹¥Êı","ÔÚ³¡Ê±¼ä",
-			"Í¶ÀºÃüÖĞÂÊ","Èı·ÖÃüÖĞÂÊ","·£ÇòÃüÖĞÂÊ",
-			"½ø¹¥Êı","·ÀÊØÊı","ÇÀ¶ÏÊı","¸ÇÃ±Êı","Ê§ÎóÊı","·¸¹æÊı","µÃ·Ö",
-			"Ğ§ÂÊ","GmSc Ğ§ÂÊÖµ","ÕæÊµÃüÖĞÂÊ","Í¶ÀºĞ§ÂÊ","Àº°åÂÊ","½ø¹¥Àº°åÂÊ","·ÀÊØÀº°åÂÊ","Öú¹¥ÂÊ","ÇÀ¶ÏÂÊ","¸ÇÃ±ÂÊ","Ê§ÎóÂÊ","Ê¹ÓÃÂÊ"};
-	//×ÜÊı¾İÓë³¡¾ùÊı¾İÇĞ»»ÏÂÀ­¿ò
+			"æ’å","çƒå‘˜åç§°","æ‰€å±çƒé˜Ÿ",
+			"å‚èµ›åœºæ•°","å…ˆå‘åœºæ•°","ç¯®æ¿æ•°","åŠ©æ”»æ•°","åœ¨åœºæ—¶é—´",
+			"æŠ•ç¯®å‘½ä¸­ç‡","ä¸‰åˆ†å‘½ä¸­ç‡","ç½šçƒå‘½ä¸­ç‡",
+			"è¿›æ”»æ•°","é˜²å®ˆæ•°","æŠ¢æ–­æ•°","ç›–å¸½æ•°","å¤±è¯¯æ•°","çŠ¯è§„æ•°","å¾—åˆ†",
+			"æ•ˆç‡","GmSc æ•ˆç‡å€¼","çœŸå®å‘½ä¸­ç‡","æŠ•ç¯®æ•ˆç‡","ç¯®æ¿ç‡","è¿›æ”»ç¯®æ¿ç‡","é˜²å®ˆç¯®æ¿ç‡","åŠ©æ”»ç‡","æŠ¢æ–­ç‡","ç›–å¸½ç‡","å¤±è¯¯ç‡","ä½¿ç”¨ç‡"};
+	//æ€»æ•°æ®ä¸åœºå‡æ•°æ®åˆ‡æ¢ä¸‹æ‹‰æ¡†
 	private JComboBox<String> switchbox;
 	
 	private JComboBox<String> positionbox;
-	private String[] positionItem={"ÇòÔ±Î»ÖÃ","Ç°·æ","ÖĞ·æ","ºóÎÀ"};
+	private String[] positionItem={"çƒå‘˜ä½ç½®","å‰é”‹","ä¸­é”‹","åå«"};
 	private String[] positionstring={"F","C","G"};
 	private JComboBox<String> divisionbox;
-	private String[] divisionItem={"ÇòÔ±ÁªÃË","¶«²¿","Î÷²¿"};
+	private String[] divisionItem={"çƒå‘˜è”ç›Ÿ","ä¸œéƒ¨","è¥¿éƒ¨"};
 	private String[] divisionstring={"E","W"};
 	private JComboBox<String> ordergistbox;
-	private String[] ordergistItem={"ÅÅĞòÒÀ¾İ","µÃ·Ö","Àº°å","Öú¹¥","µÃ·Ö/Àº°å/Öú¹¥","¸ÇÃ±","ÇÀ¶Ï","·¸¹æ","Ê§Îó","·ÖÖÓ","Ğ§ÂÊ","Í¶Àº","Èı·Ö","·£Çò","Á½Ë«"};
+	private String[] ordergistItem={"æ’åºä¾æ®","å¾—åˆ†","ç¯®æ¿","åŠ©æ”»","å¾—åˆ†/ç¯®æ¿/åŠ©æ”»","ç›–å¸½","æŠ¢æ–­","çŠ¯è§„","å¤±è¯¯","åˆ†é’Ÿ","æ•ˆç‡","æŠ•ç¯®","ä¸‰åˆ†","ç½šçƒ","ä¸¤åŒ"};
 	private String[] ordergiststring={"score","rebound","secondaryattack","srs","blockshot","steal","foul","fault","time","efficiency","shot","threeshot","penaltyshot","doubledouble"};
-	//ÅÅĞò·½Ê½µ¥Ñ¡°´Å¥×é
+	//æ’åºæ–¹å¼å•é€‰æŒ‰é’®ç»„
 	private JRadioButton order_Asc;
 	private JRadioButton order_Des;
 	private ButtonGroup group;
-	//ÅÅĞòÒÀ¾İÏÔÊ¾ĞĞ
+	//æ’åºä¾æ®æ˜¾ç¤ºè¡Œ
 	private JLabel message;
-	//É¸Ñ¡Ìá½»°´Å¥
+	//ç­›é€‰æäº¤æŒ‰é’®
 	private JButton commit;
-	//±í¸ñÖØÖÃ°´Å¥
+	//è¡¨æ ¼é‡ç½®æŒ‰é’®
 	private JButton reset;
-	//²à±ßÀ¸°´Å¥
+	//ä¾§è¾¹æ æŒ‰é’®
 	private JButton TeamTech;
 	private JButton PlayerTech;
 	private JButton TeamData;
@@ -101,28 +101,28 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		Frame=frame;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
-		//´´½¨ÑÕÉ«Ô¤Éè¶ÔÏó
+		//åˆ›å»ºé¢œè‰²é¢„è®¾å¯¹è±¡
 		PTPre=new PlayerTechPre();
 //		importdata=new ImportPlayer();
 //		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
 
 //		playerinfo=new Object[initial_data.size()][columnName.length];
 		playerinfo=new Object[PLAYERNUM][columnName.length];
-		//¼ÓÔØ³õÊ¼±í¸ñ£¬ÏÔÊ¾¶ÓÎé×ÜÊı¾İ
+		//åŠ è½½åˆå§‹è¡¨æ ¼ï¼Œæ˜¾ç¤ºé˜Ÿä¼æ€»æ•°æ®
 //		handleinitial(initial_data);
 
-		//¼ÓÔØ±í¸ñÅäÖÃ
+		//åŠ è½½è¡¨æ ¼é…ç½®
 		table_config();
-		//¼ÓÔØ»¬¶¯Ãæ°åÅäÖÃ
+		//åŠ è½½æ»‘åŠ¨é¢æ¿é…ç½®
 		scrollpane_config();
 
-		//Ìí¼ÓÏÂÀ­¿ò
+		//æ·»åŠ ä¸‹æ‹‰æ¡†
 		addbox();
-		//Ìí¼Óµ¥Ñ¡°´Å¥×é
+		//æ·»åŠ å•é€‰æŒ‰é’®ç»„
 		addradiobutton();
-		//Ìí¼ÓÌáÊ¾ĞÅÏ¢
+		//æ·»åŠ æç¤ºä¿¡æ¯
 		addmessage();
-		//Ìí¼ÓÌá½»£¬ÖØÖÃ°´Å¥
+		//æ·»åŠ æäº¤ï¼Œé‡ç½®æŒ‰é’®
 		addbutton();
 		
 		this.repaint();
@@ -137,24 +137,24 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 //		ordergistbox.setSelectedIndex(0);
 //		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
 //		playerinfo=new Object[initial_data.size()][columnName.length];
-//		//¼ÓÔØ³õÊ¼±í¸ñ£¬ÏÔÊ¾¶ÓÎé×ÜÊı¾İ
+//		//åŠ è½½åˆå§‹è¡¨æ ¼ï¼Œæ˜¾ç¤ºé˜Ÿä¼æ€»æ•°æ®
 //		handleinitial(initial_data);
 //
-//		//¼ÓÔØ±í¸ñÅäÖÃ
+//		//åŠ è½½è¡¨æ ¼é…ç½®
 //		table_config();
-//		//¼ÓÔØ»¬¶¯Ãæ°åÅäÖÃ
+//		//åŠ è½½æ»‘åŠ¨é¢æ¿é…ç½®
 //		scrollpane_config();
 //		this.repaint();
 //	}
 
 	//===================================================================
 	private void addbox(){
-		//ÏÂÀ­¿ò
+		//ä¸‹æ‹‰æ¡†
 		switchbox=new JComboBox<String>();
 		switchbox.setFocusable(false);
 		switchbox.setBackground(PTPre.LineSelected);
-		switchbox.addItem("Èü¼¾×ÜÊı¾İ");
-		switchbox.addItem("³¡¾ùÊı¾İ");
+		switchbox.addItem("èµ›å­£æ€»æ•°æ®");
+		switchbox.addItem("åœºå‡æ•°æ®");
 		switchbox.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space-100,BOXWIDTH,BOXHEIGHT);
 		switchbox.setFont(PTPre.switchbox);
 		switchbox.addItemListener(new ItemListener(){
@@ -162,12 +162,12 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
 				if(arg0.getStateChange()==ItemEvent.SELECTED){
-					if(switchbox.getSelectedItem().equals("Èü¼¾×ÜÊı¾İ")){
-						//								System.out.println("Èü¼¾×ÜÊı¾İ");
+					if(switchbox.getSelectedItem().equals("èµ›å­£æ€»æ•°æ®")){
+						//								System.out.println("èµ›å­£æ€»æ•°æ®");
 						handleTotalData(initial_data);
 					}
-					if(switchbox.getSelectedItem().equals("³¡¾ùÊı¾İ")){
-						//								System.out.println("³¡¾ùÊı¾İ");
+					if(switchbox.getSelectedItem().equals("åœºå‡æ•°æ®")){
+						//								System.out.println("åœºå‡æ•°æ®");
 						handleAverageData(initial_data);
 					}
 				}
@@ -200,7 +200,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addradiobutton(){
-		order_Asc=new JRadioButton("ÉıĞò");
+		order_Asc=new JRadioButton("å‡åº");
 		order_Asc.setFont(PTPre.switchbox);
 		order_Asc.setForeground(PTPre.TableFg);
 		order_Asc.setBorderPainted(false);
@@ -209,7 +209,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 //		order_Asc.setSelected(true);
 		order_Asc.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+10,HEIGHT-TABLEHEIGHT-e_space-space-92,50,15);
 		
-		order_Des=new JRadioButton("½µĞò");
+		order_Des=new JRadioButton("é™åº");
 		order_Des.setFont(PTPre.switchbox);
 		order_Des.setForeground(PTPre.TableFg);
 		order_Des.setBorderPainted(false);
@@ -399,108 +399,108 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private String switchTeamName(String name){
 		switch(name){
 		case "ATL":
-			return "ÀÏÓ¥ Atlanta-Hawks";
+			return "è€é¹° Atlanta-Hawks";
 		case "CHA":
-			return "»Æ·ä Charlotte-Hornets";
+			return "é»„èœ‚ Charlotte-Hornets";
 		case "MIA":
-			return "ÈÈ»ğ Miami-Heat";
+			return "çƒ­ç« Miami-Heat";
 		case "ORL":
-			return "Ä§Êõ Orlando-Magic";
+			return "é­”æœ¯ Orlando-Magic";
 		case "WAS":
-			return "Ææ²Å Washington-Wizards";
+			return "å¥‡æ‰ Washington-Wizards";
 			
 		case "CHI":
-			return "¹«Å£ Chicago-Bulls";
+			return "å…¬ç‰› Chicago-Bulls";
 		case "CLE":
-			return "ÆïÊ¿ Cleveland-Cavaliers";
+			return "éª‘å£« Cleveland-Cavaliers";
 		case "DET":
-			return "»îÈû Detroit-Pistons";
+			return "æ´»å¡ Detroit-Pistons";
 		case "IND":
-			return "²½ĞĞÕß Indiana-Pacers";
+			return "æ­¥è¡Œè€… Indiana-Pacers";
 		case "MIL":
-			return "ĞÛÂ¹ Milwaukee-Bucks";
+			return "é›„é¹¿ Milwaukee-Bucks";
 			
 		case "BOS":
-			return "¿­¶ûÌØÈË Boston-Celtics";
+			return "å‡¯å°”ç‰¹äºº Boston-Celtics";
 		case "BKN":
-			return "ÀºÍø Brooklyn-Nets";
+			return "ç¯®ç½‘ Brooklyn-Nets";
 		case "NYK":
-			return "Äá¿ËË¹ New York-Knicks";
+			return "å°¼å…‹æ–¯ New York-Knicks";
 		case "PHI":
-			return "76ÈË Philadelphia-76ers";
+			return "76äºº Philadelphia-76ers";
 		case "TOR":
-			return "ÃÍÁú Toronto-Raptors";
+			return "çŒ›é¾™ Toronto-Raptors";
 			
 			
 		case "GSW":
-			return "ÓÂÊ¿ Golden State-Warriors";
+			return "å‹‡å£« Golden State-Warriors";
 		case "LAC":
-			return "¿ì´¬ Los Angeles-Clippers";
+			return "å¿«èˆ¹ Los Angeles-Clippers";
 		case "LAL":
-			return "ºşÈË Los Angeles-Lakers";
+			return "æ¹–äºº Los Angeles-Lakers";
 		case "PHX":
-			return "Ì«Ñô Phoenix-Suns";
+			return "å¤ªé˜³ Phoenix-Suns";
 		case "SAC":
-			return "¹úÍõ Sacramento-Kings";
+			return "å›½ç‹ Sacramento-Kings";
 			
 		case "DEN":
-			return "¾ò½ğ Denver-Nuggets";
+			return "æ˜é‡‘ Denver-Nuggets";
 		case "MIN":
-			return "É­ÁÖÀÇ Minnesota-Timberwolves";
+			return "æ£®æ—ç‹¼ Minnesota-Timberwolves";
 		case "OKC":
-			return "À×öª Oklahoma City-Thunder";
+			return "é›·éœ† Oklahoma City-Thunder";
 		case "POR":
-			return "¿ªÍØÕß Portland-Trail Blazers";
+			return "å¼€æ‹“è€… Portland-Trail Blazers";
 		case "UTA":
-			return "ÓÂÊ¿ Utah-Jazz";
+			return "å‹‡å£« Utah-Jazz";
 			
 		case "DAL":
-			return "Ğ¡Å£ Dallas-Mavericks";
+			return "å°ç‰› Dallas-Mavericks";
 		case "HOU":
-			return "»ğ¼ı Houston-Rockets";
+			return "ç«ç®­ Houston-Rockets";
 		case "MEM":
-			return "»ÒĞÜ Memphis-Grizzlies";
+			return "ç°ç†Š Memphis-Grizzlies";
 		case "NOP":
-			return "ğÃğÉ New Orleans-Pelicans";
+			return "é¹ˆé¹• New Orleans-Pelicans";
 		case "SAS":
-			return "Âí´Ì San Antonio-Spurs";
+			return "é©¬åˆº San Antonio-Spurs";
 		default :
 				return null;
 		}
 	}
 	
-	//±í¸ñÅäÖÃ
+	//è¡¨æ ¼é…ç½®
     public void table_config(){
-		//------------------------------±í¸ñ»ù±¾ÊôĞÔ--------------------------
+		//------------------------------è¡¨æ ¼åŸºæœ¬å±æ€§--------------------------
 		for(int i=0;i<playerinfo.length;i++){
 			playerinfo[i][0]=i+1;
 		}
-		//±í¸ñÊôĞÔÉèÖÃ
+		//è¡¨æ ¼å±æ€§è®¾ç½®
 		playertable=new JTable(playerinfo, columnName){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) { 
 				return false;
 			}
 		};
-		//¸ù¾İÌõÄ¿Ãû×Ô¶¯µ÷ÕûÁĞ¿í
+		//æ ¹æ®æ¡ç›®åè‡ªåŠ¨è°ƒæ•´åˆ—å®½
 		playertable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		//ÉèÖÃ±í¸ñÁĞ²»¿ÉÒÆ¶¯
+		//è®¾ç½®è¡¨æ ¼åˆ—ä¸å¯ç§»åŠ¨
 		playertable.getTableHeader().setReorderingAllowed(false);
-		//ÉèÖÃÁĞÃû¾ÓÖĞ
+		//è®¾ç½®åˆ—åå±…ä¸­
 		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-		//ÉèÖÃ±í¸ñÊı¾İ¼°±íÍ·×ÖÌå×ÖºÅ
+		//è®¾ç½®è¡¨æ ¼æ•°æ®åŠè¡¨å¤´å­—ä½“å­—å·
 		playertable.setFont(PTPre.CellFont);
 		playertable.setForeground(PTPre.CellFg);
 		playertable.getTableHeader().setFont(PTPre.HeaderFont);
 		playertable.getTableHeader().setForeground(PTPre.TableFg);
 		playertable.getTableHeader().setOpaque(false);
 		playertable.getTableHeader().setBackground(PTPre.TableBg);
-		//È¥³ı±ß¿ò
+		//å»é™¤è¾¹æ¡†
 		playertable.setBorder(null);
 
-		//°´ĞĞĞŞ¸Ä±í¸ñ±³¾°
+		//æŒ‰è¡Œä¿®æ”¹è¡¨æ ¼èƒŒæ™¯
 		TableColumnModel model = playertable.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
@@ -508,27 +508,27 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			column.setCellRenderer(new RowRenderer());
 		}
 
-		//²»ÏÔÊ¾µ¥Ôª¸ñ±ß¿òÏß
+		//ä¸æ˜¾ç¤ºå•å…ƒæ ¼è¾¹æ¡†çº¿
 		playertable.setShowHorizontalLines(false);
 		playertable.setShowVerticalLines(false);
-		//ÉèÖÃÑ¡ÖĞÑÕÉ«
+		//è®¾ç½®é€‰ä¸­é¢œè‰²
 		playertable.setSelectionBackground(PTPre.LineSelected);
 
-		//ÉèÖÃĞĞ¸ß
+		//è®¾ç½®è¡Œé«˜
 		playertable.setRowHeight(ROWHEIGHT);
-		//ÉèÖÃÁĞ¿í
+		//è®¾ç½®åˆ—å®½
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 			playertable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
 		//-----------------------------------------------------------------
-		//Ìí¼Ótable±íÍ·µã»÷ÊÂ¼ş
+		//æ·»åŠ tableè¡¨å¤´ç‚¹å‡»äº‹ä»¶
 		playertable.getTableHeader().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				HeaderColumn=playertable.columnAtPoint(e.getPoint());
 				String orderSource=playertable.getColumnName(HeaderColumn);
 				//System.out.println(orderSource);
-				if(!orderSource.equals("ÅÅÃû")){
-					message.setText("µ±Ç°ÅÅĞòÒÀ¾İ:"+orderSource);
+				if(!orderSource.equals("æ’å")){
+					message.setText("å½“å‰æ’åºä¾æ®:"+orderSource);
 					judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
 				}
 
@@ -550,93 +550,93 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		if(order_Asc.isSelected()){
 		switch(ordersource){
 
-		case "ÇòÔ±Ãû³Æ":
+		case "çƒå‘˜åç§°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.name);
 			break;
-		case "ËùÊôÇò¶Ó":
+		case "æ‰€å±çƒé˜Ÿ":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.team);
 			break;
-		case "²ÎÈü³¡Êı":
+		case "å‚èµ›åœºæ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.gameNum);
 			break;
-		case "ÏÈ·¢³¡Êı":
+		case "å…ˆå‘åœºæ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.startingNum);
 			break;
-		case "Àº°åÊı":
+		case "ç¯®æ¿æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.rebound);
 			break;
-		case "Öú¹¥Êı":
+		case "åŠ©æ”»æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.secondaryAttack);
 			break;
-		case "ÔÚ³¡Ê±¼ä":
+		case "åœ¨åœºæ—¶é—´":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.time);
 			break;
 			
-		case "Í¶ÀºÃüÖĞÂÊ":
+		case "æŠ•ç¯®å‘½ä¸­ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.shotInRate);
 			break;
-		case "Èı·ÖÃüÖĞÂÊ":
+		case "ä¸‰åˆ†å‘½ä¸­ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.threeshotInRate);
 			break;
-		case "·£ÇòÃüÖĞÂÊ":
+		case "ç½šçƒå‘½ä¸­ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.penaltyShotInRate);
 			break;
 			
-		case "½ø¹¥Êı":
+		case "è¿›æ”»æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.offensiveNum);
 			break;
-		case "·ÀÊØÊı":
+		case "é˜²å®ˆæ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.defensiveNum);
 			break;
-		case "ÇÀ¶ÏÊı":
+		case "æŠ¢æ–­æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.steal);
 			break;
-		case "¸ÇÃ±Êı":
+		case "ç›–å¸½æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.blockShot);
 			break;
-		case "Ê§ÎóÊı":
+		case "å¤±è¯¯æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.fault);
 			break;
-		case "·¸¹æÊı":
+		case "çŠ¯è§„æ•°":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.foul);
 			break;
-		case "µÃ·Ö":
+		case "å¾—åˆ†":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.score);
 			break;
-		case "Ğ§ÂÊ":
+		case "æ•ˆç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.efficiency);
 			break;
-		case "GmSc Ğ§ÂÊÖµ":
+		case "GmSc æ•ˆç‡å€¼":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.GmScEfficiency);
 			break;
-		case "ÕæÊµÃüÖĞÂÊ":
+		case "çœŸå®å‘½ä¸­ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.trueShotInRate);
 			break;
-		case "Í¶ÀºĞ§ÂÊ":
+		case "æŠ•ç¯®æ•ˆç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.shootingEfficiency);
 			break;
-		case "Àº°åÂÊ":
+		case "ç¯®æ¿ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.reboundRate);
 			break;
-		case "½ø¹¥Àº°åÂÊ":
+		case "è¿›æ”»ç¯®æ¿ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.offensiveReboundRate);
 			break;
-		case "·ÀÊØÀº°åÂÊ":
+		case "é˜²å®ˆç¯®æ¿ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.defensiveReboundRate);
 			break;
-		case "Öú¹¥ÂÊ":
+		case "åŠ©æ”»ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.secondaryAttackRate);
 			break;
-		case "ÇÀ¶ÏÂÊ":
+		case "æŠ¢æ–­ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.stealRate);
 			break;
-		case "¸ÇÃ±ÂÊ":
+		case "ç›–å¸½ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.blockShotRate);
 			break;
-		case "Ê§ÎóÂÊ":
+		case "å¤±è¯¯ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.faultRate);
 			break;
-		case "Ê¹ÓÃÂÊ":
+		case "ä½¿ç”¨ç‡":
 			orderPlayerTechVO=importdata.getPlayerTechAscend(PlayerTechEnum.usageRate);
 			break;
 		}
@@ -644,108 +644,108 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		}
 		if(order_Des.isSelected()){
 			switch(ordersource){
-			case "ÇòÔ±Ãû³Æ":
+			case "çƒå‘˜åç§°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.name);
 				break;
-			case "ËùÊôÇò¶Ó":
+			case "æ‰€å±çƒé˜Ÿ":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.team);
 				break;
-			case "²ÎÈü³¡Êı":
+			case "å‚èµ›åœºæ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.gameNum);
 				break;
-			case "ÏÈ·¢³¡Êı":
+			case "å…ˆå‘åœºæ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.startingNum);
 				break;
-			case "Àº°åÊı":
+			case "ç¯®æ¿æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.rebound);
 				break;
-			case "Öú¹¥Êı":
+			case "åŠ©æ”»æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.secondaryAttack);
 				break;
-			case "ÔÚ³¡Ê±¼ä":
+			case "åœ¨åœºæ—¶é—´":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.time);
 				break;
 				
-			case "Í¶ÀºÃüÖĞÂÊ":
+			case "æŠ•ç¯®å‘½ä¸­ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.shotInRate);
 				break;
-			case "Èı·ÖÃüÖĞÂÊ":
+			case "ä¸‰åˆ†å‘½ä¸­ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.threeshotInRate);
 				break;
-			case "·£ÇòÃüÖĞÂÊ":
+			case "ç½šçƒå‘½ä¸­ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.penaltyShotInRate);
 				break;
 				
-			case "½ø¹¥Êı":
+			case "è¿›æ”»æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.offensiveNum);
 				break;
-			case "·ÀÊØÊı":
+			case "é˜²å®ˆæ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.defensiveNum);
 				break;
-			case "ÇÀ¶ÏÊı":
+			case "æŠ¢æ–­æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.steal);
 				break;
-			case "¸ÇÃ±Êı":
+			case "ç›–å¸½æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.blockShot);
 				break;
-			case "Ê§ÎóÊı":
+			case "å¤±è¯¯æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.fault);
 				break;
-			case "·¸¹æÊı":
+			case "çŠ¯è§„æ•°":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.foul);
 				break;
-			case "µÃ·Ö":
+			case "å¾—åˆ†":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.score);
 				break;
-			case "Ğ§ÂÊ":
+			case "æ•ˆç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.efficiency);
 				break;
-			case "GmSc Ğ§ÂÊÖµ":
+			case "GmSc æ•ˆç‡å€¼":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.GmScEfficiency);
 				break;
-			case "ÕæÊµÃüÖĞÂÊ":
+			case "çœŸå®å‘½ä¸­ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.trueShotInRate);
 				break;
-			case "Í¶ÀºĞ§ÂÊ":
+			case "æŠ•ç¯®æ•ˆç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.shootingEfficiency);
 				break;
-			case "Àº°åÂÊ":
+			case "ç¯®æ¿ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.reboundRate);
 				break;
-			case "½ø¹¥Àº°åÂÊ":
+			case "è¿›æ”»ç¯®æ¿ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.offensiveReboundRate);
 				break;
-			case "·ÀÊØÀº°åÂÊ":
+			case "é˜²å®ˆç¯®æ¿ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.defensiveReboundRate);
 				break;
-			case "Öú¹¥ÂÊ":
+			case "åŠ©æ”»ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.secondaryAttackRate);
 				break;
-			case "ÇÀ¶ÏÂÊ":
+			case "æŠ¢æ–­ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.stealRate);
 				break;
-			case "¸ÇÃ±ÂÊ":
+			case "ç›–å¸½ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.blockShotRate);
 				break;
-			case "Ê§ÎóÂÊ":
+			case "å¤±è¯¯ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.faultRate);
 				break;
-			case "Ê¹ÓÃÂÊ":
+			case "ä½¿ç”¨ç‡":
 				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.usageRate);
 				break;
 			}
 		}
 		
-		if(AvgOrTotal.equals("Èü¼¾×ÜÊı¾İ")){
+		if(AvgOrTotal.equals("èµ›å­£æ€»æ•°æ®")){
 			handleTotalData(orderPlayerTechVO);
-			}else if(AvgOrTotal.equals("³¡¾ùÊı¾İ")){
+			}else if(AvgOrTotal.equals("åœºå‡æ•°æ®")){
 				handleAverageData(orderPlayerTechVO);
 			}
 	}
 	
-	//»¬¶¯Ãæ°åÅäÖÃ
+	//æ»‘åŠ¨é¢æ¿é…ç½®
 	public void scrollpane_config(){
-		//»¬¶¯Ãæ°åĞÅÏ¢
+		//æ»‘åŠ¨é¢æ¿ä¿¡æ¯
 		players=new JScrollPane(playertable);
 		players.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space,TABLEWIDTH,TABLEHEIGHT);
 		players.setHorizontalScrollBarPolicy( 
@@ -799,7 +799,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 
-	//ÖØÔØµ¥Ôª¸ñ±ê×¼Àà,ÓÃÓÚ¸Ä±äµ¥Ôª¸ñ±³¾°ÑÕÉ«
+	//é‡è½½å•å…ƒæ ¼æ ‡å‡†ç±»,ç”¨äºæ”¹å˜å•å…ƒæ ¼èƒŒæ™¯é¢œè‰²
 	private class RowRenderer extends DefaultTableCellRenderer 
 	{
 		private static final long serialVersionUID = 1L;
@@ -807,9 +807,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		public Component getTableCellRendererComponent(JTable t, Object value,
 				boolean isSelected, boolean hasFocus, int row, int column) 
 		{
-			//µ¥Ôª¸ñ¾ÓÖĞ
+			//å•å…ƒæ ¼å±…ä¸­
 			setHorizontalAlignment(JLabel.CENTER);
-			//ÉèÖÃÆæÅ¼ĞĞµÄ±³¾°É«
+			//è®¾ç½®å¥‡å¶è¡Œçš„èƒŒæ™¯è‰²
 			if (row % 2 == 0)
 				setBackground(PTPre.EvenTableLine);
 			else
@@ -820,7 +820,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 
-	//»æÖÆÇòÔ±Êı¾İ½çÃæ±³¾°
+	//ç»˜åˆ¶çƒå‘˜æ•°æ®ç•Œé¢èƒŒæ™¯
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
 		ImageIcon im1=new ImageIcon("images/system_img/main_bg.png");
@@ -828,7 +828,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 
-	//°´Å¥Êó±ê¼àÌıÊÂ¼ş
+	//æŒ‰é’®é¼ æ ‡ç›‘å¬äº‹ä»¶
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -846,13 +846,13 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				ArrayList<PlayerTechVO> siftVO = importdata.sift(positionstring[positionnum-1], divisionstring[divisionnum-1], ordergiststring[ordergistnum-1]);
 				playerinfo=new Object[siftVO.size()][columnName.length];
 				String switchboxsel=(String) switchbox.getSelectedItem();
-				if(switchboxsel.equals("Èü¼¾×ÜÊı¾İ")){
+				if(switchboxsel.equals("èµ›å­£æ€»æ•°æ®")){
 					handleTotalData(siftVO);
-				}else if(switchboxsel.equals("³¡¾ùÊı¾İ")){
+				}else if(switchboxsel.equals("åœºå‡æ•°æ®")){
 					handleAverageData(siftVO);
 				}
 			}
-			//È¥³ı±íÍ·¼àÌıÆ÷
+			//å»é™¤è¡¨å¤´ç›‘å¬å™¨
 //			playertable.getTableHeader().removeMouseListener();
 			
 		}

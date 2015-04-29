@@ -6,45 +6,46 @@ import TypeEnum.PlayerTechEnum;
 import VO.PlayerTechVO;
 import VO.PlayerVO;
 import VO.TeamVO;
-import blservice.PlayerBLservice;
-import blservice.PlayerTechBLservice;
-import bussinesslogic.PlayerBL.Player;
-import bussinesslogic.PlayerTechBL.PlayerTech;
 
 public class ImportPlayer {
 	/**
-	 * ½çÃæ²ãÍ¨¹ıBL²ãµÄ½Ó¿Úµ¼Èë²¢´¦ÀíÊı¾İ
+	 * ç•Œé¢å±‚é€šè¿‡BLå±‚çš„æ¥å£å¯¼å…¥å¹¶å¤„ç†æ•°æ®
 	 * @author blisscry
-	 * @date 2015Äê3ÔÂ31ÈÕ01:35:32
+	 * @date 2015å¹´3æœˆ31æ—¥01:35:32
 	 * @version 1.0
 	 */
-	//¶¨Òå²ã¼ä´«Êä½Ó¿Ú
-	PlayerTechBLservice PTbs;
-	PlayerBLservice Pbs;
+	//å®šä¹‰å±‚é—´ä¼ è¾“æ¥å£
+//	PlayerTechBLservice PTbs;
+//	PlayerBLservice Pbs;
 
 	public ImportPlayer(){
-		PTbs = new PlayerTech();
-		Pbs = new Player();
+//		PTbs = new PlayerTech();
+//		Pbs = new Player();
 	}
 
 	public ArrayList<PlayerTechVO> getPlayerTechAscend(PlayerTechEnum DataType){
-		return PTbs.Ascend(DataType);
+		return null;
+//		return PTbs.Ascend(DataType);
 	}
 
 	public ArrayList<PlayerTechVO> getPlayerTechDescend(PlayerTechEnum DataType){
-		return PTbs.Descend(DataType);
+//		return PTbs.Descend(DataType);
+		return null;
 	}
 	
 	public ArrayList<PlayerTechVO> sift(String position,String division,String ordergist){
-		return PTbs.sift(position, division, ordergist);
+//		return PTbs.sift(position, division, ordergist);
+		return null;
 	}
 	
 	public PlayerVO show(PlayerVO vo){
-		return Pbs.Show(vo);
+//		return Pbs.Show(vo);
+		return null;
 	}
 
 	public ArrayList<PlayerVO> findByTeam(TeamVO tvo){
-		return Pbs.findByTeam(tvo);
+//		return Pbs.findByTeam(tvo);
+		return null;
 	}
 
 }

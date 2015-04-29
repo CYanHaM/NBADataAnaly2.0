@@ -12,9 +12,9 @@ import presentation.playerui.PlayerTechPanel;
 
 public class TeamInfoPanel extends JPanel implements ActionListener{
 	/**
-	 * ÇòÔ±ĞÅÏ¢ÏÔÊ¾½çÃæ
+	 * çƒå‘˜ä¿¡æ¯æ˜¾ç¤ºç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê4ÔÂ1ÈÕ00:55:39
+	 * @date 2015å¹´4æœˆ1æ—¥00:55:39
 	 * @version 1.0
 	 */
 	private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	private static int Button_width=193;
 	private static int Button_height=85;
 	
-	//¶«²¿ÁªÃË
+	//ä¸œéƒ¨è”ç›Ÿ
 	private JButton ATL;
 	private JButton CHA;
 	private JButton MIA;
@@ -44,7 +44,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	private JButton NYK;
 	private JButton PHI;
 	private JButton TOR;
-	//Î÷²¿ÁªÃË
+	//è¥¿éƒ¨è”ç›Ÿ
 	private JButton GSW;
 	private JButton LAC;
 	private JButton LAL;
@@ -62,7 +62,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	private JButton MEM;
 	private JButton NOP;
 	private JButton SAS;
-	//ÁªÃËÑ¡Ïî°´Å¥
+	//è”ç›Ÿé€‰é¡¹æŒ‰é’®
 	private JButton East;
 	private JLabel eastlabel_1;
 	private JLabel eastlabel_2;
@@ -71,7 +71,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	private JLabel westlabel_1;
 	private JLabel westlabel_2;
 	private JLabel westlabel_3;
-	//²à±ßÀ¸°´Å¥
+	//ä¾§è¾¹æ æŒ‰é’®
 	private JButton TeamTech;
 	private JButton PlayerTech;
 	private JButton TeamData;
@@ -95,32 +95,32 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 }
 
 	private void addlabel(){
-		eastlabel_1=new JLabel("¶«ÄÏ·ÖÇø");
+		eastlabel_1=new JLabel("ä¸œå—åˆ†åŒº");
 		eastlabel_1.setForeground(PPre.TableFg);
 		eastlabel_1.setFont(PPre.switchbox);
 		eastlabel_1.setBounds(270, 130, 100, 15);
 		
-		eastlabel_2=new JLabel("ÖĞÑë·ÖÇø");
+		eastlabel_2=new JLabel("ä¸­å¤®åˆ†åŒº");
 		eastlabel_2.setForeground(PPre.TableFg);
 		eastlabel_2.setFont(PPre.switchbox);
 		eastlabel_2.setBounds(535, 130, 100, 15);
 		
-		eastlabel_3=new JLabel("´óÎ÷Ñó·ÖÇø");
+		eastlabel_3=new JLabel("å¤§è¥¿æ´‹åˆ†åŒº");
 		eastlabel_3.setForeground(PPre.TableFg);
 		eastlabel_3.setFont(PPre.switchbox);
 		eastlabel_3.setBounds(805, 130, 100, 15);
 		
-		westlabel_1=new JLabel("Ì«Æ½Ñó·ÖÇø");
+		westlabel_1=new JLabel("å¤ªå¹³æ´‹åˆ†åŒº");
 		westlabel_1.setForeground(PPre.TableFg);
 		westlabel_1.setFont(PPre.switchbox);
 		westlabel_1.setBounds(270, 130, 100, 15);
 		
-		westlabel_2=new JLabel("Î÷±±·ÖÇø");
+		westlabel_2=new JLabel("è¥¿åŒ—åˆ†åŒº");
 		westlabel_2.setForeground(PPre.TableFg);
 		westlabel_2.setFont(PPre.switchbox);
 		westlabel_2.setBounds(535, 130, 100, 15);
 		
-		westlabel_3=new JLabel("Î÷ÄÏ·ÖÇø");
+		westlabel_3=new JLabel("è¥¿å—åˆ†åŒº");
 		westlabel_3.setForeground(PPre.TableFg);
 		westlabel_3.setFont(PPre.switchbox);
 		westlabel_3.setBounds(805, 130, 100, 15);
@@ -386,7 +386,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 		NOP.setVisible(true);
 		SAS.setVisible(true);
 	}
-	//»æÖÆÈü¼¾Êı¾İ½çÃæ±³¾°
+	//ç»˜åˆ¶èµ›å­£æ•°æ®ç•Œé¢èƒŒæ™¯
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
 		ImageIcon im1=new ImageIcon("images/system_img/teams_bg.png");

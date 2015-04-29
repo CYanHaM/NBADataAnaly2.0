@@ -22,49 +22,49 @@ import presentation.playerui.PlayerTechPanel;
 
 public class TeamPanel extends JPanel implements ActionListener{
 	/**
-	 * ÏÔÊ¾Çò¶Ó»ù±¾ĞÅÏ¢µÄ½çÃæ
+	 * æ˜¾ç¤ºçƒé˜ŸåŸºæœ¬ä¿¡æ¯çš„ç•Œé¢
 	 * @author blisscry
-	 * @date 2015Äê4ÔÂ1ÈÕ16:10:12
+	 * @date 2015å¹´4æœˆ1æ—¥16:10:12
 	 * @version 1.0
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public static int WIDTH=1020;
 	public static int HEIGHT=670;
-	//¶¨Òå±ßÔµÍ¸Ã÷¿Õ°×ÇøÓò±ß½ç´óĞ¡£¬µ¥Î»px
+	//å®šä¹‰è¾¹ç¼˜é€æ˜ç©ºç™½åŒºåŸŸè¾¹ç•Œå¤§å°ï¼Œå•ä½px
 	public static int e_space=10;
-	//¶¨Òå¿Õ³öÎ»ÖÃ´óĞ¡
+	//å®šä¹‰ç©ºå‡ºä½ç½®å¤§å°
 	private static int space=35;
-	//±í¸ñ´óĞ¡
+	//è¡¨æ ¼å¤§å°
 	private static int TABLEWIDTH=765;
 	private static int TABLEHEIGHT=275;
-	//±í¸ñĞĞ¸ß
+	//è¡¨æ ¼è¡Œé«˜
 	private static int ROWHEIGHT=35;
-	//±í¸ñÁĞ¿í
+	//è¡¨æ ¼åˆ—å®½
 	private static int[] COLUMNWIDTH={200,80,80,100,100,200,60,60,250};
-	//ÉèÖÃ±í¸ñÊôĞÔ
+	//è®¾ç½®è¡¨æ ¼å±æ€§
 	private JTable playertable;
 	private Object[][] playerinfo;
 	private JScrollPane players;
 	private String[] columnName={
-			"ĞÕÃû","ÇòÒÂºÅÂë","Î»ÖÃ","Éí¸ß(Ó¢³ß-Ó¢´ç)","ÌåÖØ(°õ)","ÉúÈÕ(ÔÂ ÈÕ,Äê)","ÄêÁä","ÇòÁä","±ÏÒµÑ§Ğ£"};
+			"å§“å","çƒè¡£å·ç ","ä½ç½®","èº«é«˜(è‹±å°º-è‹±å¯¸)","ä½“é‡(ç£…)","ç”Ÿæ—¥(æœˆ æ—¥,å¹´)","å¹´é¾„","çƒé¾„","æ¯•ä¸šå­¦æ ¡"};
 	
-	private JLabel Icon;                //Çò¶ÓÍ¼Æ¬
-	private JLabel fullName;            //Çò¶ÓÈ«Ãû
-	private JLabel abbreviation;        //ËõĞ´
-	private JLabel location;            //ËùÔÚµØ
+	private JLabel Icon;                //çƒé˜Ÿå›¾ç‰‡
+	private JLabel fullName;            //çƒé˜Ÿå…¨å
+	private JLabel abbreviation;        //ç¼©å†™
+	private JLabel location;            //æ‰€åœ¨åœ°
 	private JLabel location_con;
-	private JLabel division;            //ÈüÇø
+	private JLabel division;            //èµ›åŒº
 	private JLabel division_con;
-	private JLabel partition;           //·ÖÇø
+	private JLabel partition;           //åˆ†åŒº
 	private JLabel partition_con;
-	private JLabel homeCourt;           //Ö÷³¡
+	private JLabel homeCourt;           //ä¸»åœº
 	private JLabel homeCourt_con;
-	private JLabel time;                //½¨Á¢Ê±¼ä
+	private JLabel time;                //å»ºç«‹æ—¶é—´
 	private JLabel time_con;
-	private JLabel line;//Ë®Æ½Ïß
+	private JLabel line;//æ°´å¹³çº¿
 
-	//²à±ßÀ¸°´Å¥
+	//ä¾§è¾¹æ æŒ‰é’®
 	private JButton TeamTech;
 	private JButton PlayerTech;
 	private JButton TeamData;
@@ -91,9 +91,9 @@ public class TeamPanel extends JPanel implements ActionListener{
 		Frame=frame;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
-		//´´½¨ÑÕÉ«Ô¤Éè¶ÔÏó
+		//åˆ›å»ºé¢œè‰²é¢„è®¾å¯¹è±¡
 		PPre=new PlayerPre();
-		//µ¼ÈëÊı¾İ
+		//å¯¼å…¥æ•°æ®
 //		importdata=new ImportTeam();
 //		System.out.println(tvo.fullName);
 //		teamvo=importdata.getTeamVO(tvo);
@@ -101,14 +101,14 @@ public class TeamPanel extends JPanel implements ActionListener{
 		
 //		playerinfo=new Object[playerlist.size()][columnName.length];
 		playerinfo=new Object[20][columnName.length];
-		//³õÊ¼»¯Êı¾İ£¬ÒÔ±ã·ÅÈëtableÖĞ
+		//åˆå§‹åŒ–æ•°æ®ï¼Œä»¥ä¾¿æ”¾å…¥tableä¸­
 //		handleinitial(playerlist);
-		//¼ÓÔØ±í¸ñÅäÖÃ
+		//åŠ è½½è¡¨æ ¼é…ç½®
 		table_config();
-		//¼ÓÔØ»¬¶¯Ãæ°åÅäÖÃ
+		//åŠ è½½æ»‘åŠ¨é¢æ¿é…ç½®
 		scrollpane_config();
 		players.setViewportView(playertable);
-		//Ìí¼Ó°´Å¥¡¢ÏûÏ¢¿ò
+		//æ·»åŠ æŒ‰é’®ã€æ¶ˆæ¯æ¡†
 		addbutton();
 		addlabel();
 		
@@ -156,7 +156,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		this.repaint();
 	}
 	 
-	//¶¨ÒåËùÓĞÏÔÊ¾¼°äÖÈ¾Çò¶ÓĞÅÏ¢µÄlablel
+	//å®šä¹‰æ‰€æœ‰æ˜¾ç¤ºåŠæ¸²æŸ“çƒé˜Ÿä¿¡æ¯çš„lablel
 	private void addlabel(){
 		Icon=new JLabel(new ImageIcon("images/teams/"+teamvo.abbreviation+".png"));
 		Icon.setBounds(210, 135, 300, 200);
@@ -174,7 +174,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		abbreviation.setForeground(PPre.label);
 		abbreviation.setFont(PPre.abbreviation);   
 		
-		location=new JLabel("ËùÔÚµØ:");
+		location=new JLabel("æ‰€åœ¨åœ°:");
 		location.setBounds(545, 190, 200, 15);
 		location.setForeground(PPre.label);
 		location.setFont(PPre.message);
@@ -183,7 +183,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		location_con.setForeground(PPre.label);
 		location_con.setFont(PPre.location);
 		
-		division=new JLabel("ÈüÇø:");
+		division=new JLabel("èµ›åŒº:");
 		division.setBounds(545, 215, 200, 15);
 		division.setForeground(PPre.label);
 		division.setFont(PPre.message);
@@ -192,7 +192,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		division_con.setForeground(PPre.label);
 		division_con.setFont(PPre.division);
 		
-		partition=new JLabel("·ÖÇø:");
+		partition=new JLabel("åˆ†åŒº:");
 		partition.setBounds(545, 240, 200, 15);
 		partition.setForeground(PPre.label);
 		partition.setFont(PPre.message);
@@ -201,7 +201,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		partition_con.setForeground(PPre.label);
 		partition_con.setFont(PPre.partition);
 		
-		homeCourt=new JLabel("Ö÷³¡:");
+		homeCourt=new JLabel("ä¸»åœº:");
 		homeCourt.setBounds(545, 265, 200, 15);
 		homeCourt.setForeground(PPre.label);
 		homeCourt.setFont(PPre.message);
@@ -210,7 +210,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		homeCourt_con.setForeground(PPre.label);
 		homeCourt_con.setFont(PPre.homeCourt);
 		
-		time=new JLabel("½¨Á¢Ê±¼ä:");
+		time=new JLabel("å»ºç«‹æ—¶é—´:");
 		time.setBounds(545, 290, 200, 15);
 		time.setForeground(PPre.label);
 		time.setFont(PPre.message);
@@ -237,35 +237,35 @@ public class TeamPanel extends JPanel implements ActionListener{
 		
 	}
 	//=============================================
-	//±í¸ñÅäÖÃ
+	//è¡¨æ ¼é…ç½®
 	public void table_config(){
-		//------------------------------±í¸ñ»ù±¾ÊôĞÔ--------------------------
-		//±í¸ñÊôĞÔÉèÖÃ
+		//------------------------------è¡¨æ ¼åŸºæœ¬å±æ€§--------------------------
+		//è¡¨æ ¼å±æ€§è®¾ç½®
 		playertable=new JTable(playerinfo, columnName){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) { 
 				return false;
 			}
 		};
-		//¸ù¾İÌõÄ¿Ãû×Ô¶¯µ÷ÕûÁĞ¿í
+		//æ ¹æ®æ¡ç›®åè‡ªåŠ¨è°ƒæ•´åˆ—å®½
 		playertable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		//ÉèÖÃ±í¸ñÁĞ²»¿ÉÒÆ¶¯
+		//è®¾ç½®è¡¨æ ¼åˆ—ä¸å¯ç§»åŠ¨
 		playertable.getTableHeader().setReorderingAllowed(false);
-		//ÉèÖÃÁĞÃû¾ÓÖĞ
+		//è®¾ç½®åˆ—åå±…ä¸­
 		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-		//ÉèÖÃ±í¸ñÊı¾İ¼°±íÍ·×ÖÌå×ÖºÅ
+		//è®¾ç½®è¡¨æ ¼æ•°æ®åŠè¡¨å¤´å­—ä½“å­—å·
 		playertable.setFont(PPre.CellFont);
 		playertable.setForeground(PPre.CellFg);
 		playertable.getTableHeader().setFont(PPre.HeaderFont);
 		playertable.getTableHeader().setForeground(PPre.TableFg);
 		playertable.getTableHeader().setOpaque(false);
 		playertable.getTableHeader().setBackground(PPre.TableBg);
-		//È¥³ı±ß¿ò
+		//å»é™¤è¾¹æ¡†
 		playertable.setBorder(null);
 
-		//°´ĞĞĞŞ¸Ä±í¸ñ±³¾°
+		//æŒ‰è¡Œä¿®æ”¹è¡¨æ ¼èƒŒæ™¯
 		TableColumnModel model = playertable.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
@@ -273,15 +273,15 @@ public class TeamPanel extends JPanel implements ActionListener{
 			column.setCellRenderer(new RowRenderer());
 		}
 
-		//²»ÏÔÊ¾µ¥Ôª¸ñ±ß¿òÏß
+		//ä¸æ˜¾ç¤ºå•å…ƒæ ¼è¾¹æ¡†çº¿
 		playertable.setShowHorizontalLines(false);
 		playertable.setShowVerticalLines(false);
-		//ÉèÖÃÑ¡ÖĞÑÕÉ«
+		//è®¾ç½®é€‰ä¸­é¢œè‰²
 		playertable.setSelectionBackground(PPre.LineSelected);
 
-		//ÉèÖÃĞĞ¸ß
+		//è®¾ç½®è¡Œé«˜
 		playertable.setRowHeight(ROWHEIGHT);
-		//ÉèÖÃÁĞ¿í
+		//è®¾ç½®åˆ—å®½
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 			playertable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
@@ -289,9 +289,9 @@ public class TeamPanel extends JPanel implements ActionListener{
 
 	}
 
-	//»¬¶¯Ãæ°åÅäÖÃ
+	//æ»‘åŠ¨é¢æ¿é…ç½®
 	public void scrollpane_config(){
-		//»¬¶¯Ãæ°åĞÅÏ¢
+		//æ»‘åŠ¨é¢æ¿ä¿¡æ¯
 		players=new JScrollPane(playertable);
 		players.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space,TABLEWIDTH,TABLEHEIGHT);
 		players.setHorizontalScrollBarPolicy( 
@@ -360,7 +360,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		}
 	}
 	
-	//ÖØÔØµ¥Ôª¸ñ±ê×¼Àà,ÓÃÓÚ¸Ä±äµ¥Ôª¸ñ±³¾°ÑÕÉ«
+	//é‡è½½å•å…ƒæ ¼æ ‡å‡†ç±»,ç”¨äºæ”¹å˜å•å…ƒæ ¼èƒŒæ™¯é¢œè‰²
 	private class RowRenderer extends DefaultTableCellRenderer 
 	{
 		private static final long serialVersionUID = 1L;
@@ -368,9 +368,9 @@ public class TeamPanel extends JPanel implements ActionListener{
 		public Component getTableCellRendererComponent(JTable t, Object value,
 				boolean isSelected, boolean hasFocus, int row, int column) 
 		{
-			//µ¥Ôª¸ñ¾ÓÖĞ
+			//å•å…ƒæ ¼å±…ä¸­
 			setHorizontalAlignment(JLabel.CENTER);
-			//ÉèÖÃÆæÅ¼ĞĞµÄ±³¾°É«
+			//è®¾ç½®å¥‡å¶è¡Œçš„èƒŒæ™¯è‰²
 			if (row % 2 == 0)
 				setBackground(PPre.EvenTableLine);
 			else
@@ -380,7 +380,7 @@ public class TeamPanel extends JPanel implements ActionListener{
 		}
 	}
 
-	//»æÖÆ½çÃæ±³¾°
+	//ç»˜åˆ¶ç•Œé¢èƒŒæ™¯
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
 		ImageIcon im1=new ImageIcon("images/system_img/teams_bg.png");
