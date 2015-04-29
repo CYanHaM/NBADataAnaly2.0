@@ -87,34 +87,34 @@ public class Match implements MatchBLService{
 		ArrayList<MatchPO> mplist=new ArrayList<MatchPO>();
 		ArrayList<MatchLineItem> mlilist=new ArrayList<MatchLineItem>();
 		ArrayList<MatchVO> mvlist=new ArrayList<MatchVO>();
-		MatchLineItem mli=new MatchLineItem();
 		MatchP2L p2l=new MatchP2L();
 		MatchL2V l2v=new MatchL2V();
 
 		mplist=mds.read();
-		for(MatchPO po:mplist){
-			mli=p2l.p2l(po);
-			mlilist.add(mli);			
+		for(int k=0;k<mplist.size();k++){
+			mlilist.add(p2l.p2l(mplist.get(k)));			
 		}
+
+
 		DateFormat fmt =new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
 			Date today= fmt.parse(date);
 			for(int i=0;i<time;i++){
+				Date selectedDay= new Date(today.getTime() - i*24*60*60*1000);
+				String selectedDayS=fmt.format(selectedDay);
 				for(MatchLineItem li:mlilist){
-					Date selectedDay= new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
-					String selectedDayS=fmt.format(selectedDay);
 					if(li.date.equals(selectedDayS))
 						mvlist.add(l2v.l2v(li));
 					
 				}
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			System.out.println("时间出错");
 			e.printStackTrace();
 		}
 		return mvlist;
 	}
 	
-
+	
 }

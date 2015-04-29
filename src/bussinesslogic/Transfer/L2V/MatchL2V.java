@@ -5,8 +5,8 @@ import VO.MatchVO;
 
 public class MatchL2V {
 
-	MatchVO mv=new MatchVO();
 	public MatchVO l2v(MatchLineItem mli){
+		MatchVO mv=new MatchVO();
 		 mv.season=mli.season;                                             //����
 		 mv.date=mli.date;                                                 //����
 		 mv.homeTeam=mli.homeTeam;                                         //��������

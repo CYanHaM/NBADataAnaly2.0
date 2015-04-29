@@ -42,12 +42,12 @@ public class DataProcessing implements readFrom{
 					
 				}
 				read.close();
-				
 				String[][]data=new String [info.size()][];
 				for(int j=0;j<info.size();j++){
 					data[j]=info.get(j).split(";");
 				}
 				String filename[]=filelist[i].getName().split("_");
+
 				if(Integer.valueOf(filename[1].split("-")[0])<=7)
 					matchpo.date="20"+filename[0].split("-")[1]+"-"+filename[1];
 				else
@@ -294,6 +294,8 @@ public class DataProcessing implements readFrom{
 				mlist.add(matchpo);
 				
 			}
+
+
 		}catch(Exception e) {
 			System.out.println("操作出错");
 			e.printStackTrace();

@@ -15,6 +15,7 @@ public class MatchData implements MatchDataService{
 		readFrom rf=new DataProcessing();
 		ArrayList<MatchPO> mlist=new ArrayList<MatchPO>();
 		mlist=rf.matchRead();
+
 		return mlist;
 		
 	}
