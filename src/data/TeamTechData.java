@@ -27,53 +27,52 @@ public class TeamTechData implements TeamTechDataService{
 		for(int i = 0; i<teams.size(); i++){
 			TeamTechPO ttpo = new TeamTechPO();
 			ttpo.name = teams.get(i).abbreviation;
+			
 			for(int j = 0; j<source.size(); j++){
 				MatchPO match = new MatchPO();
 				match = source.get(j);
 				if(match.homeTeam.equals(ttpo.name)){
-					ttpo.gameNum++;																					//±ÈÈü³¡Êý
-					if(match.ifHomeTeamWin==1)ttpo.winningNum++;													//Ê¤³¡Êý
-					ttpo.shotInNum = ttpo.shotInNum+match.homeShotIn;												//½øÇòÊý
-					ttpo.shotNum = ttpo.shotNum+match.homeShot;														//³öÊÖÊý
-					ttpo.threeShotInNum = ttpo.threeShotInNum+match.homeThreeShotIn;								//Èý·ÖÃüÖÐÊý
-					ttpo.threeShotNum = ttpo.threeShotNum+match.homeThreeShot;										//Èý·Ö³öÊÖÊý
-					ttpo.penaltyShotInNum = ttpo.penaltyShotInNum+match.homePenaltyShotIn;							//·£ÇòÃüÖÐÊý
-					ttpo.penaltyShotNum = ttpo.penaltyShotNum+match.homePenaltyShot;								//·£Çò³öÊÖÊý
-					ttpo.offensiveRebound = ttpo.offensiveRebound+match.homeTeamOffensiveRebound;					//½ø¹¥Àº°å
-					ttpo.defensiveRebound = ttpo.defensiveRebound+match.homeTeamDeffensiveRebound;					//·ÀÊØÀº°å
-					ttpo.foul = ttpo.foul+match.homeFoul;															//·¸¹æ
-					ttpo.score = match.homeScore;																	//µÃ·Ö
-					ttpo.offensiveRound = ttpo.offensiveRound+match.homeTeamOffensiveRound;							//½ø¹¥»ØºÏ
-					ttpo.opponentDefensiveRebound = ttpo.opponentDefensiveRebound+match.guestTeamDeffensiveRebound;	//¶ÔÊÖ·ÀÊØÀº°å
-					ttpo.opponentOffensiveRebound = ttpo.opponentOffensiveRebound+match.guestTeamOffensiveRebound;	//¶ÔÊÖ½ø¹¥Àº°å
-					ttpo.opponentOffensiveRound = ttpo.opponentOffensiveRebound+match.guestTeamOffensiveRound;		//¶ÔÊÖ½ø¹¥»ØºÏ
-					ttpo.opponentScore = ttpo.opponentScore+match.guestScore;										//¶ÔÊÖµÃ·Ö
+					ttpo.gameNum++;																					//æ¯”èµ›åœºæ¬¡
+					if(match.ifHomeTeamWin==1)ttpo.winningNum++;													//èƒœåœº
+					ttpo.shotInNum = ttpo.shotInNum+match.homeShotIn;												//å‘½ä¸­æ•°
+					ttpo.shotNum = ttpo.shotNum+match.homeShot;														//å‡ºæ‰‹æ•°
+					ttpo.threeShotInNum = ttpo.threeShotInNum+match.homeThreeShotIn;								//ä¸‰åˆ†å‘½ä¸­æ•°
+					ttpo.threeShotNum = ttpo.threeShotNum+match.homeThreeShot;										//ä¸‰åˆ†å‡ºæ‰‹æ•°
+					ttpo.penaltyShotInNum = ttpo.penaltyShotInNum+match.homePenaltyShotIn;							//ç½šçƒå‘½ä¸­æ•°
+					ttpo.penaltyShotNum = ttpo.penaltyShotNum+match.homePenaltyShot;								//ç½šçƒå‡ºæ‰‹æ•°
+					ttpo.offensiveRebound = ttpo.offensiveRebound+match.homeTeamOffensiveRebound;					//è¿›æ”»ç¯®æ¿
+					ttpo.defensiveRebound = ttpo.defensiveRebound+match.homeTeamDeffensiveRebound;					//é˜²å®ˆç¯®æ¿
+					ttpo.score = ttpo.score+match.homeScore;														//å¾—åˆ†
+					ttpo.offensiveRound = ttpo.offensiveRound+match.homeTeamOffensiveRound;							//è¿›æ”»å›žåˆ
+					ttpo.opponentDefensiveRebound = ttpo.opponentDefensiveRebound+match.guestTeamDeffensiveRebound;	//å¯¹æ‰‹é˜²å®ˆç¯®æ¿
+					ttpo.opponentOffensiveRebound = ttpo.opponentOffensiveRebound+match.guestTeamOffensiveRebound;	//å¯¹æ‰‹è¿›æ”»ç¯®æ¿
+					ttpo.opponentOffensiveRound = ttpo.opponentOffensiveRound+match.guestTeamOffensiveRound;		//å¯¹æ‰‹è¿›æ”»å›žåˆ
+					ttpo.opponentScore = ttpo.opponentScore+match.guestScore;										//å¯¹æ‰‹å¾—åˆ†
 					for(int k = 0; k<match.playerStatistic.size();k++){												
 						if(match.playerStatistic.get(k).team.equals(ttpo.name)){
-							ttpo.secondaryAttack = ttpo.secondaryAttack+match.playerStatistic.get(k).secondaryAttack;//Öú¹¥
-							ttpo.steal = ttpo.steal+match.playerStatistic.get(k).steal;								//ÇÀ¶Ï
-							ttpo.blockShot = ttpo.blockShot+match.playerStatistic.get(k).blockShot;					//¸ÇÃ±
-							ttpo.fault = ttpo.fault+match.playerStatistic.get(k).fault;								//Ê§Îó
+							ttpo.secondaryAttack = ttpo.secondaryAttack+match.playerStatistic.get(k).secondaryAttack;//åŠ©æ”»
+							ttpo.steal = ttpo.steal+match.playerStatistic.get(k).steal;								//æŠ¢æ–­
+							ttpo.blockShot = ttpo.blockShot+match.playerStatistic.get(k).blockShot;					//ç›–å¸½
+							ttpo.fault = ttpo.fault+match.playerStatistic.get(k).fault;								//å¤±è¯¯
 						}
 					}
 				}else if(match.guestTeam.equals(ttpo.name)){
-					ttpo.gameNum++;																					//±ÈÈü³¡Êý
-					if(match.ifGuestTeamWin==1)ttpo.winningNum++;													//Ê¤³¡Êý
-					ttpo.shotInNum = ttpo.shotInNum+match.guestShotIn;												//½øÇòÊý
-					ttpo.shotNum = ttpo.shotNum+match.guestShot;													//³öÊÖÊý
-					ttpo.threeShotInNum = ttpo.threeShotInNum+match.guestThreeShotIn;								//Èý·ÖÃüÖÐÊý
-					ttpo.threeShotNum = ttpo.threeShotNum+match.guestThreeShot;										//Èý·Ö³öÊÖÊý
-					ttpo.penaltyShotInNum = ttpo.penaltyShotInNum+match.guestPenaltyShotIn;							//·£ÇòÃüÖÐÊý
-					ttpo.penaltyShotNum = ttpo.penaltyShotNum+match.guestPenaltyShot;								//·£Çò³öÊÖÊý
-					ttpo.offensiveRebound = ttpo.offensiveRebound+match.guestTeamOffensiveRebound;					//½ø¹¥Àº°å
-					ttpo.defensiveRebound = ttpo.defensiveRebound+match.guestTeamDeffensiveRebound;					//·ÀÊØÀº°å
-					ttpo.foul = ttpo.foul+match.guestFoul;															//·¸¹æ
-					ttpo.score = match.guestScore;																	//µÃ·Ö
-					ttpo.offensiveRound = ttpo.offensiveRound+match.guestTeamOffensiveRound;						//½ø¹¥»ØºÏ
-					ttpo.opponentDefensiveRebound = ttpo.opponentDefensiveRebound+match.homeTeamDeffensiveRebound;	//¶ÔÊÖ·ÀÊØÀº°å
-					ttpo.opponentOffensiveRebound = ttpo.opponentOffensiveRebound+match.homeTeamOffensiveRebound;	//¶ÔÊÖ½ø¹¥Àº°å
-					ttpo.opponentOffensiveRound = ttpo.opponentOffensiveRebound+match.homeTeamOffensiveRound;		//¶ÔÊÖ½ø¹¥»ØºÏ
-					ttpo.opponentScore = ttpo.opponentScore+match.homeScore;										//¶ÔÊÖµÃ·Ö
+					ttpo.gameNum++;																					//æ¯”èµ›åœºæ¬¡
+					if(match.ifGuestTeamWin==1)ttpo.winningNum++;													//èƒœåœº
+					ttpo.shotInNum = ttpo.shotInNum+match.guestShotIn;												//å‘½ä¸­æ•°
+					ttpo.shotNum = ttpo.shotNum+match.guestShot;													//å‡ºæ‰‹æ•°
+					ttpo.threeShotInNum = ttpo.threeShotInNum+match.guestThreeShotIn;								//ä¸‰åˆ†å‘½ä¸­æ•°
+					ttpo.threeShotNum = ttpo.threeShotNum+match.guestThreeShot;										//ä¸‰åˆ†å‡ºæ‰‹æ•°
+					ttpo.penaltyShotInNum = ttpo.penaltyShotInNum+match.guestPenaltyShotIn;							//ç½šçƒå‘½ä¸­æ•°
+					ttpo.penaltyShotNum = ttpo.penaltyShotNum+match.guestPenaltyShot;								//ç½šçƒå‡ºæ‰‹æ•°
+					ttpo.offensiveRebound = ttpo.offensiveRebound+match.guestTeamOffensiveRebound;					//è¿›æ”»ç¯®æ¿
+					ttpo.defensiveRebound = ttpo.defensiveRebound+match.guestTeamDeffensiveRebound;					//é˜²å®ˆç¯®æ¿
+					ttpo.score = ttpo.score+match.guestScore;														//å¾—åˆ†
+					ttpo.offensiveRound = ttpo.offensiveRound+match.guestTeamOffensiveRound;						//è¿›æ”»å›žåˆ
+					ttpo.opponentDefensiveRebound = ttpo.opponentDefensiveRebound+match.homeTeamDeffensiveRebound;	//å¯¹æ‰‹é˜²å®ˆç¯®æ¿
+					ttpo.opponentOffensiveRebound = ttpo.opponentOffensiveRebound+match.homeTeamOffensiveRebound;	//å¯¹æ‰‹è¿›æ”»ç¯®æ¿
+					ttpo.opponentOffensiveRound = ttpo.opponentOffensiveRound+match.homeTeamOffensiveRound;			//å¯¹æ‰‹è¿›æ”»å›žåˆ
+					ttpo.opponentScore = ttpo.opponentScore+match.homeScore;										//å¯¹æ‰‹æ€»å¾—åˆ†
 					for(int k = 0; k<match.playerStatistic.size();k++){
 						if(match.playerStatistic.get(k).team.equals(ttpo.name)){
 							ttpo.secondaryAttack = ttpo.secondaryAttack+match.playerStatistic.get(k).secondaryAttack;
@@ -83,16 +82,17 @@ public class TeamTechData implements TeamTechDataService{
 						}
 					}
 				}
-				ttpo.rebound = ttpo.offensiveRebound + ttpo.defensiveRebound;
-				ttpo.shotInRate = ttpo.shotInNum/ttpo.shotNum;
-				ttpo.threeShotInRate = ttpo.threeShotInNum/ttpo.threeShotNum;
-				ttpo.penaltyShotInRate = ttpo.penaltyShotInNum/ttpo.penaltyShotNum;
-				ttpo.offensiveEfficiency = ttpo.score/(ttpo.offensiveRound/100);
-				ttpo.defensiveEfficiency = ttpo.score/(ttpo.opponentOffensiveRound/100);
-				//ttpo.reboundEfficiency = ttpo.offensiveRebound/(ttpo.offensiveRebound+ttpo.opponentDefensiveRebound);
-				ttpo.stealEfficiency = ttpo.steal/(ttpo.opponentOffensiveRound/100);
-				ttpo.secondaryAttackEfficiency = ttpo.secondaryAttack/(ttpo.offensiveRound/100);
 			}
+			ttpo.rebound = ttpo.offensiveRebound + ttpo.defensiveRebound;											//æ€»ç¯®æ¿
+			ttpo.shotInRate = (double)ttpo.shotInNum/(double)ttpo.shotNum;											//æŠ•ç¯®å‘½ä¸­çŽ‡
+			ttpo.threeShotInRate = (double)ttpo.threeShotInNum/(double)ttpo.threeShotNum;							//ä¸‰åˆ†å‘½ä¸­çŽ‡
+			ttpo.penaltyShotInRate = (double)ttpo.penaltyShotInNum/(double)ttpo.penaltyShotNum;						//ç½šçƒå‘½ä¸­çŽ‡
+			ttpo.winningRate = (double)ttpo.winningNum/(double)ttpo.gameNum;										//èƒœçŽ‡
+			ttpo.offensiveEfficiency = (double)ttpo.score/((double)ttpo.offensiveRound/100);						//è¿›æ”»æ•ˆçŽ‡
+			ttpo.defensiveEfficiency = (double)ttpo.score/((double)ttpo.opponentOffensiveRound/100);				//é˜²å®ˆæ•ˆçŽ‡
+			ttpo.reboundEfficiency = (double)ttpo.rebound/((double)ttpo.rebound+(double)ttpo.opponentDefensiveRebound+(double)ttpo.opponentOffensiveRebound);
+			ttpo.stealEfficiency = (double)ttpo.steal/((double)ttpo.opponentOffensiveRound/100);					//æŠ¢æ–­æ•ˆçŽ‡
+			ttpo.secondaryAttackEfficiency = (double)ttpo.secondaryAttack/((double)ttpo.offensiveRound/100);		//åŠ©æ”»æ•ˆçŽ‡
 			result.add(ttpo);
 		}
 		try{
