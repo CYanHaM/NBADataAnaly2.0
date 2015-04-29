@@ -137,6 +137,10 @@ public class DataProcessing implements readFrom{
 						ptmp.ifParticipate=1;
 					else
 						ptmp.ifParticipate=0;
+					if((ptmp.score>=10&&ptmp.rebound>=10)||(ptmp.score>=10&&ptmp.secondaryAttack>=10)||(ptmp.score>=10&&ptmp.steal>=10)||(ptmp.score>=10&&ptmp.blockShot>=10)||(ptmp.rebound>=10&&ptmp.secondaryAttack>=10)||(ptmp.rebound>=10&&ptmp.steal>=10)||(ptmp.rebound>=10&&ptmp.blockShot>=10)||(ptmp.secondaryAttack>=10&&ptmp.steal>=10)||(ptmp.secondaryAttack>=10&&ptmp.blockShot>=10)||(ptmp.steal>=10&&ptmp.blockShot>=10))
+						ptmp.ifDouble=1;
+					else
+						ptmp.ifDouble=0;
 					matchpo.playerStatistic.add(ptmp);
 					
 				}
@@ -183,6 +187,10 @@ public class DataProcessing implements readFrom{
 						ptmp.ifParticipate=1;
 					else
 						ptmp.ifParticipate=0;
+					if((ptmp.score>=10&&ptmp.rebound>=10)||(ptmp.score>=10&&ptmp.secondaryAttack>=10)||(ptmp.score>=10&&ptmp.steal>=10)||(ptmp.score>=10&&ptmp.blockShot>=10)||(ptmp.rebound>=10&&ptmp.secondaryAttack>=10)||(ptmp.rebound>=10&&ptmp.steal>=10)||(ptmp.rebound>=10&&ptmp.blockShot>=10)||(ptmp.secondaryAttack>=10&&ptmp.steal>=10)||(ptmp.secondaryAttack>=10&&ptmp.blockShot>=10)||(ptmp.steal>=10&&ptmp.blockShot>=10))
+						ptmp.ifDouble=1;
+					else
+						ptmp.ifDouble=0;
 					matchpo.playerStatistic.add(ptmp);
 				}
 				//计算主客队进攻防守篮板数

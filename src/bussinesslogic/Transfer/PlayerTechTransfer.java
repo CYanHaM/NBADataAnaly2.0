@@ -34,7 +34,7 @@ public class PlayerTechTransfer {
 			vo.faultRate = po.faultRate;
 			vo.usageRate = po.usageRate;
 			
-			//Èü¼¾×ÜÊý¾Ý
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			vo.offensiveNum = po.offensiveNum;
 			vo.defensiveNum = po.defensiveNum;
 			vo.steal = po.steal;
@@ -45,8 +45,9 @@ public class PlayerTechTransfer {
 			vo.rebound = po.rebound;
 			vo.secondaryAttack = po.secondaryAttack;
 			vo.time = po.time;
+			vo.ifDouble=po.ifDouble;
 			
-			//³¡¾ùshuju
+			//ï¿½ï¿½ï¿½ï¿½shuju
 			if(po.gameNum==0){
 				vo.offensiveNumave = 0;
 				vo.defensiveNumave= 0;
@@ -72,7 +73,7 @@ public class PlayerTechTransfer {
 				vo.timeave = po.time/po.gameNum;
 			}
 			
-			//ÌáÉýÂÊ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			vo.scoreImproving = po.scoreImproving;
 			vo.stealImproving = po.stealImproving;
 			vo.blockShotImproving = po.blockShotImproving;
@@ -84,7 +85,7 @@ public class PlayerTechTransfer {
 		return res;
 	}
 	
-	//½ösift·½·¨Ê¹ÓÃ£¬¹ÊÖ»ÐèÎåÏî¹Ø¼üÊý¾Ý
+	//ï¿½ï¿½siftï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã£ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	public PlayerTechPO vo2po(PlayerTechVO vo){
 		PlayerTechPO po = new PlayerTechPO();
 		po.name = vo.name;
@@ -95,6 +96,8 @@ public class PlayerTechTransfer {
 		po.score = vo.score;
 		po.rebound = vo.rebound;
 		po.secondaryAttack = vo.secondaryAttack;
+		po.ifDouble=vo.ifDouble;
+
 		
 		return po;
 	}
@@ -122,7 +125,7 @@ public class PlayerTechTransfer {
 		vo.faultRate = po.faultRate;
 		vo.usageRate = po.usageRate;
 		
-		//Èü¼¾×ÜÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		vo.offensiveNum = po.offensiveNum;
 		vo.defensiveNum = po.defensiveNum;
 		vo.steal = po.steal;
@@ -133,8 +136,9 @@ public class PlayerTechTransfer {
 		vo.rebound = po.rebound;
 		vo.secondaryAttack = po.secondaryAttack;
 		vo.time = po.time;
-		
-		//³¡¾ùshuju
+		vo.ifDouble=po.ifDouble;
+
+		//ï¿½ï¿½ï¿½ï¿½shuju
 		if(po.gameNum==0){
 			vo.offensiveNumave = 0;
 			vo.defensiveNumave= 0;
@@ -160,7 +164,7 @@ public class PlayerTechTransfer {
 			vo.timeave = po.time/po.gameNum;
 		}
 		
-		//ÌáÉýÂÊ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		vo.scoreImproving = po.scoreImproving;
 		vo.stealImproving = po.stealImproving;
 		vo.blockShotImproving = po.blockShotImproving;
