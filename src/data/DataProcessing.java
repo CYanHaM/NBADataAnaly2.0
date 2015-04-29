@@ -282,11 +282,11 @@ public class DataProcessing implements readFrom{
 						scoreKing=k+1;
 					}
 					if(matchpo.playerStatistic.get(k+1).rebound>mostRebound){
-						reboundKing=matchpo.playerStatistic.get(k+1).rebound;
+						mostRebound=matchpo.playerStatistic.get(k+1).rebound;
 						reboundKing=k+1;
 					}
 					if(matchpo.playerStatistic.get(k+1).secondaryAttack>mostSecondaryAttack){
-						assistKing=matchpo.playerStatistic.get(k+1).secondaryAttack;
+						mostSecondaryAttack=matchpo.playerStatistic.get(k+1).secondaryAttack;
 						assistKing=k+1;
 					}
 				}
