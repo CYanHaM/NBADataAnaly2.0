@@ -126,6 +126,7 @@ public class OperateWithFile {
 				ptp.threeShot += mp.threeShot;
 				ptp.penaltyShotIn += mp.penaltyShotIn;
 				ptp.penaltyShot += mp.penaltyShot;
+				ptp.ifDouble += ptp.ifDouble;
 				
 				ptp.teamAllTime = mp.teamAllTime;
 				ptp.teamOffensiveRebound = mp.teamOffensiveRebound;
@@ -138,7 +139,6 @@ public class OperateWithFile {
 				ptp.teamShot = mp.teamShot;
 				ptp.teamPenaltyShot = mp.teamPenaltyShot;
 				ptp.teamFault = mp.teamFault;
-				
 			}
 			
 			//根据公式计算

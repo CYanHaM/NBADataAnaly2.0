@@ -43,12 +43,16 @@ public class Find implements FindDataService {
 					return p1.blockShot-p2.blockShot;
 				case "score":
 					return p1.score-p2.score;
-				case "doubledouble":
-					return ;
-				case "defenbi":
-					return;
+				case "double":
+					return p1.ifDouble-p2.ifDouble;
+				case "scoreratio":
+					int ra1 = p1.score+p1.rebound+p1.secondaryAttack;
+					int ra2 = p2.score+p2.rebound+p2.secondaryAttack;
+					return ra1-ra2;
 				case "efficiency":
-					return;
+					int eff1 = (p1.score+p1.blockShot+p1.steal+p1.secondaryAttack+p1.rebound)-(p1.shot-p1.shotIn)-(p1.penaltyShot-p1.penaltyShotIn)-p1.fault;
+					int eff2 = (p2.score+p2.blockShot+p2.steal+p2.secondaryAttack+p2.rebound)-(p2.shot-p2.shotIn)-(p2.penaltyShot-p2.penaltyShotIn)-p2.fault;
+					return eff1-eff2;
 				default:
 					System.out.println("wrong type");
 					return 0;

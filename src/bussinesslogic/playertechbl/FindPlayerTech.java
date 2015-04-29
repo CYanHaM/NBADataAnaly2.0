@@ -55,6 +55,8 @@ public class FindPlayerTech implements FindPlayerTechService{
 					return (p1.shotInRate-p2.shotInRate)>=0?1:-1;
 				case "penaltyshotinrate":
 					return (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
+				case "double":
+					return (p1.ifDouble-p2.ifDouble)>=0?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;
