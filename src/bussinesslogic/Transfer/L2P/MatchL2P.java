@@ -4,8 +4,8 @@ import bussinesslogic.matchbl.MatchLineItem;
 import PO.MatchPO;
 
 public class MatchL2P {
-	MatchPO mp=new MatchPO();
 	public MatchPO l2p(MatchLineItem mli){
+		MatchPO mp=new MatchPO();
 		 mp.season=mli.season;                                             //����
 		 mp.date=mli.date;                                                 //����
 		 mp.homeTeam=mli.homeTeam;                                         //��������

@@ -5,8 +5,8 @@ import bussinesslogic.matchbl.MatchLineItem;
 
 public class MatchP2L {
 
-	MatchLineItem mli=new MatchLineItem();
 	public MatchLineItem p2l(MatchPO mp){
+		MatchLineItem mli=new MatchLineItem();
 		 mli.season=mp.season;                                             //����
 		 mli.date=mp.date;                                                 //����
 		 mli.homeTeam=mp.homeTeam;                                         //��������

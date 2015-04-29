@@ -126,6 +126,7 @@ public class OperateWithFile {
 				ptp.threeShot += mp.threeShot;
 				ptp.penaltyShotIn += mp.penaltyShotIn;
 				ptp.penaltyShot += mp.penaltyShot;
+				ptp.ifDouble += ptp.ifDouble;
 				
 				ptp.teamAllTime = mp.teamAllTime;
 				ptp.teamOffensiveRebound = mp.teamOffensiveRebound;
@@ -138,7 +139,6 @@ public class OperateWithFile {
 				ptp.teamShot = mp.teamShot;
 				ptp.teamPenaltyShot = mp.teamPenaltyShot;
 				ptp.teamFault = mp.teamFault;
-				
 			}
 			
 			//根据公式计算
@@ -292,7 +292,7 @@ public class OperateWithFile {
 			int opponentTwoShot =ma.guestTwoShot;                     //对手进攻两分球出手次数
 			int teamShot = ma.homeShot;                          //全队出手次数
 		    int teamPenaltyShot =ma.homePenaltyShot;                   //全队罚球次数
-			int teamFault = ma.homeFoul;                          //全队失误次数    
+			int teamFault = ma.homeFault;                          //全队失误次数    
 			
 			int listSize = list.size();
 			for(int j=0;j<listSize;j++){
@@ -338,7 +338,7 @@ public class OperateWithFile {
 					it.remove();
 				}
 			}
-			for(int i=0;i<li.size();i++){
+			for(int i=0;i<size;i++){
 				ArrayList<PlayerTechMPO> list = li.get(i);
 				//进行排序
 				Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  

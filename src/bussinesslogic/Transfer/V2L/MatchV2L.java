@@ -5,8 +5,8 @@ import bussinesslogic.matchbl.MatchLineItem;
 
 public class MatchV2L {
 
-	MatchLineItem mli=new MatchLineItem();
 	public MatchLineItem v2l(MatchVO mv){
+		MatchLineItem mli=new MatchLineItem();
 		 mli.season=mv.season;                                             //����
 		 mli.date=mv.date;                                                 //����
 		 mli.homeTeam=mv.homeTeam;                                         //��������

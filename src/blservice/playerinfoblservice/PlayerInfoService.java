@@ -10,7 +10,8 @@ public interface PlayerInfoService {
 	
 	public PlayerVO showPlayerInfo (String name);
 	
-	public ArrayList<PlayerVO> findPlayerByLetter(char letter);   //按照字母查询
+	public ArrayList<PlayerVO> findPlayerByLetter(char letter);   
 
-
+	public ArrayList<PlayerVO> findByTeam(String team);
+	
 }

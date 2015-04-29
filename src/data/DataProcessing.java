@@ -42,12 +42,12 @@ public class DataProcessing implements readFrom{
 					
 				}
 				read.close();
-				
 				String[][]data=new String [info.size()][];
 				for(int j=0;j<info.size();j++){
 					data[j]=info.get(j).split(";");
 				}
 				String filename[]=filelist[i].getName().split("_");
+
 				if(Integer.valueOf(filename[1].split("-")[0])<=7)
 					matchpo.date="20"+filename[0].split("-")[1]+"-"+filename[1];
 				else
@@ -137,6 +137,10 @@ public class DataProcessing implements readFrom{
 						ptmp.ifParticipate=1;
 					else
 						ptmp.ifParticipate=0;
+					if((ptmp.score>=10&&ptmp.rebound>=10)||(ptmp.score>=10&&ptmp.secondaryAttack>=10)||(ptmp.score>=10&&ptmp.steal>=10)||(ptmp.score>=10&&ptmp.blockShot>=10)||(ptmp.rebound>=10&&ptmp.secondaryAttack>=10)||(ptmp.rebound>=10&&ptmp.steal>=10)||(ptmp.rebound>=10&&ptmp.blockShot>=10)||(ptmp.secondaryAttack>=10&&ptmp.steal>=10)||(ptmp.secondaryAttack>=10&&ptmp.blockShot>=10)||(ptmp.steal>=10&&ptmp.blockShot>=10))
+						ptmp.ifDouble=1;
+					else
+						ptmp.ifDouble=0;
 					matchpo.playerStatistic.add(ptmp);
 					
 				}
@@ -183,6 +187,10 @@ public class DataProcessing implements readFrom{
 						ptmp.ifParticipate=1;
 					else
 						ptmp.ifParticipate=0;
+					if((ptmp.score>=10&&ptmp.rebound>=10)||(ptmp.score>=10&&ptmp.secondaryAttack>=10)||(ptmp.score>=10&&ptmp.steal>=10)||(ptmp.score>=10&&ptmp.blockShot>=10)||(ptmp.rebound>=10&&ptmp.secondaryAttack>=10)||(ptmp.rebound>=10&&ptmp.steal>=10)||(ptmp.rebound>=10&&ptmp.blockShot>=10)||(ptmp.secondaryAttack>=10&&ptmp.steal>=10)||(ptmp.secondaryAttack>=10&&ptmp.blockShot>=10)||(ptmp.steal>=10&&ptmp.blockShot>=10))
+						ptmp.ifDouble=1;
+					else
+						ptmp.ifDouble=0;
 					matchpo.playerStatistic.add(ptmp);
 				}
 				//计算主客队进攻防守篮板数
@@ -286,6 +294,8 @@ public class DataProcessing implements readFrom{
 				mlist.add(matchpo);
 				
 			}
+
+
 		}catch(Exception e) {
 			System.out.println("操作出错");
 			e.printStackTrace();
