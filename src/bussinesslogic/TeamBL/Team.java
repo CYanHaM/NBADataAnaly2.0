@@ -37,5 +37,9 @@ public class Team implements TeamBLservice{
 		
 		return result;
 	}
+	
+	public void init(){
+		tdservice.WriteIn();
+	}
 
 }

@@ -10,4 +10,6 @@ public interface TeamDataService extends Remote{
 	/* 按照属性查找球队，属性存储在tpo中
 	 * 可查找的条件有队名
 	 * */
+	
+	public void WriteIn();
 }

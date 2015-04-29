@@ -524,5 +524,11 @@ public class TeamTech implements TeamTechBLService{
 		}
 		return result;
 	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		ttdataservice.WriteIn();
+	}
 	
 }

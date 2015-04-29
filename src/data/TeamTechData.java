@@ -19,7 +19,7 @@ public class TeamTechData implements TeamTechDataService{
 	readFrom rf = new DataProcessing();
 	File file = new File("database/teamtech.txt");
 	
-	void WriteIn(){
+	public void WriteIn(){
 		ArrayList<MatchPO> source = new ArrayList<MatchPO>();
 		source = rf.matchRead();
 		ArrayList<TeamPO> teams = rf.teamRead();

@@ -9,4 +9,6 @@ import TypeEnum.TeamTechEnum;
 
 public interface TeamTechDataService extends Remote{
 	public ArrayList<TeamTechPO> list()throws RemoteException;
+	
+	public void WriteIn();
 }
