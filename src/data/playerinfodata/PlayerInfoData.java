@@ -16,9 +16,8 @@ public class PlayerInfoData implements PlayerInfoDataService {
 	public static void main(String[] args){
 		PlayerInfoData pd = new PlayerInfoData();
 		pd.write();
-		ArrayList<PlayerPO> list = pd.read();
-		for(int i=0;i<list.size();i++)
-			System.out.println(list.get(i).name);
+		PlayerPO list = pd.findOne("Dexter Pittman");
+		System.out.println(list);
 	}
 
 	readFrom rf  = new DataProcessing();
