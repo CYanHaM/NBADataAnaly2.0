@@ -63,6 +63,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	private JLabel[] info;
 	private JLabel[] data;
 	private JLabel[] compare;
+	private JLabel[] images;
 	
 	
 	private ArrayList<PlayerTechMVO> hotplayerslist;
@@ -84,6 +85,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		info=new JLabel[5];
 		data=new JLabel[5];
 		compare=new JLabel[5];
+		images=new JLabel[5];
 		
 		fts=new FindPlayerTech();
 		mbs=new Match();
@@ -185,20 +187,20 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 //		first.setOpaque(true);
 		
 		name[0]=new JLabel();
-		name[0].setBounds(370, 350, 250, 30);
-		name[0].setFont(HP.firstname);
+		name[0].setBounds(375, 450, 250, 30);
+		name[0].setFont(HP.name);
 		name[0].setForeground(HP.LineSelected);
 		name[0].setText(hotplayerslist.get(0).name);
 		
 		info[0]=new JLabel();
-		info[0].setBounds(370, 375, 200, 20);
-		info[0].setFont(HP.info);
+		info[0].setBounds(375, 475, 200, 20);
+		info[0].setFont(HP.teamandinfo);
 		info[0].setForeground(HP.LineSelected);
 		info[0].setText(switchposition(hotplayerslist.get(0).position)+" / "+hotplayerslist.get(0).team);
 		
 		data[0]=new JLabel();
-		data[0].setBounds(370, 400, 100, 30);
-		data[0].setFont(HP.firstname);
+		data[0].setBounds(375, 500, 100, 30);
+		data[0].setFont(HP.data);
 		data[0].setForeground(HP.LineSelected);
 		switch(keyword){
 		case "score":
@@ -227,6 +229,10 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			break;
 		}
 		
+		images[0]=new JLabel();
+		images[0].setBounds(220, 275, 189, 300);
+		images[0].setIcon(new ImageIcon("images/players/action_small/"+hotplayerslist.get(0).name+".png"));
+		
 		
 		second = new JLabel();
 		second.setBounds(200+393, 185+buttonheight, 390, 100);
@@ -249,6 +255,8 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		this.add(name[0]);
 		this.add(info[0]);
 		this.add(data[0]);
+//		this.add(compare[0]);
+		this.add(images[0]);
 		
 		this.add(second);
 		this.add(third);
