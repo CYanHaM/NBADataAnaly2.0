@@ -103,13 +103,13 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		this.setLayout(null);
 		//创建颜色预设对象
 		PTPre=new PlayerTechPre();
-//		importdata=new ImportPlayer();
-//		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
+		importdata=new ImportPlayer();
+		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
 
-//		playerinfo=new Object[initial_data.size()][columnName.length];
-		playerinfo=new Object[PLAYERNUM][columnName.length];
+		playerinfo=new Object[initial_data.size()][columnName.length];
+//		playerinfo=new Object[PLAYERNUM][columnName.length];
 		//加载初始表格，显示队伍总数据
-//		handleinitial(initial_data);
+		handleinitial(initial_data);
 
 		//加载表格配置
 		table_config();

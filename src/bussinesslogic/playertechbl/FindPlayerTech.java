@@ -31,9 +31,26 @@ public class FindPlayerTech implements FindPlayerTechService{
 	@Override
 	public ArrayList<PlayerTechMVO> findHotPlayerToday(String date, String keyword) {
 		// TODO Auto-generated method stub
+		
 		 ArrayList<PlayerTechMPO> list = fd.findHotPlayerToday(date, keyword);
 		 MPO2MVO v2p = new MPO2MVO();
+		 ShowPlayerTech sh = new ShowPlayerTech();
+		 ArrayList<PlayerTechVO> tech = sh.showSeasonPlayerData();
+		 int size = tech.size();
 		 ArrayList<PlayerTechMVO> vo = v2p.list2vo(list);
+		 for(int i=0;i<vo.size();i++){
+			 PlayerTechMVO mvo = vo.get(i);
+			 for(int j=0;j<size;j++){
+				 if(tech.get(j).name.equals(mvo.name)){
+					 PlayerTechVO te = tech.get(j);
+					 mvo.blockShotImproving = te.blockShotImproving;
+					 mvo.scoreImproving = te.scoreImproving;
+					 mvo.stealImproving = te.stealImproving;
+					 mvo.secondaryAttackImproving = te.secondaryAttackImproving;
+					 mvo.reboundImproving = te.reboundImproving;
+				 }
+			 }
+		 }
 		return vo;
 	}
 
@@ -43,11 +60,11 @@ public class FindPlayerTech implements FindPlayerTechService{
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
 		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
-		//½øÐÐÅÅÐò
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Comparator<PlayerTechVO> comparator = new Comparator<PlayerTechVO>(){  
 			
 			public int compare(PlayerTechVO p2, PlayerTechVO p1) {   
-				//ÖØÐ´±È½Ï·½·¨
+				//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½
 				switch(keyword){
 				case "reboundave":
 					return (p1.reboundave-p2.reboundave)>=0?1:-1;
@@ -87,10 +104,10 @@ public class FindPlayerTech implements FindPlayerTechService{
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> list = sh.showSeasonPlayerData();
 		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
-		//½µÐòÅÅÁÐ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Comparator<PlayerTechVO> comparator = new Comparator<PlayerTechVO>(){  
 			public int compare(PlayerTechVO p1, PlayerTechVO p2) {   
-				//ÖØÐ´±È½Ï·½·¨
+				//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½
 				switch(keyword){
 				case "score":
 					return  (p2.scoreImproving>=p1.scoreImproving)?1:-1;

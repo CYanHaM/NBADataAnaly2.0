@@ -323,12 +323,13 @@ public class MatchLabel extends JPanel implements ActionListener{
 		}
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			Frame.removeAll();
+			Frame.dispose();
+			MainFrame mf=new MainFrame();
 			TeamVO tvo=new TeamVO();
 			tvo.abbreviation=teamname;
-			TeamPanel tp=new TeamPanel(tvo,Frame);
-			Frame.add(tp);
-			Frame.repaint();
+			TeamPanel tp=new TeamPanel(tvo,mf);
+			mf.add(tp);
+			mf.repaint();
 //			System.out.println(teamname);
 		}
 
