@@ -14,11 +14,11 @@ public class HotPre {
 	
 	public HotPre() {
 		
-		LineSelected=new Color(210,210,210);
+		LineSelected=new Color(245,245,245);
 		
 		switchbox=new Font("幼圆",0,12);
-		firstname=new Font("华文细黑",0,20);
-		nextname=new Font("华文细黑",0,10);
-		info=new Font("华文细黑",0,10);
+		firstname=new Font("华文细黑",0,27);
+		nextname=new Font("华文细黑",0,17);
+		info=new Font("华文细黑",0,20);
 	}
 }

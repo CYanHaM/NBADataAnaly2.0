@@ -11,11 +11,13 @@ import javax.swing.UIManager;
 
 import presentation.hotspotui.HotPlayerToday;
 import blservice.playerinfoblservice.PlayerInfoService;
+import blservice.playertechblservice.ShowPlayerTechService;
 import blservice.teamblservice.TeamBLservice;
 import blservice.teamtechblservice.TeamTechBLService;
 import bussinesslogic.TeamBL.Team;
 import bussinesslogic.TeamTech.TeamTech;
 import bussinesslogic.playerinfobl.PlayerInfo;
+import bussinesslogic.playertechbl.ShowPlayerTech;
 
 //import com.sun.awt.AWTUtilities;
 
