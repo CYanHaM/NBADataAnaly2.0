@@ -17,7 +17,7 @@ import dataservice.TeamDataService;
 public class TeamData implements TeamDataService, Serializable{
 
 	readFrom rf = new DataProcessing();
-	File file = new File("database/team.txt");
+	File file = new File("database/team.ser");
 
 	/**
 	 * 

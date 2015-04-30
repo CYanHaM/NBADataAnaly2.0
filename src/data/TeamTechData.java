@@ -17,7 +17,7 @@ import dataservice.TeamTechDataService;
 public class TeamTechData implements TeamTechDataService{
 
 	readFrom rf = new DataProcessing();
-	File file = new File("database/teamtech.txt");
+	File file = new File("database/teamtech.ser");
 	
 	public void WriteIn(){
 		ArrayList<MatchPO> source = new ArrayList<MatchPO>();
