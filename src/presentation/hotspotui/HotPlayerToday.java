@@ -202,42 +202,36 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		data[0].setBounds(375, 500, 100, 30);
 		data[0].setFont(HP.data);
 		data[0].setForeground(HP.LineSelected);
-		switch(keyword){
-		case "score":
-			data[0].setText(String.valueOf(hotplayerslist.get(0).score));
-			break;
-		case "rebound":
-			data[0].setText(String.valueOf(hotplayerslist.get(0).rebound));
-			break;
-		case "secondAttack":
-			data[0].setText(String.valueOf(hotplayerslist.get(0).secondaryAttack));
-			break;
-		case "blockShot":
-			data[0].setText(String.valueOf(hotplayerslist.get(0).blockShot));
-			break;
-		case "steal":
-			data[0].setText(String.valueOf(hotplayerslist.get(0).steal));
-			break;
-		case "double":
-//			data[0].setText(String.valueOf(hotplayerslist.get(0).double));
-			break;
-		case "scoreratio":
-//			data[0].setText(String.valueOf(hotplayerslist.get(0).compare));
-			break;
-		case "efficiency":
-//			data[0].setText(String.valueOf(hotplayerslist.get(0).efficiency));
-			break;
-		}
+		data[0].setText(switchkeyword(0, keyword));
 		
 		images[0]=new JLabel();
-		images[0].setBounds(220, 275, 189, 300);
+		images[0].setBounds(210, 275, 189, 300);
 		images[0].setIcon(new ImageIcon("images/players/action_small/"+hotplayerslist.get(0).name+".png"));
 		
 		
-		second = new JLabel();
-		second.setBounds(200+393, 185+buttonheight, 390, 100);
-		second.setBackground(Color.WHITE);
-		second.setOpaque(true);
+//		second = new JLabel();
+//		second.setBounds(200+393, 185+buttonheight, 390, 100);
+//		second.setBackground(Color.WHITE);
+//		second.setOpaque(true);
+		name[1]=new JLabel();
+		name[1].setBounds(375, 450, 250, 30);
+		name[1].setFont(HP.name);
+		name[1].setForeground(HP.LineSelected);
+		name[1].setText(hotplayerslist.get(1).name);
+		
+		info[1]=new JLabel();
+		info[1].setBounds(375, 475, 200, 20);
+		info[1].setFont(HP.teamandinfo);
+		info[1].setForeground(HP.LineSelected);
+		info[1].setText(switchposition(hotplayerslist.get(1).position)+" / "+hotplayerslist.get(1).team);
+		
+		data[1]=new JLabel();
+		data[1].setBounds(375, 500, 100, 30);
+		data[1].setFont(HP.data);
+		data[1].setForeground(HP.LineSelected);
+		data[1].setText(switchkeyword(1, keyword));
+		
+		
 		third = new JLabel();
 		third.setBounds(200+393, 185+buttonheight+100, 390, 100);
 		third.setBackground(Color.WHITE);
@@ -263,6 +257,8 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		this.add(fourth);
 		this.add(fifth);
 	}
+	
+
 	
 	private void insertData(){
 		if(score.isSelected()){
@@ -297,6 +293,37 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			selectedkeyword="efficiency";
 			hotplayerslist=fts.findHotPlayerToday(date,"efficiency");
 		}
+	}
+	
+	private String switchkeyword(int count,String keyword){
+		String resultword=null;
+		switch(keyword){
+		case "score":
+			resultword=String.valueOf(hotplayerslist.get(count).score);
+			break;
+		case "rebound":
+			resultword=String.valueOf(hotplayerslist.get(count).rebound);
+			break;
+		case "secondAttack":
+			resultword=String.valueOf(hotplayerslist.get(count).secondaryAttack);
+			break;
+		case "blockShot":
+			resultword=String.valueOf(hotplayerslist.get(count).blockShot);
+			break;
+		case "steal":
+			resultword=String.valueOf(hotplayerslist.get(count).steal);
+			break;
+		case "double":
+//			resultword=String.valueOf(hotplayerslist.get(count).double);
+			break;
+		case "scoreratio":
+//			resultword=String.valueOf(hotplayerslist.get(count).compare);
+			break;
+		case "efficiency":
+//			resultword=String.valueOf(hotplayerslist.get(count).efficiency);
+			break;
+		}
+		return resultword;
 	}
 	
 	private String switchposition(String pos){
