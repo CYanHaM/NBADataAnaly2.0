@@ -59,7 +59,7 @@ public class Show implements ShowDataService {
 		// TODO Auto-generated method stub
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p1, PlayerTechPO p2) {   
-				//ÖØÐ´±È½Ï·½·¨
+				//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½
 				switch(type){
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
@@ -143,7 +143,7 @@ public class Show implements ShowDataService {
 		// TODO Auto-generated method stub
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p2, PlayerTechPO p1) {   
-				//ÖØÐ´±È½Ï·½·¨
+				//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½
 				switch(type){
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
@@ -182,7 +182,9 @@ public class Show implements ShowDataService {
 				case "penaltyshot":
 					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
-					return  (p1.shotInRate-p2.shotInRate)>=0?1:-1;
+					if(p1.shotInRate==p2.shotInRate) return 0;
+					else
+						return  (p1.shotInRate-p2.shotInRate)>0?1:-1;
 				case "threeshotinrate":
 					return  (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
 				case "penaltyshotinrate":
