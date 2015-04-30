@@ -16,4 +16,8 @@ public interface ShowPlayerTechService {
 	public void refresh ();
 
 	public void PlayerTechIni();
+	
+	public ArrayList<PlayerTechVO> ascend(String type);
+	
+	public ArrayList<PlayerTechVO> descend(String type);
 }

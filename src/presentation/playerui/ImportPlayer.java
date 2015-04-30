@@ -6,6 +6,12 @@ import TypeEnum.PlayerTechEnum;
 import VO.PlayerTechVO;
 import VO.PlayerVO;
 import VO.TeamVO;
+import blservice.playerinfoblservice.PlayerInfoService;
+import blservice.playertechblservice.FindPlayerTechService;
+import blservice.playertechblservice.ShowPlayerTechService;
+import bussinesslogic.playerinfobl.PlayerInfo;
+import bussinesslogic.playertechbl.FindPlayerTech;
+import bussinesslogic.playertechbl.ShowPlayerTech;
 
 public class ImportPlayer {
 	/**
@@ -15,37 +21,34 @@ public class ImportPlayer {
 	 * @version 1.0
 	 */
 	//定义层间传输接口
-//	PlayerTechBLservice PTbs;
-//	PlayerBLservice Pbs;
+	PlayerInfoService pis;
+	FindPlayerTechService fpt;
+	ShowPlayerTechService spt;
 
 	public ImportPlayer(){
-//		PTbs = new PlayerTech();
-//		Pbs = new Player();
+		pis = new PlayerInfo();
+		fpt = new FindPlayerTech();
+		spt = new ShowPlayerTech();
 	}
 
-	public ArrayList<PlayerTechVO> getPlayerTechAscend(PlayerTechEnum DataType){
-		return null;
-//		return PTbs.Ascend(DataType);
+	public ArrayList<PlayerTechVO> getPlayerTechAscend(String DataType){
+		return spt.ascend(DataType);
 	}
 
-	public ArrayList<PlayerTechVO> getPlayerTechDescend(PlayerTechEnum DataType){
-//		return PTbs.Descend(DataType);
-		return null;
+	public ArrayList<PlayerTechVO> getPlayerTechDescend(String DataType){
+		return PTbs.Descend(DataType);
 	}
 	
 	public ArrayList<PlayerTechVO> sift(String position,String division,String ordergist){
-//		return PTbs.sift(position, division, ordergist);
-		return null;
+		return PTbs.sift(position, division, ordergist);
 	}
 	
 	public PlayerVO show(PlayerVO vo){
-//		return Pbs.Show(vo);
-		return null;
+		return Pbs.Show(vo);
 	}
 
 	public ArrayList<PlayerVO> findByTeam(TeamVO tvo){
-//		return Pbs.findByTeam(tvo);
-		return null;
+		return Pbs.findByTeam(tvo);
 	}
 
 }

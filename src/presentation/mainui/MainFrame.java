@@ -11,11 +11,13 @@ import javax.swing.UIManager;
 
 import presentation.teamui.TeamInfoPanel;
 import blservice.playerinfoblservice.PlayerInfoService;
+import blservice.playertechblservice.ShowPlayerTechService;
 import blservice.teamblservice.TeamBLservice;
 import blservice.teamtechblservice.TeamTechBLService;
 import bussinesslogic.TeamBL.Team;
 import bussinesslogic.TeamTech.TeamTech;
 import bussinesslogic.playerinfobl.PlayerInfo;
+import bussinesslogic.playertechbl.ShowPlayerTech;
 
 //import com.sun.awt.AWTUtilities;
 
@@ -111,8 +113,8 @@ public class MainFrame extends JFrame{
 		tbs.init();
 		PlayerInfoService pis=new PlayerInfo();
 		pis.PlayerInfoIni();
-//		ShowPlayerTechService ppts=new ShowPlayerTech();
-//		ppts.PlayerTechIni();
+		ShowPlayerTechService ppts=new ShowPlayerTech();
+		ppts.PlayerTechIni();
 		TeamTechBLService ttbs=new TeamTech();
 		ttbs.init();
 		
