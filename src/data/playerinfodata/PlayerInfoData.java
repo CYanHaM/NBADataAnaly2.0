@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import PO.PlayerPO;
 import data.DataProcessing;
 import data.readFrom;
+import data.playertechdata.OperateWithFile;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
 
 public class PlayerInfoData implements PlayerInfoDataService {
 	
 	public static void main(String[] args){
-		PlayerInfoData pd = new PlayerInfoData();
-		pd.write();
-		ArrayList<PlayerPO> list = pd.read();
-		for(int i=0;i<list.size();i++)
-			System.out.println(list.get(i).name);
+		PlayerInfoData pi = new PlayerInfoData();
+		pi.write();
+		OperateWithFile owf = new OperateWithFile();
+		owf.write();
 	}
 
 	readFrom rf  = new DataProcessing();

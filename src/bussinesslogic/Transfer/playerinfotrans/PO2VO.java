@@ -8,9 +8,9 @@ import VO.PlayerVO;
 public class PO2VO {
 	
 	public PlayerVO po2vo (PlayerPO po){
-	
+		
 		PlayerVO vo = new PlayerVO();
-		vo.name = po.name;
+		vo.name = po.name;  
 		vo.uniformNum = po.uniformNum;
 		vo.position = po.position;
 		vo.height = po.height;
@@ -28,7 +28,7 @@ public class PO2VO {
 		int size = list.size();
 		ArrayList<PlayerVO> res = new ArrayList<PlayerVO>();
 		for(int i=0;i<size;i++){
-			//´ý½â¾ö£¬Ö±½Óµ÷ÓÃ¿ì»¹ÊÇ¶à¸ö¸³Öµ¿ì£¿£¿
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Óµï¿½ï¿½Ã¿ì»¹ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½Öµï¿½ì£¿ï¿½ï¿½
 			PlayerVO vo = po2vo(list.get(i));
 			res.add(vo);
 		}

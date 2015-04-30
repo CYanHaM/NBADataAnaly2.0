@@ -1,6 +1,7 @@
 package bussinesslogic.playerinfobl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import data.playerinfodata.PlayerInfoData;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
@@ -34,9 +35,13 @@ public class PlayerInfo implements PlayerInfoService {
 	@Override
 	public PlayerVO showPlayerInfo(String name) {
 		// TODO Auto-generated method stub
-		PlayerPO po = fp.findOne(name);
-		PlayerVO vo = p2v.po2vo(po);
-		return vo;
+		PlayerPO po = fp.findOne(name);   System.out.println(name); System.out.println(po);
+		if(po==null) 
+			return null;
+		else{
+			PlayerVO vo = p2v.po2vo(po);
+			return vo;
+		}
 	}
 
 	@Override
@@ -62,6 +67,12 @@ public class PlayerInfo implements PlayerInfoService {
 		for(int i=0;i<s;i++){
 			if(tech.get(i).team.equals(team)){
 				res.add(showPlayerInfo(tech.get(i).name));
+			}
+		}
+		Iterator<PlayerVO> it = res.iterator();
+		while(it.hasNext()){
+			if(it.next()==null){
+				it.remove();
 			}
 		}
 		return res;

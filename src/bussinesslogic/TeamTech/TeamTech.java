@@ -250,6 +250,9 @@ public class TeamTech implements TeamTechBLService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+
+			
 			for(int i = 0; i<30; i++){
 				TeamTechVO ttvo = new TeamTechVO();
 				TeamTechP2L p2l = new TeamTechP2L();

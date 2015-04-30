@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import presentation.hotspotui.HotPlayerToday;
+import presentation.teamui.TeamInfoPanel;
 import blservice.playerinfoblservice.PlayerInfoService;
 import blservice.playertechblservice.ShowPlayerTechService;
 import blservice.teamblservice.TeamBLservice;
@@ -113,16 +113,16 @@ public class MainFrame extends JFrame{
 		tbs.init();
 		PlayerInfoService pis=new PlayerInfo();
 		pis.PlayerInfoIni();
-//		ShowPlayerTechService ppts=new ShowPlayerTech();
-//		ppts.PlayerTechIni();
+		ShowPlayerTechService ppts=new ShowPlayerTech();
+		ppts.PlayerTechIni();
 		TeamTechBLService ttbs=new TeamTech();
 		ttbs.init();
 		
 		
 		MainFrame mf=new MainFrame();
 //		MatchPanel mp=new MatchPanel(mf);
-//		TeamInfoPanel mp=new TeamInfoPanel(mf);
-		HotPlayerToday mp=new HotPlayerToday(mf);
+		TeamInfoPanel mp=new TeamInfoPanel(mf);
+//		HotPlayerToday mp=new HotPlayerToday(mf);
 		mf.add(mp);
 		mf.repaint();
 	}

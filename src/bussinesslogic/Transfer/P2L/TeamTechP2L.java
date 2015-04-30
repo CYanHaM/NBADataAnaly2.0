@@ -35,22 +35,22 @@ public class TeamTechP2L {
 		ttli.stealEfficiency = ttpo.stealEfficiency;
 		ttli.secondaryAttackEfficiency = ttpo.secondaryAttackEfficiency;
 		
-		ttli.shotInNumave = ttli.shotInNum/ttpo.gameNum;
-		ttli.shotNumave = ttli.shotNum/ttpo.gameNum;
-		ttli.threeShotInNumave = ttli.threeShotInNum/ttpo.gameNum;
-		ttli.threeShotNumave = ttli.threeShotNum/ttpo.gameNum;
-		ttli.penaltyShotInNumave = ttli.penaltyShotInNum/ttpo.gameNum;
-		ttli.penaltyShotNumave = ttli.penaltyShotNum/ttpo.gameNum;
-		ttli.offensiveReboundave = ttli.offensiveRebound/ttpo.gameNum;
-		ttli.defensiveReboundave = ttli.defensiveRebound/ttpo.gameNum;
-		ttli.reboundave = ttli.rebound/ttpo.gameNum;
-		ttli.secondaryAttackave = ttli.secondaryAttack/ttpo.gameNum;
-		ttli.stealave = ttli.steal/ttpo.gameNum;
-		ttli.blockShotave = ttli.blockShot/ttpo.gameNum;
-		ttli.faultave = ttli.fault/ttpo.gameNum;
-		ttli.foulave = ttli.foul/ttpo.gameNum;
-		ttli.scoreave = ttli.score/ttpo.gameNum;
-		ttli.offensiveRoundave = ttli.offensiveRound/ttpo.gameNum;
+		ttli.shotInNumave = ttli.shotInNum/ttli.gameNum;
+		ttli.shotNumave = ttli.shotNum/ttli.gameNum;
+		ttli.threeShotInNumave = ttli.threeShotInNum/ttli.gameNum;
+		ttli.threeShotNumave = ttli.threeShotNum/ttli.gameNum;
+		ttli.penaltyShotInNumave = ttli.penaltyShotInNum/ttli.gameNum;
+		ttli.penaltyShotNumave = ttli.penaltyShotNum/ttli.gameNum;
+		ttli.offensiveReboundave = ttli.offensiveRebound/ttli.gameNum;
+		ttli.defensiveReboundave = ttli.defensiveRebound/ttli.gameNum;
+		ttli.reboundave = ttli.rebound/ttli.gameNum;
+		ttli.secondaryAttackave = ttli.secondaryAttack/ttli.gameNum;
+		ttli.stealave = ttli.steal/ttli.gameNum;
+		ttli.blockShotave = ttli.blockShot/ttli.gameNum;
+		ttli.faultave = ttli.fault/ttli.gameNum;
+		ttli.foulave = ttli.foul/ttli.gameNum;
+		ttli.scoreave = ttli.score/ttli.gameNum;
+		ttli.offensiveRoundave = ttli.offensiveRound/ttli.gameNum;
 		
 		ttli.winningNum = ttpo.winningNum;
 		return ttli;

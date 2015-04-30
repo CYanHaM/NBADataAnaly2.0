@@ -47,4 +47,20 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 		ini.write();
 	}
 
+	@Override
+	public ArrayList<PlayerTechVO> ascend(String type) {
+		// TODO Auto-generated method stub
+		ArrayList<PlayerTechPO> all = sd.ascend(type);
+		ArrayList<PlayerTechVO> res = tr.list2vo(all);
+		return res;
+	}
+
+	@Override
+	public ArrayList<PlayerTechVO> descend(String type) {
+		// TODO Auto-generated method stub
+		ArrayList<PlayerTechPO> all = sd.descend(type);
+		ArrayList<PlayerTechVO> res = tr.list2vo(all);
+		return res;
+	}
+
 }

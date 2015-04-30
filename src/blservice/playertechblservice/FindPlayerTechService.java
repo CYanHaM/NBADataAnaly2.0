@@ -21,4 +21,5 @@ public interface FindPlayerTechService {
 	
 	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter);   //按照字母查询
 
+	public PlayerTechVO findPlayerTechByName(String name);
 }
