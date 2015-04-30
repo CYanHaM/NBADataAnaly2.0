@@ -214,7 +214,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 //		second.setBackground(Color.WHITE);
 //		second.setOpaque(true);
 		name[1]=new JLabel();
-		name[1].setBounds(375, 450, 250, 30);
+		name[1].setBounds(740, 250, 100, 30);
 		name[1].setFont(HP.name);
 		name[1].setForeground(HP.LineSelected);
 		name[1].setText(hotplayerslist.get(1).name);
