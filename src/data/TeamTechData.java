@@ -109,7 +109,7 @@ public class TeamTechData implements TeamTechDataService{
 	public ArrayList<TeamTechPO> readin(){
 		ArrayList<TeamTechPO> result = new ArrayList<TeamTechPO>();
 		try{
-            FileInputStream fis = new FileInputStream("database/teamtech.txt");
+            FileInputStream fis = new FileInputStream("database/teamtech.ser");
             @SuppressWarnings("resource")
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			result.clear();

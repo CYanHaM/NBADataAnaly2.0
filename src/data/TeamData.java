@@ -42,7 +42,7 @@ public class TeamData implements TeamDataService, Serializable{
 	ArrayList<TeamPO> read(){
 		ArrayList<TeamPO> result = new ArrayList<TeamPO>();
 		try{
-            FileInputStream fis = new FileInputStream("database/team.txt");
+            FileInputStream fis = new FileInputStream("database/team.ser");
             ObjectInputStream ois = new ObjectInputStream(fis);
 			result.clear();
 			result = (ArrayList<TeamPO>)ois.readObject();

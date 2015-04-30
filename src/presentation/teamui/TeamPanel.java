@@ -346,18 +346,22 @@ public class TeamPanel extends JPanel implements ActionListener{
 	}
 
 	public void handleinitial(ArrayList<PlayerVO> player){
-		int a=0;
-		for(PlayerVO i:player){
-			playerinfo[a][0]=i.name;
-			playerinfo[a][1]=i.uniformNum;
-			playerinfo[a][2]=i.position;
-			playerinfo[a][3]=i.height;
-			playerinfo[a][4]=i.weight;
-			playerinfo[a][5]=i.birth;
-			playerinfo[a][6]=i.age;
-			playerinfo[a][7]=i.exp;
-			playerinfo[a][8]=i.school;
-			a++;
+		int counting = 0;
+		for(int a = 0; a<player.size();a++){
+			if(player.get(a)==null){
+				
+			}else{
+				playerinfo[counting][0]=player.get(a).name;
+				playerinfo[counting][1]=player.get(a).uniformNum;
+				playerinfo[counting][2]=player.get(a).position;
+				playerinfo[counting][3]=player.get(a).height;
+				playerinfo[counting][4]=player.get(a).weight;
+				playerinfo[counting][5]=player.get(a).birth;
+				playerinfo[counting][6]=player.get(a).age;
+				playerinfo[counting][7]=player.get(a).exp;
+				playerinfo[counting][8]=player.get(a).school;
+				counting++;
+			}
 		}
 	}
 	

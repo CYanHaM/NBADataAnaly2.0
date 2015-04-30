@@ -1,6 +1,7 @@
 package bussinesslogic.playerinfobl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import data.playerinfodata.PlayerInfoData;
 import dataservice.playerinfodataservice.PlayerInfoDataService;
@@ -66,6 +67,12 @@ public class PlayerInfo implements PlayerInfoService {
 		for(int i=0;i<s;i++){
 			if(tech.get(i).team.equals(team)){
 				res.add(showPlayerInfo(tech.get(i).name));
+			}
+		}
+		Iterator<PlayerVO> it = res.iterator();
+		while(it.hasNext()){
+			if(it.next()==null){
+				it.remove();
 			}
 		}
 		return res;
