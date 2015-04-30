@@ -36,15 +36,15 @@ public class OperateWithFile implements PlayerTechInitial {
 	public void write(){
 		
 		
-		//calculateteam¼ÆËã¸÷ÖÖÂÊ
+		//calculateteamï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<PlayerTechMPO> mpoList = calculateTeam();
 		ArrayList<PlayerTechPO> poList = new ArrayList<PlayerTechPO>();
 
-		//div´¢´æÃ¿¸öÇòÔ±µÄËùÓÐ±ÈÈüÊý¾Ý
+		//divï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<ArrayList<PlayerTechMPO> > div = new ArrayList<ArrayList<PlayerTechMPO> >();
 		while(mpoList.size()!=0){
 			int mpoSize = mpoList.size();
-			//ÔÝ´æÍ¬Ò»ÇòÔ±µÄÃ¿³¡±ÈÈüÊý¾Ý¡£
+			//ï¿½Ý´ï¿½Í¬Ò»ï¿½ï¿½Ô±ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
 			ArrayList<PlayerTechMPO> temp = new ArrayList<PlayerTechMPO>();
 			temp.add(mpoList.get(0));
 			String name = mpoList.get(0).name;
@@ -57,7 +57,7 @@ public class OperateWithFile implements PlayerTechInitial {
 				}
 			}
 			mpoList.get(0).name = "";
-			//½«mpoListÀïÒÑ´¦Àí¹ýµÄÉ¾³ý¡£
+			//ï¿½ï¿½mpoListï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½
 			Iterator<PlayerTechMPO> it = mpoList.iterator();
 			while(it.hasNext()){  
 			    PlayerTechMPO  tem = it.next();  
@@ -66,12 +66,12 @@ public class OperateWithFile implements PlayerTechInitial {
 			    }  
 			} 
 			div.add(temp);
-			//¶Ôtemp½øÐÐ´¦Àí¡£
+			//ï¿½ï¿½tempï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
 			PlayerTechPO ptp = new PlayerTechPO();
 			ptp.name = name;
 			ptp.team = team;
 			
-			//³¡¾ùÊý¾ÝÏà¼Ó¶øµÃ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
 			ptp.gameNum = 0;
 			ptp.startingNum = 0;
 			ptp.rebound = 0;
@@ -106,7 +106,7 @@ public class OperateWithFile implements PlayerTechInitial {
 			int tempSize = temp.size();
 			for(int i=0;i<tempSize;i++){
 				PlayerTechMPO mp = temp.get(i);
-				//Èç¹ûÎ´²ÎÈü£¬Ôò²»±Ø¼ÌÐø¼ÆËã
+				//ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò²»±Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if(mp.ifParticipate==0)
 					break;
 				ptp.gameNum += mp.ifParticipate;
@@ -142,8 +142,8 @@ public class OperateWithFile implements PlayerTechInitial {
 				ptp.teamFault = mp.teamFault;
 			}
 			
-			//¸ù¾Ý¹«Ê½¼ÆËã
-			//³ýÊý²»ÄÜÎª0
+			//ï¿½ï¿½ï¿½Ý¹ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0
 			if(ptp.threeShot==0){					
 				ptp.threeShotInRate=0;
 				}else{
@@ -283,17 +283,17 @@ public class OperateWithFile implements PlayerTechInitial {
 			MatchPO ma = match.get(i);
 			ArrayList<PlayerTechMPO> list = ma.playerStatistic;
 			
-			int teamAllTime =ma.homeAllTime;                  //È«¶ÓÉÏ³¡Ê±¼ä
-			int teamOffensiveRebound = ma.homeTeamOffensiveRebound;                  //È«¶Ó½ø¹¥Àº°å
-			int teamDefensiveRebound = ma.homeTeamDeffensiveRebound;                //È«¶Ó·ÀÊØÀº°å
-			int opponentOffensiveRebound = ma.guestTeamOffensiveRebound;                  //¶ÔÊÖ½ø¹¥Àº°å
-			int opponentDefensiveRebound =ma.guestTeamDeffensiveRebound;                //¶ÔÊÖ·ÀÊØÀº°å
-		    int teamShotIn = ma.homeTwoShotIn+ma.homeThreeShotIn;                             //È«¶Ó½øÇòÊý
-			double opponentOffensiveNum = ma.guestTeamOffensiveRound;                     //¶ÔÊÖ½ø¹¥´ÎÊý
-			int opponentTwoShot =ma.guestTwoShot;                     //¶ÔÊÖ½ø¹¥Á½·ÖÇò³öÊÖ´ÎÊý
-			int teamShot = ma.homeShot;                          //È«¶Ó³öÊÖ´ÎÊý
-		    int teamPenaltyShot =ma.homePenaltyShot;                   //È«¶Ó·£Çò´ÎÊý
-			int teamFault = ma.homeFault;                          //È«¶ÓÊ§Îó´ÎÊý    
+			int teamAllTime =ma.homeAllTime;                  //È«ï¿½ï¿½ï¿½Ï³ï¿½Ê±ï¿½ï¿½
+			int teamOffensiveRebound = ma.homeTeamOffensiveRebound;                  //È«ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int teamDefensiveRebound = ma.homeTeamDeffensiveRebound;                //È«ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int opponentOffensiveRebound = ma.guestTeamOffensiveRebound;                  //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int opponentDefensiveRebound =ma.guestTeamDeffensiveRebound;                //ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		    int teamShotIn = ma.homeTwoShotIn+ma.homeThreeShotIn;                             //È«ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½
+			double opponentOffensiveNum = ma.guestTeamOffensiveRound;                     //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int opponentTwoShot =ma.guestTwoShot;                     //ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+			int teamShot = ma.homeShot;                          //È«ï¿½Ó³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½
+		    int teamPenaltyShot =ma.homePenaltyShot;                   //È«ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int teamFault = ma.homeFault;                          //È«ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½    
 			
 			int listSize = list.size();
 			for(int j=0;j<listSize;j++){
@@ -327,11 +327,10 @@ public class OperateWithFile implements PlayerTechInitial {
 	}
 	
 	public ArrayList<PlayerTechPO> calculateImproving(ArrayList<PlayerTechPO> poList){
-		 //¼ÆËã°´Ê±¼äÅÅÐò¡¢°´ÐÕÃû·ÖÀàµÄ¼¼ÊõÍ³¼Æ
+		 //ï¿½ï¿½ï¿½ã°´Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ò¡¢°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Í³ï¿½ï¿½
 		 ArrayList<ArrayList<PlayerTechMPO>> li = readDiv();
-			int size = li.size();
 			/*
-			 * ÔÝ¶¨
+			 * ï¿½Ý¶ï¿½
 			 */
 			Iterator<ArrayList<PlayerTechMPO>> it = li.iterator();
 			while(it.hasNext()){
@@ -339,12 +338,13 @@ public class OperateWithFile implements PlayerTechInitial {
 					it.remove();
 				}
 			}
+			int size = li.size();
 			for(int i=0;i<size;i++){
 				ArrayList<PlayerTechMPO> list = li.get(i);
-				//½øÐÐÅÅÐò
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
 					public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
-						//ÖØÐ´±È½Ï·½·¨,½µÐò±È½ÏÈÕÆÚ
+						//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½ï¿½ï¿½ï¿½
 						 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd",Locale.CHINA);
 						 Date dt1;
 						 Date dt2;
@@ -368,13 +368,13 @@ public class OperateWithFile implements PlayerTechInitial {
 		 int amount = li.size();
 		 for(int j=0;j<amount;j++){
 			 ArrayList<PlayerTechMPO> list= li.get(j);
-			 //²âÊ¹ÓÃ
+			 //ï¿½ï¿½Ê¹ï¿½ï¿½
 		//	 System.out.println(list.size());
 			 String name = list.get(0).name;
-			 //¿ªÊ¼¼ÆËãÃ¿Ò»¸öÇòÔ±µÄÌáÉýÂÊ
-			//×î½ü5³¡±ÈÈüÊý¾Ý
+			 //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
-			 //listÎªÖ®Ç°Êý¾Ý
+			 //listÎªÖ®Ç°ï¿½ï¿½ï¿½ï¿½
 			int num=0;
 			while(num<5){     
 				latest.add(list.get(0));
