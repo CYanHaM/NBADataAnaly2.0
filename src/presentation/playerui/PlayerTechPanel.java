@@ -566,7 +566,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			orderPlayerTechVO=importdata.getPlayerTechAscend("rebound");
 			break;
 		case "助攻数":
-			orderPlayerTechVO=importdata.getPlayerTechAscend("secondaryattack");
+			orderPlayerTechVO=importdata.getPlayerTechAscend("secondaryAttack");
 			break;
 		case "在场时间":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("time");
@@ -660,7 +660,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				orderPlayerTechVO=importdata.getPlayerTechDescend("rebound");
 				break;
 			case "助攻数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattack");
+				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryAttack");
 				break;
 			case "在场时间":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("time");

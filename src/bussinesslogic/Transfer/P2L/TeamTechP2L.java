@@ -35,23 +35,26 @@ public class TeamTechP2L {
 		ttli.stealEfficiency = ttpo.stealEfficiency;
 		ttli.secondaryAttackEfficiency = ttpo.secondaryAttackEfficiency;
 		
-		ttli.shotInNumave = ttli.shotInNum/ttli.gameNum;
-		ttli.shotNumave = ttli.shotNum/ttli.gameNum;
-		ttli.threeShotInNumave = ttli.threeShotInNum/ttli.gameNum;
-		ttli.threeShotNumave = ttli.threeShotNum/ttli.gameNum;
-		ttli.penaltyShotInNumave = ttli.penaltyShotInNum/ttli.gameNum;
-		ttli.penaltyShotNumave = ttli.penaltyShotNum/ttli.gameNum;
-		ttli.offensiveReboundave = ttli.offensiveRebound/ttli.gameNum;
-		ttli.defensiveReboundave = ttli.defensiveRebound/ttli.gameNum;
-		ttli.reboundave = ttli.rebound/ttli.gameNum;
-		ttli.secondaryAttackave = ttli.secondaryAttack/ttli.gameNum;
-		ttli.stealave = ttli.steal/ttli.gameNum;
-		ttli.blockShotave = ttli.blockShot/ttli.gameNum;
-		ttli.faultave = ttli.fault/ttli.gameNum;
-		ttli.foulave = ttli.foul/ttli.gameNum;
-		ttli.scoreave = ttli.score/ttli.gameNum;
-		ttli.offensiveRoundave = ttli.offensiveRound/ttli.gameNum;
-		
+		if(ttli.gameNum==0){
+			
+		}else{
+			ttli.shotInNumave = ttli.shotInNum/ttli.gameNum;
+			ttli.shotNumave = ttli.shotNum/ttli.gameNum;
+			ttli.threeShotInNumave = ttli.threeShotInNum/ttli.gameNum;
+			ttli.threeShotNumave = ttli.threeShotNum/ttli.gameNum;
+			ttli.penaltyShotInNumave = ttli.penaltyShotInNum/ttli.gameNum;
+			ttli.penaltyShotNumave = ttli.penaltyShotNum/ttli.gameNum;
+			ttli.offensiveReboundave = ttli.offensiveRebound/ttli.gameNum;
+			ttli.defensiveReboundave = ttli.defensiveRebound/ttli.gameNum;
+			ttli.reboundave = ttli.rebound/ttli.gameNum;
+			ttli.secondaryAttackave = ttli.secondaryAttack/ttli.gameNum;
+			ttli.stealave = ttli.steal/ttli.gameNum;
+			ttli.blockShotave = ttli.blockShot/ttli.gameNum;
+			ttli.faultave = ttli.fault/ttli.gameNum;
+			ttli.foulave = ttli.foul/ttli.gameNum;
+			ttli.scoreave = ttli.score/ttli.gameNum;
+			ttli.offensiveRoundave = ttli.offensiveRound/ttli.gameNum;
+		}
 		ttli.winningNum = ttpo.winningNum;
 		return ttli;
 	}
