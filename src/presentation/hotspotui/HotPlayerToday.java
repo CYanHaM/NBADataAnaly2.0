@@ -1,16 +1,13 @@
 package presentation.hotspotui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import presentation.preset.HotPre;
 
@@ -45,7 +42,16 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	private JButton compare;
 	private JButton efficiency;
 	
-
+	private JLabel first;
+	private JLabel firstname;
+	
+	
+	
+	private JLabel second;
+	private JLabel third;
+	private JLabel fourth;
+	private JLabel fifth;
+	
 	HotPre HP;
 	JFrame Frame;
 	public HotPlayerToday(JFrame frame) {
@@ -56,6 +62,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		HP=new HotPre();
 		addbox();
 		addbutton();
+		addlabel();
 	}
 
 	private void addbox(){
@@ -121,6 +128,36 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		this.add(compare);
 		this.add(efficiency);
 		
+	}
+	
+	private void addlabel(){
+		first = new JLabel();
+		first.setBounds(200, 185+buttonheight, 390, 400);
+		first.setBackground(Color.WHITE);
+		first.setOpaque(true);
+		
+		second = new JLabel();
+		second.setBounds(200+393, 185+buttonheight, 390, 100);
+		second.setBackground(Color.WHITE);
+		second.setOpaque(true);
+		third = new JLabel();
+		third.setBounds(200+393, 185+buttonheight+100, 390, 100);
+		third.setBackground(Color.WHITE);
+		third.setOpaque(true);
+		fourth = new JLabel();
+		fourth.setBounds(200+393, 185+buttonheight+100*2, 390, 100);
+		fourth.setBackground(Color.WHITE);
+		fourth.setOpaque(true);
+		fifth = new JLabel();
+		fifth.setBounds(200+393, 185+buttonheight+100*3, 390, 100);
+		fifth.setBackground(Color.WHITE);
+		fifth.setOpaque(true);
+
+		this.add(first);
+		this.add(second);
+		this.add(third);
+		this.add(fourth);
+		this.add(fifth);
 	}
 	
 	

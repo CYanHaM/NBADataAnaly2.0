@@ -32,10 +32,12 @@ public class ImportTeam {
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechAscend(TeamTechEnum DataType){
+		TTbs = new TeamTech();
 		return TTbs.Ascend(DataType);
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechDescend(TeamTechEnum DataType){
+		TTbs = new TeamTech();
 		return TTbs.Descend(DataType);
 	}
 	
