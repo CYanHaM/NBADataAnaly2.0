@@ -67,21 +67,45 @@ public class FindPlayerTech implements FindPlayerTechService{
 				//��д�ȽϷ���
 				switch(keyword){
 				case "reboundave":
-					return (p1.reboundave-p2.reboundave)>=0?1:-1;
+					if(p1.reboundave==p2.reboundave)
+						return 0;
+					else
+						return (p1.reboundave-p2.reboundave)>0?1:-1;
 				case "secondaryattackave":
-					return (p1.secondaryAttackave-p2.secondaryAttackave)>=0?1:-1;	
+					if (p1.secondaryAttackave==p2.secondaryAttackave)
+						return 0;
+					else
+						return (p1.secondaryAttackave-p2.secondaryAttackave)>0?1:-1;	
 				case "stealave":
-					return (p1.stealave-p2.stealave)>=0?1:-1;
+					if(p1.stealave==p2.stealave)
+						return 0;
+					else
+						return (p1.stealave-p2.stealave)>0?1:-1;
 				case "blockshotave":
-					return (p1.blockShotave-p2.blockShotave)>=0?1:-1;
+					if(p1.blockShotave==p2.blockShotave)
+						return 0;
+					else
+						return (p1.blockShotave-p2.blockShotave)>0?1:-1;
 				case "scoreave":
-					return (p1.scoreave-p2.scoreave)>=0?1:-1;
+					if(p1.scoreave==p2.scoreave)
+						return 0;
+					else
+						return (p1.scoreave-p2.scoreave)>0?1:-1;
 				case "threeshotinrate":
-					return (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
+					if(p1.threeShotInRate==p2.threeShotInRate)
+						return 0;
+					else
+						return (p1.threeShotInRate-p2.threeShotInRate)>0?1:-1;
 				case "shotinrate":
-					return (p1.shotInRate-p2.shotInRate)>=0?1:-1;
+					if(p1.shotInRate==p2.shotInRate)
+						return 0;
+					else
+						return (p1.shotInRate-p2.shotInRate)>0?1:-1;
 				case "penaltyshotinrate":
-					return (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
+					if(p1.penaltyShotInRate==p2.penaltyShotInRate)
+						return 0;
+					else
+						return (p1.penaltyShotInRate-p2.penaltyShotInRate)>0?1:-1;
 				case "double":
 					return p1.ifDouble-p2.ifDouble;
 				default:
@@ -110,15 +134,30 @@ public class FindPlayerTech implements FindPlayerTechService{
 				//��д�ȽϷ���
 				switch(keyword){
 				case "score":
-					return  (p2.scoreImproving>=p1.scoreImproving)?1:-1;
+					if(p2.scoreImproving==p1.scoreImproving)
+						return 0;
+					else
+						return  (p2.scoreImproving>p1.scoreImproving)?1:-1;
 				case "blockshot":
-					return p2.blockShotImproving>=p1.blockShotImproving?1:-1;
+					if(p2.blockShotImproving==p1.blockShotImproving)
+						return 0;
+					else
+						return (p2.blockShotImproving>p1.blockShotImproving)?1:-1;
 				case "rebound":
-					return p2.reboundImproving>=p1.reboundImproving?1:-1;
+					if(p2.reboundImproving==p1.reboundImproving)
+						return 0;
+					else
+						return (p2.reboundImproving>p1.reboundImproving)?1:-1;
 				case "secondaryAttack":
-					return p2.secondaryAttackImproving>=p1.secondaryAttackImproving?1:-1;
+					if(p2.secondaryAttackImproving==p1.secondaryAttackImproving)
+						return 0;
+					else
+						return (p2.secondaryAttackImproving>p1.secondaryAttackImproving)?1:-1;
 				case "steal":
-					return p2.stealImproving>=p1.stealImproving?1:-1;
+					if(p2.stealImproving==p1.stealImproving)
+						return 0;
+					else
+						return (p2.stealImproving>p1.stealImproving)?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;
