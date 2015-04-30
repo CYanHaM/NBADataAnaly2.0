@@ -5,17 +5,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 
+import presentation.teamui.TeamInfoPanel;
 import blservice.playerinfoblservice.PlayerInfoService;
-import blservice.playertechblservice.ShowPlayerTechService;
 import blservice.teamblservice.TeamBLservice;
 import blservice.teamtechblservice.TeamTechBLService;
 import bussinesslogic.TeamBL.Team;
 import bussinesslogic.TeamTech.TeamTech;
 import bussinesslogic.playerinfobl.PlayerInfo;
-import bussinesslogic.playertechbl.ShowPlayerTech;
-import presentation.matchui.MatchPanel;
 
 //import com.sun.awt.AWTUtilities;
 
@@ -118,7 +118,9 @@ public class MainFrame extends JFrame{
 		
 		
 		MainFrame mf=new MainFrame();
-		MatchPanel mp=new MatchPanel(mf);
+//		MatchPanel mp=new MatchPanel(mf);
+		TeamInfoPanel mp=new TeamInfoPanel(mf);
+//		HotPlayerToday mp=new HotPlayerToday(mf);
 		mf.add(mp);
 		mf.repaint();
 	}

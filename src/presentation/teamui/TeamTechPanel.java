@@ -87,14 +87,14 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		this.setOpaque(false);
 		//创建颜色预设对象
 		TTPre=new TeamTechPre();
-//		importdata=new ImportTeam();
-//		initial_data=importdata.getTeamTechAscend(TeamTechEnum.name);
+		importdata=new ImportTeam();
+		initial_data=importdata.getTeamTechAscend(TeamTechEnum.name);
 //		System.out.println(initial_data.size());
 
-//		teaminfo=new Object[initial_data.size()][columnName.length];
-		teaminfo=new Object[TEAMNUM][columnName.length];
+		teaminfo=new Object[initial_data.size()][columnName.length];
+//		teaminfo=new Object[TEAMNUM][columnName.length];
 		//加载初始表格，显示队伍总数据
-//		handleinitial(initial_data);
+		handleinitial(initial_data);
 
 		//加载表格配置
 		table_config();
@@ -204,6 +204,11 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	
 	private void handleinitial(ArrayList<TeamTechVO> totaldata){
 		int a=0;
+		
+//		for(int i = 0;i<30;i++){
+//			System.out.println(totaldata.get(i).shotInNum);
+//		}
+		
 		for(TeamTechVO i:totaldata){
 			teaminfo[a][1]=switchTeamName(i.name);
 			teaminfo[a][2]=i.gameNum;

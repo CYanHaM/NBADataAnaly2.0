@@ -8,7 +8,9 @@ import VO.TeamTechVO;
 import VO.TeamVO;
 import blservice.playerinfoblservice.PlayerInfoService;
 import blservice.teamblservice.TeamBLservice;
+import blservice.teamtechblservice.TeamTechBLService;
 import bussinesslogic.TeamBL.Team;
+import bussinesslogic.TeamTech.TeamTech;
 import bussinesslogic.playerinfobl.PlayerInfo;
 
 public class ImportTeam {
@@ -19,24 +21,22 @@ public class ImportTeam {
  * @version 1.2
  */
 	//�����䴫��ӿ�
-//	TeamTechBLservice TTbs;
+	TeamTechBLService TTbs;
 	TeamBLservice Tbs;
 	PlayerInfoService pis;
 
 	public ImportTeam(){
-//		TTbs = new TeamTech();
+		TTbs = new TeamTech();
 		Tbs = new Team();
 		pis=new PlayerInfo();
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechAscend(TeamTechEnum DataType){
-//		return TTbs.Ascend(DataType);
-		return null;
+		return TTbs.Ascend(DataType);
 	}
 
 	public ArrayList<TeamTechVO> getTeamTechDescend(TeamTechEnum DataType){
-//		return TTbs.Descend(DataType);
-		return null;
+		return TTbs.Descend(DataType);
 	}
 	
 	public TeamVO getTeamVO(TeamVO tvo){

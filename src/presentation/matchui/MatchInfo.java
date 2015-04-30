@@ -43,6 +43,7 @@ public class MatchInfo extends JPanel{
 //		this.setOpaque(false);
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(panel_width,panel_height));
+		this.setSize(panel_width,panel_height);
 		this.setBackground(MP.MatchInfobg);
 		
 		//TODO change the matches when testing

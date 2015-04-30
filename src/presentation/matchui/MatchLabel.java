@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.mainui.MainFrame;
 import presentation.preset.MatchPre;
+import presentation.teamui.TeamInfoPanel;
 import presentation.teamui.TeamPanel;
 import VO.MatchVO;
 import VO.TeamVO;
@@ -347,10 +349,12 @@ public class MatchLabel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()==details){
-			Frame.removeAll();
+			Frame.dispose();
+			MainFrame mf=new MainFrame();
+//			TeamInfoPanel md=new TeamInfoPanel(mf);
 			MatchDetail md=new MatchDetail(Frame, Matchinfo);
-			Frame.add(md);
-			Frame.repaint();
+			mf.add(md);
+			mf.repaint();
 		}
 	}
 }

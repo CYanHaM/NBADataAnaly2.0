@@ -4,14 +4,18 @@ package presentation.matchui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.*;
 
+import VO.MatchVO;
 import blservice.matchblservice.MatchBLService;
 import bussinesslogic.matchbl.Match;
 import presentation.mainui.DateLabel;
+import presentation.mainui.MainFrame;
 import presentation.preset.MatchPre;
+import presentation.teamui.TeamInfoPanel;
 
 public class MatchPanel extends JPanel implements ActionListener{
 	/**
@@ -35,8 +39,8 @@ public class MatchPanel extends JPanel implements ActionListener{
 	private MatchInfo matchinfo;
 	private JScrollPane jsp;
 	private DateLabel datelabel;
-	MatchBLService mbs;
-	JFrame Frame;
+	private MatchBLService mbs;
+	public JFrame Frame;
 
 	public MatchPanel(JFrame frame) {
 		Frame=frame;
@@ -181,6 +185,10 @@ public class MatchPanel extends JPanel implements ActionListener{
 		
 		if(arg0.getSource()==refresh){
 			refresh();
+//			MainFrame mf=new MainFrame();
+//			TeamInfoPanel md=new TeamInfoPanel(mf);
+//			mf.add(md);
+//			mf.repaint();
 		}
 	}
 

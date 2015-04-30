@@ -32,8 +32,8 @@ public class MatchDetail extends JPanel{
 	public static int FRAME_WIDTH=1020;
 	public static int FRAME_HEIGHT=670;
 	//表格大小
-	private static int TABLEWIDTH=800;
-	private static int TABLEHEIGHT=450;
+	private static int TABLEWIDTH=785;
+	private static int TABLEHEIGHT=360;
 
 	private int playerNum_guest=0;
 	private int playerNum_home=0;
@@ -49,7 +49,7 @@ public class MatchDetail extends JPanel{
 			"罚球命中","罚球出手","进攻","防守","篮板","助攻","抢断","盖帽","失误","犯规","得分"};
 	private static int ROWHEIGHT=28;
 	//表格列宽
-	private static int[] COLUMNWIDTH={200,50,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40};
+	private static int[] COLUMNWIDTH={123,36,36,36,57,57,57,57,36,36,36,36,36,36,36,36,36};
 	public int HeaderColumn=0;
 
 	private JLabel message;
@@ -62,31 +62,36 @@ public class MatchDetail extends JPanel{
 		this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
 		MP = new MatchPre();
 
+
 		getplayerNum(mvo);
+
+
+		//		teaminfo_guest=new Object[playerNum_guest][columnName.length];
+		//		//define table
+		//		table_guest = new JTable(teaminfo_guest, columnName){
+		//			private static final long serialVersionUID = 1L;
+		//			public boolean isCellEditable(int row, int column) { 
+		//				return false;
+		//			}
+		//		};
+		tableguest_config();
+
+		//		teaminfo_home=new Object[playerNum_home][columnName.length];
+		//		//define table
+		//		table_home = new JTable(teaminfo_home, columnName){
+		//			private static final long serialVersionUID = 1L;
+		//			public boolean isCellEditable(int row, int column) { 
+		//				return false;
+		//			}
+		//		};
+		tablehome_config();
+
 		insertData(mvo);
-
-		teaminfo_guest=new Object[playerNum_guest][columnName.length];
-		//define table
-		table_guest = new JTable(teaminfo_guest, columnName){
-			private static final long serialVersionUID = 1L;
-			public boolean isCellEditable(int row, int column) { 
-				return false;
-			}
-		};
-		table_config(table_guest,teaminfo_guest);
-
-		teaminfo_home=new Object[playerNum_home][columnName.length];
-		//define table
-		table_home = new JTable(teaminfo_home, columnName){
-			private static final long serialVersionUID = 1L;
-			public boolean isCellEditable(int row, int column) { 
-				return false;
-			}
-		};
-		table_config(table_home,teaminfo_home);
 
 		jsp_guest = new JScrollPane(table_guest);
 		jsp_home = new JScrollPane(table_home);
+		jsp_guest.setViewportView(table_guest);
+		this.repaint();
 		scrollpane_config(jsp_guest,table_guest);
 		scrollpane_config(jsp_home,table_home);
 
@@ -95,18 +100,18 @@ public class MatchDetail extends JPanel{
 		message.setFont(MP.switchbox);
 		message.setForeground(MP.TableFg);
 		this.add(message);
-		
-		System.out.println("hahaha");
+
+		this.repaint();
+
 	}
 
 	public void getplayerNum(MatchVO mvo){
-		System.out.println("here");
 		ArrayList<PlayerTechMPO> playerTech=mvo.playerStatistic;
 		//calculate the num of every teams
 		for(PlayerTechMPO ppo:playerTech){
-			if(ppo.equals(mvo.guestTeam)){
+			if(ppo.team.equals(mvo.guestTeam)){
 				playerNum_guest++;
-			}else if(ppo.equals(mvo.homeTeam)){
+			}else if(ppo.team.equals(mvo.homeTeam)){
 				playerNum_home++;
 			}
 		}
@@ -116,7 +121,7 @@ public class MatchDetail extends JPanel{
 		ArrayList<PlayerTechMPO> playerTech=mvo.playerStatistic;
 		int i=0;
 		for(PlayerTechMPO ppo:playerTech){
-			if(ppo.equals(mvo.guestTeam)){
+			if(ppo.team.equals(mvo.guestTeam)){
 				teaminfo_guest[i][0]=ppo.name;
 				teaminfo_guest[i][1]=ppo.time;
 				teaminfo_guest[i][2]=ppo.shotIn;
@@ -134,8 +139,14 @@ public class MatchDetail extends JPanel{
 				teaminfo_guest[i][14]=ppo.fault;
 				teaminfo_guest[i][15]=ppo.foul;
 				teaminfo_guest[i][16]=ppo.score;
+				System.out.println(teaminfo_guest[i][16]);
+				i++;
+			}
 
-			}else if(ppo.equals(mvo.homeTeam)){
+		}
+		i=0;
+		for(PlayerTechMPO ppo:playerTech){
+			if(ppo.team.equals(mvo.homeTeam)){
 				teaminfo_home[i][0]=ppo.name;
 				teaminfo_home[i][1]=ppo.time;
 				teaminfo_home[i][2]=ppo.shotIn;
@@ -153,14 +164,14 @@ public class MatchDetail extends JPanel{
 				teaminfo_home[i][14]=ppo.fault;
 				teaminfo_home[i][15]=ppo.foul;
 				teaminfo_home[i][16]=ppo.score;
+				i++;
 			}
-			i++;
+
 		}
 	}
 
-
 	//表格配置
-	public void table_config( final JTable teamtable,Object[][] teaminfo){
+	public void tableguest_config(){
 		//------------------------------表格基本属性--------------------------
 		//		for(int i=0;i<;i++){
 		//			teaminfo[i][0]=i+1;
@@ -169,26 +180,35 @@ public class MatchDetail extends JPanel{
 		//			teaminfo[i][0]=i+1;
 		//		}
 
+		teaminfo_guest=new Object[playerNum_guest][columnName.length];
+		//define table
+		table_guest = new JTable(teaminfo_guest, columnName){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+
 		//根据条目名自动调整列宽
-		teamtable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table_guest.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		//设置表格列不可移动
-		teamtable.getTableHeader().setReorderingAllowed(false);
+		table_guest.getTableHeader().setReorderingAllowed(false);
 		//设置列名居中
-		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable.getTableHeader() .getDefaultRenderer();  
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) table_guest.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
 		//设置表格数据及表头字体字号
-		teamtable.setFont(MP.CellFont);
-		teamtable.setForeground(MP.CellFg);
-		teamtable.getTableHeader().setFont(MP.HeaderFont);
-		teamtable.getTableHeader().setForeground(MP.TableFg);
-		teamtable.getTableHeader().setOpaque(false);
-		teamtable.getTableHeader().setBackground(MP.TableBg);
+		table_guest.setFont(MP.CellFont);
+		table_guest.setForeground(MP.CellFg);
+		table_guest.getTableHeader().setFont(MP.HeaderFont);
+		table_guest.getTableHeader().setForeground(MP.TableFg);
+		table_guest.getTableHeader().setOpaque(false);
+		table_guest.getTableHeader().setBackground(MP.TableBg);
 		//去除边框
-		teamtable.setBorder(null);
+		table_guest.setBorder(null);
 
 		//按行修改表格背景
-		TableColumnModel model = teamtable.getColumnModel();
+		TableColumnModel model = table_guest.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
 			TableColumn column = model.getColumn(i);
@@ -196,22 +216,22 @@ public class MatchDetail extends JPanel{
 		}
 
 		//不显示单元格边框线
-		teamtable.setShowHorizontalLines(false);
-		teamtable.setShowVerticalLines(false);
+		table_guest.setShowHorizontalLines(false);
+		table_guest.setShowVerticalLines(false);
 		//设置选中颜色
-		teamtable.setSelectionBackground(MP.LineSelected);
+		table_guest.setSelectionBackground(MP.LineSelected);
 
 		//设置行高
-		teamtable.setRowHeight(ROWHEIGHT);
+		table_guest.setRowHeight(ROWHEIGHT);
 		//设置列宽
 		for(int i=0;i<COLUMNWIDTH.length;i++){
-			teamtable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
+			table_guest.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
 
 		//-----------------------------------------------------------------
 
 		//添加table表头点击事件
-		teamtable.getTableHeader().addMouseListener(new MouseAdapter() {
+		/*teamtable.getTableHeader().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				HeaderColumn=teamtable.columnAtPoint(e.getPoint());
 				String orderSource=teamtable.getColumnName(HeaderColumn);
@@ -223,13 +243,88 @@ public class MatchDetail extends JPanel{
 
 			}
 		});
+		 */
+
+	}
+
+	//表格配置
+	public void tablehome_config(){
+		//------------------------------表格基本属性--------------------------
+		//		for(int i=0;i<;i++){
+		//			teaminfo[i][0]=i+1;
+		//		}
+		//		for(int i=0;i<TEAMNUM;i++){
+		//			teaminfo[i][0]=i+1;
+		//		}
+		teaminfo_home=new Object[playerNum_home][columnName.length];
+		//define table
+		table_home = new JTable(teaminfo_home, columnName){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+		//根据条目名自动调整列宽
+		table_home.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		//设置表格列不可移动
+		table_home.getTableHeader().setReorderingAllowed(false);
+		//设置列名居中
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) table_home.getTableHeader() .getDefaultRenderer();  
+		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		//设置表格数据及表头字体字号
+		table_home.setFont(MP.CellFont);
+		table_home.setForeground(MP.CellFg);
+		table_home.getTableHeader().setFont(MP.HeaderFont);
+		table_home.getTableHeader().setForeground(MP.TableFg);
+		table_home.getTableHeader().setOpaque(false);
+		table_home.getTableHeader().setBackground(MP.TableBg);
+		//去除边框
+		table_home.setBorder(null);
+
+		//按行修改表格背景
+		TableColumnModel model = table_home.getColumnModel();
+		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
+		{
+			TableColumn column = model.getColumn(i);
+			column.setCellRenderer(new RowRenderer());
+		}
+
+		//不显示单元格边框线
+		table_home.setShowHorizontalLines(false);
+		table_home.setShowVerticalLines(false);
+		//设置选中颜色
+		table_home.setSelectionBackground(MP.LineSelected);
+
+		//设置行高
+		table_home.setRowHeight(ROWHEIGHT);
+		//设置列宽
+		for(int i=0;i<COLUMNWIDTH.length;i++){
+			table_home.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
+		}
+
+		//-----------------------------------------------------------------
+
+		//添加table表头点击事件
+		/*teamtable.getTableHeader().addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e){
+					HeaderColumn=teamtable.columnAtPoint(e.getPoint());
+					String orderSource=teamtable.getColumnName(HeaderColumn);
+					//					System.out.println(orderSource);
+					if(!orderSource.equals("排名")&&!orderSource.equals("比赛场数")){
+						message.setText("当前排序依据:"+orderSource);
+						//					judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
+					}
+
+				}
+			});
+		 */
 
 	}
 
 	public void scrollpane_config(JScrollPane jsp,JTable teamtable){
-		System.out.println("therere");
 		//滑动面板信息
-		jsp.setBounds(205,270,TABLEWIDTH,TABLEHEIGHT);
+		jsp.setBounds(195,270,TABLEWIDTH,TABLEHEIGHT);
 		jsp.setHorizontalScrollBarPolicy( 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
 		jsp.setVerticalScrollBarPolicy( 
@@ -239,7 +334,8 @@ public class MatchDetail extends JPanel{
 		jsp.getViewport().setOpaque(false);
 		jsp.setBorder(null);
 		this.add(jsp);
-		jsp.setViewportView(teamtable);
+		//		jsp.setViewportView(teamtable);
+		//		this.repaint();
 	}
 
 
