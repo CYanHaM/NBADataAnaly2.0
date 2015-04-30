@@ -59,8 +59,10 @@ public class Show implements ShowDataService {
 		// TODO Auto-generated method stub
 		Comparator<PlayerTechPO> comparator = new Comparator<PlayerTechPO>(){  
 			public int compare(PlayerTechPO p1, PlayerTechPO p2) {   
-				//��д�ȽϷ���
+				
 				switch(type){
+				case "name":
+					return p1.name.compareTo(p2.name);
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
 				case "startingnum":
@@ -98,35 +100,80 @@ public class Show implements ShowDataService {
 				case "penaltyshot":
 					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
-					return  (p1.shotInRate-p2.shotInRate)>=0?1:-1;
+					if(p1.shotInRate==p2.shotInRate)
+						return 0;
+					else
+						return  (p1.shotInRate-p2.shotInRate)>0?1:-1;
 				case "threeshotinrate":
-					return  (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
+					if(p1.threeShotInRate==p2.threeShotInRate)
+						return 0;
+					else
+						return  (p1.threeShotInRate-p2.threeShotInRate)>0?1:-1;
 				case "penaltyshotinrate":
-					return  (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
+					if(p1.penaltyShotInRate==p2.penaltyShotInRate)
+						return 0;
+					else
+						return  (p1.penaltyShotInRate-p2.penaltyShotInRate)>0?1:-1;
 				case "efficiency":
-					return  (p1.efficiency-p2.efficiency)>=0?1:-1;
+					if(p1.efficiency==p2.efficiency)
+						return 0;
+					else
+						return  (p1.efficiency-p2.efficiency)>0?1:-1;
 				case "gmscefficiency":
-					return (p1.GmScEfficiency-p2.GmScEfficiency)>=0?1:-1;
+					if(p1.GmScEfficiency==p2.GmScEfficiency)
+						return 0;
+					else
+						return (p1.GmScEfficiency-p2.GmScEfficiency)>0?1:-1;
 				case "trueshotinrate":
-					return  (p1.trueShotInRate-p2.trueShotInRate)>=0?1:-1;
+					if(p1.trueShotInRate==p2.trueShotInRate)
+						return 0;
+					else
+						return  (p1.trueShotInRate-p2.trueShotInRate)>0?1:-1;
 				case "shootingefficiency":
-					return  (p1.shootingEfficiency-p2.shootingEfficiency)>=0?1:-1;
+					if(p1.shootingEfficiency==p2.shootingEfficiency)
+						return 0;
+					else
+						return  (p1.shootingEfficiency-p2.shootingEfficiency)>0?1:-1;
 				case "reboundrate":
-					return  (p1.reboundRate-p2.reboundRate)>=0?1:-1;
+					if(p1.reboundRate==p2.reboundRate)
+						return 0;
+					else
+						return  (p1.reboundRate-p2.reboundRate)>0?1:-1;
 				case "offensivereboundrate":
-					return (p1.offensiveReboundRate-p2.offensiveReboundRate)>=0?1:-1;
+					if(p1.offensiveReboundRate==p2.offensiveReboundRate)
+						return 0;
+					else
+						return (p1.offensiveReboundRate-p2.offensiveReboundRate)>0?1:-1;
 				case "defensivereboundrate":
-					return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>=0?1:-1;
+					if(p1.defensiveReboundRate==p2.defensiveReboundRate)
+						return 0;
+					else
+						return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>0?1:-1;
 				case "secondaryattackrate":
-					return (p1.secondaryAttackRate-p2.secondaryAttackRate)>=0?1:-1;
+					if(p1.secondaryAttackRate==p2.secondaryAttackRate)
+						return 0;
+					else
+						return (p1.secondaryAttackRate-p2.secondaryAttackRate)>0?1:-1;
 				case "stealrate":
-					return (p1.stealRate-p2.stealRate)>=0?1:-1;
+					if(p1.stealRate==p2.stealRate)
+						return 0;
+					else
+						return (p1.stealRate-p2.stealRate)>0?1:-1;
 				case "blockshotrate":
-					return (p1.blockShotRate-p2.blockShotRate)>=0?1:-1;
+					if(p1.blockShotRate==p2.blockShotRate)
+						return 0;
+					else
+						return (p1.blockShotRate-p2.blockShotRate)>0?1:-1;
 				case "faultrate":
-					return (p1.faultRate-p2.faultRate)>=0?1:-1;
+					if(p1.faultRate==p2.faultRate)
+						return 0;
+					else
+						return (p1.faultRate-p2.faultRate)>0?1:-1;
 				case "usagerate":
-					return  (p1.usageRate-p2.usageRate)>=0?1:-1;
+					if(p1.usageRate==p2.usageRate)
+						return 0;
+					else
+						return  (p1.usageRate-p2.usageRate)>0?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;
@@ -145,6 +192,8 @@ public class Show implements ShowDataService {
 			public int compare(PlayerTechPO p2, PlayerTechPO p1) {   
 				//��д�ȽϷ���
 				switch(type){
+				case "name":
+					return p1.name.compareTo(p2.name);
 				case "gamenum":
 					return p1.gameNum-p2.gameNum;
 				case "startingnum":
@@ -182,37 +231,80 @@ public class Show implements ShowDataService {
 				case "penaltyshot":
 					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
-					if(p1.shotInRate==p2.shotInRate) return 0;
+					if(p1.shotInRate==p2.shotInRate)
+						return 0;
 					else
 						return  (p1.shotInRate-p2.shotInRate)>0?1:-1;
 				case "threeshotinrate":
-					return  (p1.threeShotInRate-p2.threeShotInRate)>=0?1:-1;
+					if(p1.threeShotInRate==p2.threeShotInRate)
+						return 0;
+					else
+						return  (p1.threeShotInRate-p2.threeShotInRate)>0?1:-1;
 				case "penaltyshotinrate":
-					return (p1.penaltyShotInRate-p2.penaltyShotInRate)>=0?1:-1;
+					if(p1.penaltyShotInRate==p2.penaltyShotInRate)
+						return 0;
+					else
+						return  (p1.penaltyShotInRate-p2.penaltyShotInRate)>0?1:-1;
 				case "efficiency":
-					return  (p1.efficiency-p2.efficiency)>=0?1:-1;
+					if(p1.efficiency==p2.efficiency)
+						return 0;
+					else
+						return  (p1.efficiency-p2.efficiency)>0?1:-1;
 				case "gmscefficiency":
-					return (p1.GmScEfficiency-p2.GmScEfficiency)>=0?1:-1;
+					if(p1.GmScEfficiency==p2.GmScEfficiency)
+						return 0;
+					else
+						return (p1.GmScEfficiency-p2.GmScEfficiency)>0?1:-1;
 				case "trueshotinrate":
-					return  (p1.trueShotInRate-p2.trueShotInRate)>=0?1:-1;
+					if(p1.trueShotInRate==p2.trueShotInRate)
+						return 0;
+					else
+						return  (p1.trueShotInRate-p2.trueShotInRate)>0?1:-1;
 				case "shootingefficiency":
-					return (p1.shootingEfficiency-p2.shootingEfficiency)>=0?1:-1;
+					if(p1.shootingEfficiency==p2.shootingEfficiency)
+						return 0;
+					else
+						return  (p1.shootingEfficiency-p2.shootingEfficiency)>0?1:-1;
 				case "reboundrate":
-					return  (p1.reboundRate-p2.reboundRate)>=0?1:-1;
+					if(p1.reboundRate==p2.reboundRate)
+						return 0;
+					else
+						return  (p1.reboundRate-p2.reboundRate)>0?1:-1;
 				case "offensivereboundrate":
-					return  (p1.offensiveReboundRate-p2.offensiveReboundRate)>=0?1:-1;
+					if(p1.offensiveReboundRate==p2.offensiveReboundRate)
+						return 0;
+					else
+						return (p1.offensiveReboundRate-p2.offensiveReboundRate)>0?1:-1;
 				case "defensivereboundrate":
-					return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>=0?1:-1;
+					if(p1.defensiveReboundRate==p2.defensiveReboundRate)
+						return 0;
+					else
+						return  (p1.defensiveReboundRate-p2.defensiveReboundRate)>0?1:-1;
 				case "secondaryattackrate":
-					return  (p1.secondaryAttackRate-p2.secondaryAttackRate)>=0?1:-1;
+					if(p1.secondaryAttackRate==p2.secondaryAttackRate)
+						return 0;
+					else
+						return (p1.secondaryAttackRate-p2.secondaryAttackRate)>0?1:-1;
 				case "stealrate":
-					return  (p1.stealRate-p2.stealRate)>=0?1:-1;
+					if(p1.stealRate==p2.stealRate)
+						return 0;
+					else
+						return (p1.stealRate-p2.stealRate)>0?1:-1;
 				case "blockshotrate":
-					return  (p1.blockShotRate-p2.blockShotRate)>=0?1:-1;
+					if(p1.blockShotRate==p2.blockShotRate)
+						return 0;
+					else
+						return (p1.blockShotRate-p2.blockShotRate)>0?1:-1;
 				case "faultrate":
-					return  (p1.faultRate-p2.faultRate)>=0?1:-1;
+					if(p1.faultRate==p2.faultRate)
+						return 0;
+					else
+						return (p1.faultRate-p2.faultRate)>0?1:-1;
 				case "usagerate":
-					return  (p1.usageRate-p2.usageRate)>=0?1:-1;
+					if(p1.usageRate==p2.usageRate)
+						return 0;
+					else
+						return  (p1.usageRate-p2.usageRate)>0?1:-1;
 				default:
 					System.out.println("wrong type");
 					return 0;
