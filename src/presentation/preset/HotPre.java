@@ -12,6 +12,10 @@ public class HotPre {
 	public Font teamandinfo;
 	public Font data;
 	
+	public Font name_small;
+	public Font teamandinfo_small;
+	public Font data_small;
+	
 	public HotPre() {
 		
 		LineSelected=new Color(245,245,245);
@@ -20,5 +24,9 @@ public class HotPre {
 		name=new Font("华文细黑",0,27);
 		teamandinfo=new Font("华文细黑",0,15);
 		data=new Font("华文细黑",0,30);
+		
+		name_small=new Font("华文细黑",0,15);
+		teamandinfo_small=new Font("华文细黑",0,10);
+		data_small=new Font("华文细黑",0,20);
 	}
 }
