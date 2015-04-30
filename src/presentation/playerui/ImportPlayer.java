@@ -2,9 +2,9 @@ package presentation.playerui;
 
 import java.util.ArrayList;
 
-import TypeEnum.PlayerTechEnum;
 import VO.PlayerTechVO;
 import VO.PlayerVO;
+import VO.ScreeningConditionVO;
 import VO.TeamVO;
 import blservice.playerinfoblservice.PlayerInfoService;
 import blservice.playertechblservice.FindPlayerTechService;
@@ -36,19 +36,23 @@ public class ImportPlayer {
 	}
 
 	public ArrayList<PlayerTechVO> getPlayerTechDescend(String DataType){
-		return PTbs.Descend(DataType);
+		return spt.descend(DataType);
 	}
 	
-	public ArrayList<PlayerTechVO> sift(String position,String division,String ordergist){
-		return PTbs.sift(position, division, ordergist);
+	public ArrayList<PlayerTechVO> sift(ScreeningConditionVO scvo){
+		return fpt.sift(scvo);
 	}
 	
-	public PlayerVO show(PlayerVO vo){
-		return Pbs.Show(vo);
+	public PlayerTechVO findPlayerTechByName(String name){
+		return fpt.findPlayerTechByName(name);
 	}
 
-	public ArrayList<PlayerVO> findByTeam(TeamVO tvo){
-		return Pbs.findByTeam(tvo);
+	public ArrayList<PlayerVO> findByTeam(String tvo){
+		return pis.findByTeam(tvo);
+	}
+	
+	public PlayerVO showPlayerInfo (String name){
+		return pis.showPlayerInfo(name);
 	}
 
 }

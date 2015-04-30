@@ -104,7 +104,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		//创建颜色预设对象
 		PTPre=new PlayerTechPre();
 		importdata=new ImportPlayer();
-		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
+		initial_data=importdata.getPlayerTechAscend("name");
 		
 		playerinfo=new Object[initial_data.size()][columnName.length];
 //		playerinfo=new Object[PLAYERNUM][columnName.length];
@@ -645,93 +645,93 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		if(order_Des.isSelected()){
 			switch(ordersource){
 			case "球员名称":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.name);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("name");
 				break;
 			case "所属球队":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.team);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("team");
 				break;
 			case "参赛场数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.gameNum);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("gamenum");
 				break;
 			case "先发场数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.startingNum);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("startingnum");
 				break;
 			case "篮板数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.rebound);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("rebound");
 				break;
 			case "助攻数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.secondaryAttack);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattack");
 				break;
 			case "在场时间":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.time);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("time");
 				break;
 				
 			case "投篮命中率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.shotInRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("shotinrate");
 				break;
 			case "三分命中率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.threeshotInRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("threeshotinrate");
 				break;
 			case "罚球命中率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.penaltyShotInRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("penaltyshotinrate");
 				break;
 				
 			case "进攻数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.offensiveNum);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenum");
 				break;
 			case "防守数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.defensiveNum);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenum");
 				break;
 			case "抢断数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.steal);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("steal");
 				break;
 			case "盖帽数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.blockShot);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("blockshot");
 				break;
 			case "失误数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.fault);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("fault");
 				break;
 			case "犯规数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.foul);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("foul");
 				break;
 			case "得分":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.score);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("score");
 				break;
 			case "效率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.efficiency);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("efficiency");
 				break;
 			case "GmSc 效率值":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.GmScEfficiency);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("gmscefficiency");
 				break;
 			case "真实命中率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.trueShotInRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("trueshotinrate");
 				break;
 			case "投篮效率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.shootingEfficiency);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("shootingefficiency");
 				break;
 			case "篮板率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.reboundRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("reboundrate");
 				break;
 			case "进攻篮板率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.offensiveReboundRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("offensivereboundrate");
 				break;
 			case "防守篮板率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.defensiveReboundRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("defensivereboundrate");
 				break;
 			case "助攻率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.secondaryAttackRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattackrate");
 				break;
 			case "抢断率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.stealRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("stealrate");
 				break;
 			case "盖帽率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.blockShotRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("blockshotrate");
 				break;
 			case "失误率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.faultRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("faultrate");
 				break;
 			case "使用率":
-				orderPlayerTechVO=importdata.getPlayerTechDescend(PlayerTechEnum.usageRate);
+				orderPlayerTechVO=importdata.getPlayerTechDescend("usagerate");
 				break;
 			}
 		}
