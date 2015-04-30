@@ -213,4 +213,18 @@ public class FindPlayerTech implements FindPlayerTechService{
 		return res;
 	}
 
+	@Override
+	public PlayerTechVO findPlayerTechByName(String name) {
+		// TODO Auto-generated method stub
+		ShowPlayerTech sh = new ShowPlayerTech();
+		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
+		int size = all.size();
+		for(int i=0;i<size;i++){
+			if(all.get(i).name.equals(name)){
+				return all.get(i);
+			}
+		}
+		return null;
+	}
+
 }

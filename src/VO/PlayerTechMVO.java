@@ -43,6 +43,8 @@ public class PlayerTechMVO implements Serializable {
 		public int teamPenaltyShot;                   //ȫ�ӷ������
 		public int teamFault;                          //ȫ��ʧ�����  
 		public int ifDouble;
+		public int scoreRatio;
+		public double efficiency;
 		
 		public double scoreImproving;
 		public double stealImproving;

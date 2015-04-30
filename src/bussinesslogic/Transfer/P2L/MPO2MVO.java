@@ -35,6 +35,9 @@ public class MPO2MVO {
 			vo.score = po.score;
 			vo.ifParticipate = po.ifParticipate;
 			vo.ifFirstLineUp = po.ifFirstLineUp;
+			vo.scoreRatio = po.score+po.rebound+po.secondaryAttack;
+			vo.efficiency = (po.score+po.blockShot+po.steal+po.secondaryAttack+po.rebound)-(po.shot-po.shotIn)-(po.penaltyShot-po.penaltyShotIn)-po.fault;
+			vo.ifDouble = po.ifDouble;
 			res.add(vo);
 		}
 		return res;
