@@ -32,17 +32,17 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	public static int WIDTH=1020;
 	public static int HEIGHT=670;
-	
+
 	//当天热点球员，赛季热点球员，赛季热点球队，进步最快球员切换下拉框
 	private JComboBox<String> switchbox;
 
 	//下拉框大小
 	private static int BOXWIDTH=160;
 	private static int BOXHEIGHT=30;
-	
+
 	private int buttonwidth=98;
 	private int buttonheight=40;
-	
+
 	//得分，篮板，助攻，盖帽，抢断，两双，得分比，效率
 	private JButton score;
 	private JButton rebound;
@@ -52,51 +52,46 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	private JButton isdouble;
 	private JButton scorecompare;
 	private JButton efficiency;
-	
-	private JLabel first;
-	private JLabel second;
-	private JLabel third;
-	private JLabel fourth;
-	private JLabel fifth;
-	
+
 	private JLabel[] name;
 	private JLabel[] info;
 	private JLabel[] data;
 	private JLabel[] compare;
 	private JLabel[] images;
-	
-	
+
+
 	private ArrayList<PlayerTechMVO> hotplayerslist;
 	private String date;
 	private String selectedkeyword;
-	
+
 	private FindPlayerTechService fts;
 	//创建比赛数据接口，仅用于获得最新一次比赛日期
 	private MatchBLService mbs;
-	
+
 	private HotPre HP;
 	private JFrame Frame;
 	public HotPlayerToday(JFrame frame) {
 		Frame=frame;
 		this.setLayout(null);
 		this.setSize(WIDTH, HEIGHT);
-		
+
 		name=new JLabel[5];
 		info=new JLabel[5];
 		data=new JLabel[5];
 		compare=new JLabel[5];
 		images=new JLabel[5];
-		
+
 		fts=new FindPlayerTech();
 		mbs=new Match();
 		date=mbs.returnPresentDate();
-		
+
 		HP=new HotPre();
-		
+
 		addbutton();
 		insertData();
 		addbox();
-		addlabel(selectedkeyword);
+		addFirstPlayer();
+		addOtherPlayers();
 	}
 
 	private void addbox(){
@@ -117,7 +112,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			public void itemStateChanged(ItemEvent arg0) {
 				if(arg0.getStateChange()==ItemEvent.SELECTED){
 					if(switchbox.getSelectedItem().equals("当天热点球员")){
-						
+
 					}
 					if(switchbox.getSelectedItem().equals("赛季热点球员")){
 
@@ -136,39 +131,40 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	}
 
 	private void addbutton(){
-		score = new JButton("得分");
+		score = new JButton(new ImageIcon("images"));
 		score.setBounds(200, 185, buttonwidth, buttonheight);
+
 		score.setSelected(true);
-		
+
 		rebound = new JButton("篮板");
 		rebound.setBounds(200+buttonwidth, 185, buttonwidth, buttonheight);
 		rebound.setSelected(false);
-		
+
 		secondAttack = new JButton("助攻");
 		secondAttack.setBounds(200+buttonwidth*2, 185, buttonwidth, buttonheight);
 		secondAttack.setSelected(false);
-		
+
 		blockShot = new JButton("盖帽");
 		blockShot.setBounds(200+buttonwidth*3, 185, buttonwidth, buttonheight);
 		blockShot.setSelected(false);
-		
+
 		steal = new JButton("抢断");
 		steal.setBounds(200+buttonwidth*4, 185, buttonwidth, buttonheight);
 		steal.setSelected(false);
-		
+
 		isdouble = new JButton("两双");
 		isdouble.setBounds(200+buttonwidth*5, 185, buttonwidth, buttonheight);
 		isdouble.setSelected(false);
-		
-		scorecompare = new JButton("得分比");
+
+		scorecompare = new JButton("效率");
 		scorecompare.setBounds(200+buttonwidth*6, 185, buttonwidth, buttonheight);
 		scorecompare.setSelected(false);
-		
-		efficiency = new JButton("效率");
+
+		efficiency = new JButton("得分比");
 		efficiency.setBounds(200+buttonwidth*7, 185, buttonwidth, buttonheight);
 		efficiency.setSelected(false);
-		
-		
+
+
 		this.add(score);
 		this.add(rebound);
 		this.add(secondAttack);
@@ -177,89 +173,94 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		this.add(isdouble);
 		this.add(scorecompare);
 		this.add(efficiency);
-		
+
 	}
-	
-	private void addlabel(String keyword){
-//		first = new JLabel();
-//		first.setBounds(200, 185+buttonheight, 390, 400);
-//		first.setBackground(Color.WHITE);
-//		first.setOpaque(true);
-		
+
+	private void addFirstPlayer(){
 		name[0]=new JLabel();
 		name[0].setBounds(375, 450, 250, 30);
 		name[0].setFont(HP.name);
 		name[0].setForeground(HP.LineSelected);
 		name[0].setText(hotplayerslist.get(0).name);
-		
+
 		info[0]=new JLabel();
 		info[0].setBounds(375, 475, 200, 20);
 		info[0].setFont(HP.teamandinfo);
 		info[0].setForeground(HP.LineSelected);
 		info[0].setText(switchposition(hotplayerslist.get(0).position)+" / "+hotplayerslist.get(0).team);
-		
+
 		data[0]=new JLabel();
 		data[0].setBounds(375, 500, 100, 30);
 		data[0].setFont(HP.data);
 		data[0].setForeground(HP.LineSelected);
-		data[0].setText(switchkeyword(0, keyword));
-		
+		data[0].setText(switchkeyword(0, selectedkeyword));
+
 		images[0]=new JLabel();
 		images[0].setBounds(210, 275, 189, 300);
 		images[0].setIcon(new ImageIcon("images/players/action_small/"+hotplayerslist.get(0).name+".png"));
-		
-		
-//		second = new JLabel();
-//		second.setBounds(200+393, 185+buttonheight, 390, 100);
-//		second.setBackground(Color.WHITE);
-//		second.setOpaque(true);
-		name[1]=new JLabel();
-		name[1].setBounds(740, 250, 100, 30);
-		name[1].setFont(HP.name);
-		name[1].setForeground(HP.LineSelected);
-		name[1].setText(hotplayerslist.get(1).name);
-		
-		info[1]=new JLabel();
-		info[1].setBounds(375, 475, 200, 20);
-		info[1].setFont(HP.teamandinfo);
-		info[1].setForeground(HP.LineSelected);
-		info[1].setText(switchposition(hotplayerslist.get(1).position)+" / "+hotplayerslist.get(1).team);
-		
-		data[1]=new JLabel();
-		data[1].setBounds(375, 500, 100, 30);
-		data[1].setFont(HP.data);
-		data[1].setForeground(HP.LineSelected);
-		data[1].setText(switchkeyword(1, keyword));
-		
-		
-		third = new JLabel();
-		third.setBounds(200+393, 185+buttonheight+100, 390, 100);
-		third.setBackground(Color.WHITE);
-		third.setOpaque(true);
-		fourth = new JLabel();
-		fourth.setBounds(200+393, 185+buttonheight+100*2, 390, 100);
-		fourth.setBackground(Color.WHITE);
-		fourth.setOpaque(true);
-		fifth = new JLabel();
-		fifth.setBounds(200+393, 185+buttonheight+100*3, 390, 100);
-		fifth.setBackground(Color.WHITE);
-		fifth.setOpaque(true);
 
-//		this.add(first);
+		compare[0]=new JLabel();
+		compare[0].setBounds(430, 500, 100, 25);
+		compare[0].setFont(HP.data_small);
+		compare[0].setForeground(HP.LineSelected);
+		String temp=switchcomp(0,selectedkeyword);
+		if(temp==null){
+			compare[0].setVisible(false);
+		}else{
+			compare[0].setText(temp);
+		}
+
+
 		this.add(name[0]);
 		this.add(info[0]);
 		this.add(data[0]);
-//		this.add(compare[0]);
+		this.add(compare[0]);
 		this.add(images[0]);
-		
-		this.add(second);
-		this.add(third);
-		this.add(fourth);
-		this.add(fifth);
 	}
-	
 
-	
+	private void addOtherPlayers(){
+		for(int i=1;i<5;i++){
+			name[i]=new JLabel();
+			name[i].setBounds(740, 260+100*(i-1)-18*(i-1)+10, 200, 20);
+			name[i].setFont(HP.name_small);
+			name[i].setForeground(HP.LineSelected);
+			name[i].setText(hotplayerslist.get(i).name);
+
+			info[i]=new JLabel();
+			info[i].setBounds(740, 280+100*(i-1)-18*(i-1)+10, 200, 13);
+			info[i].setFont(HP.teamandinfo_small);
+			info[i].setForeground(HP.LineSelected);
+			info[i].setText(switchposition(hotplayerslist.get(i).position)+" / "+hotplayerslist.get(i).team);
+
+			data[i]=new JLabel();
+			data[i].setBounds(740, 295+100*(i-1)-18*(i-1)+10, 100, 25);
+			data[i].setFont(HP.data_small);
+			data[i].setForeground(HP.LineSelected);
+			data[i].setText(switchkeyword(i, selectedkeyword));
+
+			images[i]=new JLabel();
+			images[i].setBounds(580, 265+100*(i-1)-18*(i-1), 160, 60);
+			images[i].setIcon(new ImageIcon("images/players/portrait_long/"+hotplayerslist.get(i).name+".png"));
+
+			compare[i]=new JLabel();
+			compare[i].setBounds(430, 500, 100, 25);
+			compare[i].setFont(HP.data_small);
+			compare[i].setForeground(HP.LineSelected);
+			String temp=switchcomp(i,selectedkeyword);
+			if(temp==null){
+				compare[i].setVisible(false);
+			}else{
+				compare[i].setText(temp);
+			}
+
+			this.add(name[i]);
+			this.add(info[i]);
+			this.add(data[i]);
+			this.add(compare[i]);
+			this.add(images[i]);
+		}
+	}
+
 	private void insertData(){
 		if(score.isSelected()){
 			selectedkeyword="score";
@@ -285,16 +286,16 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			selectedkeyword="double";
 			hotplayerslist=fts.findHotPlayerToday(date,"double");
 		}
-		if(scorecompare.isSelected()){
-			selectedkeyword="compare";
-			hotplayerslist=fts.findHotPlayerToday(date,"compare");
-		}
 		if(efficiency.isSelected()){
 			selectedkeyword="efficiency";
 			hotplayerslist=fts.findHotPlayerToday(date,"efficiency");
 		}
+		if(scorecompare.isSelected()){
+			selectedkeyword="scoreratio";
+			hotplayerslist=fts.findHotPlayerToday(date,"scoreratio");
+		}
 	}
-	
+
 	private String switchkeyword(int count,String keyword){
 		String resultword=null;
 		switch(keyword){
@@ -314,18 +315,40 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			resultword=String.valueOf(hotplayerslist.get(count).steal);
 			break;
 		case "double":
-//			resultword=String.valueOf(hotplayerslist.get(count).double);
-			break;
-		case "scoreratio":
-//			resultword=String.valueOf(hotplayerslist.get(count).compare);
+			resultword=String.valueOf(hotplayerslist.get(count).ifDouble);
 			break;
 		case "efficiency":
-//			resultword=String.valueOf(hotplayerslist.get(count).efficiency);
+			resultword=String.valueOf(hotplayerslist.get(count).efficiency);
+			break;
+		case "scoreratio":
+			resultword=String.valueOf(hotplayerslist.get(count).scoreRatio);
 			break;
 		}
 		return resultword;
 	}
-	
+
+	private String switchcomp(int count,String keyword){
+		String resultword=null;
+		switch(keyword){
+		case "score":
+			resultword=String.valueOf(hotplayerslist.get(count).scoreImproving);
+			break;
+		case "rebound":
+			resultword=String.valueOf(hotplayerslist.get(count).reboundImproving);
+			break;
+		case "secondAttack":
+			resultword=String.valueOf(hotplayerslist.get(count).secondaryAttackImproving);
+			break;
+		case "blockShot":
+			resultword=String.valueOf(hotplayerslist.get(count).blockShotImproving);
+			break;
+		case "steal":
+			resultword=String.valueOf(hotplayerslist.get(count).stealImproving);
+			break;
+		}
+		return resultword;
+	}
+
 	private String switchposition(String pos){
 		String position=null;
 		switch(pos){
@@ -338,20 +361,23 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		case "G":
 			position="后卫";
 			break;
+		default:
+			position="--";
+			break;
 		}
 		return position;
 	}
-	
+
 	//绘制赛季数据界面背景
 	public void paintComponent(Graphics g){
 		super.paintComponents(g);
-		ImageIcon im1=new ImageIcon("images/system_img/teams_bg.png");
+		ImageIcon im1=new ImageIcon("images/system_img/hot_bg.png");
 		g.drawImage(im1.getImage(),0,0,this);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+
 	}
 
 }
