@@ -142,8 +142,12 @@ public class OperateWithFile implements PlayerTechInitial {
 				ptp.teamFault = mp.teamFault;
 			}
 			
-			//���ݹ�ʽ����
-			//��������Ϊ0
+			
+			if(ptp.shot==0){					
+				ptp.shotInRate=0;
+				}else{
+					ptp.shotInRate=(double)ptp.shotIn/(double)ptp.shot;
+			}
 			if(ptp.threeShot==0){					
 				ptp.threeShotInRate=0;
 				}else{
