@@ -25,8 +25,8 @@ public class HotPre {
 		teamandinfo=new Font("华文细黑",0,15);
 		data=new Font("华文细黑",0,30);
 		
-		name_small=new Font("华文细黑",0,15);
-		teamandinfo_small=new Font("华文细黑",0,10);
-		data_small=new Font("华文细黑",0,20);
+		name_small=new Font("华文细黑",0,20);
+		teamandinfo_small=new Font("华文细黑",0,13);
+		data_small=new Font("华文细黑",0,25);
 	}
 }
