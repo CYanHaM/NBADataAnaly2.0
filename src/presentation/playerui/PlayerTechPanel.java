@@ -778,13 +778,25 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				orderPlayerTechVO=importdata.getPlayerTechDescend("startingnum");
 				break;
 			case "篮板数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("rebound");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("reboundave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("rebound");
+				}
 				break;
 			case "助攻数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattack");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattackave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattack");
+				}
 				break;
 			case "在场时间":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("time");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("timeave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("time");
+				}
 				break;
 				
 			case "投篮命中率":
@@ -798,25 +810,53 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				break;
 				
 			case "进攻数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenum");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenumave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenum");
+				}
 				break;
 			case "防守数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenum");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenumave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenum");
+				}
 				break;
 			case "抢断数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("steal");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("stealave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("steal");
+				}
 				break;
 			case "盖帽数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("blockshot");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("blockshotave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("blockshot");
+				}
 				break;
 			case "失误数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("fault");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("faultave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("fault");
+				}
 				break;
 			case "犯规数":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("foul");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("foulave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("foul");
+				}
 				break;
 			case "得分":
-				orderPlayerTechVO=importdata.getPlayerTechDescend("score");
+				if(AvgOrTotal.equals("场均数据")){
+					orderPlayerTechVO=importdata.getPlayerTechDescend("scoreave");
+				}else{
+					orderPlayerTechVO=importdata.getPlayerTechDescend("score");
+				}
 				break;
 			case "效率":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("efficiency");
