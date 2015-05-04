@@ -4,18 +4,23 @@ package presentation.matchui;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-import VO.MatchVO;
-import blservice.matchblservice.MatchBLService;
-import bussinesslogic.matchbl.Match;
+import presentation.hotspotui.HotPlayerToday;
 import presentation.mainui.DateLabel;
-import presentation.mainui.MainFrame;
+import presentation.playerui.PlayerTechPanel;
 import presentation.preset.MatchPre;
 import presentation.teamui.TeamInfoPanel;
+import presentation.teamui.TeamTechPanel;
+import blservice.matchblservice.MatchBLService;
+import bussinesslogic.matchbl.Match;
 
 public class MatchPanel extends JPanel implements ActionListener{
 	/**
@@ -36,14 +41,21 @@ public class MatchPanel extends JPanel implements ActionListener{
 	private JButton tomorrow;
 	private JButton refresh;
 	
+	private JButton SeasonInfo;
+	private JButton MatchInfo;
+	private JButton TeamInfo;
+	private JButton PlayerInfo;
+	private JButton Hot;
+	
 	private MatchInfo matchinfo;
 	private JScrollPane jsp;
 	private DateLabel datelabel;
 	private MatchBLService mbs;
 	public JFrame Frame;
-
+	public JPanel panelToRemove;
 	public MatchPanel(JFrame frame) {
 		Frame=frame;
+		panelToRemove=this;
 		mbs=new Match();
 		
 		this.setLayout(null);
@@ -99,9 +111,41 @@ public class MatchPanel extends JPanel implements ActionListener{
 		this.add(tomorrow);
 		this.add(refresh);
 
-		matchinfo=new MatchInfo(calendar.getText(),Frame);
+		addbutton();
+		matchinfo=new MatchInfo(calendar.getText(),Frame,panelToRemove);
 		JScrollPane_config();
 		
+	}
+	
+	private void addbutton(){
+		SeasonInfo=new JButton(new ImageIcon("images/system_img/seasoninfo_initial.png"));
+		sideButton_config(SeasonInfo, "seasoninfo", 0);
+		
+		MatchInfo=new JButton(new ImageIcon("images/system_img/matchinfo_initial.png"));
+		sideButton_config(MatchInfo, "matchinfo", 1);
+		MatchInfo.setSelected(true);
+		
+		TeamInfo=new JButton(new ImageIcon("images/system_img/teaminfo_initial.png"));
+		sideButton_config(TeamInfo, "teaminfo", 2);
+		
+		PlayerInfo=new JButton(new ImageIcon("images/system_img/playerinfo_initial.png"));
+		sideButton_config(PlayerInfo, "playerinfo", 3);
+		
+		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
+		sideButton_config(Hot, "hot", 4);
+		
+	}
+	
+	private void sideButton_config(JButton button,String info,int count){
+		button.setBounds(26, 145+50*count, 148, 50);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setRolloverIcon(new ImageIcon("images/system_img/"+info+"_rollover.png"));
+		button.setPressedIcon(new ImageIcon("images/system_img/"+info+"_pressed.png"));
+		button.setSelectedIcon(new ImageIcon("images/system_img/"+info+"_selected.png"));
+		button.addActionListener(this);
+		this.add(button);
 	}
 
 	private void JScrollPane_config(){
@@ -122,7 +166,7 @@ public class MatchPanel extends JPanel implements ActionListener{
 	}
 	
 	private void refresh(){
-		matchinfo=new MatchInfo(calendar.getText(),Frame);
+		matchinfo=new MatchInfo(calendar.getText(),Frame,panelToRemove);
 		jsp.setViewportView(matchinfo);
 		jsp.repaint();
 		Frame.repaint();
@@ -154,6 +198,31 @@ public class MatchPanel extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource()==SeasonInfo){
+			Frame.remove(panelToRemove);
+			TeamTechPanel panel=new TeamTechPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==TeamInfo){
+			Frame.remove(panelToRemove);
+			TeamInfoPanel panel=new TeamInfoPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==PlayerInfo){
+			Frame.remove(panelToRemove);
+			PlayerTechPanel panel=new PlayerTechPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==Hot){
+			Frame.remove(panelToRemove);
+			HotPlayerToday panel=new HotPlayerToday(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		
 		if(arg0.getSource()==yesterday){
 			String[] tempdate=calendar.getText().split("-");
 			Calendar cl=Calendar.getInstance();
@@ -185,11 +254,8 @@ public class MatchPanel extends JPanel implements ActionListener{
 		
 		if(arg0.getSource()==refresh){
 			refresh();
-//			MainFrame mf=new MainFrame();
-//			TeamInfoPanel md=new TeamInfoPanel(mf);
-//			mf.add(md);
-//			mf.repaint();
 		}
+		
 	}
 
 }

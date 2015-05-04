@@ -50,10 +50,12 @@ public class MatchLabel extends JPanel implements ActionListener{
 	private MatchPre MP;
 
 	JFrame Frame;
+	JPanel panelToRemove;
 	MatchVO Matchinfo;
-	public MatchLabel(MatchVO matchinfo,JFrame frame) {
+	public MatchLabel(MatchVO matchinfo,JFrame frame,JPanel panel) {
 		Matchinfo=matchinfo;
 		Frame=frame;
+		panelToRemove=panel;
 		MP = new MatchPre();
 		this.setOpaque(false);
 		this.setLayout(null);
@@ -101,20 +103,20 @@ public class MatchLabel extends JPanel implements ActionListener{
 		guestTeam_name1 = new JLabel(switchTeamName(matchinfo.guestTeam));
 		guestTeam_name1.setBounds(135, 95, 100, 20);
 		guestTeam_name1.setFont(MP.Teamname);
-		guestTeam_name1.setForeground(MP.White);
+		guestTeam_name1.setForeground(null);
 		guestTeam_name2 = new JLabel(matchinfo.guestTeam);
 		guestTeam_name2.setBounds(136, 112, 50, 20);
 		guestTeam_name2.setFont(MP.Teamabb);
-		guestTeam_name2.setForeground(MP.White);
+		guestTeam_name2.setForeground(null);
 
 		homeTeam_name1 = new JLabel(switchTeamName(matchinfo.homeTeam));
 		homeTeam_name1.setBounds(300, 95, 100, 20);
 		homeTeam_name1.setFont(MP.Teamname);
-		homeTeam_name1.setForeground(MP.White);
+		homeTeam_name1.setForeground(null);
 		homeTeam_name2 = new JLabel(matchinfo.homeTeam);
 		homeTeam_name2.setBounds(301, 112, 50, 20);
 		homeTeam_name2.setFont(MP.Teamabb);
-		homeTeam_name2.setForeground(MP.White);
+		homeTeam_name2.setForeground(null);
 		
 		details = new JButton("更多");
 		details.setBounds(685, 5, 60, 25);
@@ -323,14 +325,12 @@ public class MatchLabel extends JPanel implements ActionListener{
 		}
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			Frame.dispose();
-			MainFrame mf=new MainFrame();
 			TeamVO tvo=new TeamVO();
 			tvo.abbreviation=teamname;
-			TeamPanel tp=new TeamPanel(tvo,mf);
-			mf.add(tp);
-			mf.repaint();
-//			System.out.println(teamname);
+			TeamPanel tp=new TeamPanel(tvo,Frame,panelToRemove);
+			Frame.remove(panelToRemove);
+			Frame.add(tp);
+			Frame.repaint();
 		}
 
 		@Override

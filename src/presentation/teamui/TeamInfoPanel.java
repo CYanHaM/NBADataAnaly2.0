@@ -4,11 +4,17 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import VO.TeamVO;
-import presentation.preset.PlayerPre;
+import presentation.hotspotui.HotPlayerToday;
+import presentation.matchui.MatchPanel;
 import presentation.playerui.PlayerTechPanel;
+import presentation.preset.PlayerPre;
+import VO.TeamVO;
 
 public class TeamInfoPanel extends JPanel implements ActionListener{
 	/**
@@ -72,15 +78,19 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	private JLabel westlabel_2;
 	private JLabel westlabel_3;
 	//侧边栏按钮
-	private JButton TeamTech;
-	private JButton PlayerTech;
-	private JButton TeamData;
-//	private JButton PlayerData;
+	private JButton SeasonInfo;
+	private JButton MatchInfo;
+	private JButton TeamInfo;
+	private JButton PlayerInfo;
+	private JButton Hot;
+
 	
 	public PlayerPre PPre;
 	public JFrame Frame;
+	public JPanel panelToRemove;
 	public TeamInfoPanel(JFrame frame){
 		Frame=frame;
+		panelToRemove=this;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
 		this.setOpaque(false);
@@ -134,29 +144,21 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addbutton(){
-		TeamTech=new JButton(new ImageIcon("images/buttons/teamtech/TeamTech_initial.png"));
-		TeamTech.setBounds(26, 145, 148, 40);
-		TeamTech.setBorderPainted(false);
-		TeamTech.setContentAreaFilled(false);
-		TeamTech.setFocusPainted(false);
-		TeamTech.setRolloverIcon(new ImageIcon("images/buttons/teamtech/TeamTech_rollover.png"));
-		TeamTech.setPressedIcon(new ImageIcon("images/buttons/teamtech/TeamTech_pressed.png"));
-		TeamTech.addActionListener(this);
+		SeasonInfo=new JButton(new ImageIcon("images/system_img/seasoninfo_initial.png"));
+		sideButton_config(SeasonInfo, "seasoninfo", 0);
 		
-		PlayerTech=new JButton(new ImageIcon("images/buttons/playertech/PlayerTech_initial.png"));
-		PlayerTech.setBounds(26, 185, 148, 40);
-		PlayerTech.setBorderPainted(false);
-		PlayerTech.setContentAreaFilled(false);
-		PlayerTech.setFocusPainted(false);
-		PlayerTech.setRolloverIcon(new ImageIcon("images/buttons/playertech/PlayerTech_rollover.png"));
-		PlayerTech.setPressedIcon(new ImageIcon("images/buttons/playertech/PlayerTech_pressed.png"));
-		PlayerTech.addActionListener(this);
+		MatchInfo=new JButton(new ImageIcon("images/system_img/matchinfo_initial.png"));
+		sideButton_config(MatchInfo, "matchinfo", 1);
 		
-		TeamData=new JButton(new ImageIcon("images/buttons/team/Team_selected.png"));
-		TeamData.setBounds(26, 225, 148, 40);
-		TeamData.setBorderPainted(false);
-		TeamData.setContentAreaFilled(false);
-		TeamData.setFocusPainted(false);
+		TeamInfo=new JButton(new ImageIcon("images/system_img/teaminfo_initial.png"));
+		sideButton_config(TeamInfo, "teaminfo", 2);
+		TeamInfo.setSelected(true);
+		
+		PlayerInfo=new JButton(new ImageIcon("images/system_img/playerinfo_initial.png"));
+		sideButton_config(PlayerInfo, "playerinfo", 3);
+		
+		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
+		sideButton_config(Hot, "hot", 4);
 		
 		East=new JButton(new ImageIcon("images/teams/location/east_1.png"));
 		East.setBounds(480, 90, 100, 30);
@@ -176,11 +178,20 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 		West.setPressedIcon(new ImageIcon("images/teams/location/west_3.png"));
 		West.addActionListener(this);
 		
-		this.add(TeamTech);
-		this.add(PlayerTech);
-		this.add(TeamData);
 		this.add(East);
 		this.add(West);
+	}
+	
+	private void sideButton_config(JButton button,String info,int count){
+		button.setBounds(26, 145+50*count, 148, 50);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setRolloverIcon(new ImageIcon("images/system_img/"+info+"_rollover.png"));
+		button.setPressedIcon(new ImageIcon("images/system_img/"+info+"_pressed.png"));
+		button.setSelectedIcon(new ImageIcon("images/system_img/"+info+"_selected.png"));
+		button.addActionListener(this);
+		this.add(button);
 	}
 	
 	public void addteamsbutton(){
@@ -398,7 +409,7 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 		Frame.remove(this);
 		TeamVO tvo=new TeamVO();
 		tvo.abbreviation=abb;
-		TeamPanel tp=new TeamPanel(tvo,Frame);
+		TeamPanel tp=new TeamPanel(tvo,Frame,this);
 		Frame.add(tp);
 		Frame.repaint();
 	}
@@ -406,16 +417,28 @@ public class TeamInfoPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(arg0.getSource()==TeamTech){
-			Frame.remove(this);
-			TeamTechPanel ttp=new TeamTechPanel(Frame);
-			Frame.add(ttp);
+		if(arg0.getSource()==SeasonInfo){
+			Frame.remove(panelToRemove);
+			TeamTechPanel panel=new TeamTechPanel(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
-		if(arg0.getSource()==PlayerTech){
-			Frame.remove(this);
-			PlayerTechPanel ptp=new PlayerTechPanel(Frame);
-			Frame.add(ptp);
+		if(arg0.getSource()==MatchInfo){
+			Frame.remove(panelToRemove);
+			MatchPanel panel=new MatchPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==PlayerInfo){
+			Frame.remove(panelToRemove);
+			PlayerTechPanel panel=new PlayerTechPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==Hot){
+			Frame.remove(panelToRemove);
+			HotPlayerToday panel=new HotPlayerToday(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
 		if(arg0.getSource()==East){

@@ -10,15 +10,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import presentation.hotspotui.HotPlayerToday;
+import presentation.matchui.MatchPanel;
+import presentation.playerui.PlayerTechPanel;
+import presentation.preset.PlayerPre;
 import VO.PlayerVO;
 import VO.TeamVO;
-import presentation.preset.PlayerPre;
-import presentation.playerui.PlayerTechPanel;
 
 public class TeamPanel extends JPanel implements ActionListener{
 	/**
@@ -65,30 +74,25 @@ public class TeamPanel extends JPanel implements ActionListener{
 	private JLabel line;//水平线
 
 	//侧边栏按钮
-	private JButton TeamTech;
-	private JButton PlayerTech;
-	private JButton TeamData;
-//	private JButton PlayerData;
+	private JButton SeasonInfo;
+	private JButton MatchInfo;
+	private JButton TeamInfo;
+	private JButton PlayerInfo;
+	private JButton Hot;
 	
 	private JButton back;
 	
 	ImportTeam importdata;
 	public PlayerPre PPre;
 	public JFrame Frame;
+	public JPanel formerpanel;
+	public JPanel panelToRemove;
 	public TeamVO teamvo;
 	public ArrayList<PlayerVO> playerlist;
-	public TeamPanel(TeamVO tvo,JFrame frame){
-//		teamvo=tvo;
-//		teamvo=new TeamVO();
-//		teamvo.fullName="Adsj csacsaw";
-//		teamvo.abbreviation="SAS";
-//		teamvo.location="Losangles";
-//		teamvo.division="north";
-//		teamvo.partition="cewvdv";
-//		teamvo.homeCourt="csaacs";
-//		teamvo.time="1992/2/1";
-		
+	public TeamPanel(TeamVO tvo,JFrame frame,JPanel panel){
 		Frame=frame;
+		formerpanel=panel;
+		panelToRemove=this;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
 		//创建颜色预设对象
@@ -116,29 +120,21 @@ public class TeamPanel extends JPanel implements ActionListener{
 	}
     //=============================================
 	private void addbutton(){
-		TeamTech=new JButton(new ImageIcon("images/buttons/teamtech/TeamTech_initial.png"));
-		TeamTech.setBounds(26, 145, 148, 40);
-		TeamTech.setBorderPainted(false);
-		TeamTech.setContentAreaFilled(false);
-		TeamTech.setFocusPainted(false);
-		TeamTech.setRolloverIcon(new ImageIcon("images/buttons/teamtech/TeamTech_rollover.png"));
-		TeamTech.setPressedIcon(new ImageIcon("images/buttons/teamtech/TeamTech_pressed.png"));
-		TeamTech.addActionListener(this);
+		SeasonInfo=new JButton(new ImageIcon("images/system_img/seasoninfo_initial.png"));
+		sideButton_config(SeasonInfo, "seasoninfo", 0);
 		
-		PlayerTech=new JButton(new ImageIcon("images/buttons/playertech/PlayerTech_initial.png"));
-		PlayerTech.setBounds(26, 185, 148, 40);
-		PlayerTech.setBorderPainted(false);
-		PlayerTech.setContentAreaFilled(false);
-		PlayerTech.setFocusPainted(false);
-		PlayerTech.setRolloverIcon(new ImageIcon("images/buttons/playertech/PlayerTech_rollover.png"));
-		PlayerTech.setPressedIcon(new ImageIcon("images/buttons/playertech/PlayerTech_pressed.png"));
-		PlayerTech.addActionListener(this);
+		MatchInfo=new JButton(new ImageIcon("images/system_img/matchinfo_initial.png"));
+		sideButton_config(MatchInfo, "matchinfo", 1);
 		
-		TeamData=new JButton(new ImageIcon("images/buttons/team/Team_selected.png"));
-		TeamData.setBounds(26, 225, 148, 40);
-		TeamData.setBorderPainted(false);
-		TeamData.setContentAreaFilled(false);
-		TeamData.setFocusPainted(false);
+		TeamInfo=new JButton(new ImageIcon("images/system_img/teaminfo_initial.png"));
+		sideButton_config(TeamInfo, "teaminfo", 2);
+		TeamInfo.setSelected(true);
+		
+		PlayerInfo=new JButton(new ImageIcon("images/system_img/playerinfo_initial.png"));
+		sideButton_config(PlayerInfo, "playerinfo", 3);
+		
+		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
+		sideButton_config(Hot, "hot", 4);
 		
 		back=new JButton(new ImageIcon("images/system_img/back_initial.png"));
 		back.setBounds(200, 85, 100, 50);
@@ -149,11 +145,20 @@ public class TeamPanel extends JPanel implements ActionListener{
 		back.setPressedIcon(new ImageIcon("images/system_img/back_pressed.png"));
 		back.addActionListener(this);
 		
-		this.add(TeamTech);
-		this.add(PlayerTech);
-		this.add(TeamData);
 		this.add(back);
 		this.repaint();
+	}
+	
+	private void sideButton_config(JButton button,String info,int count){
+		button.setBounds(26, 145+50*count, 148, 50);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setRolloverIcon(new ImageIcon("images/system_img/"+info+"_rollover.png"));
+		button.setPressedIcon(new ImageIcon("images/system_img/"+info+"_pressed.png"));
+		button.setSelectedIcon(new ImageIcon("images/system_img/"+info+"_selected.png"));
+		button.addActionListener(this);
+		this.add(button);
 	}
 	 
 	//定义所有显示及渲染球队信息的lablel
@@ -394,23 +399,41 @@ public class TeamPanel extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		if(arg0.getSource()==TeamTech){
-			Frame.remove(this);
-			TeamTechPanel ttp=new TeamTechPanel(Frame);
-			Frame.add(ttp);
+		if(arg0.getSource()==SeasonInfo){
+			Frame.remove(panelToRemove);
+			TeamTechPanel panel=new TeamTechPanel(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
-		if(arg0.getSource()==PlayerTech){
-			Frame.remove(this);
-			PlayerTechPanel ptp=new PlayerTechPanel(Frame);
-			Frame.add(ptp);
+		if(arg0.getSource()==MatchInfo){
+			Frame.remove(panelToRemove);
+			MatchPanel panel=new MatchPanel(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
+		if(arg0.getSource()==TeamInfo){
+			Frame.remove(panelToRemove);
+			TeamInfoPanel panel=new TeamInfoPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==PlayerInfo){
+			Frame.remove(panelToRemove);
+			PlayerTechPanel panel=new PlayerTechPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==Hot){
+			Frame.remove(panelToRemove);
+			HotPlayerToday panel=new HotPlayerToday(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		
+		
 		if(arg0.getSource()==back){
-			Frame.remove(this);
-			TeamInfoPanel tip=new TeamInfoPanel(Frame);
-			Frame.add(tip);
+			Frame.remove(panelToRemove);
+			Frame.add(formerpanel);
 			Frame.repaint();
 		}
 	}

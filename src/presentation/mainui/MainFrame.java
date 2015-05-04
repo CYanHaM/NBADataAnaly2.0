@@ -123,6 +123,7 @@ public class MainFrame extends JFrame{
 //		MatchPanel mp=new MatchPanel(mf);
 		TeamInfoPanel mp=new TeamInfoPanel(mf);
 //		HotPlayerToday mp=new HotPlayerToday(mf);
+//		SeasonHotPlayer mp=new SeasonHotPlayer(mf);
 		mf.add(mp);
 		mf.repaint();
 	}

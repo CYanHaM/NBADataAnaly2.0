@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import presentation.hotspotui.HotPlayerToday;
+import presentation.matchui.MatchPanel;
 import presentation.preset.PlayerTechPre;
 import presentation.teamui.TeamInfoPanel;
 import presentation.teamui.TeamTechPanel;
@@ -85,10 +87,11 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//表格重置按钮
 	private JButton reset;
 	//侧边栏按钮
-	private JButton TeamTech;
-	private JButton PlayerTech;
-	private JButton TeamData;
-//	private JButton PlayerData;
+	private JButton SeasonInfo;
+	private JButton MatchInfo;
+	private JButton TeamInfo;
+	private JButton PlayerInfo;
+	private JButton Hot;
 	
 	//----------------------------------------------------
 	public PlayerTechPre PTPre;
@@ -97,8 +100,10 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 	public int HeaderColumn=0;
 	public JFrame Frame; 
+	public JPanel panelToRemove;
 	public PlayerTechPanel(JFrame frame){
 		Frame=frame;
+		panelToRemove=this;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
 		//创建颜色预设对象
@@ -236,29 +241,21 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addbutton(){
-		TeamTech=new JButton(new ImageIcon("images/buttons/teamtech/TeamTech_initial.png"));
-		TeamTech.setBounds(26, 145, 148, 40);
-		TeamTech.setBorderPainted(false);
-		TeamTech.setContentAreaFilled(false);
-		TeamTech.setFocusPainted(false);
-		TeamTech.setRolloverIcon(new ImageIcon("images/buttons/teamtech/TeamTech_rollover.png"));
-		TeamTech.setPressedIcon(new ImageIcon("images/buttons/teamtech/TeamTech_pressed.png"));
-		TeamTech.addActionListener(this);
+		SeasonInfo=new JButton(new ImageIcon("images/system_img/seasoninfo_initial.png"));
+		sideButton_config(SeasonInfo, "seasoninfo", 0);
 		
-		PlayerTech=new JButton(new ImageIcon("images/buttons/playertech/PlayerTech_selected.png"));
-		PlayerTech.setBounds(26, 185, 148, 40);
-		PlayerTech.setBorderPainted(false);
-		PlayerTech.setContentAreaFilled(false);
-		PlayerTech.setFocusPainted(false);
+		MatchInfo=new JButton(new ImageIcon("images/system_img/matchinfo_initial.png"));
+		sideButton_config(MatchInfo, "matchinfo", 1);
 		
-		TeamData=new JButton(new ImageIcon("images/buttons/team/Team_initial.png"));
-		TeamData.setBounds(26, 225, 148, 40);
-		TeamData.setBorderPainted(false);
-		TeamData.setContentAreaFilled(false);
-		TeamData.setFocusPainted(false);
-		TeamData.setRolloverIcon(new ImageIcon("images/buttons/team/Team_rollover.png"));
-		TeamData.setPressedIcon(new ImageIcon("images/buttons/team/Team_pressed.png"));
-		TeamData.addActionListener(this);
+		TeamInfo=new JButton(new ImageIcon("images/system_img/teaminfo_initial.png"));
+		sideButton_config(TeamInfo, "teaminfo", 2);
+		
+		PlayerInfo=new JButton(new ImageIcon("images/system_img/playerinfo_initial.png"));
+		sideButton_config(PlayerInfo, "playerinfo", 3);
+		PlayerInfo.setSelected(true);
+		
+		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
+		sideButton_config(Hot, "hot", 4);
 		
 		commit=new JButton(new ImageIcon("images/buttons/playertech/Commit_initial.png"));
 		commit.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*3,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
@@ -280,10 +277,20 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		
 		this.add(commit);
 		this.add(reset);
-		this.add(TeamTech);
-		this.add(PlayerTech);
-		this.add(TeamData);
 	}
+	
+	private void sideButton_config(JButton button,String info,int count){
+		button.setBounds(26, 145+50*count, 148, 50);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setRolloverIcon(new ImageIcon("images/system_img/"+info+"_rollover.png"));
+		button.setPressedIcon(new ImageIcon("images/system_img/"+info+"_pressed.png"));
+		button.setSelectedIcon(new ImageIcon("images/system_img/"+info+"_selected.png"));
+		button.addActionListener(this);
+		this.add(button);
+	}
+	
 	//===================================================================
 	
 	private void handleinitial(ArrayList<PlayerTechVO> totaldata){
@@ -396,9 +403,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		refreshtable();
 	}
 
-	private String switchTeamName(String name){
-		switch(name){
-		case "ATL":
+	//reference
+	/*
+	 * case "ATL":
 			return "老鹰 Atlanta-Hawks";
 		case "CHA":
 			return "黄蜂 Charlotte-Hornets";
@@ -462,8 +469,84 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			return "灰熊 Memphis-Grizzlies";
 		case "NOP":
 			return "鹈鹕 New Orleans-Pelicans";
+		case "NOH":
+			return "鹈鹕 New Orleans-Pelicans";
 		case "SAS":
 			return "马刺 San Antonio-Spurs";
+	 * 
+	 * 
+	 */
+	
+	private String switchTeamName(String name){
+		switch(name){
+		case "ATL":
+			return "老鹰 - Hawks";
+		case "CHA":
+			return "黄蜂 - Hornets";
+		case "MIA":
+			return "热火 - Heat";
+		case "ORL":
+			return "魔术 - Magic";
+		case "WAS":
+			return "奇才 - Wizards";
+			
+		case "CHI":
+			return "公牛 - Bulls";
+		case "CLE":
+			return "骑士 - Cavaliers";
+		case "DET":
+			return "活塞 - Pistons";
+		case "IND":
+			return "步行者 - Pacers";
+		case "MIL":
+			return "雄鹿 - Bucks";
+			
+		case "BOS":
+			return "凯尔特人 - Celtics";
+		case "BKN":
+			return "篮网 - Nets";
+		case "NYK":
+			return "尼克斯 - Knicks";
+		case "PHI":
+			return "76人 - 76ers";
+		case "TOR":
+			return "猛龙 - Raptors";
+			
+			
+		case "GSW":
+			return "勇士 - Warriors";
+		case "LAC":
+			return "快船 - Clippers";
+		case "LAL":
+			return "湖人 - Lakers";
+		case "PHX":
+			return "太阳 - Suns";
+		case "SAC":
+			return "国王 - Kings";
+			
+		case "DEN":
+			return "掘金 - Nuggets";
+		case "MIN":
+			return "森林狼 - Timberwolves";
+		case "OKC":
+			return "雷霆 - Thunder";
+		case "POR":
+			return "开拓者 - Trail Blazers";
+		case "UTA":
+			return "勇士 - Jazz";
+			
+		case "DAL":
+			return "小牛 - Mavericks";
+		case "HOU":
+			return "火箭 - Rockets";
+		case "MEM":
+			return "灰熊 - Grizzlies";
+		case "NOP":
+			return "鹈鹕 - Pelicans";
+		case "NOH":
+			return "鹈鹕 - Pelicans";
+		case "SAS":
+			return "马刺 - Spurs";
 		default :
 				return null;
 		}
@@ -537,13 +620,11 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 	}
 
-
 	public void refreshtable(){
 		table_config();
 		players.setViewportView(playertable);
 		this.repaint();
 	}
-	
 
 	private void judgeOrderSource(String ordersource,String AvgOrTotal){
 		ArrayList<PlayerTechVO> orderPlayerTechVO = null;
@@ -797,7 +878,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		
 		this.add(players);
 	}
-	
 
 	//重载单元格标准类,用于改变单元格背景颜色
 	private class RowRenderer extends DefaultTableCellRenderer 
@@ -818,7 +898,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 					hasFocus, row, column);
 		}
 	}
-	
 
 	//绘制球员数据界面背景
 	public void paintComponent(Graphics g){
@@ -826,7 +905,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		ImageIcon im1=new ImageIcon("images/system_img/main_bg.png");
 		g.drawImage(im1.getImage(),0,0,this);
 	}
-	
 
 	//按钮鼠标监听事件
 	@Override
@@ -840,18 +918,18 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			int divisionnum=divisionbox.getSelectedIndex();
 			int ordergistnum=ordergistbox.getSelectedIndex();
 			
-			if(!positionsel.equals(positionItem[0])&&
-					!divisionsel.equals(divisionItem[0])&&
-					!ordergistsel.equals(ordergistItem[0])){
-				ArrayList<PlayerTechVO> siftVO = importdata.sift(positionstring[positionnum-1], divisionstring[divisionnum-1], ordergiststring[ordergistnum-1]);
-				playerinfo=new Object[siftVO.size()][columnName.length];
-				String switchboxsel=(String) switchbox.getSelectedItem();
-				if(switchboxsel.equals("赛季总数据")){
-					handleTotalData(siftVO);
-				}else if(switchboxsel.equals("场均数据")){
-					handleAverageData(siftVO);
-				}
-			}
+//			if(!positionsel.equals(positionItem[0])&&
+//					!divisionsel.equals(divisionItem[0])&&
+//					!ordergistsel.equals(ordergistItem[0])){
+//				ArrayList<PlayerTechVO> siftVO = importdata.sift(positionstring[positionnum-1], divisionstring[divisionnum-1], ordergiststring[ordergistnum-1]);
+//				playerinfo=new Object[siftVO.size()][columnName.length];
+//				String switchboxsel=(String) switchbox.getSelectedItem();
+//				if(switchboxsel.equals("赛季总数据")){
+//					handleTotalData(siftVO);
+//				}else if(switchboxsel.equals("场均数据")){
+//					handleAverageData(siftVO);
+//				}
+//			}
 			//去除表头监听器
 //			playertable.getTableHeader().removeMouseListener();
 			
@@ -864,16 +942,28 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			Frame.repaint();
 		}
 		
-		if(arg0.getSource()==TeamTech){
-			Frame.remove(this);
-			TeamTechPanel ttp=new TeamTechPanel(Frame);
-			Frame.add(ttp);
+		if(arg0.getSource()==SeasonInfo){
+			Frame.remove(panelToRemove);
+			TeamTechPanel panel=new TeamTechPanel(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
-		if(arg0.getSource()==TeamData){
-			Frame.remove(this);
-			TeamInfoPanel tip=new TeamInfoPanel(Frame);
-			Frame.add(tip);
+		if(arg0.getSource()==MatchInfo){
+			Frame.remove(panelToRemove);
+			MatchPanel panel=new MatchPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==TeamInfo){
+			Frame.remove(panelToRemove);
+			TeamInfoPanel panel=new TeamInfoPanel(Frame);
+			Frame.add(panel);
+			Frame.repaint();
+		}
+		if(arg0.getSource()==Hot){
+			Frame.remove(panelToRemove);
+			HotPlayerToday panel=new HotPlayerToday(Frame);
+			Frame.add(panel);
 			Frame.repaint();
 		}
 	}

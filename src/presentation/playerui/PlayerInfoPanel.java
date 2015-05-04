@@ -68,11 +68,6 @@ public class PlayerInfoPanel extends JPanel{
 		addbutton();
 
 		
-		player=new JLabel("jsjsj");
-		player.setBounds(100, 100, 500, 500);
-		player.setIcon(new ImageIcon("images/teams/ATL.svg"));
-		this.add(player);
-		
 	}
 	
 	public void button_config(JButton button){
