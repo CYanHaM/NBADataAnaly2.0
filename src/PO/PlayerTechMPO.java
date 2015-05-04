@@ -1,7 +1,7 @@
 package PO;
 import java.io.Serializable;
 
-public class PlayerTechMPO implements Serializable,Cloneable{
+public class PlayerTechMPO implements Serializable{
 	
 	/**
 	 *ÿ��������Ա����ͳ�� 
@@ -10,6 +10,7 @@ public class PlayerTechMPO implements Serializable,Cloneable{
 	
 	public String name;                         //����
 	public String team;                         //����
+	public String division;                     //分区
 	public String date;
 	public String position;                     //λ��
 	public int time;                         //�ڳ�ʱ��
@@ -45,12 +46,4 @@ public class PlayerTechMPO implements Serializable,Cloneable{
 	public int teamFault;                          //ȫ��ʧ�����    
 	public int ifDouble;
 
-  public  Object clone(){
-	  try{
-		  return   super .clone();
-		  }
-	  catch (CloneNotSupportedException e){
-          return   null ;
-     }
-  } 
 }

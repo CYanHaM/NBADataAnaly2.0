@@ -114,7 +114,7 @@ public class MainFrame extends JFrame{
 		PlayerInfoService pis=new PlayerInfo();
 		pis.PlayerInfoIni();
 		ShowPlayerTechService ppts=new ShowPlayerTech();
-		ppts.PlayerTechIni();
+//		ppts.PlayerTechIni();
 		TeamTechBLService ttbs=new TeamTech();
 		ttbs.init();
 		

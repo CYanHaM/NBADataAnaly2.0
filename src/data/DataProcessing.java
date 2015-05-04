@@ -54,6 +54,10 @@ public class DataProcessing implements readFrom{
 					matchpo.date="20"+filename[0].split("-")[0]+"-"+filename[1];
 				matchpo.guestTeam=data[0][1].split("-")[0];
 				matchpo.homeTeam=data[0][1].split("-")[1];
+				if(matchpo.guestTeam.equals("NOH"))
+					matchpo.guestTeam="NOP";
+				if(matchpo.homeTeam.equals("NOH"))
+					matchpo.homeTeam="NOP";
 				matchpo.score=data[0][2];
 				matchpo.guestScore=Integer.parseInt(data[0][2].split("-")[0]);
 				matchpo.homeScore=Integer.parseInt(data[0][2].split("-")[1]);
@@ -105,6 +109,10 @@ public class DataProcessing implements readFrom{
 						ptmp.time=0;
 					}
 				//	System.out.println(ptmp.time);
+					if(matchpo.guestTeam.equals("DAL")||matchpo.guestTeam.equals("DEN")||matchpo.guestTeam.equals("GSW")||matchpo.guestTeam.equals("HOU")||matchpo.guestTeam.equals("LAC")||matchpo.guestTeam.equals("LAL")||matchpo.guestTeam.equals("MEM")||matchpo.guestTeam.equals("MIN")||matchpo.guestTeam.equals("NOP")||matchpo.guestTeam.equals("OKC")||matchpo.guestTeam.equals("PHX")||matchpo.guestTeam.equals("POR")||matchpo.guestTeam.equals("SAC")||matchpo.guestTeam.equals("SAS")||matchpo.guestTeam.equals("UTA"))
+						ptmp.division="W";
+					else
+						ptmp.division="E";
 					ptmp.date=matchpo.date;
 					ptmp.shotIn=Integer.parseInt(data[k][3]);
 					ptmp.shot=Integer.parseInt(data[k][4]);
@@ -126,7 +134,7 @@ public class DataProcessing implements readFrom{
 						ptmp.score=0;
 						
 					}
-					ptmp.team=data[2][0];
+					ptmp.team=matchpo.guestTeam;
 					
 					if(k>=3&&k<=7)
 						ptmp.ifFirstLineUp=1;
@@ -154,7 +162,11 @@ public class DataProcessing implements readFrom{
 						ptmp.time=Integer.parseInt(data[k][2].split(":")[0]);
 					}catch (NumberFormatException e){
 						ptmp.time=0;
-					}			
+					}	
+					if(matchpo.homeTeam.equals("DAL")||matchpo.homeTeam.equals("DEN")||matchpo.homeTeam.equals("GSW")||matchpo.homeTeam.equals("HOU")||matchpo.homeTeam.equals("LAC")||matchpo.homeTeam.equals("LAL")||matchpo.homeTeam.equals("MEM")||matchpo.homeTeam.equals("MIN")||matchpo.homeTeam.equals("NOP")||matchpo.homeTeam.equals("OKC")||matchpo.homeTeam.equals("PHX")||matchpo.homeTeam.equals("POR")||matchpo.homeTeam.equals("SAC")||matchpo.homeTeam.equals("SAS")||matchpo.homeTeam.equals("UTA"))
+						ptmp.division="W";
+					else
+						ptmp.division="E";
 					ptmp.date=matchpo.date;
 					ptmp.shotIn=Integer.parseInt(data[k][3]);
 					ptmp.shot=Integer.parseInt(data[k][4]);
@@ -176,7 +188,7 @@ public class DataProcessing implements readFrom{
 						ptmp.score=0;
 						
 					}
-					ptmp.team=data[homeTeamTip][0];
+					ptmp.team=matchpo.homeTeam;
 					
 					if(k>=homeTeamTip+1&&k<=homeTeamTip+5)
 						ptmp.ifFirstLineUp=1;

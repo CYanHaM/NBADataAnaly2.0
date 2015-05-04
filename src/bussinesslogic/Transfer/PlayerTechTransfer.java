@@ -16,6 +16,8 @@ public class PlayerTechTransfer {
 			vo.name = po.name;
 			vo.season = po.season;
 			vo.team = po.team;
+			vo.position=po.position;
+			vo.division =po.division ;
 			vo.gameNum = po.gameNum;
 			vo.startingNum = po.startingNum;
 			vo.shotInRate = po.shotInRate;
@@ -91,6 +93,8 @@ public class PlayerTechTransfer {
 		po.name = vo.name;
 		po.season = vo.season;
 		po.team = vo.team;
+		po.position=vo.position;
+		po.division =vo.division ;
 		po.steal = vo.steal;
 		po.blockShot = vo.blockShot;
 		po.score = vo.score;
@@ -107,6 +111,8 @@ public class PlayerTechTransfer {
 		vo.name = po.name;
 		vo.season = po.season;
 		vo.team = po.team;
+		vo.position=po.position;
+		vo.division =po.division ;
 		vo.gameNum = po.gameNum;
 		vo.startingNum = po.startingNum;
 		vo.shotInRate = po.shotInRate;

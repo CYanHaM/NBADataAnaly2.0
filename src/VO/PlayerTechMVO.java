@@ -11,6 +11,7 @@ public class PlayerTechMVO implements Serializable {
 		public String team;                         //����
 		public String date;
 		public String position;                     //λ��
+		public String division;                     //分区
 		public int time;                         //�ڳ�ʱ��
 		public int shotIn;                       //Ͷ��������
 		public int shot;                         //Ͷ��������

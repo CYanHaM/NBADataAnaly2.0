@@ -66,22 +66,16 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			"效率","GmSc 效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 	//总数据与场均数据切换下拉框
 	private JComboBox<String> switchbox;
-	
-	private JComboBox<String> positionbox;
-	private String[] positionItem={"球员位置","前锋","中锋","后卫"};
-	private String[] positionstring={"F","C","G"};
-	private JComboBox<String> divisionbox;
-	private String[] divisionItem={"球员联盟","东部","西部"};
-	private String[] divisionstring={"E","W"};
-	private JComboBox<String> ordergistbox;
-	private String[] ordergistItem={"排序依据","得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
-	private String[] ordergiststring={"score","rebound","secondaryattack","srs","blockshot","steal","foul","fault","time","efficiency","shot","threeshot","penaltyshot","doubledouble"};
+
 	//排序方式单选按钮组
 	private JRadioButton order_Asc;
 	private JRadioButton order_Des;
 	private ButtonGroup group;
 	//排序依据显示行
 	private JLabel message;
+	
+	//高级筛选按钮
+	private JButton seniorsift;
 	//筛选提交按钮
 	private JButton commit;
 	//表格重置按钮
@@ -92,6 +86,8 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private JButton TeamInfo;
 	private JButton PlayerInfo;
 	private JButton Hot;
+	
+	private SeniorSift siftpanel;
 	
 	//----------------------------------------------------
 	public PlayerTechPre PTPre;
@@ -123,6 +119,8 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 		//添加下拉框
 		addbox();
+		//添加高级筛选
+		addseniorsift();
 		//添加单选按钮组
 		addradiobutton();
 		//添加提示信息
@@ -130,9 +128,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		//添加提交，重置按钮
 		addbutton();
 		
+		siftpanel=new SeniorSift();
+		siftpanel.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-20, 745, 260);
 		this.repaint();
-		
-		
 	}
 	
 //	public void init(){
@@ -179,29 +177,14 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			}
 		});
 
-
-		positionbox=new JComboBox<String>(positionItem);
-		positionbox.setFocusable(false);
-		positionbox.setBackground(PTPre.LineSelected);
-		positionbox.setFont(PTPre.switchbox);
-		positionbox.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
-
-		divisionbox=new JComboBox<String>(divisionItem);
-		divisionbox.setFocusable(false);
-		divisionbox.setBackground(PTPre.LineSelected);
-		divisionbox.setFont(PTPre.switchbox);
-		divisionbox.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+10,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
-
-		ordergistbox=new JComboBox<String>(ordergistItem);
-		ordergistbox.setFocusable(false);
-		ordergistbox.setBackground(PTPre.LineSelected);
-		ordergistbox.setFont(PTPre.switchbox);
-		ordergistbox.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*2,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
-		
 		this.add(switchbox);
-		this.add(positionbox);
-		this.add(divisionbox);
-		this.add(ordergistbox);
+	}
+	
+	private void addseniorsift(){
+		seniorsift=new JButton("高级筛选");
+		seniorsift.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-50, 160, 30);
+		seniorsift.addActionListener(this);
+		this.add(seniorsift);
 	}
 	
 	private void addradiobutton(){
@@ -989,14 +972,23 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//按钮鼠标监听事件
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		
+		if(arg0.getSource()==seniorsift){
+			if(!seniorsift.isSelected()){
+			seniorsift.setSelected(true);
+			Frame.add(siftpanel);
+			Frame.add(this);
+			playertable.setEnabled(false);
+			playertable.getTableHeader().setEnabled(false);
+			Frame.repaint();
+			}else{
+				Frame.remove(siftpanel);
+				seniorsift.setSelected(false);
+				Frame.repaint();
+			}
+		}
+		
 		if(arg0.getSource()==commit){
-			String positionsel=(String)positionbox.getSelectedItem();
-			String divisionsel=(String)divisionbox.getSelectedItem();
-			String ordergistsel=(String)ordergistbox.getSelectedItem();
-			int positionnum=positionbox.getSelectedIndex();
-			int divisionnum=divisionbox.getSelectedIndex();
-			int ordergistnum=ordergistbox.getSelectedIndex();
 			
 //			if(!positionsel.equals(positionItem[0])&&
 //					!divisionsel.equals(divisionItem[0])&&
