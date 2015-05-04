@@ -492,49 +492,109 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.name);
 			break;
 		case "投篮命中数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNum);
+			}
 			break;
 		case "投篮出手次数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNum);
+			}
 			break;
 		case "三分命中数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNum);
+			}
 			break;
 		case "三分出手数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNum);
+			}
 			break;
 		case "罚球命中数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNum);
+			}
 			break;
 		case "罚球出手数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNum);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNumave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNum);
+			}
 			break;
 		case "进攻篮板数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRebound);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveReboundave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRebound);
+			}
 			break;
 		case "防守篮板数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveRebound);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveReboundave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveRebound);
+			}
 			break;
 		case "篮板数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.rebound);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.reboundave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.rebound);
+			}
 			break;
 		case "助攻数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttack);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttackave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttack);
+			}
 			break;
 		case "抢断数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.steal);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.stealave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.steal);
+			}
 			break;
 		case "盖帽数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShot);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShotave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShot);
+			}
 			break;
 		case "失误数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.fault);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.faultave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.fault);
+			}
 			break;
 		case "犯规数":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foul);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foulave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foul);
+			}
 			break;
 		case "比赛得分":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.score);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.scoreave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.score);
+			}
 			break;
 		case "投篮命中率":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInRate);
@@ -549,7 +609,11 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.winningRate);
 			break;
 		case "进攻回合":
-			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRound);
+			if(AvgOrTotal.equals("场均数据")){
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRoundave);
+			}else{
+				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRound);
+			}
 			break;
 		case "进攻效率":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveEfficiency);
@@ -578,49 +642,109 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 //				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.gameNum);
 				break;
 			case "投篮命中数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNum);
+				}
 				break;
 			case "投篮出手次数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNum);
+				}
 				break;
 			case "三分命中数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNum);
+				}
 				break;
 			case "三分出手数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNum);
+				}
 				break;
 			case "罚球命中数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNum);
+				}
 				break;
 			case "罚球出手数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNum);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNumave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNum);
+				}
 				break;
 			case "进攻篮板数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRebound);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveReboundave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRebound);
+				}
 				break;
 			case "防守篮板数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveRebound);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveReboundave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveRebound);
+				}
 				break;
 			case "篮板数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.rebound);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.reboundave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.rebound);
+				}
 				break;
 			case "助攻数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttack);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttackave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttack);
+				}
 				break;
 			case "抢断数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.steal);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.stealave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.steal);
+				}
 				break;
 			case "盖帽数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShot);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShotave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShot);
+				}
 				break;
 			case "失误数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.fault);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.faultave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.fault);
+				}
 				break;
 			case "犯规数":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foul);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foulave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foul);
+				}
 				break;
 			case "比赛得分":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.score);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.scoreave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.score);
+				}
 				break;
 			case "投篮命中率":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInRate);
@@ -635,7 +759,11 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.winningRate);
 				break;
 			case "进攻回合":
-				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRound);
+				if(AvgOrTotal.equals("场均数据")){
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRoundave);
+				}else{
+					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRound);
+				}
 				break;
 			case "进攻效率":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveEfficiency);

@@ -69,7 +69,7 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 						return 0;
 					else
 						return (p1.reboundave-p2.reboundave)>0?1:-1;
-				case "secondaryAttack":
+				case "secondaryattack":
 					return p1.secondaryAttack-p2.secondaryAttack;
 				case "secondaryattackave":
 					if(p1.secondaryAttackave==p2.secondaryAttackave)
@@ -132,18 +132,6 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 						return 0;
 					else
 						return (p1.scoreave-p2.scoreave)>0?1:-1;
-				case "shotin":
-					return p1.shotIn-p2.shotIn;
-				case "shot":
-					return p1.shot-p2.shot;
-				case "threeshotin":
-					return p1.threeShotIn-p2.threeShotIn;
-				case "threeshot":
-					return p1.threeShot-p2.threeShot;
-				case "penaltyshotin":
-					return p1.penaltyShotIn-p2.penaltyShotIn;
-				case "penaltyshot":
-					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
 					if(p1.shotInRate==p2.shotInRate)
 						return 0;
@@ -250,7 +238,7 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 						return 0;
 					else
 						return (p1.reboundave-p2.reboundave)>0?1:-1;
-				case "secondaryAttack":
+				case "secondaryattack":
 					return p1.secondaryAttack-p2.secondaryAttack;
 				case "secondaryattackave":
 					if(p1.secondaryAttackave==p2.secondaryAttackave)
@@ -313,18 +301,6 @@ public class ShowPlayerTech  implements ShowPlayerTechService {
 						return 0;
 					else
 						return (p1.scoreave-p2.scoreave)>0?1:-1;
-				case "shotin":
-					return p1.shotIn-p2.shotIn;
-				case "shot":
-					return p1.shot-p2.shot;
-				case "threeshotin":
-					return p1.threeShotIn-p2.threeShotIn;
-				case "threeshot":
-					return p1.threeShot-p2.threeShot;
-				case "penaltyshotin":
-					return p1.penaltyShotIn-p2.penaltyShotIn;
-				case "penaltyshot":
-					return p1.penaltyShot-p2.penaltyShot;
 				case "shotinrate":
 					if(p1.shotInRate==p2.shotInRate)
 						return 0;

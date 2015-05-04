@@ -273,7 +273,7 @@ public class OperateWithFile implements PlayerTechInitial {
 		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>();
 		
 		readFrom rf = new DataProcessing();
-		ArrayList<MatchPO> match = rf.matchRead();   System.out.println(match.size());
+		ArrayList<MatchPO> match = rf.matchRead();   
 		int matchSize = match.size();
 		for(int i=0;i<matchSize;i++){
 			MatchPO ma = match.get(i);
@@ -308,7 +308,7 @@ public class OperateWithFile implements PlayerTechInitial {
 				res.add(mp);
 			}
 		}
-	//	System.out.println(res.size());
+	
 		try {
         	FileOutputStream fos = new FileOutputStream("database/PlayerTechMPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -413,11 +413,11 @@ public class OperateWithFile implements PlayerTechInitial {
 		for(int m=0;m<poSize;m++){
 			PlayerTechPO po = poList.get(m);
 			if(po.name.equals(name)){ 
-				po.scoreImproving = scoreImproving;           System.out.println(po.scoreImproving);
-				po.stealImproving = stealImproving;				System.out.println(po.stealImproving);
-				po.blockShotImproving = blockShotImproving;			System.out.println(po.blockShotImproving);
-				po.secondaryAttackImproving = secondaryAttackImproving;		System.out.println(po.secondaryAttackImproving);
-				po.reboundImproving = reboundImproving;		System.out.println(po.reboundImproving);
+				po.scoreImproving = scoreImproving;           
+				po.stealImproving = stealImproving;				
+				po.blockShotImproving = blockShotImproving;			
+				po.secondaryAttackImproving = secondaryAttackImproving;		
+				po.reboundImproving = reboundImproving;		
 			}
 		}
 	 }
