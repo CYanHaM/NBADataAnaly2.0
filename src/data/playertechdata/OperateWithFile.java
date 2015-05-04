@@ -44,7 +44,7 @@ public class OperateWithFile implements PlayerTechInitial {
 			for(int i=1;i<mpoSize;i++){
 				PlayerTechMPO m = mpoList.get(i);
 				if(m.name.equals(name)&&m.team.equals(team)){
-					temp.add(m);
+					temp.add((PlayerTechMPO)m.clone());
 					m.name = "";
 				}
 			}
@@ -273,11 +273,11 @@ public class OperateWithFile implements PlayerTechInitial {
 		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>();
 		
 		readFrom rf = new DataProcessing();
-		ArrayList<MatchPO> match = rf.matchRead();
+		ArrayList<MatchPO> match = rf.matchRead();   System.out.println(match.size());
 		int matchSize = match.size();
 		for(int i=0;i<matchSize;i++){
 			MatchPO ma = match.get(i);
-			ArrayList<PlayerTechMPO> list = ma.playerStatistic;
+			ArrayList<PlayerTechMPO> list = ma.playerStatistic;  
 			
 			int teamAllTime =ma.homeAllTime;                  //ȫ���ϳ�ʱ��
 			int teamOffensiveRebound = ma.homeTeamOffensiveRebound;                  //ȫ�ӽ�������
@@ -409,10 +409,10 @@ public class OperateWithFile implements PlayerTechInitial {
 		double secondaryAttackImproving=(secondaryAttack/(double)listSize)==0?0:((((double)latestSecondaryAttack/5)-secondaryAttack/(double)listSize)/(secondaryAttack/(double)listSize));
 		double reboundImproving=(rebound/(double)listSize)==0?0:((((double)rebound/5)-rebound/(double)listSize)/(rebound/(double)listSize));
 		
-		int poSize = poList.size();  
+		int poSize = poList.size();
 		for(int m=0;m<poSize;m++){
-			PlayerTechPO po = poList.get(m); 
-			if(po.name.equals(name)){
+			PlayerTechPO po = poList.get(m);
+			if(po.name.equals(name)){ 
 				po.scoreImproving = scoreImproving;           System.out.println(po.scoreImproving);
 				po.stealImproving = stealImproving;				System.out.println(po.stealImproving);
 				po.blockShotImproving = blockShotImproving;			System.out.println(po.blockShotImproving);
