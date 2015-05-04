@@ -18,10 +18,11 @@ public class FindPlayerTech implements FindPlayerTechService{
 
 	public static void main(String[] args){
 		FindPlayerTech fi = new FindPlayerTech();
-		ArrayList<PlayerTechMVO> all = fi.findHotPlayerToday("2012-11-03", "secondaryattack");
-		for(PlayerTechMVO mvo:all){
-			System.out.println(mvo.name+" "+mvo.date+" "+mvo.secondaryAttack+" "+mvo.secondaryAttackImproving);
+		ArrayList<PlayerTechVO> all = fi.findFastImprovingPlayer("blockshot");
+		for(PlayerTechVO mvo:all){
+			System.out.println(mvo.name+" "+mvo.blockShotImproving);
 		}
+		
 	}
 
 	
@@ -35,22 +36,9 @@ public class FindPlayerTech implements FindPlayerTechService{
 		 ArrayList<PlayerTechMPO> list = fd.findHotPlayerToday(date, keyword);
 		 MPO2MVO v2p = new MPO2MVO();
 		 ShowPlayerTech sh = new ShowPlayerTech();
-		 ArrayList<PlayerTechVO> tech = sh.showSeasonPlayerData();
-		 int size = tech.size();
+		 
 		 ArrayList<PlayerTechMVO> vo = v2p.list2vo(list);
-		 for(int i=0;i<vo.size();i++){
-			 PlayerTechMVO mvo = vo.get(i);
-			 for(int j=0;j<size;j++){
-				 if(tech.get(j).name.equals(mvo.name)){
-					 PlayerTechVO te = tech.get(j);
-					 mvo.blockShotImproving = te.blockShotImproving;
-					 mvo.scoreImproving = te.scoreImproving;
-					 mvo.stealImproving = te.stealImproving;
-					 mvo.secondaryAttackImproving = te.secondaryAttackImproving;
-					 mvo.reboundImproving = te.reboundImproving;
-				 }
-			 }
-		 }
+		 
 		return vo;
 	}
 
@@ -148,7 +136,7 @@ public class FindPlayerTech implements FindPlayerTechService{
 						return 0;
 					else
 						return (p2.reboundImproving>p1.reboundImproving)?1:-1;
-				case "secondaryAttack":
+				case "secondaryattack":
 					if(p2.secondaryAttackImproving==p1.secondaryAttackImproving)
 						return 0;
 					else
