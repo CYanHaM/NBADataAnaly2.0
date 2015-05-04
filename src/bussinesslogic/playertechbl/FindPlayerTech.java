@@ -15,15 +15,15 @@ import bussinesslogic.Transfer.PlayerTechTransfer;
 import bussinesslogic.Transfer.P2L.MPO2MVO;
 
 public class FindPlayerTech implements FindPlayerTechService{
-/*
+
 	public static void main(String[] args){
 		FindPlayerTech fi = new FindPlayerTech();
-		ArrayList<PlayerTechMVO> all = fi.findHotPlayerToday("2014-01-03", "blockshot");
+		ArrayList<PlayerTechMVO> all = fi.findHotPlayerToday("2012-11-03", "secondaryattack");
 		for(PlayerTechMVO mvo:all){
-			System.out.println(mvo.name+" "+mvo.date);
+			System.out.println(mvo.name+" "+mvo.date+" "+mvo.secondaryAttack+" "+mvo.secondaryAttackImproving);
 		}
 	}
-*/
+
 	
 	FindDataService fd = new Find();
 	PlayerTechTransfer tr = new PlayerTechTransfer();

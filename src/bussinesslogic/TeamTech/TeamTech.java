@@ -234,6 +234,166 @@ public class TeamTech implements TeamTechBLService{
 				}
 				isDouble = true;
 				return result;
+			case shotInNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.shotInNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case shotNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.shotNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case threeShotInNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.threeShotInNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case threeShotNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.threeShotNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case penaltyShotInNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.penaltyShotInNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case penaltyShotNumave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.penaltyShotNumave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case offensiveReboundave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.offensiveReboundave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case defensiveReboundave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.defensiveReboundave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case reboundave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.reboundave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case secondaryAttackave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.secondaryAttackave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case stealave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.stealave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case blockShotave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.blockShotave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case faultave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.faultave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case foulave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.foulave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case scoreave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.scoreave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
+			case offensiveRoundave:
+				for(int i = 0 ;i<30; i++){
+					TeamTechP2L p2l = new TeamTechP2L();
+					TeamTechLineItem ttli = new TeamTechLineItem();
+					ttli = p2l.p2l(polist.get(i));
+					result.add(ttli.offensiveRoundave);
+					forSort.add(ttli);
+				}
+				isDouble = true;
+				return result;
 			default:
 				return null;
 		}

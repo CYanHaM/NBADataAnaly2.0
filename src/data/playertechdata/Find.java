@@ -3,6 +3,7 @@ package data.playertechdata;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import PO.PlayerTechMPO;
 import PO.PlayerTechPO;
@@ -17,20 +18,20 @@ public class Find implements FindDataService {
 	@Override
 	public ArrayList<PlayerTechMPO> findHotPlayerToday(String date, final String keyword)  {
 		// TODO Auto-generated method stub
-		//É¸Ñ¡½ñÌìµÄ±ÈÈüÊý¾Ý
+		//É¸Ñ¡ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<PlayerTechMPO> list = owf.readMPO();
-		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>();
+		ArrayList<PlayerTechMPO> res = new ArrayList<PlayerTechMPO>(); 
 		int size = list.size();
-		for(int i=0;i<size;i++){     System.out.println(list.get(i).date);
+		for(int i=0;i<size;i++){    
 			if(list.get(i).date.equals(date)){
 				res.add(list.get(i));
 			}
 		}
-		//½øÐÐÅÅÐò
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
 			
 			public int compare(PlayerTechMPO p2, PlayerTechMPO p1) {   
-				//ÖØÐ´±È½Ï·½·¨
+				//ï¿½ï¿½Ð´ï¿½È½Ï·ï¿½ï¿½ï¿½
 				switch(keyword){
 				case "rebound":
 					return p1.rebound-p2.rebound;
@@ -59,9 +60,12 @@ public class Find implements FindDataService {
 			}  
 		}; 
 		Collections.sort(res, comparator);
+		Iterator<PlayerTechMPO> it = res.iterator();
 		ArrayList<PlayerTechMPO> result = new ArrayList<PlayerTechMPO>();
-		for(int i=0;i<5;i++){
-			result.add(res.get(i));
+		int i=0;
+		while(i<5&&it.hasNext()){
+			result.add(it.next());
+			i++;
 		}
 		return result;
 	}

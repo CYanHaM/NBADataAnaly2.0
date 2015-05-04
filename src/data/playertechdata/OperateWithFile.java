@@ -25,22 +25,14 @@ public class OperateWithFile implements PlayerTechInitial {
 	public static void main(String[] args){
 		OperateWithFile owf = new OperateWithFile();
 		owf.write();
-		ArrayList<PlayerTechMPO> all = owf.readMPO();
-		System.out.println(all.size());
-		for(int i=0;i<30;i++){
-			PlayerTechMPO mpo = all.get(i);
-			System.out.println(mpo.name+" "+mpo.date+" "+mpo.team);
-		}
 	}
 	
 	public void write(){
 		
 		
-		//calculateteam���������
 		ArrayList<PlayerTechMPO> mpoList = calculateTeam();
 		ArrayList<PlayerTechPO> poList = new ArrayList<PlayerTechPO>();
 
-		//div����ÿ����Ա�����б�������
 		ArrayList<ArrayList<PlayerTechMPO> > div = new ArrayList<ArrayList<PlayerTechMPO> >();
 		while(mpoList.size()!=0){
 			int mpoSize = mpoList.size();
@@ -142,8 +134,12 @@ public class OperateWithFile implements PlayerTechInitial {
 				ptp.teamFault = mp.teamFault;
 			}
 			
-			//���ݹ�ʽ����
-			//��������Ϊ0
+			
+			if(ptp.shot==0){					
+				ptp.shotInRate=0;
+				}else{
+					ptp.shotInRate=(double)ptp.shotIn/(double)ptp.shot;
+			}
 			if(ptp.threeShot==0){					
 				ptp.threeShotInRate=0;
 				}else{
@@ -213,11 +209,11 @@ public class OperateWithFile implements PlayerTechInitial {
 			poList.add(ptp);
 	   }
 	  try {
-			  FileOutputStream fos2 = new FileOutputStream("database/PlayerTechMPODiv.ser");
-	          ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
-	          oos2.writeObject(div);
-	          oos2.flush();
-	          oos2.close();
+		   FileOutputStream fos2 = new FileOutputStream("database/PlayerTechMPODiv.ser");
+           ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+           oos2.writeObject(div);
+           oos2.flush();
+           oos2.close();
 	          
         	FileOutputStream fos = new FileOutputStream("database/PlayerTechPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -312,7 +308,7 @@ public class OperateWithFile implements PlayerTechInitial {
 				res.add(mp);
 			}
 		}
-		
+	//	System.out.println(res.size());
 		try {
         	FileOutputStream fos = new FileOutputStream("database/PlayerTechMPO.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -328,109 +324,104 @@ public class OperateWithFile implements PlayerTechInitial {
 	
 	public ArrayList<PlayerTechPO> calculateImproving(ArrayList<PlayerTechPO> poList){
 		 //���㰴ʱ�����򡢰���������ļ���ͳ��
-		 ArrayList<ArrayList<PlayerTechMPO>> li = readDiv();
-			/*
-			 * �ݶ�
-			 */
-			Iterator<ArrayList<PlayerTechMPO>> it = li.iterator();
-			while(it.hasNext()){
-				if(it.next().size()<=5){
-					it.remove();
+		 ArrayList<ArrayList<PlayerTechMPO>> li = readDiv(); 
+		 //若某球员的比赛数量小于等于5，则删除该球员
+		 Iterator<ArrayList<PlayerTechMPO>> it = li.iterator();  
+			while(it.hasNext()){ 
+				if(it.next().size()<=5){  
+					it.remove(); 
 				}
 			}
-			int size = li.size();
-			for(int i=0;i<size;i++){
-				ArrayList<PlayerTechMPO> list = li.get(i);
-				//��������
-				Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
-					public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
-						//��д�ȽϷ���,����Ƚ�����
-						 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd",Locale.CHINA);
-						 Date dt1;
-						 Date dt2;
-						try {
-							dt1 = sdf.parse(p1.date);
-							dt2 = sdf.parse(p2.date);
-							 if(dt2.getTime()>dt1.getTime())
-								 return 1;
-							 else
-								 return -1;
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						return 0;
+		int size = li.size(); 
+		for(int i=0;i<size;i++){
+			//每个球员的每场数据
+			ArrayList<PlayerTechMPO> list = li.get(i);
+			//��������
+			Comparator<PlayerTechMPO> comparator = new Comparator<PlayerTechMPO>(){  
+				public int compare(PlayerTechMPO p1, PlayerTechMPO p2) {   
+					//��д�ȽϷ���,����Ƚ�����
+					 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd",Locale.CHINA);
+					 Date dt1;
+					 Date dt2;
+					try {
+						dt1 = sdf.parse(p1.date);
+						dt2 = sdf.parse(p2.date);
+						 if(dt2.getTime()>dt1.getTime())
+							 return 1;
+						 else
+							 return -1;
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				}; 
-				Collections.sort(list, comparator);
-			}
-		 
-		 int amount = li.size();
-		 for(int j=0;j<amount;j++){
-			 ArrayList<PlayerTechMPO> list= li.get(j);
-			 //��ʹ��
-		//	 System.out.println(list.size());
-			 String name = list.get(0).name;
-			 //��ʼ����ÿһ����Ա��������
-			//���5����������
-			 ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
-			 //listΪ֮ǰ����
-			int num=0;
-			while(num<5){     
-				latest.add(list.get(0));
-				list.remove(0);
-				num++;
-			}
-			
-			int latestScore = 0;
-			int latestSteal=0;
-			int latestBlockShot=0;
-			int latestSecondaryAttack=0;
-			int latestRebound=0;
-			int score = 0;
-			int steal=0;
-			int blockShot=0;
-			int secondaryAttack=0;
-			int rebound=0;
-			
-			for(int i=0;i<5;i++){
-				PlayerTechMPO mp =  latest.get(i);
-				latestScore += mp.score;
-				latestSteal += mp.steal;
-				latestBlockShot += mp.blockShot;
-				latestSecondaryAttack +=mp.secondaryAttack;
-				latestRebound += mp.rebound;
-			}
-			
-			int listSize = list.size();
-			for(int i=0;i<listSize;i++){
-				PlayerTechMPO mp =  list.get(i);
-				score = mp.score;
-				steal=mp.steal;
-				blockShot=mp.blockShot;
-				secondaryAttack=mp.secondaryAttack;
-				rebound=mp.rebound;
-			}
-			
-			double scoreImproving=(score/listSize)==0?0:(((latestScore/5)-score/listSize)/(score/listSize));
-		    double stealImproving=(steal/listSize)==0?0:(((latestSteal/5)-steal/listSize)/(steal/listSize));
-			double blockShotImproving=(blockShot/listSize)==0?0:(((latestBlockShot/5)-blockShot/listSize)/(blockShot/listSize));
-			double secondaryAttackImproving=(secondaryAttack/listSize)==0?0:(((latestSecondaryAttack/5)-secondaryAttack/listSize)/(secondaryAttack/listSize));
-			double reboundImproving=(rebound/listSize)==0?0:(((rebound/5)-rebound/listSize)/(rebound/listSize));
-			
-			int poSize = list.size();
-			for(int m=0;m<poSize;m++){
-				PlayerTechPO po = poList.get(m); 
-				if(po.name.equals(name)){
-					po.scoreImproving = scoreImproving;
-					po.stealImproving = stealImproving;
-					po.blockShotImproving = blockShotImproving;
-					po.secondaryAttackImproving = secondaryAttackImproving;
-					po.reboundImproving = reboundImproving;
+					return 0;
 				}
+			}; 
+			Collections.sort(list, comparator);
+		}
+		
+	 //按日期分割
+	 for(int j=0;j<size;j++){
+		ArrayList<PlayerTechMPO> list= li.get(j);
+		String name = list.get(0).name;
+		//每个球员的最近5场比赛存入latest
+		ArrayList<PlayerTechMPO> latest = new ArrayList<PlayerTechMPO>();
+		int num=0;
+		while(num<5){     
+			latest.add(list.get(0));
+			list.remove(0);
+			num++;
+		}
+		
+		int latestScore = 0;
+		int latestSteal=0;
+		int latestBlockShot=0;
+		int latestSecondaryAttack=0;
+		int latestRebound=0;
+		int score = 0;
+		int steal=0;
+		int blockShot=0;
+		int secondaryAttack=0;
+		int rebound=0;
+		
+		for(int i=0;i<5;i++){
+			PlayerTechMPO mp =  latest.get(i);
+			latestScore += mp.score;
+			latestSteal += mp.steal;
+			latestBlockShot += mp.blockShot;
+			latestSecondaryAttack +=mp.secondaryAttack;
+			latestRebound += mp.rebound;
+		}
+		
+		int listSize = list.size();
+		for(int i=0;i<listSize;i++){
+			PlayerTechMPO mp =  list.get(i);
+			score = mp.score;
+			steal=mp.steal;
+			blockShot=mp.blockShot;
+			secondaryAttack=mp.secondaryAttack;
+			rebound=mp.rebound;
+		}
+		
+		double scoreImproving=(score/(double)listSize)==0?0:((((double)latestScore/5)-score/(double)listSize)/(score/(double)listSize));
+	    double stealImproving=(steal/(double)listSize)==0?0:((((double)latestSteal/5)-steal/(double)listSize)/(steal/(double)listSize));
+		double blockShotImproving=(blockShot/(double)listSize)==0?0:((((double)latestBlockShot/5)-blockShot/(double)listSize)/(blockShot/(double)listSize));
+		double secondaryAttackImproving=(secondaryAttack/(double)listSize)==0?0:((((double)latestSecondaryAttack/5)-secondaryAttack/(double)listSize)/(secondaryAttack/(double)listSize));
+		double reboundImproving=(rebound/(double)listSize)==0?0:((((double)rebound/5)-rebound/(double)listSize)/(rebound/(double)listSize));
+		
+		int poSize = poList.size();  
+		for(int m=0;m<poSize;m++){
+			PlayerTechPO po = poList.get(m); 
+			if(po.name.equals(name)){
+				po.scoreImproving = scoreImproving;           System.out.println(po.scoreImproving);
+				po.stealImproving = stealImproving;				System.out.println(po.stealImproving);
+				po.blockShotImproving = blockShotImproving;			System.out.println(po.blockShotImproving);
+				po.secondaryAttackImproving = secondaryAttackImproving;		System.out.println(po.secondaryAttackImproving);
+				po.reboundImproving = reboundImproving;		System.out.println(po.reboundImproving);
 			}
-		 }
-		 return poList;
+		}
+	 }
+	 return poList;
 	}
 
 }

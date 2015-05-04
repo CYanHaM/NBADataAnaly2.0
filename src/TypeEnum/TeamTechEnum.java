@@ -1,31 +1,49 @@
 package TypeEnum;
 
 public enum TeamTechEnum {
-	name,                            //Çò¶ÓÃû³Æ
-	shotInNum,                       //Í¶ÀºÃüÖĞÊı
-	shotNum,                         //Í¶Àº³öÊÖÊı
-	threeShotInNum,                  //Èı·ÖÃüÖĞÊı
-	threeShotNum,                    //Èı·Ö³öÊÖÊı
-	penaltyShotInNum,                //·£ÇòÃüÖĞÊı
-	penaltyShotNum,                  //·¢Çò³öÊÖÊı
-	offensiveRebound,                //Ç°³¡Àº°åÊı
-	defensiveRebound,                //ºó³¡Àº°åÊı
-	rebound,                         //×ÜÀº°åÊı
-	secondaryAttack,                 //Öú¹¥Êı
-	steal,                           //ÇÀ¶ÏÊı
-	blockShot,                       //¸ÇÃ±Êı
-	fault,                           //Ê§ÎóÊı
-	foul,                            //·¸¹æÊı
-	score,                           //±ÈÈüµÃ·Ö
-	shotInRate,                      //Í¶ÀºÃüÖĞÂÊ
-	threeShotInRate,                 //Èı·ÖÃüÖĞÂÊ
-	penaltyShotInRate,               //·£ÇòÃüÖĞÂÊ
-	winningNum,						 //Ê¤³¡
-	winningRate,                     //Ê¤ÂÊ
-	offensiveRound,                  //½ø¹¥»ØºÏ
-	offensiveEfficiency,               //½ø¹¥Ğ§ÂÊ
-	defensiveEfficiency,               //·ÀÊØĞ§ÂÊ
-	reboundEfficiency,                 //Àº°åĞ§ÂÊ
-	stealEfficiency,                   //ÇÀ¶ÏĞ§ÂÊ
-	secondaryAttackEfficiency;         //Öú¹¥Ğ§ÂÊ
+	name,                            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	shotInNum,                       //Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	shotNum,                         //Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	threeShotInNum,                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	threeShotNum,                    //ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½
+	penaltyShotInNum,                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	penaltyShotNum,                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	offensiveRebound,                //Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	defensiveRebound,                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	rebound,                         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	secondaryAttack,                 //ï¿½ï¿½ï¿½ï¿½
+	steal,                           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	blockShot,                       //ï¿½ï¿½Ã±ï¿½ï¿½
+	fault,                           //Ê§ï¿½ï¿½ï¿½ï¿½
+	foul,                            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	score,                           //ï¿½ï¿½ï¿½ï¿½Ã·ï¿½
+	shotInRate,                      //Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	threeShotInRate,                 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	penaltyShotInRate,               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	winningNum,						 //Ê¤ï¿½ï¿½
+	winningRate,                     //Ê¤ï¿½ï¿½
+	offensiveRound,                  //ï¿½ï¿½Øºï¿½
+	offensiveEfficiency,               //ï¿½ï¿½Ğ§ï¿½ï¿½
+	defensiveEfficiency,               //ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
+	reboundEfficiency,                 //ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
+	stealEfficiency,                   //ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½
+	secondaryAttackEfficiency,         //ï¿½ï¿½Ğ§ï¿½ï¿½
+	
+	shotInNumave,					//åœºå‡å‘½ä¸­
+	shotNumave,						//åœºå‡å‡ºæ‰‹
+	threeShotInNumave,				//åœºå‡ä¸‰åˆ†å‘½ä¸­
+	threeShotNumave,				//åœºå‡ä¸‰åˆ†å‡ºæ‰‹
+	penaltyShotInNumave,			//åœºå‡ç½šçƒå‘½ä¸­
+	penaltyShotNumave,				//åœºå‡ç½šçƒå‡ºæ‰‹
+	offensiveReboundave,			//åœºå‡è¿›æ”»ç¯®æ¿
+	defensiveReboundave,			//åœºå‡é˜²å®ˆç¯®æ¿
+	reboundave,						//åœºå‡ç¯®æ¿
+	secondaryAttackave,				//åœºå‡åŠ©æ”»
+	stealave,						//åœºå‡æŠ¢æ–­
+	blockShotave,					//åœºå‡ç›–å¸½
+	faultave,						//åœºå‡å¤±è¯¯
+	foulave,						//åœºå‡çŠ¯è§„
+	scoreave,						//åœºå‡å¾—åˆ†
+	offensiveRoundave;				//åœºå‡è¿›æ”»å›åˆ
+	
 }
