@@ -2,6 +2,7 @@ package presentation.teamui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -204,10 +205,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	
 	private void handleinitial(ArrayList<TeamTechVO> totaldata){
 		int a=0;
-		
-//		for(int i = 0;i<30;i++){
-//			System.out.println(totaldata.get(i).shotInNum);
-//		}
+		DecimalFormat f = new DecimalFormat("#,##0.0000");  
 		
 		for(TeamTechVO i:totaldata){
 			teaminfo[a][1]=switchTeamName(i.name);
@@ -227,21 +225,22 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			teaminfo[a][15]=i.fault;
 			teaminfo[a][16]=i.foul;
 			teaminfo[a][17]=i.score;
-			teaminfo[a][18]=i.shotInRate;
-			teaminfo[a][19]=i.threeShotInRate;
-			teaminfo[a][20]=i.penaltyShotInRate;
-			teaminfo[a][21]=i.winningRate;
-			teaminfo[a][22]=i.offensiveRound;
-			teaminfo[a][23]=i.offensiveEfficiency;
-			teaminfo[a][24]=i.defensiveEfficiency;
-			teaminfo[a][25]=i.reboundEfficiency;
-			teaminfo[a][26]=i.stealEfficiency;
-			teaminfo[a][27]=i.secondaryAttackEfficiency;
+			teaminfo[a][18]=f.format(i.shotInRate);
+			teaminfo[a][19]=f.format(i.threeShotInRate);
+			teaminfo[a][20]=f.format(i.penaltyShotInRate);
+			teaminfo[a][21]=f.format(i.winningRate);
+			teaminfo[a][22]=f.format(i.offensiveRound);
+			teaminfo[a][23]=f.format(i.offensiveEfficiency);
+			teaminfo[a][24]=f.format(i.defensiveEfficiency);
+			teaminfo[a][25]=f.format(i.reboundEfficiency);
+			teaminfo[a][26]=f.format(i.stealEfficiency);
+			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
 			a++;
 		}
 	}
 	
 	private void handleTotalData(ArrayList<TeamTechVO> totaldata){
+		DecimalFormat f = new DecimalFormat("#,##0.0000"); 
 		int a=0;
 		for(TeamTechVO i:totaldata){
 			teaminfo[a][1]=switchTeamName(i.name);
@@ -261,51 +260,52 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			teaminfo[a][15]=i.fault;
 			teaminfo[a][16]=i.foul;
 			teaminfo[a][17]=i.score;
-			teaminfo[a][18]=i.shotInRate;
-			teaminfo[a][19]=i.threeShotInRate;
-			teaminfo[a][20]=i.penaltyShotInRate;
-			teaminfo[a][21]=i.winningRate;
-			teaminfo[a][22]=i.offensiveRound;
-			teaminfo[a][23]=i.offensiveEfficiency;
-			teaminfo[a][24]=i.defensiveEfficiency;
-			teaminfo[a][25]=i.reboundEfficiency;
-			teaminfo[a][26]=i.stealEfficiency;
-			teaminfo[a][27]=i.secondaryAttackEfficiency;
+			teaminfo[a][18]=f.format(i.shotInRate);
+			teaminfo[a][19]=f.format(i.threeShotInRate);
+			teaminfo[a][20]=f.format(i.penaltyShotInRate);
+			teaminfo[a][21]=f.format(i.winningRate);
+			teaminfo[a][22]=f.format(i.offensiveRound);
+			teaminfo[a][23]=f.format(i.offensiveEfficiency);
+			teaminfo[a][24]=f.format(i.defensiveEfficiency);
+			teaminfo[a][25]=f.format(i.reboundEfficiency);
+			teaminfo[a][26]=f.format(i.stealEfficiency);
+			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
 			a++;
 		}
 		refreshtable();
 	}
 
 	private void handleAverageData(ArrayList<TeamTechVO> averagedata){
+		DecimalFormat f = new DecimalFormat("#,##0.0000"); 
 		int a=0;
 		for(TeamTechVO i:averagedata){
 			teaminfo[a][1]=switchTeamName(i.name);
 			teaminfo[a][2]=i.gameNum;
-			teaminfo[a][3]=i.shotInNumave;
-			teaminfo[a][4]=i.shotNumave;
-			teaminfo[a][5]=i.threeShotInNumave;
-			teaminfo[a][6]=i.threeShotNumave;
-			teaminfo[a][7]=i.penaltyShotInNumave;
-			teaminfo[a][8]=i.penaltyShotNumave;
-			teaminfo[a][9]=i.offensiveReboundave;
-			teaminfo[a][10]=i.defensiveReboundave;
-			teaminfo[a][11]=i.reboundave;
-			teaminfo[a][12]=i.secondaryAttackave;
-			teaminfo[a][13]=i.stealave;
-			teaminfo[a][14]=i.blockShotave;
-			teaminfo[a][15]=i.faultave;
-			teaminfo[a][16]=i.foulave;
-			teaminfo[a][17]=i.scoreave;
-			teaminfo[a][18]=i.shotInRate;
-			teaminfo[a][19]=i.threeShotInRate;
-			teaminfo[a][20]=i.penaltyShotInRate;
-			teaminfo[a][21]=i.winningRate;
-			teaminfo[a][22]=i.offensiveRoundave;
-			teaminfo[a][23]=i.offensiveEfficiency;
-			teaminfo[a][24]=i.defensiveEfficiency;
-			teaminfo[a][25]=i.reboundEfficiency;
-			teaminfo[a][26]=i.stealEfficiency;
-			teaminfo[a][27]=i.secondaryAttackEfficiency;
+			teaminfo[a][3]=f.format(i.shotInNumave);
+			teaminfo[a][4]=f.format(i.shotNumave);
+			teaminfo[a][5]=f.format(i.threeShotInNumave);
+			teaminfo[a][6]=f.format(i.threeShotNumave);
+			teaminfo[a][7]=f.format(i.penaltyShotInNumave);
+			teaminfo[a][8]=f.format(i.penaltyShotNumave);
+			teaminfo[a][9]=f.format(i.offensiveReboundave);
+			teaminfo[a][10]=f.format(i.defensiveReboundave);
+			teaminfo[a][11]=f.format(i.reboundave);
+			teaminfo[a][12]=f.format(i.secondaryAttackave);
+			teaminfo[a][13]=f.format(i.stealave);
+			teaminfo[a][14]=f.format(i.blockShotave);
+			teaminfo[a][15]=f.format(i.faultave);
+			teaminfo[a][16]=f.format(i.foulave);
+			teaminfo[a][17]=f.format(i.scoreave);
+			teaminfo[a][18]=f.format(i.shotInRate);
+			teaminfo[a][19]=f.format(i.threeShotInRate);
+			teaminfo[a][20]=f.format(i.penaltyShotInRate);
+			teaminfo[a][21]=f.format(i.winningRate);
+			teaminfo[a][22]=f.format(i.offensiveRoundave);
+			teaminfo[a][23]=f.format(i.offensiveEfficiency);
+			teaminfo[a][24]=f.format(i.defensiveEfficiency);
+			teaminfo[a][25]=f.format(i.reboundEfficiency);
+			teaminfo[a][26]=f.format(i.stealEfficiency);
+			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
 			a++;
 		}
 		refreshtable();
