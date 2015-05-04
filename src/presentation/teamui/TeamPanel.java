@@ -101,6 +101,9 @@ public class TeamPanel extends JPanel implements ActionListener{
 		importdata=new ImportTeam();
 //		System.out.println(tvo.fullName);
 		teamvo=importdata.getTeamVO(tvo);
+		System.out.println(teamvo.abbreviation);
+//		if(teamvo.abbreviation.equals("NOP"))
+//			teamvo.abbreviation="NOH";
 		playerlist=importdata.findByTeam(teamvo.abbreviation);
 		
 		playerinfo=new Object[playerlist.size()][columnName.length];
