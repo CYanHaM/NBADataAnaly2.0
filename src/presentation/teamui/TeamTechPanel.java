@@ -1,23 +1,9 @@
 package presentation.teamui;
 
-<<<<<<< HEAD
-import java.awt.Component;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-=======
+
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DecimalFormat;
->>>>>>> 371dc0a93333d7cd8a656e6ccaaa1009f2e8afa9
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -238,11 +224,8 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	
 	private void handleinitial(ArrayList<TeamTechVO> totaldata){
 		int a=0;
-<<<<<<< HEAD
-=======
 		DecimalFormat f = new DecimalFormat("#,##0.0000");  
 		
->>>>>>> 371dc0a93333d7cd8a656e6ccaaa1009f2e8afa9
 		for(TeamTechVO i:totaldata){
 			teaminfo[a][1]=switchTeamName(i.name);
 			teaminfo[a][2]=i.gameNum;
