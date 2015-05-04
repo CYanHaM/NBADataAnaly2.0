@@ -3,6 +3,7 @@ package bussinesslogic.playertechbl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import data.playertechdata.Find;
 import dataservice.playertechdataservice.FindDataService;
@@ -165,6 +166,13 @@ public class FindPlayerTech implements FindPlayerTechService{
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
 		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
+		Iterator<PlayerTechVO> it = all.iterator();
+		while(it.hasNext()){
+			if(!it.next().position.equals(vo.position))
+				it.remove();
+			if(!it.next().partition.equals(vo.partition))
+				it.remove();
+		}
 		int size = all.size();
 		for(int i=0;i<size;i++){
 			PlayerTechVO pt = all.get(i);
@@ -226,6 +234,7 @@ public class FindPlayerTech implements FindPlayerTechService{
 		return res;
 	}
 
+	
 	@Override
 	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter) {
 		// TODO Auto-generated method stub
