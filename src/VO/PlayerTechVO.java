@@ -4,6 +4,8 @@ public class PlayerTechVO {
 	public String name;                            //��Ա����
 	public String season;                          //����
 	public String team;                            //�������
+	public String position;                     //位置
+    public String division;                     //分区
 	public int gameNum;                         //��������
 	public int startingNum;                     //�ȷ�����
 	public double shotInRate;                      //Ͷ��������
