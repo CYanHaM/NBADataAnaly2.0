@@ -6,6 +6,6 @@ public class ScreeningConditionVO {
 	public String comparison;      //比较符号
 	public int number;             //数值
 	public String division;               //分区
-	public String posotion;               //位置
+	public String position;               //位置
 
 }

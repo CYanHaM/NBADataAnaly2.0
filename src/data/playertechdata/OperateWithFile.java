@@ -41,6 +41,8 @@ public class OperateWithFile implements PlayerTechInitial {
 			temp.add(mpoList.get(0));
 			String name = mpoList.get(0).name;
 			String team = mpoList.get(0).team;
+			String position = mpoList.get(0).position;
+			String division = mpoList.get(0).division;
 			for(int i=1;i<mpoSize;i++){
 				PlayerTechMPO m = mpoList.get(i);
 				if(m.name.equals(name)&&m.team.equals(team)){
@@ -62,7 +64,8 @@ public class OperateWithFile implements PlayerTechInitial {
 			PlayerTechPO ptp = new PlayerTechPO();
 			ptp.name = name;
 			ptp.team = team;
-			
+			ptp.position = position;
+			ptp.division = division;
 			//����������Ӷ���
 			ptp.gameNum = 0;
 			ptp.startingNum = 0;

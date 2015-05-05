@@ -161,77 +161,79 @@ public class FindPlayerTech implements FindPlayerTechService{
 	}
 
 	@Override
-	public ArrayList<PlayerTechVO> sift(ScreeningConditionVO vo) {
+	public ArrayList<PlayerTechVO> sift(ArrayList<ScreeningConditionVO> list) {
 		// TODO Auto-generated method stub
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
-		ArrayList<PlayerTechVO> res = new ArrayList<PlayerTechVO>();
 		Iterator<PlayerTechVO> it = all.iterator();
 		while(it.hasNext()){
-			if(!it.next().position.equals(vo.position))
+			if(!it.next().position.equals(list.get(0).position))
 				it.remove();
-			if(!it.next().partition.equals(vo.partition))
+			if(!it.next().division.equals(list.get(0).division))
 				it.remove();
 		}
-		int size = all.size();
-		for(int i=0;i<size;i++){
-			PlayerTechVO pt = all.get(i);
-			if(vo.condition.equals("score")){
-				if(vo.comparison.equals(">=")){
-					if(pt.score>=vo.number){
-						res.add(pt);
+		Iterator<PlayerTechVO> it2 = all.iterator();
+		while(it2.hasNext()){
+			PlayerTechVO pt = it2.next();
+			for(int j=0;j<list.size();j++){
+				ScreeningConditionVO vo = list.get(j);
+				if(vo.condition.equals("score")){
+					if(vo.comparison.equals(">=")){
+						if(pt.score<vo.number){
+							it2.remove();
+						}
+					}else{
+						if(pt.score>vo.number){
+							it2.remove();
+						}
+					}
+				}else if(vo.condition.equals("blockshot")){
+					if(vo.comparison.equals(">=")){
+						if(pt.blockShot<vo.number){
+							it2.remove();
+						}
+					}else{
+						if(pt.blockShot>vo.number){
+							it2.remove();
+						}
+					}
+				}else if(vo.condition.equals("steal")){
+					if(vo.comparison.equals(">=")){
+						if(pt.steal<vo.number){
+							it2.remove();
+						}
+					}else{
+						if(pt.steal>vo.number){
+							it2.remove();
+						}
+					}
+				}else if(vo.condition.equals("secondaryattack")){
+					if(vo.comparison.equals(">=")){
+						if(pt.secondaryAttack<vo.number){
+							it2.remove();
+						}
+					}else{
+						if(pt.secondaryAttack>vo.number){
+							it2.remove();
+						}
+					}
+				}else if(vo.condition.equals("rebound")){
+					if(vo.comparison.equals(">=")){
+						if(pt.rebound<vo.number){
+							it2.remove();
+						}
+					}else{
+						if(pt.rebound>vo.number){
+							it2.remove();
+						}
 					}
 				}else{
-					if(pt.score<=vo.number){
-						res.add(pt);
-					}
+					System.out.println("wrong condition");
 				}
-			}else if(vo.condition.equals("blockshot")){
-				if(vo.comparison.equals(">=")){
-					if(pt.blockShot>=vo.number){
-						res.add(pt);
-					}
-				}else{
-					if(pt.blockShot<=vo.number){
-						res.add(pt);
-					}
-				}
-			}else if(vo.condition.equals("steal")){
-				if(vo.comparison.equals(">=")){
-					if(pt.steal>=vo.number){
-						res.add(pt);
-					}
-				}else{
-					if(pt.steal<=vo.number){
-						res.add(pt);
-					}
-				}
-			}else if(vo.condition.equals("secondaryattack")){
-				if(vo.comparison.equals(">=")){
-					if(pt.secondaryAttack>=vo.number){
-						res.add(pt);
-					}
-				}else{
-					if(pt.secondaryAttack<=vo.number){
-						res.add(pt);
-					}
-				}
-			}else if(vo.condition.equals("rebound")){
-				if(vo.comparison.equals(">=")){
-					if(pt.rebound>=vo.number){
-						res.add(pt);
-					}
-				}else{
-					if(pt.rebound<=vo.number){
-						res.add(pt);
-					}
-				}
-			}else{
-				System.out.println("wrong condition");
 			}
 		}
 		
-		return res;
+		return all;
 	}
 
 	
