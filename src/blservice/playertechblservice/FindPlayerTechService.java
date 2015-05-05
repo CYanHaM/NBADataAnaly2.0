@@ -17,7 +17,7 @@ public interface FindPlayerTechService {
 	//杩涙鏈�蹇悆鍛�
 	public ArrayList<PlayerTechVO> findFastImprovingPlayer(String keyword);
 	
-	public ArrayList<PlayerTechVO> sift(ScreeningConditionVO vo);
+	public ArrayList<PlayerTechVO> sift(ArrayList<ScreeningConditionVO> list);
 	
 	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter);   //按照字母查询
 
