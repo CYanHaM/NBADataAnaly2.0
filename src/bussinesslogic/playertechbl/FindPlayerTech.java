@@ -165,7 +165,7 @@ public class FindPlayerTech implements FindPlayerTechService{
 	@Override
 	public ArrayList<PlayerTechVO> sift(ArrayList<ScreeningConditionVO> list) {
 		//ceshi
-		System.out.println(list.size());
+	//	System.out.println(list.size());
 		// TODO Auto-generated method stub
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
@@ -179,17 +179,21 @@ public class FindPlayerTech implements FindPlayerTechService{
 				if(info.get(i).name.equals(pt.name))
 					position = info.get(i).position;
 			}
-			if(!(position!=null&&position.equals(list.get(0).position))){
+			if((position==null)||(!position.equals(list.get(0).position))){
 				it.remove();
+				continue;
 			}
-			if(!it.next().division.equals(list.get(0).division))
-				it.remove();
+			
+			if(!pt.division.equals(list.get(0).division)){
+				System.out.println(pt.division+" "+list.get(0).division);
+				it.remove(); 
+			}
 		}
 		Iterator<PlayerTechVO> it2 = all.iterator();
 		while(it2.hasNext()){
 			PlayerTechVO pt = it2.next();
 			for(int j=0;j<list.size();j++){
-				ScreeningConditionVO vo = list.get(j);
+				ScreeningConditionVO vo = list.get(j); 
 				if(vo.condition.equals("score")){
 					if(vo.comparison.equals(">=")){
 						if(pt.score<vo.number){
