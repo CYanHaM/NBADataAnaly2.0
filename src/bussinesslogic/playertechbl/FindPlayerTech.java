@@ -10,10 +10,12 @@ import dataservice.playertechdataservice.FindDataService;
 import PO.PlayerTechMPO;
 import VO.PlayerTechMVO;
 import VO.PlayerTechVO;
+import VO.PlayerVO;
 import VO.ScreeningConditionVO;
 import blservice.playertechblservice.FindPlayerTechService;
 import bussinesslogic.Transfer.PlayerTechTransfer;
 import bussinesslogic.Transfer.P2L.MPO2MVO;
+import bussinesslogic.playerinfobl.PlayerInfo;
 
 public class FindPlayerTech implements FindPlayerTechService{
 
@@ -162,13 +164,24 @@ public class FindPlayerTech implements FindPlayerTechService{
 
 	@Override
 	public ArrayList<PlayerTechVO> sift(ArrayList<ScreeningConditionVO> list) {
+		//ceshi
+		System.out.println(list.size());
 		// TODO Auto-generated method stub
 		ShowPlayerTech sh = new ShowPlayerTech();
 		ArrayList<PlayerTechVO> all = sh.showSeasonPlayerData();
+		PlayerInfo pi = new PlayerInfo();
+		ArrayList<PlayerVO> info = pi.showAllPlayerInfo();
 		Iterator<PlayerTechVO> it = all.iterator();
 		while(it.hasNext()){
-			if(!it.next().position.equals(list.get(0).position))
+			PlayerTechVO pt = it.next();
+			String position = "";
+			for(int i=0;i<info.size();i++){
+				if(info.get(i).name.equals(pt.name))
+					position = info.get(i).position;
+			}
+			if(!(position!=null&&position.equals(list.get(0).position))){
 				it.remove();
+			}
 			if(!it.next().division.equals(list.get(0).division))
 				it.remove();
 		}
@@ -181,50 +194,60 @@ public class FindPlayerTech implements FindPlayerTechService{
 					if(vo.comparison.equals(">=")){
 						if(pt.score<vo.number){
 							it2.remove();
+							break;
 						}
 					}else{
 						if(pt.score>vo.number){
 							it2.remove();
+							break;
 						}
 					}
 				}else if(vo.condition.equals("blockshot")){
 					if(vo.comparison.equals(">=")){
 						if(pt.blockShot<vo.number){
 							it2.remove();
+							break;
 						}
 					}else{
 						if(pt.blockShot>vo.number){
 							it2.remove();
+							break;
 						}
 					}
 				}else if(vo.condition.equals("steal")){
 					if(vo.comparison.equals(">=")){
 						if(pt.steal<vo.number){
 							it2.remove();
+							break;
 						}
 					}else{
 						if(pt.steal>vo.number){
 							it2.remove();
+							break;
 						}
 					}
 				}else if(vo.condition.equals("secondaryattack")){
 					if(vo.comparison.equals(">=")){
 						if(pt.secondaryAttack<vo.number){
 							it2.remove();
+							break;
 						}
 					}else{
 						if(pt.secondaryAttack>vo.number){
 							it2.remove();
+							break;
 						}
 					}
 				}else if(vo.condition.equals("rebound")){
 					if(vo.comparison.equals(">=")){
 						if(pt.rebound<vo.number){
 							it2.remove();
+							break;
 						}
 					}else{
 						if(pt.rebound>vo.number){
 							it2.remove();
+							break;
 						}
 					}
 				}else{
