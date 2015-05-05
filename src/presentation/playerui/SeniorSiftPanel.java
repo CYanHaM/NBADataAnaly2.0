@@ -53,7 +53,7 @@ public class SeniorSiftPanel extends JPanel{
 		this.add(division);
 		
 		addcondition();
-//		targetpanel.resultcondition
+//	   	targetpanel.resultcondition
 	}
 	
 	public void addcondition(){
