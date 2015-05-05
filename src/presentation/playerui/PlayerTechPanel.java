@@ -16,6 +16,7 @@ import presentation.teamui.TeamInfoPanel;
 import presentation.teamui.TeamTechPanel;
 import TypeEnum.PlayerTechEnum;
 import VO.PlayerTechVO;
+import VO.ScreeningConditionVO;
 
 public class PlayerTechPanel extends JPanel implements ActionListener{
 	/**
@@ -38,7 +39,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 	//表格大小
 	private static int TABLEWIDTH=800;
-	private static int TABLEHEIGHT=450;
+	private static int TABLEHEIGHT=400;
 	//表格行高
 	private static int ROWHEIGHT=28;
 	//表格列宽
@@ -76,6 +77,11 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	
 	//高级筛选按钮
 	private JButton seniorsift;
+	private JButton add;
+	private JButton delete;
+	private JScrollPane siftpanel;
+	private SeniorSiftPanel seniorsiftpanel;
+	public ArrayList<ScreeningConditionVO> screeningconditions;
 	//筛选提交按钮
 	private JButton commit;
 	//表格重置按钮
@@ -87,7 +93,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private JButton PlayerInfo;
 	private JButton Hot;
 	
-	private SeniorSift siftpanel;
 	
 	//----------------------------------------------------
 	public PlayerTechPre PTPre;
@@ -102,6 +107,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		panelToRemove=this;
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
+		screeningconditions=new ArrayList<ScreeningConditionVO>();
 		//创建颜色预设对象
 		PTPre=new PlayerTechPre();
 		importdata=new ImportPlayer();
@@ -128,28 +134,11 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		//添加提交，重置按钮
 		addbutton();
 		
-		siftpanel=new SeniorSift();
-		siftpanel.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-20, 745, 260);
+//		siftpanel=new SeniorSift();
+//		siftpanel.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-20, 745, 260);
 		this.repaint();
 	}
 	
-//	public void init(){
-//		switchbox.setSelectedIndex(0);
-//		positionbox.setSelectedIndex(0);
-//		divisionbox.setSelectedIndex(0);
-//		ordergistbox.setSelectedIndex(0);
-//		initial_data=importdata.getPlayerTechAscend(PlayerTechEnum.name);
-//		playerinfo=new Object[initial_data.size()][columnName.length];
-//		//加载初始表格，显示队伍总数据
-//		handleinitial(initial_data);
-//
-//		//加载表格配置
-//		table_config();
-//		//加载滑动面板配置
-//		scrollpane_config();
-//		this.repaint();
-//	}
-
 	//===================================================================
 	private void addbox(){
 		//下拉框
@@ -158,7 +147,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		switchbox.setBackground(PTPre.LineSelected);
 		switchbox.addItem("赛季总数据");
 		switchbox.addItem("场均数据");
-		switchbox.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space-100,BOXWIDTH,BOXHEIGHT);
+		switchbox.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space-100-65,BOXWIDTH,BOXHEIGHT);
 		switchbox.setFont(PTPre.switchbox);
 		switchbox.addItemListener(new ItemListener(){
 			@Override
@@ -181,10 +170,34 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addseniorsift(){
-		seniorsift=new JButton("高级筛选");
-		seniorsift.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-50, 160, 30);
-		seniorsift.addActionListener(this);
-		this.add(seniorsift);
+//		seniorsift=new JButton("高级筛选");
+//		seniorsift.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-50, 160, 30);
+//		seniorsift.addActionListener(this);
+//		this.add(seniorsift);
+		siftpanel=new JScrollPane();
+		siftpanel.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-100, 420, 90);
+		siftpanel.setHorizontalScrollBarPolicy( 
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
+		siftpanel.setVerticalScrollBarPolicy( 
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
+		siftpanel.setOpaque(false);
+		siftpanel.getViewport().setOpaque(false);
+		siftpanel.setBorder(null);
+//		siftpanel.setSize(800, 600);
+		seniorsiftpanel=new SeniorSiftPanel(this);
+		siftpanel.setViewportView(seniorsiftpanel);
+		this.add(siftpanel);
+		
+		add=new JButton("+");
+		add.setBounds(WIDTH-TABLEWIDTH-e_space-space+420, HEIGHT-TABLEHEIGHT-e_space-space-100, 30, 30);
+		add.addActionListener(this);
+		this.add(add);
+		
+		delete=new JButton("-");
+		delete.setBounds(WIDTH-TABLEWIDTH-e_space-space+420, HEIGHT-TABLEHEIGHT-e_space-space-100+30, 30, 30);
+		delete.addActionListener(this);
+		this.add(delete);
+		
 	}
 	
 	private void addradiobutton(){
@@ -195,7 +208,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		order_Asc.setContentAreaFilled(false);
 		order_Asc.setFocusPainted(false);
 //		order_Asc.setSelected(true);
-		order_Asc.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+10,HEIGHT-TABLEHEIGHT-e_space-space-92,50,15);
+		order_Asc.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+10,HEIGHT-TABLEHEIGHT-e_space-space-92-65,50,15);
 		
 		order_Des=new JRadioButton("降序");
 		order_Des.setFont(PTPre.switchbox);
@@ -204,7 +217,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		order_Des.setContentAreaFilled(false);
 		order_Des.setFocusPainted(false);
 		order_Des.setSelected(true);
-		order_Des.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+60,HEIGHT-TABLEHEIGHT-e_space-space-92,50,15);
+		order_Des.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+60,HEIGHT-TABLEHEIGHT-e_space-space-92-65,50,15);
 		
 		group=new ButtonGroup();
 		group.add(order_Asc);
@@ -216,7 +229,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	
 	private void addmessage(){
 		message=new JLabel();
-		message.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+120, HEIGHT-TABLEHEIGHT-e_space-space-92, 200, 15);
+		message.setBounds(WIDTH-TABLEWIDTH-e_space-space+BOXWIDTH+120, HEIGHT-TABLEHEIGHT-e_space-space-92-65, 200, 15);
 		message.setFont(PTPre.switchbox);
 		message.setForeground(PTPre.TableFg);
 		
@@ -606,7 +619,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	public void refreshtable(){
 		table_config();
 		players.setViewportView(playertable);
-		this.repaint();
+		Frame.repaint();
 	}
 
 	private void judgeOrderSource(String ordersource,String AvgOrTotal){
@@ -938,7 +951,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			};
 			players.setCorner(ScrollPaneConstants.UPPER_RIGHT_CORNER,component);
 		}
-		
 		this.add(players);
 	}
 
@@ -988,7 +1000,27 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			}
 		}
 		
+		if(arg0.getSource()==add){
+			seniorsiftpanel.addcondition();
+			seniorsiftpanel.repaint();
+		}
+		if(arg0.getSource()==delete){
+			seniorsiftpanel.deletecondition();
+			seniorsiftpanel.repaint();
+		}
+		
 		if(arg0.getSource()==commit){
+			seniorsiftpanel.getScreeningCondition();
+			System.out.println(screeningconditions.get(0).position);
+			ArrayList<PlayerTechVO> siftVO=importdata.sift(screeningconditions);
+			playerinfo=new Object[siftVO.size()][columnName.length];
+			String switchboxsel=(String) switchbox.getSelectedItem();
+			if(switchboxsel.equals("赛季总数据")){
+				handleTotalData(siftVO);
+			}else if(switchboxsel.equals("场均数据")){
+				handleAverageData(siftVO);
+			}
+			
 			
 //			if(!positionsel.equals(positionItem[0])&&
 //					!divisionsel.equals(divisionItem[0])&&

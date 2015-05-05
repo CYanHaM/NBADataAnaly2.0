@@ -39,7 +39,7 @@ public class ImportPlayer {
 		return spt.descend(DataType);
 	}
 	
-	public ArrayList<PlayerTechVO> sift(ScreeningConditionVO scvo){
+	public ArrayList<PlayerTechVO> sift(ArrayList<ScreeningConditionVO> scvo){
 		return fpt.sift(scvo);
 	}
 	
