@@ -350,7 +350,7 @@ public class FastImpPlayer extends JPanel implements ActionListener{
 		}
 		if(secondAttack.isSelected()){
 			selectedkeyword="secondaryAttack";
-			fastImpPlist=fts.findFastImprovingPlayer("secondaryAttack");
+			fastImpPlist=fts.findFastImprovingPlayer("secondaryattack");
 		}
 		if(blockShot.isSelected()){
 			selectedkeyword="blockshot";
@@ -426,13 +426,13 @@ public class FastImpPlayer extends JPanel implements ActionListener{
 			state[count].setIcon(new ImageIcon("images/system_img/none.png"));
 		}else{
 			if(resultword>0){
-				result=String.valueOf(Double.parseDouble(temp)*100);
+				result=String.valueOf(Double.parseDouble(temp));
 				state[count].setIcon(new ImageIcon("images/system_img/up.png"));
 			}else if(resultword==0){
 				compare[count].setVisible(false);
 				state[count].setIcon(new ImageIcon("images/system_img/equal.png"));
 			}else if(resultword<0){
-				result=String.valueOf(Double.parseDouble(temp)*-100);
+				result=String.valueOf(Double.parseDouble(temp));
 				state[count].setIcon(new ImageIcon("images/system_img/down.png"));
 			}
 		}

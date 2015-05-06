@@ -455,7 +455,7 @@ public class SeasonHotPlayer extends JPanel implements ActionListener{
 			resultword="";
 			break;
 		case "double":
-			resultword=String.valueOf(seasonHPlist.get(count).ifDouble);
+			resultword="";
 			break;
 		}
 		return resultword;

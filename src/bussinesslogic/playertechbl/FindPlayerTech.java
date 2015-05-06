@@ -21,9 +21,9 @@ public class FindPlayerTech implements FindPlayerTechService{
 
 	public static void main(String[] args){
 		FindPlayerTech fi = new FindPlayerTech();
-		ArrayList<PlayerTechVO> all = fi.findFastImprovingPlayer("blockshot");
+		ArrayList<PlayerTechVO> all = fi.findSeasonHotPlayer("double");
 		for(PlayerTechVO mvo:all){
-			System.out.println(mvo.name+" "+mvo.blockShotImproving);
+			System.out.println(mvo.name+" "+mvo.ifDouble);
 		}
 		
 	}

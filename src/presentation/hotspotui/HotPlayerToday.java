@@ -69,10 +69,10 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	private JLabel[] name;
 	private JLabel[] info;
 	private JLabel[] data;
-	private JLabel[] compare;
+//	private JLabel[] compare;
 	private JLabel[] playerimage;
 	private JLabel[] teamimage;
-	private JLabel[] state;
+//	private JLabel[] state;
 
 
 	private ArrayList<PlayerTechMVO> hotplayerslist;
@@ -95,10 +95,10 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		name=new JLabel[5];
 		info=new JLabel[5];
 		data=new JLabel[5];
-		compare=new JLabel[5];
+//		compare=new JLabel[5];
 		playerimage=new JLabel[5];
 		teamimage=new JLabel[5];
-		state=new JLabel[5];
+//		state=new JLabel[5];
 
 		fts=new ImportHotData();
 		mbs=new Match();
@@ -119,10 +119,10 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			name[i]=new JLabel();
 			info[i]=new JLabel();
 			data[i]=new JLabel();
-			compare[i]=new JLabel();
+//			compare[i]=new JLabel();
 			playerimage[i]=new JLabel();
 			teamimage[i]=new JLabel();
-			state[i]=new JLabel();
+//			state[i]=new JLabel();
 		}
 	}
 
@@ -340,22 +340,22 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		teamimage[0].setBounds(450, 260, 130, 130);
 		teamimage[0].setIcon(new ImageIcon("images/teams/standard/"+hotplayerslist.get(0).team+".png"));
 		
-		state[0].setBounds(435, 500, 30, 30);
+//		state[0].setBounds(435, 500, 30, 30);
 
-		compare[0].setBounds(460, 500, 100, 30);
-		compare[0].setFont(HP.scoreratio);
-		compare[0].setForeground(HP.LineSelected);
-		String temp=switchcomp(0,selectedkeyword);
-		compare[0].setText(temp);
+//		compare[0].setBounds(460, 500, 100, 30);
+//		compare[0].setFont(HP.scoreratio);
+//		compare[0].setForeground(HP.LineSelected);
+//		String temp=switchcomp(0,selectedkeyword);
+//		compare[0].setText(temp);
 
 
 		this.add(name[0]);
 		this.add(info[0]);
 		this.add(data[0]);
-		this.add(compare[0]);
+//		this.add(compare[0]);
 		this.add(playerimage[0]);
 		this.add(teamimage[0]);
-		this.add(state[0]);
+//		this.add(state[0]);
 	}
 
 	private void addOtherPlayers(){
@@ -386,21 +386,21 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 			teamimage[i].setBounds(890, 230+100*(i-1)-18*(i-1), 130, 130);
 			teamimage[i].setIcon(new ImageIcon("images/teams/middle/"+hotplayerslist.get(i).team+".png"));
 			
-			state[i].setBounds(795, 295+100*(i-1)-18*(i-1)+8, 30, 30);
+//			state[i].setBounds(795, 295+100*(i-1)-18*(i-1)+8, 30, 30);
 
-			compare[i].setBounds(820, 295+100*(i-1)-18*(i-1)+10, 100, 25);
-			compare[i].setFont(HP.scoreratio);
-			compare[i].setForeground(HP.LineSelected);
-			String temp=switchcomp(i,selectedkeyword);
-			compare[i].setText(temp);
+//			compare[i].setBounds(820, 295+100*(i-1)-18*(i-1)+10, 100, 25);
+//			compare[i].setFont(HP.scoreratio);
+//			compare[i].setForeground(HP.LineSelected);
+//			String temp=switchcomp(i,selectedkeyword);
+//			compare[i].setText(temp);
 
 			this.add(name[i]);
 			this.add(info[i]);
 			this.add(data[i]);
-			this.add(compare[i]);
+//			this.add(compare[i]);
 			this.add(playerimage[i]);
 			this.add(teamimage[i]);
-			this.add(state[i]);
+//			this.add(state[i]);
 		}
 	}
 
@@ -471,7 +471,8 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 	}
 
 	//switch the ratio conditions
-	private String switchcomp(int count,String keyword){
+	/*
+	 * private String switchcomp(int count,String keyword){
 		String result=null;
 		double resultword=0.0;
 		switch(keyword){
@@ -513,6 +514,7 @@ public class HotPlayerToday extends JPanel implements ActionListener{
 		result=result+"%";
 		return result;
 	}
+	*/
 
 	private String switchposition(String pos){
 		String position=null;
