@@ -122,7 +122,7 @@ public class OperateWithFile implements PlayerTechInitial {
 				ptp.threeShot += mp.threeShot;
 				ptp.penaltyShotIn += mp.penaltyShotIn;
 				ptp.penaltyShot += mp.penaltyShot;
-				ptp.ifDouble += ptp.ifDouble;
+				ptp.ifDouble += mp.ifDouble;
 				
 				ptp.teamAllTime = mp.teamAllTime;
 				ptp.teamOffensiveRebound = mp.teamOffensiveRebound;
@@ -136,7 +136,6 @@ public class OperateWithFile implements PlayerTechInitial {
 				ptp.teamPenaltyShot = mp.teamPenaltyShot;
 				ptp.teamFault = mp.teamFault;
 			}
-			
 			
 			if(ptp.shot==0){					
 				ptp.shotInRate=0;
