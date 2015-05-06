@@ -112,7 +112,7 @@ public class MatchPanel extends JPanel implements ActionListener{
 		this.add(refresh);
 
 		addbutton();
-		matchinfo=new MatchInfo(calendar.getText(),Frame,panelToRemove);
+		matchinfo=new MatchInfo(calendar.getText(),Frame,this);
 		JScrollPane_config();
 		
 	}
@@ -166,7 +166,7 @@ public class MatchPanel extends JPanel implements ActionListener{
 	}
 	
 	private void refresh(){
-		matchinfo=new MatchInfo(calendar.getText(),Frame,panelToRemove);
+		matchinfo=new MatchInfo(calendar.getText(),Frame,this);
 		jsp.setViewportView(matchinfo);
 		jsp.repaint();
 		Frame.repaint();

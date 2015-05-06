@@ -20,7 +20,9 @@ public class MatchPre {
 	//字体预设
 	public Font CallendarinitFont;
 	
+	public Font BigScore;
 	public Font Score;
+	public Font SmallScore;
 	public Font Teamname;
 	public Font Teamabb;
 	public Font Champion;
@@ -36,7 +38,9 @@ public class MatchPre {
 		Red = new Color(209,48,48);
 		
 		CallendarinitFont = new Font("华文细黑",1,15);
+		BigScore = new Font("华文细黑",0,35);
 		Score = new Font("华文细黑",0,30);
+		SmallScore = new Font("华文细黑",0,20);
 		Teamname = new Font("微软雅黑",0,15);
 		Teamabb = new Font("微软雅黑",0,10);
 		Champion = new Font("华文细黑",0,15);

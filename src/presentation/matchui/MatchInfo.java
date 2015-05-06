@@ -33,10 +33,10 @@ public class MatchInfo extends JPanel{
 	private ArrayList<MatchVO> matches;
 	
 	JFrame Frame;
-	JPanel panelToRemove;
+	JPanel panelToReturn;
 	public MatchInfo(String date,JFrame frame,JPanel panel) {
 		Frame=frame;
-		panelToRemove=panel;
+		panelToReturn=panel;
 		mbs=new Match();
 		Date=date;
 		
@@ -99,7 +99,7 @@ public class MatchInfo extends JPanel{
 		
 		int i=0;
 		for(MatchVO mvo:matches){
-			MatchLabel ml=new MatchLabel(mvo,Frame,panelToRemove);
+			MatchLabel ml=new MatchLabel(mvo,Frame,panelToReturn);
 			ml.setBounds(0, i*label_height, label_width, label_height);
 			this.add(ml);
 			i++;

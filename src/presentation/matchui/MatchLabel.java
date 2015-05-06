@@ -50,12 +50,12 @@ public class MatchLabel extends JPanel implements ActionListener{
 	private MatchPre MP;
 
 	JFrame Frame;
-	JPanel panelToRemove;
+	JPanel panelToReturn;
 	MatchVO Matchinfo;
 	public MatchLabel(MatchVO matchinfo,JFrame frame,JPanel panel) {
 		Matchinfo=matchinfo;
 		Frame=frame;
-		panelToRemove=panel;
+		panelToReturn=panel;
 		MP = new MatchPre();
 		this.setOpaque(false);
 		this.setLayout(null);
@@ -327,8 +327,8 @@ public class MatchLabel extends JPanel implements ActionListener{
 		public void mouseClicked(MouseEvent arg0) {
 			TeamVO tvo=new TeamVO();
 			tvo.abbreviation=teamname;
-			TeamPanel tp=new TeamPanel(tvo,Frame,panelToRemove);
-			Frame.remove(panelToRemove);
+			TeamPanel tp=new TeamPanel(tvo,Frame,panelToReturn);
+			Frame.remove(panelToReturn);
 			Frame.add(tp);
 			Frame.repaint();
 		}
@@ -350,12 +350,11 @@ public class MatchLabel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource()==details){
-			Frame.dispose();
-			MainFrame mf=new MainFrame();
+			Frame.remove(panelToReturn);
 //			TeamInfoPanel md=new TeamInfoPanel(mf);
-			MatchDetail md=new MatchDetail(Frame, Matchinfo);
-			mf.add(md);
-			mf.repaint();
+			MatchDetail md=new MatchDetail(Frame, Matchinfo,panelToReturn);
+			Frame.add(md);
+			Frame.repaint();
 		}
 	}
 }
