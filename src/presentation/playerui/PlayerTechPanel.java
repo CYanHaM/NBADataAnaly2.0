@@ -200,26 +200,35 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			letterbutton[i].setRolloverIcon(new ImageIcon("images/buttons/letters/"+i+"_2.png"));
 			letterbutton[i].setPressedIcon(new ImageIcon("images/buttons/letters/"+i+"_3.png"));
 			letterbutton[i].setSelectedIcon(new ImageIcon("images/buttons/letters/"+i+"_3.png"));
-			
-			currentnum=i;
-			letterbutton[i].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.println(letter[currentnum]);
-					ArrayList<PlayerTechVO> playervo=importdata.findPlayerByLetter(letter[currentnum]);
-					playerinfo=new Object[playervo.size()][columnName.length];
-					String switchboxsel=(String) switchbox.getSelectedItem();
-					if(switchboxsel.equals("赛季总数据")){
-						handleTotalData(playervo);
-					}else if(switchboxsel.equals("场均数据")){
-						handleAverageData(playervo);
-					}
-//					for(int j=0;)
-					letterbutton[currentnum].setSelected(true);
-				}
-			});
+			//add new actionlistener
+			letterbutton[i].addActionListener(new letterbuttonAction(i));
 			this.add(letterbutton[i]);
 			letterbutton[i].setVisible(false);
+		}
+	}
+	
+	private class letterbuttonAction implements ActionListener{
+		private int Count;
+		public letterbuttonAction(int count) {
+			Count=count;
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			ArrayList<PlayerTechVO> playervo=importdata.findPlayerByLetter(letter[Count]);
+			playerinfo=new Object[playervo.size()][columnName.length];
+			String switchboxsel=(String) switchbox.getSelectedItem();
+			if(switchboxsel.equals("赛季总数据")){
+				handleTotalData(playervo);
+			}else if(switchboxsel.equals("场均数据")){
+				handleAverageData(playervo);
+			}
+			for(int j=0;j<letterbutton.length;j++){
+				if(j==Count)
+					letterbutton[j].setSelected(true);
+				else{
+					letterbutton[j].setSelected(false);
+				}
+			}
 		}
 	}
 	
