@@ -45,14 +45,14 @@ public class SeniorSift extends JPanel implements ActionListener{
 	private void addkits(){
 		
 		condition=new JComboBox<String>(conditionItem);
-		condition.setBounds(10, 10, 100, 25);
+		condition.setBounds(0, 10, 100, 25);
 		condition.setFocusable(false);
 		comparison=new JComboBox<String>(comparisonItem);
-		comparison.setBounds(120, 10, 50, 25);
+		comparison.setBounds(110, 10, 50, 25);
 		comparison.setFocusable(false);
 		
 		info=new JTextField();
-		info.setBounds(180, 10, 180, 25);
+		info.setBounds(170, 10, 180, 25);
 		
 //		commit=new JButton("提交");
 //		commit.setBounds(510, 150, 160, 30);

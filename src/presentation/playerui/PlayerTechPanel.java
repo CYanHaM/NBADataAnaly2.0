@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -41,9 +42,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private static int TABLEWIDTH=800;
 	private static int TABLEHEIGHT=400;
 	//表格行高
-	private static int ROWHEIGHT=28;
+	private static int ROWHEIGHT=40;
 	//表格列宽
-	private static int[] COLUMNWIDTH={50,120,200,
+	private static int[] COLUMNWIDTH={40,120,170,
 		60,60,60,60,60,
 		70,70,70,
 		60,60,60,60,60,60,60,
@@ -57,6 +58,8 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//-------------------------界面组件--------------------
 	//设置表格属性
 	private JTable playertable;
+	private String[] playernames;
+	private String playername;
 	private Object[][] playerinfo;
 	private JScrollPane players;
 	private String[] columnName={
@@ -93,6 +96,14 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private JButton PlayerInfo;
 	private JButton Hot;
 	
+	private JButton trigger;
+	private boolean exit=false;
+	private JButton[] letterbutton;
+	private Thread showletter;
+	private Thread hideletter;
+	private char[] letter;
+	private String letterstring="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private int currentnum;
 	
 	//----------------------------------------------------
 	public PlayerTechPre PTPre;
@@ -108,6 +119,11 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(null);
 		screeningconditions=new ArrayList<ScreeningConditionVO>();
+		
+		letter=new char[26];
+		letter=letterstring.toCharArray();
+		letterbutton=new JButton[26];
+		
 		//创建颜色预设对象
 		PTPre=new PlayerTechPre();
 		importdata=new ImportPlayer();
@@ -133,9 +149,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		addmessage();
 		//添加提交，重置按钮
 		addbutton();
-		
-//		siftpanel=new SeniorSift();
-//		siftpanel.setBounds(WIDTH-TABLEWIDTH-e_space-space, HEIGHT-TABLEHEIGHT-e_space-space-20, 745, 260);
+
+		addletterbutton();
+
 		this.repaint();
 	}
 	
@@ -167,6 +183,44 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		});
 
 		this.add(switchbox);
+	}
+	
+	private void addletterbutton(){
+		trigger=new JButton("trigger");
+		trigger.setBounds(WIDTH-TABLEWIDTH-e_space-space+200, HEIGHT-TABLEHEIGHT-e_space-space-100-65, 50, 50);
+		trigger.addActionListener(this);
+		this.add(trigger);
+		
+		for(int i=0;i<letterbutton.length;i++){
+			letterbutton[i]=new JButton(new ImageIcon("images/buttons/letters/"+i+"_1.png"));
+			letterbutton[i].setBounds(WIDTH-TABLEWIDTH-e_space-space+i*30, HEIGHT-TABLEHEIGHT-e_space-space-100-40, 30, 30);
+			letterbutton[i].setBorderPainted(false);
+			letterbutton[i].setContentAreaFilled(false);
+			letterbutton[i].setFocusPainted(false);
+			letterbutton[i].setRolloverIcon(new ImageIcon("images/buttons/letters/"+i+"_2.png"));
+			letterbutton[i].setPressedIcon(new ImageIcon("images/buttons/letters/"+i+"_3.png"));
+			letterbutton[i].setSelectedIcon(new ImageIcon("images/buttons/letters/"+i+"_3.png"));
+			
+			currentnum=i;
+			letterbutton[i].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println(letter[currentnum]);
+					ArrayList<PlayerTechVO> playervo=importdata.findPlayerByLetter(letter[currentnum]);
+					playerinfo=new Object[playervo.size()][columnName.length];
+					String switchboxsel=(String) switchbox.getSelectedItem();
+					if(switchboxsel.equals("赛季总数据")){
+						handleTotalData(playervo);
+					}else if(switchboxsel.equals("场均数据")){
+						handleAverageData(playervo);
+					}
+//					for(int j=0;)
+					letterbutton[currentnum].setSelected(true);
+				}
+			});
+			this.add(letterbutton[i]);
+			letterbutton[i].setVisible(false);
+		}
 	}
 	
 	private void addseniorsift(){
@@ -291,6 +345,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	
 	private void handleinitial(ArrayList<PlayerTechVO> totaldata){
 		int a=0;
+		playernames=new String[totaldata.size()];
 		for(PlayerTechVO i:totaldata){
 			playerinfo[a][1]=i.name;
 			playerinfo[a][2]=switchTeamName(i.team);
@@ -321,12 +376,14 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			playerinfo[a][27]=i.blockShotRate;
 			playerinfo[a][28]=i.faultRate;
 			playerinfo[a][29]=i.usageRate;
+			playernames[a]=i.name;
 			a++;
 		}
 	}
 	
 	private void handleTotalData(ArrayList<PlayerTechVO> totaldata){
 		int a=0;
+		playernames=new String[totaldata.size()];
 		for(PlayerTechVO i:totaldata){
 			playerinfo[a][1]=i.name;
 			playerinfo[a][2]=switchTeamName(i.team);
@@ -358,6 +415,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			playerinfo[a][28]=i.faultRate;
 			playerinfo[a][29]=i.usageRate;
 			a++;
+			
 		}
 		refreshtable();
 	}
@@ -399,7 +457,32 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		refreshtable();
 	}
 
-	//reference
+	//The class extends TableCellRender,however,due to the poor vision,I choose to change the way to show table in project3.0
+	 private class Showplayerimg extends DefaultTableCellRenderer{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		private int Count;
+		private String Name;
+		private JLabel img;
+		
+		public Showplayerimg(int count,String name) {
+			Count=count;
+			Name=name;
+		}
+		public Component getTableCellRendererComponent(JTable table, Object value,
+				boolean isSelected, boolean hasFocus, int row, int column) {
+			if(row==Count){
+			ImageIcon Icon=new ImageIcon("images/players/portrait_long/"+Name+".png");
+			img=new JLabel(Icon);
+			}
+			return img;
+		}
+	}
+
+	 //reference
 	/*
 	 * case "ATL":
 			return "老鹰 Atlanta-Hawks";
@@ -579,6 +662,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		//去除边框
 		playertable.setBorder(null);
 
+//		playertable.setOpaque(false);
 		//按行修改表格背景
 		TableColumnModel model = playertable.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
@@ -599,6 +683,12 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 			playertable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
+		
+//		for(int i=0;i<playernames.length;i++){
+//			playername=playernames[i];
+//			System.out.println(playername);
+//		playertable.getColumnModel().getColumn(1).setCellRenderer(new Showplayerimg(i,playername));
+//		}
 		//-----------------------------------------------------------------
 		//添加table表头点击事件
 		playertable.getTableHeader().addMouseListener(new MouseAdapter() {
@@ -984,6 +1074,40 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//按钮鼠标监听事件
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource()==trigger){
+			if(!trigger.isSelected()){
+				Thread show=new Thread(){
+					public void run(){
+						for(int i=letterbutton.length-1;i>=0;i--){
+							letterbutton[i].setVisible(true);
+							try {
+								Thread.sleep(15);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				};
+			show.start();
+			trigger.setSelected(true);
+			}else{
+				Thread hide=new Thread(){
+					public void run(){
+						for(int i=0;i<letterbutton.length;i++){
+							letterbutton[i].setVisible(false);
+							try {
+								Thread.sleep(15);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				};
+				hide.start();
+				trigger.setSelected(false);
+			}
+		}
+		
 		
 		if(arg0.getSource()==seniorsift){
 			if(!seniorsift.isSelected()){
@@ -1011,7 +1135,10 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		
 		if(arg0.getSource()==commit){
 			seniorsiftpanel.getScreeningCondition();
-			System.out.println(screeningconditions.get(0).position);
+			//TODO test the screeningcondition and delete it when necessary
+			for(int i=0;i<screeningconditions.size();i++){
+				System.out.println(screeningconditions.get(i).position+"--"+screeningconditions.get(i).division+"--"+screeningconditions.get(i).condition+"--"+screeningconditions.get(i).number);
+			}
 			ArrayList<PlayerTechVO> siftVO=importdata.sift(screeningconditions);
 			playerinfo=new Object[siftVO.size()][columnName.length];
 			String switchboxsel=(String) switchbox.getSelectedItem();
@@ -1021,21 +1148,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				handleAverageData(siftVO);
 			}
 			
-			
-//			if(!positionsel.equals(positionItem[0])&&
-//					!divisionsel.equals(divisionItem[0])&&
-//					!ordergistsel.equals(ordergistItem[0])){
-//				ArrayList<PlayerTechVO> siftVO = importdata.sift(positionstring[positionnum-1], divisionstring[divisionnum-1], ordergiststring[ordergistnum-1]);
-//				playerinfo=new Object[siftVO.size()][columnName.length];
-//				String switchboxsel=(String) switchbox.getSelectedItem();
-//				if(switchboxsel.equals("赛季总数据")){
-//					handleTotalData(siftVO);
-//				}else if(switchboxsel.equals("场均数据")){
-//					handleAverageData(siftVO);
-//				}
-//			}
-			//去除表头监听器
-//			playertable.getTableHeader().removeMouseListener();
 			
 		}
 		
@@ -1071,4 +1183,5 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			Frame.repaint();
 		}
 	}
+
 }
