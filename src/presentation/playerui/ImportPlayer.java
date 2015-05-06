@@ -46,6 +46,10 @@ public class ImportPlayer {
 	public PlayerTechVO findPlayerTechByName(String name){
 		return fpt.findPlayerTechByName(name);
 	}
+	
+	public ArrayList<PlayerTechVO> findPlayerByLetter(char letter){
+		return fpt.findPlayerByLetter(letter);
+	}
 
 	public ArrayList<PlayerVO> findByTeam(String tvo){
 		return pis.findByTeam(tvo);

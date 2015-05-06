@@ -44,16 +44,15 @@ public class SeniorSiftPanel extends JPanel{
 		siftlist=new ArrayList<SeniorSift>();
 		
 		position=new JComboBox<String>(positionItem);
-		position.setBounds(10, 5, 80, 25);
+		position.setBounds(0, 5, 80, 25);
 		position.setFocusable(false);
 		division=new JComboBox<String>(divisionItem);
-		division.setBounds(100, 5, 80, 25);
+		division.setBounds(90, 5, 80, 25);
 		division.setFocusable(false);
 		this.add(position);
 		this.add(division);
 		
 		addcondition();
-//	   	targetpanel.resultcondition
 	}
 	
 	public void addcondition(){
@@ -81,6 +80,7 @@ public class SeniorSiftPanel extends JPanel{
 	}
 
 	public void getScreeningCondition(){
+		resultcondition.clear();
 		for(int i=0;i<siftlist.size();i++){
 			ScreeningConditionVO temp=siftlist.get(i).getCondition();
 			switch(String.valueOf(position.getSelectedItem())){
@@ -104,6 +104,7 @@ public class SeniorSiftPanel extends JPanel{
 			}
 			resultcondition.add(temp);
 		}
+//		transferpanel.screeningconditions.clear();
 		transferpanel.screeningconditions=resultcondition;
 	}
 }
