@@ -28,6 +28,14 @@ public class MatchL2P {
 		 mp.guestTeamOffensiveRebound=mli.guestTeamOffensiveRebound;       //�Ͷӽ�������
 		 mp.homeTeamOffensiveRound=mli.homeTeamOffensiveRound;             //���ӽ����غ�
 		 mp.guestTeamOffensiveRound=mli.guestTeamOffensiveRound;           //�Ͷӽ����غ�
+		 mp.homeTeamFoul=mli.homeTeamFoul;
+		 mp.guestTeamFoul=mli.guestTeamFoul;
+		 mp.homeTeamSteal=mli.homeTeamSteal;
+		 mp.guestTeamSteal=mli.guestTeamSteal;
+		 mp.homeTeamSecondaryAttack=mli.homeTeamSecondaryAttack;
+		 mp.guestTeamSecondaryAttack=mli.guestTeamSecondaryAttack;
+		 mp.homeTeamBlockShot=mli.homeTeamBlockShot;
+		 mp.guestTeamBlockShot=mli.guestTeamBlockShot;
 		 mp.homeScore=mli.homeScore;                                       //���ӵ÷�
 		 mp.guestScore=mli.guestScore;                                     //�Ͷӵ÷�
 		 mp.homeAllTime=mli.homeAllTime;                                   //����ȫԱ�ϳ�ʱ��

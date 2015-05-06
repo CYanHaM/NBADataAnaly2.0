@@ -29,6 +29,14 @@ public class MatchL2V {
 		 mv.guestTeamOffensiveRebound=mli.guestTeamOffensiveRebound;       //�Ͷӽ�������
 		 mv.homeTeamOffensiveRound=mli.homeTeamOffensiveRound;             //���ӽ����غ�
 		 mv.guestTeamOffensiveRound=mli.guestTeamOffensiveRound;           //�Ͷӽ����غ�
+		 mv.homeTeamFoul=mli.homeTeamFoul;
+		 mv.guestTeamFoul=mli.guestTeamFoul;
+		 mv.homeTeamSteal=mli.homeTeamSteal;
+		 mv.guestTeamSteal=mli.guestTeamSteal;
+		 mv.homeTeamSecondaryAttack=mli.homeTeamSecondaryAttack;
+		 mv.guestTeamSecondaryAttack=mli.guestTeamSecondaryAttack;
+		 mv.homeTeamBlockShot=mli.homeTeamBlockShot;
+		 mv.guestTeamBlockShot=mli.guestTeamBlockShot;	
 		 mv.homeScore=mli.homeScore;                                       //���ӵ÷�
 		 mv.guestScore=mli.guestScore;                                     //�Ͷӵ÷�
 		 mv.homeAllTime=mli.homeAllTime;                                   //����ȫԱ�ϳ�ʱ��
