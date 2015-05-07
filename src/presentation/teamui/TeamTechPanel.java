@@ -50,11 +50,10 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	
 	//表格大小
 	private static int TABLEWIDTH=800;
-	private static int TABLEHEIGHT=450;
+	private static int TABLEHEIGHT=500;
 	//表格行高
 	private static int ROWHEIGHT=28;
-	//表格列宽
-	private static int[] COLUMNWIDTH={50,200,60,80,80,80,80,80,80,80,80,60,60,60,60,60,60,80,80,80,80,80,80,80,80,80};
+	
 
 	//下拉框大小
 	private static int BOXWIDTH=160;
@@ -63,17 +62,25 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 
 	//-------------------------界面组件--------------------
 	//设置表格属性
-	private static JTable teamtable;
-	private static Object[][] teaminfo;
+	private static JTable teamtable1;
+	private static JTable teamtable2;
+	private static JTable teamtable3;
+	private static Object[][] teaminfo1;
+	private static Object[][] teaminfo2;
+	private static Object[][] teaminfo3;
 	private JScrollPane teams;
-	private String[] columnName={
-			"排名","球队名称","比赛场数","投篮命中数","投篮出手次数","三分命中数",
-			"三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数",
-			"篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分",
-			"投篮命中率","三分命中率","罚球命中率","胜率","进攻回合",
-			"进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
-	//	
-	//	private String[] columnName={"","","","","","","","","","","","","","","","",""};
+	private String[] columnName1={"排名","球队名称","得分","篮板","助攻","抢断","盖帽","失误","命中%","三分%","罚球%"};
+	private String[] columnName2={"排名","球队名称","场数","命中","出手","三分命中","三分出手","罚球命中","罚球出手","进攻篮板","防守篮板"};
+	private String[] columnName3={"排名","球队名称","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	//表格列宽
+	private static int[] COLUMNWIDTH1={50,200,60,80,80,80,80,80,80,80,60};
+	private static int[] COLUMNWIDTH2={50,200,80,80,80,80,80,80,80,80,80};
+	private static int[] COLUMNWIDTH3={50,200,80,80,80,80,80,80,80};
+	
+	private JButton first;
+	private JButton second;
+	private JButton third;
+	
 	//总数据与场均数据切换下拉框
 	private JComboBox<String> switchbox;
 //	private JComboBox<String> search;
@@ -110,13 +117,16 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		initial_data=importdata.getTeamTechAscend(TeamTechEnum.name);
 //		System.out.println(initial_data.size());
 
-		teaminfo=new Object[initial_data.size()][columnName.length];
-//		teaminfo=new Object[TEAMNUM][columnName.length];
+		teaminfo1=new Object[initial_data.size()][columnName1.length];
+		teaminfo2=new Object[initial_data.size()][columnName2.length];
+		teaminfo3=new Object[initial_data.size()][columnName3.length];
 		//加载初始表格，显示队伍总数据
 		handleinitial(initial_data);
 
 		//加载表格配置
-		table_config();
+		table1_config();
+		table2_config();
+		table3_config();
 		//加载滑动面板配置
 		scrollpane_config();
 		//添加下拉框
@@ -152,6 +162,19 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
 		sideButton_config(Hot, "hot", 4);
 		
+		first=new JButton("1");
+		first.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		first.setSelected(true);
+		first.addActionListener(this);
+		second=new JButton("2");
+		second.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		second.addActionListener(this);
+		third=new JButton("3");
+		third.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20*2, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		third.addActionListener(this);
+		this.add(first);
+		this.add(second);
+		this.add(third);
 	}
 	
 	private void sideButton_config(JButton button,String info,int count){
@@ -225,35 +248,39 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	private void handleinitial(ArrayList<TeamTechVO> totaldata){
 		int a=0;
 		DecimalFormat f = new DecimalFormat("#,##0.0000");  
-		
+
 		for(TeamTechVO i:totaldata){
-			teaminfo[a][1]=switchTeamName(i.name);
-			teaminfo[a][2]=i.gameNum;
-			teaminfo[a][3]=i.shotInNum;
-			teaminfo[a][4]=i.shotNum;
-			teaminfo[a][5]=i.threeShotInNum;
-			teaminfo[a][6]=i.threeShotNum;
-			teaminfo[a][7]=i.penaltyShotInNum;
-			teaminfo[a][8]=i.penaltyShotNum;
-			teaminfo[a][9]=i.offensiveRebound;
-			teaminfo[a][10]=i.defensiveRebound;
-			teaminfo[a][11]=i.rebound;
-			teaminfo[a][12]=i.secondaryAttack;
-			teaminfo[a][13]=i.steal;
-			teaminfo[a][14]=i.blockShot;
-			teaminfo[a][15]=i.fault;
-			teaminfo[a][16]=i.foul;
-			teaminfo[a][17]=i.score;
-			teaminfo[a][18]=f.format(i.shotInRate);
-			teaminfo[a][19]=f.format(i.threeShotInRate);
-			teaminfo[a][20]=f.format(i.penaltyShotInRate);
-			teaminfo[a][21]=f.format(i.winningRate);
-			teaminfo[a][22]=f.format(i.offensiveRound);
-			teaminfo[a][23]=f.format(i.offensiveEfficiency);
-			teaminfo[a][24]=f.format(i.defensiveEfficiency);
-			teaminfo[a][25]=f.format(i.reboundEfficiency);
-			teaminfo[a][26]=f.format(i.stealEfficiency);
-			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
+			teaminfo1[a][1]=switchTeamName(i.name);
+			teaminfo1[a][2]=i.score;
+			teaminfo1[a][3]=i.rebound;
+			teaminfo1[a][4]=i.secondaryAttack;
+			teaminfo1[a][5]=i.steal;
+			teaminfo1[a][6]=i.blockShot;
+			teaminfo1[a][7]=i.fault;
+//			teaminfo1[a][8]=i.foul;
+			teaminfo1[a][8]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			teaminfo1[a][9]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			teaminfo1[a][10]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			
+			teaminfo2[a][1]=switchTeamName(i.name);
+			teaminfo2[a][2]=i.gameNum;
+			teaminfo2[a][3]=i.shotInNum;
+			teaminfo2[a][4]=i.shotNum;
+			teaminfo2[a][5]=i.threeShotInNum;
+			teaminfo2[a][6]=i.threeShotNum;
+			teaminfo2[a][7]=i.penaltyShotInNum;
+			teaminfo2[a][8]=i.penaltyShotNum;
+			teaminfo2[a][9]=i.offensiveRebound;
+			teaminfo2[a][10]=i.defensiveRebound;
+			
+			teaminfo3[a][1]=switchTeamName(i.name);
+			teaminfo3[a][2]=String.valueOf((int) Math.floor(i.winningRate*100))+"%";
+			teaminfo3[a][3]=(int) Math.floor(i.offensiveRound);
+			teaminfo3[a][4]=String.valueOf((int) Math.floor(i.offensiveEfficiency))+"%";
+			teaminfo3[a][5]=String.valueOf((int) Math.floor(i.defensiveEfficiency))+"%";
+			teaminfo3[a][6]=String.valueOf((int) Math.floor(i.reboundEfficiency*100))+"%";
+			teaminfo3[a][7]=String.valueOf((int) Math.floor(i.stealEfficiency))+"%";
+			teaminfo3[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackEfficiency))+"%";
 			a++;
 		}
 	}
@@ -262,33 +289,37 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		DecimalFormat f = new DecimalFormat("#,##0.0000"); 
 		int a=0;
 		for(TeamTechVO i:totaldata){
-			teaminfo[a][1]=switchTeamName(i.name);
-			teaminfo[a][2]=i.gameNum;
-			teaminfo[a][3]=i.shotInNum;
-			teaminfo[a][4]=i.shotNum;
-			teaminfo[a][5]=i.threeShotInNum;
-			teaminfo[a][6]=i.threeShotNum;
-			teaminfo[a][7]=i.penaltyShotInNum;
-			teaminfo[a][8]=i.penaltyShotNum;
-			teaminfo[a][9]=i.offensiveRebound;
-			teaminfo[a][10]=i.defensiveRebound;
-			teaminfo[a][11]=i.rebound;
-			teaminfo[a][12]=i.secondaryAttack;
-			teaminfo[a][13]=i.steal;
-			teaminfo[a][14]=i.blockShot;
-			teaminfo[a][15]=i.fault;
-			teaminfo[a][16]=i.foul;
-			teaminfo[a][17]=i.score;
-			teaminfo[a][18]=f.format(i.shotInRate);
-			teaminfo[a][19]=f.format(i.threeShotInRate);
-			teaminfo[a][20]=f.format(i.penaltyShotInRate);
-			teaminfo[a][21]=f.format(i.winningRate);
-			teaminfo[a][22]=f.format(i.offensiveRound);
-			teaminfo[a][23]=f.format(i.offensiveEfficiency);
-			teaminfo[a][24]=f.format(i.defensiveEfficiency);
-			teaminfo[a][25]=f.format(i.reboundEfficiency);
-			teaminfo[a][26]=f.format(i.stealEfficiency);
-			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
+			teaminfo1[a][1]=switchTeamName(i.name);
+			teaminfo1[a][2]=i.score;
+			teaminfo1[a][3]=i.rebound;
+			teaminfo1[a][4]=i.secondaryAttack;
+			teaminfo1[a][5]=i.steal;
+			teaminfo1[a][6]=i.blockShot;
+			teaminfo1[a][7]=i.fault;
+//			teaminfo1[a][8]=i.foul;
+			teaminfo1[a][8]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			teaminfo1[a][9]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			teaminfo1[a][10]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			
+			teaminfo2[a][1]=switchTeamName(i.name);
+			teaminfo2[a][2]=i.gameNum;
+			teaminfo2[a][3]=i.shotInNum;
+			teaminfo2[a][4]=i.shotNum;
+			teaminfo2[a][5]=i.threeShotInNum;
+			teaminfo2[a][6]=i.threeShotNum;
+			teaminfo2[a][7]=i.penaltyShotInNum;
+			teaminfo2[a][8]=i.penaltyShotNum;
+			teaminfo2[a][9]=i.offensiveRebound;
+			teaminfo2[a][10]=i.defensiveRebound;
+			
+			teaminfo3[a][1]=switchTeamName(i.name);
+			teaminfo3[a][2]=String.valueOf((int) Math.floor(i.winningRate*100))+"%";
+			teaminfo3[a][3]=(int) Math.floor(i.offensiveRound);
+			teaminfo3[a][4]=String.valueOf((int) Math.floor(i.offensiveEfficiency))+"%";
+			teaminfo3[a][5]=String.valueOf((int) Math.floor(i.defensiveEfficiency))+"%";
+			teaminfo3[a][6]=String.valueOf((int) Math.floor(i.reboundEfficiency*100))+"%";
+			teaminfo3[a][7]=String.valueOf((int) Math.floor(i.stealEfficiency))+"%";
+			teaminfo3[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackEfficiency))+"%";
 			a++;
 		}
 		refreshtable();
@@ -298,33 +329,37 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		DecimalFormat f = new DecimalFormat("#,##0.0000"); 
 		int a=0;
 		for(TeamTechVO i:averagedata){
-			teaminfo[a][1]=switchTeamName(i.name);
-			teaminfo[a][2]=i.gameNum;
-			teaminfo[a][3]=f.format(i.shotInNumave);
-			teaminfo[a][4]=f.format(i.shotNumave);
-			teaminfo[a][5]=f.format(i.threeShotInNumave);
-			teaminfo[a][6]=f.format(i.threeShotNumave);
-			teaminfo[a][7]=f.format(i.penaltyShotInNumave);
-			teaminfo[a][8]=f.format(i.penaltyShotNumave);
-			teaminfo[a][9]=f.format(i.offensiveReboundave);
-			teaminfo[a][10]=f.format(i.defensiveReboundave);
-			teaminfo[a][11]=f.format(i.reboundave);
-			teaminfo[a][12]=f.format(i.secondaryAttackave);
-			teaminfo[a][13]=f.format(i.stealave);
-			teaminfo[a][14]=f.format(i.blockShotave);
-			teaminfo[a][15]=f.format(i.faultave);
-			teaminfo[a][16]=f.format(i.foulave);
-			teaminfo[a][17]=f.format(i.scoreave);
-			teaminfo[a][18]=f.format(i.shotInRate);
-			teaminfo[a][19]=f.format(i.threeShotInRate);
-			teaminfo[a][20]=f.format(i.penaltyShotInRate);
-			teaminfo[a][21]=f.format(i.winningRate);
-			teaminfo[a][22]=f.format(i.offensiveRoundave);
-			teaminfo[a][23]=f.format(i.offensiveEfficiency);
-			teaminfo[a][24]=f.format(i.defensiveEfficiency);
-			teaminfo[a][25]=f.format(i.reboundEfficiency);
-			teaminfo[a][26]=f.format(i.stealEfficiency);
-			teaminfo[a][27]=f.format(i.secondaryAttackEfficiency);
+			teaminfo1[a][1]=switchTeamName(i.name);
+			teaminfo1[a][2]=i.scoreave;
+			teaminfo1[a][3]=i.reboundave;
+			teaminfo1[a][4]=i.secondaryAttackave;
+			teaminfo1[a][5]=i.stealave;
+			teaminfo1[a][6]=i.blockShotave;
+			teaminfo1[a][7]=i.faultave;
+//			teaminfo1[a][8]=i.foulave;
+			teaminfo1[a][8]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			teaminfo1[a][9]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			teaminfo1[a][10]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			
+			teaminfo2[a][1]=switchTeamName(i.name);
+			teaminfo2[a][2]=i.gameNum;
+			teaminfo2[a][3]=i.shotInNumave;
+			teaminfo2[a][4]=i.shotNumave;
+			teaminfo2[a][5]=i.threeShotInNumave;
+			teaminfo2[a][6]=i.threeShotNumave;
+			teaminfo2[a][7]=i.penaltyShotInNumave;
+			teaminfo2[a][8]=i.penaltyShotNumave;
+			teaminfo2[a][9]=i.offensiveReboundave;
+			teaminfo2[a][10]=i.defensiveReboundave;
+			
+			teaminfo3[a][1]=switchTeamName(i.name);
+			teaminfo3[a][2]=String.valueOf((int) Math.floor(i.winningRate*100))+"%";
+			teaminfo3[a][3]=(int) Math.floor(i.offensiveRoundave);
+			teaminfo3[a][4]=String.valueOf((int) Math.floor(i.offensiveEfficiency))+"%";
+			teaminfo3[a][5]=String.valueOf((int) Math.floor(i.defensiveEfficiency))+"%";
+			teaminfo3[a][6]=String.valueOf((int) Math.floor(i.reboundEfficiency*100))+"%";
+			teaminfo3[a][7]=String.valueOf((int) Math.floor(i.stealEfficiency))+"%";
+			teaminfo3[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackEfficiency))+"%";
 			a++;
 		}
 		refreshtable();
@@ -406,41 +441,38 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	}
 	
 	//表格配置
-	public void table_config(){
+	public void table1_config(){
 		//------------------------------表格基本属性--------------------------
-//		for(int i=0;i<initial_data.size();i++){
-//			teaminfo[i][0]=i+1;
-//		}
 		for(int i=0;i<TEAMNUM;i++){
-			teaminfo[i][0]=i+1;
+			teaminfo1[i][0]=i+1;
 		}
 		//表格属性设置
-		teamtable=new JTable(teaminfo, columnName){
+		teamtable1=new JTable(teaminfo1, columnName1){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) { 
 				return false;
 			}
 		};
 		//根据条目名自动调整列宽
-		teamtable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		teamtable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		//设置表格列不可移动
-		teamtable.getTableHeader().setReorderingAllowed(false);
+		teamtable1.getTableHeader().setReorderingAllowed(false);
 		//设置列名居中
-		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable.getTableHeader() .getDefaultRenderer();  
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable1.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
 		//设置表格数据及表头字体字号
-		teamtable.setFont(TTPre.CellFont);
-		teamtable.setForeground(TTPre.CellFg);
-		teamtable.getTableHeader().setFont(TTPre.HeaderFont);
-		teamtable.getTableHeader().setForeground(TTPre.TableFg);
-		teamtable.getTableHeader().setOpaque(false);
-		teamtable.getTableHeader().setBackground(TTPre.TableBg);
+		teamtable1.setFont(TTPre.CellFont);
+		teamtable1.setForeground(TTPre.CellFg);
+		teamtable1.getTableHeader().setFont(TTPre.HeaderFont);
+		teamtable1.getTableHeader().setForeground(TTPre.TableFg);
+		teamtable1.getTableHeader().setOpaque(false);
+		teamtable1.getTableHeader().setBackground(TTPre.TableBg);
 		//去除边框
-		teamtable.setBorder(null);
+		teamtable1.setBorder(null);
 
 		//按行修改表格背景
-		TableColumnModel model = teamtable.getColumnModel();
+		TableColumnModel model = teamtable1.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
 			TableColumn column = model.getColumn(i);
@@ -448,25 +480,25 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		}
 
 		//不显示单元格边框线
-		teamtable.setShowHorizontalLines(false);
-		teamtable.setShowVerticalLines(false);
+		teamtable1.setShowHorizontalLines(false);
+		teamtable1.setShowVerticalLines(false);
 		//设置选中颜色
-		teamtable.setSelectionBackground(TTPre.LineSelected);
+		teamtable1.setSelectionBackground(TTPre.LineSelected);
 		
 		//设置行高
-		teamtable.setRowHeight(ROWHEIGHT);
+		teamtable1.setRowHeight(ROWHEIGHT);
 		//设置列宽
-		for(int i=0;i<COLUMNWIDTH.length;i++){
-		teamtable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
+		for(int i=0;i<COLUMNWIDTH1.length;i++){
+		teamtable1.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH1[i]);
 		}
 		
 		//-----------------------------------------------------------------
 
 		//添加table表头点击事件
-		teamtable.getTableHeader().addMouseListener(new MouseAdapter() {
+		teamtable1.getTableHeader().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				HeaderColumn=teamtable.columnAtPoint(e.getPoint());
-				String orderSource=teamtable.getColumnName(HeaderColumn);
+				HeaderColumn=teamtable1.columnAtPoint(e.getPoint());
+				String orderSource=teamtable1.getColumnName(HeaderColumn);
 //				System.out.println(orderSource);
 				if(!orderSource.equals("排名")&&!orderSource.equals("比赛场数")){
 					message.setText("当前排序依据:"+orderSource);
@@ -477,13 +509,170 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		});
 
 	}
+	
+	
+	public void table2_config(){
+		//------------------------------表格基本属性--------------------------
+//		for(int i=0;i<initial_data.size();i++){
+//			teaminfo[i][0]=i+1;
+//		}
+		for(int i=0;i<TEAMNUM;i++){
+			teaminfo2[i][0]=i+1;
+		}
+		//表格属性设置
+		teamtable2=new JTable(teaminfo2, columnName2){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+		//根据条目名自动调整列宽
+		teamtable2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		//设置表格列不可移动
+		teamtable2.getTableHeader().setReorderingAllowed(false);
+		//设置列名居中
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable2.getTableHeader() .getDefaultRenderer();  
+		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		//设置表格数据及表头字体字号
+		teamtable2.setFont(TTPre.CellFont);
+		teamtable2.setForeground(TTPre.CellFg);
+		teamtable2.getTableHeader().setFont(TTPre.HeaderFont);
+		teamtable2.getTableHeader().setForeground(TTPre.TableFg);
+		teamtable2.getTableHeader().setOpaque(false);
+		teamtable2.getTableHeader().setBackground(TTPre.TableBg);
+		//去除边框
+		teamtable2.setBorder(null);
+
+		//按行修改表格背景
+		TableColumnModel model = teamtable2.getColumnModel();
+		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
+		{
+			TableColumn column = model.getColumn(i);
+			column.setCellRenderer(new RowRenderer());
+		}
+
+		//不显示单元格边框线
+		teamtable2.setShowHorizontalLines(false);
+		teamtable2.setShowVerticalLines(false);
+		//设置选中颜色
+		teamtable2.setSelectionBackground(TTPre.LineSelected);
+		
+		//设置行高
+		teamtable2.setRowHeight(ROWHEIGHT);
+		//设置列宽
+		for(int i=0;i<COLUMNWIDTH2.length;i++){
+		teamtable2.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH2[i]);
+		}
+		
+		//-----------------------------------------------------------------
+
+		//添加table表头点击事件
+		teamtable2.getTableHeader().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				HeaderColumn=teamtable2.columnAtPoint(e.getPoint());
+				String orderSource=teamtable2.getColumnName(HeaderColumn);
+//				System.out.println(orderSource);
+				if(!orderSource.equals("排名")&&!orderSource.equals("比赛场数")){
+					message.setText("当前排序依据:"+orderSource);
+				judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
+				}
+				
+			}
+		});
+
+	}
+	
+	
+	public void table3_config(){
+		//------------------------------表格基本属性--------------------------
+//		for(int i=0;i<initial_data.size();i++){
+//			teaminfo[i][0]=i+1;
+//		}
+		for(int i=0;i<TEAMNUM;i++){
+			teaminfo3[i][0]=i+1;
+		}
+		//表格属性设置
+		teamtable3=new JTable(teaminfo3, columnName3){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+		//根据条目名自动调整列宽
+		teamtable3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		//设置表格列不可移动
+		teamtable3.getTableHeader().setReorderingAllowed(false);
+		//设置列名居中
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) teamtable3.getTableHeader() .getDefaultRenderer();  
+		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		//设置表格数据及表头字体字号
+		teamtable3.setFont(TTPre.CellFont);
+		teamtable3.setForeground(TTPre.CellFg);
+		teamtable3.getTableHeader().setFont(TTPre.HeaderFont);
+		teamtable3.getTableHeader().setForeground(TTPre.TableFg);
+		teamtable3.getTableHeader().setOpaque(false);
+		teamtable3.getTableHeader().setBackground(TTPre.TableBg);
+		//去除边框
+		teamtable3.setBorder(null);
+
+		//按行修改表格背景
+		TableColumnModel model = teamtable3.getColumnModel();
+		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
+		{
+			TableColumn column = model.getColumn(i);
+			column.setCellRenderer(new RowRenderer());
+		}
+
+		//不显示单元格边框线
+		teamtable3.setShowHorizontalLines(false);
+		teamtable3.setShowVerticalLines(false);
+		//设置选中颜色
+		teamtable3.setSelectionBackground(TTPre.LineSelected);
+		
+		//设置行高
+		teamtable3.setRowHeight(ROWHEIGHT);
+		//设置列宽
+		for(int i=0;i<COLUMNWIDTH3.length;i++){
+		teamtable3.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH3[i]);
+		}
+		
+		//-----------------------------------------------------------------
+
+		//添加table表头点击事件
+		teamtable3.getTableHeader().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				HeaderColumn=teamtable3.columnAtPoint(e.getPoint());
+				String orderSource=teamtable3.getColumnName(HeaderColumn);
+//				System.out.println(orderSource);
+				if(!orderSource.equals("排名")&&!orderSource.equals("比赛场数")){
+					message.setText("当前排序依据:"+orderSource);
+				judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
+				}
+				
+			}
+		});
+
+	}
+	
 
 	public void refreshtable(){
-		table_config();
-		teams.setViewportView(teamtable);
-		this.repaint();
+		table1_config();
+		table2_config();
+		table3_config();
+		if(first.isSelected())
+			teams.setViewportView(teamtable1);
+		else if(second.isSelected())
+			teams.setViewportView(teamtable2);
+		else if(third.isSelected())
+			teams.setViewportView(teamtable3);
+		Frame.repaint();
 	}
 
+	//"排名","球队名称","得分","篮板","助攻","抢断","盖帽","失误","犯规","命中%","三分%","罚球%"};
+	//"排名","球队名称","场数","命中","出手","三分命中","三分出手","罚球命中","罚球出手","进攻篮板","防守篮板"};
+	//"排名","球队名称","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
 	private void judgeOrderSource(String ordersource,String AvgOrTotal){
 		ArrayList<TeamTechVO> orderTeamTechVO = null;
 		if(order_Asc.isSelected()){
@@ -491,118 +680,118 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		case "球队名称":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.name);
 			break;
-		case "投篮命中数":
+		case "命中":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInNum);
 			}
 			break;
-		case "投篮出手次数":
+		case "出手":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotNum);
 			}
 			break;
-		case "三分命中数":
+		case "三分命中":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInNum);
 			}
 			break;
-		case "三分出手数":
+		case "三分出手":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotNum);
 			}
 			break;
-		case "罚球命中数":
+		case "罚球命中":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInNum);
 			}
 			break;
-		case "罚球出手数":
+		case "罚球出手":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNumave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotNum);
 			}
 			break;
-		case "进攻篮板数":
+		case "进攻篮板":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveReboundave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.offensiveRebound);
 			}
 			break;
-		case "防守篮板数":
+		case "防守篮板":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveReboundave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.defensiveRebound);
 			}
 			break;
-		case "篮板数":
+		case "篮板":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.reboundave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.rebound);
 			}
 			break;
-		case "助攻数":
+		case "助攻":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttackave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.secondaryAttack);
 			}
 			break;
-		case "抢断数":
+		case "抢断":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.stealave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.steal);
 			}
 			break;
-		case "盖帽数":
+		case "盖帽":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShotave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.blockShot);
 			}
 			break;
-		case "失误数":
+		case "失误":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.faultave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.fault);
 			}
 			break;
-		case "犯规数":
+		case "犯规":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foulave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.foul);
 			}
 			break;
-		case "比赛得分":
+		case "得分":
 			if(AvgOrTotal.equals("场均数据")){
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.scoreave);
 			}else{
 				orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.score);
 			}
 			break;
-		case "投篮命中率":
+		case "命中%":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.shotInRate);
 			break;
-		case "三分命中率":
+		case "三分%":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.threeShotInRate);
 			break;
-		case "罚球命中率":
+		case "罚球%":
 			orderTeamTechVO=importdata.getTeamTechAscend(TeamTechEnum.penaltyShotInRate);
 			break;
 		case "胜率":
@@ -632,127 +821,131 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			break;
 		}
 		
+		//"排名","球队名称","得分","篮板","助攻","抢断","盖帽","失误","犯规","命中%","三分%","罚球%"};
+		//"排名","球队名称","场数","命中","出手","三分命中","三分出手","罚球命中","罚球出手","进攻篮板","防守篮板"};
+		//"排名","球队名称","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+		
 		}
 		if(order_Des.isSelected()){
 			switch(ordersource){
 			case "球队名称":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.name);
 				break;
-			case "比赛场数":
+			case "场数":
 //				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.gameNum);
 				break;
-			case "投篮命中数":
+			case "命中":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInNum);
 				}
 				break;
-			case "投篮出手次数":
+			case "出手":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotNum);
 				}
 				break;
-			case "三分命中数":
+			case "三分命中":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInNum);
 				}
 				break;
-			case "三分出手数":
+			case "三分出手":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotNum);
 				}
 				break;
-			case "罚球命中数":
+			case "罚球命中":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInNum);
 				}
 				break;
-			case "罚球出手数":
+			case "罚球出手":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNumave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotNum);
 				}
 				break;
-			case "进攻篮板数":
+			case "进攻篮板":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveReboundave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.offensiveRebound);
 				}
 				break;
-			case "防守篮板数":
+			case "防守篮板":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveReboundave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.defensiveRebound);
 				}
 				break;
-			case "篮板数":
+			case "篮板":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.reboundave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.rebound);
 				}
 				break;
-			case "助攻数":
+			case "助攻":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttackave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.secondaryAttack);
 				}
 				break;
-			case "抢断数":
+			case "抢断":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.stealave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.steal);
 				}
 				break;
-			case "盖帽数":
+			case "盖帽":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShotave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.blockShot);
 				}
 				break;
-			case "失误数":
+			case "失误":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.faultave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.fault);
 				}
 				break;
-			case "犯规数":
+			case "犯规":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foulave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.foul);
 				}
 				break;
-			case "比赛得分":
+			case "得分":
 				if(AvgOrTotal.equals("场均数据")){
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.scoreave);
 				}else{
 					orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.score);
 				}
 				break;
-			case "投篮命中率":
+			case "命中%":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.shotInRate);
 				break;
-			case "三分命中率":
+			case "三分%":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.threeShotInRate);
 				break;
-			case "罚球命中率":
+			case "罚球%":
 				orderTeamTechVO=importdata.getTeamTechDescend(TeamTechEnum.penaltyShotInRate);
 				break;
 			case "胜率":
@@ -793,7 +986,7 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	//滑动面板配置
 	public void scrollpane_config(){
 		//滑动面板信息
-		teams=new JScrollPane(teamtable);
+		teams=new JScrollPane(teamtable1);
 		teams.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space,TABLEWIDTH,TABLEHEIGHT);
 		teams.setHorizontalScrollBarPolicy( 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
@@ -897,6 +1090,31 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 			HotPlayerToday panel=new HotPlayerToday(Frame);
 			Frame.add(panel);
 			Frame.repaint();
+		}
+		
+		if(arg0.getSource()==first){
+			if(!first.isSelected()){
+			first.setSelected(true);
+			second.setSelected(false);
+			third.setSelected(false);
+			refreshtable();
+			}
+		}
+		if(arg0.getSource()==second){
+			if(!second.isSelected()){
+			first.setSelected(false);
+			second.setSelected(true);
+			third.setSelected(false);
+			refreshtable();
+			}
+		}
+		if(arg0.getSource()==third){
+			if(!third.isSelected()){
+			first.setSelected(false);
+			second.setSelected(false);
+			third.setSelected(true);
+			refreshtable();
+			}
 		}
 	}
 }

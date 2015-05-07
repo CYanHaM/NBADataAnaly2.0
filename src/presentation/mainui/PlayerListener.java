@@ -8,11 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.playerui.PlayerInfoPanel;
+
 public class PlayerListener implements MouseListener{
 	JFrame Frame;
 	JPanel panelToRemove;
 	JLabel choosenlabel;
-	String teamname;
+	String playername;
 	Color formerColor;
 	Color latterColor;
 	
@@ -20,7 +22,7 @@ public class PlayerListener implements MouseListener{
 		Frame=frame;
 		panelToRemove=panel;
 		choosenlabel=Label;
-		teamname=name;
+		playername=name;
 		formerColor=color1;
 		latterColor=color2;
 	}
@@ -30,7 +32,11 @@ public class PlayerListener implements MouseListener{
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-//		System.out.println(choosenlabel.getText());
+//		System.out.println(playername);
+		PlayerInfoPanel tp=new PlayerInfoPanel(Frame,playername,panelToRemove);
+		Frame.remove(panelToRemove);
+		Frame.add(tp);
+		Frame.repaint();
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {

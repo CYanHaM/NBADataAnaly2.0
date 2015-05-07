@@ -296,7 +296,10 @@ public class SeasonHotPlayer extends JPanel implements ActionListener{
 		dataave[0].setText(switchkeywordave(0, selectedkeyword));
 
 		playerimage[0].setBounds(205, 275, 189, 300);
-		playerimage[0].setIcon(new ImageIcon("images/players/action_small/"+seasonHPlist.get(0).name+".png"));
+		ImageIcon im=new ImageIcon("images/players/action_small/"+seasonHPlist.get(0).name+".png");
+		if(im.getIconWidth()<0)
+			im=new ImageIcon("images/players/action_small/default_player.png");
+		playerimage[0].setIcon(im);
 
 		teamimage[0].setBounds(450, 260, 130, 130);
 		teamimage[0].setIcon(new ImageIcon("images/teams/standard/"+seasonHPlist.get(0).team+".png"));

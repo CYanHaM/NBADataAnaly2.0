@@ -30,6 +30,12 @@ public class PlayerPre {
 	public Font partition;//分区
 	public Font homeCourt;//主场
 	public Font time;//建立时间
+	
+	public Font bigname;
+	public Font name;
+	public Font middlename;
+	public Font smallname;
+	public Font supersmallname;
 
 	public PlayerPre(){
 
@@ -65,5 +71,11 @@ public class PlayerPre {
 		partition=new Font("Arial",0,15);
 		homeCourt=new Font("Arial",0,15);
 		time=new Font("Arial",0,12);
+		
+		bigname=new Font("华文细黑",0,35);
+		name=new Font("华文细黑",0,25);
+		middlename=new Font("华文细黑",0,20);
+		smallname=new Font("华文细黑",0,15);
+		supersmallname=new Font("微软雅黑",0,13);
 	}
 }

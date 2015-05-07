@@ -9,6 +9,8 @@ import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -24,6 +26,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import presentation.hotspotui.HotPlayerToday;
+import presentation.playerui.PlayerInfoPanel;
 import presentation.playerui.PlayerTechPanel;
 import presentation.preset.MatchPre;
 import presentation.preset.PlayerTechPre;
@@ -513,7 +516,21 @@ public class MatchDetail extends JPanel implements ActionListener{
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 			table_guest.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
-
+		
+		table_guest.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e) {
+			   int row= table_guest.getSelectedRow();
+               int column= table_guest.getSelectedColumn();
+               if(column==0){
+               //得到选中的单元格的值，表格中都是字符串
+               Object value= table_guest.getValueAt(row, column);
+               PlayerInfoPanel pip=new PlayerInfoPanel(Frame,String.valueOf(value),panelToRemove);
+               Frame.remove(panelToRemove);
+               Frame.add(pip);
+               Frame.repaint();
+               }
+			 }
+		});
 
 	}
 
@@ -566,6 +583,21 @@ public class MatchDetail extends JPanel implements ActionListener{
 		for(int i=0;i<COLUMNWIDTH.length;i++){
 			table_home.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
 		}
+		
+		table_home.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e) {
+			   int row= table_home.getSelectedRow();
+              int column= table_home.getSelectedColumn();
+              if(column==0){
+              //得到选中的单元格的值，表格中都是字符串
+              Object value= table_home.getValueAt(row, column);
+              PlayerInfoPanel pip=new PlayerInfoPanel(Frame,String.valueOf(value),panelToRemove);
+              Frame.remove(panelToRemove);
+              Frame.add(pip);
+              Frame.repaint();
+              }
+			 }
+		});
 
 
 	}

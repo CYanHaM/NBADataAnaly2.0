@@ -13,9 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.mainui.MainFrame;
+import presentation.playerui.PlayerInfoPanel;
 import presentation.preset.MatchPre;
-import presentation.teamui.TeamInfoPanel;
 import presentation.teamui.TeamPanel;
 import VO.MatchVO;
 import VO.TeamVO;
@@ -131,7 +130,7 @@ public class MatchLabel extends JPanel implements ActionListener{
 		scoringChampion[0] = new JLabel(sC[0]);
 		scoringChampion[0].setBounds(530, 33, 130, 30);
 		scoringChampion[0].setFont(MP.Champion);
-		scoringChampion[0].addMouseListener(new ChampionListener(scoringChampion[0]));
+		scoringChampion[0].addMouseListener(new ChampionListener(scoringChampion[0],sC[0]));
 		scoringChampion[1] = new JLabel(sC[1]);
 		scoringChampion[1].setBounds(670, 33, 100, 30);
 		scoringChampion[1].setFont(MP.Champion);
@@ -147,7 +146,7 @@ public class MatchLabel extends JPanel implements ActionListener{
 		reboundChampion[0] = new JLabel(rC[0]);
 		reboundChampion[0].setBounds(530, 65, 130, 30);
 		reboundChampion[0].setFont(MP.Champion);
-		reboundChampion[0].addMouseListener(new ChampionListener(reboundChampion[0]));
+		reboundChampion[0].addMouseListener(new ChampionListener(reboundChampion[0],rC[0]));
 		reboundChampion[1] = new JLabel(rC[1]);
 		reboundChampion[1].setBounds(670, 65, 100, 30);
 		reboundChampion[1].setFont(MP.Champion);
@@ -163,7 +162,7 @@ public class MatchLabel extends JPanel implements ActionListener{
 		assistChampion[0] = new JLabel(aC[0]);
 		assistChampion[0].setBounds(530, 97, 130, 30);
 		assistChampion[0].setFont(MP.Champion);
-		assistChampion[0].addMouseListener(new ChampionListener(assistChampion[0]));
+		assistChampion[0].addMouseListener(new ChampionListener(assistChampion[0],aC[0]));
 		assistChampion[1] = new JLabel(aC[1]);
 		assistChampion[1].setBounds(670, 97, 100, 30);
 		assistChampion[1].setFont(MP.Champion);
@@ -285,8 +284,10 @@ public class MatchLabel extends JPanel implements ActionListener{
 	private class ChampionListener implements MouseListener{
 
 		JLabel choosenlabel;
-		public ChampionListener(JLabel Label) {
+		String playername;
+		public ChampionListener(JLabel Label,String name) {
 			choosenlabel=Label;
+			playername=name;
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
@@ -295,7 +296,10 @@ public class MatchLabel extends JPanel implements ActionListener{
 		}
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-//			System.out.println(choosenlabel.getText());
+			PlayerInfoPanel tp=new PlayerInfoPanel(Frame,playername,panelToReturn);
+			Frame.remove(panelToReturn);
+			Frame.add(tp);
+			Frame.repaint();
 		}
 		@Override
 		public void mouseExited(MouseEvent arg0) {

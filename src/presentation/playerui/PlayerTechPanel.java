@@ -40,15 +40,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 	//表格大小
 	private static int TABLEWIDTH=800;
-	private static int TABLEHEIGHT=400;
+	private static int TABLEHEIGHT=395;
 	//表格行高
 	private static int ROWHEIGHT=40;
-	//表格列宽
-	private static int[] COLUMNWIDTH={40,120,170,
-		60,60,60,60,60,
-		70,70,70,
-		60,60,60,60,60,60,60,
-		70,80,70,70,70,70,70,70,70,70,70,70};
 
 	//下拉框大小
 	private static int BOXWIDTH=160;
@@ -57,17 +51,24 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 
 	//-------------------------界面组件--------------------
 	//设置表格属性
-	private JTable playertable;
+	private JTable playertable1;
+	private JTable playertable2;
+	private JTable playertable3;
 	private String[] playernames;
 	private String playername;
-	private Object[][] playerinfo;
+	private Object[][] playerinfo1;
+	private Object[][] playerinfo2;
+	private Object[][] playerinfo3;
 	private JScrollPane players;
-	private String[] columnName={
-			"排名","球员名称","所属球队",
-			"参赛场数","先发场数","篮板数","助攻数","在场时间",
-			"投篮命中率","三分命中率","罚球命中率",
-			"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分",
-			"效率","GmSc 效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
+	private String[] columnName1={"排名","球员名称","所属球队","得分","篮板","助攻","进攻","防守","抢断","盖帽","失误","犯规",};
+	private String[] columnName2={"排名","球员名称","命中%","三分%","罚球%","篮板%","进攻篮板%","防守篮板%","助攻%","抢断%","盖帽%"};
+	private String[] columnName3={"排名","球员名称","时间","参赛","先发","真实命中%","效率","GmSc 效率","投篮效率","失误%","使用%"};
+	//表格列宽
+	private static int[] COLUMNWIDTH1={40,120,160,61,50,50,50,50,50,50,50,50};
+	private static int[] COLUMNWIDTH2={40,120,75,75,75,60,80,80,60,60,56};
+	private static int[] COLUMNWIDTH3={40,120,70,50,50,80,80,80,80,60,73};
+
+	
 	//总数据与场均数据切换下拉框
 	private JComboBox<String> switchbox;
 
@@ -89,6 +90,10 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private JButton commit;
 	//表格重置按钮
 	private JButton reset;
+	
+	private JButton first;
+	private JButton second;
+	private JButton third;
 	//侧边栏按钮
 	private JButton SeasonInfo;
 	private JButton MatchInfo;
@@ -129,13 +134,17 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		importdata=new ImportPlayer();
 		initial_data=importdata.getPlayerTechAscend("name");
 		
-		playerinfo=new Object[initial_data.size()][columnName.length];
+		playerinfo1=new Object[initial_data.size()][columnName1.length];
+		playerinfo2=new Object[initial_data.size()][columnName2.length];
+		playerinfo3=new Object[initial_data.size()][columnName3.length];
 //		playerinfo=new Object[PLAYERNUM][columnName.length];
 		//加载初始表格，显示队伍总数据
 		handleinitial(initial_data);
 
 		//加载表格配置
-		table_config();
+		table1_config();
+		table2_config();
+		table3_config();
 		//加载滑动面板配置
 		scrollpane_config();
 
@@ -215,7 +224,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			ArrayList<PlayerTechVO> playervo=importdata.findPlayerByLetter(letter[Count]);
-			playerinfo=new Object[playervo.size()][columnName.length];
+			playerinfo1=new Object[playervo.size()][columnName1.length];
+			playerinfo2=new Object[playervo.size()][columnName2.length];
+			playerinfo3=new Object[playervo.size()][columnName3.length];
 			String switchboxsel=(String) switchbox.getSelectedItem();
 			if(switchboxsel.equals("赛季总数据")){
 				handleTotalData(playervo);
@@ -317,7 +328,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		sideButton_config(Hot, "hot", 4);
 		
 		commit=new JButton(new ImageIcon("images/buttons/playertech/Commit_initial.png"));
-		commit.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*3,HEIGHT-TABLEHEIGHT-e_space-space-50,BOXWIDTH,BOXHEIGHT);
+		commit.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*3,HEIGHT-TABLEHEIGHT-e_space-space-50-20,BOXWIDTH,BOXHEIGHT);
 		commit.setBorderPainted(false);
 		commit.setContentAreaFilled(false);
 		commit.setFocusPainted(false);
@@ -326,7 +337,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		commit.addActionListener(this);
 		
 		reset=new JButton(new ImageIcon("images/buttons/playertech/Reset_initial.png"));
-		reset.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4, HEIGHT-TABLEHEIGHT-e_space-space-50, 100, 30);
+		reset.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4, HEIGHT-TABLEHEIGHT-e_space-space-50-20, 100, 30);
 		reset.setBorderPainted(false);
 		reset.setContentAreaFilled(false);
 		reset.setFocusPainted(false);
@@ -336,6 +347,21 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		
 		this.add(commit);
 		this.add(reset);
+		
+		first=new JButton("1");
+		first.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		first.setSelected(true);
+		first.addActionListener(this);
+		second=new JButton("2");
+		second.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		second.addActionListener(this);
+		third=new JButton("3");
+		third.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20*2, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		third.addActionListener(this);
+		this.add(first);
+		this.add(second);
+		this.add(third);
+		
 	}
 	
 	private void sideButton_config(JButton button,String info,int count){
@@ -356,35 +382,40 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		int a=0;
 		playernames=new String[totaldata.size()];
 		for(PlayerTechVO i:totaldata){
-			playerinfo[a][1]=i.name;
-			playerinfo[a][2]=switchTeamName(i.team);
-			playerinfo[a][3]=i.gameNum;
-			playerinfo[a][4]=i.startingNum;
-			playerinfo[a][5]=i.rebound;
-			playerinfo[a][6]=i.secondaryAttack;
-			playerinfo[a][7]=i.time;
-			playerinfo[a][8]=i.shotInRate;
-			playerinfo[a][9]=i.threeShotInRate;
-			playerinfo[a][10]=i.penaltyShotInRate;
-			playerinfo[a][11]=i.offensiveNum;
-			playerinfo[a][12]=i.defensiveNum;
-			playerinfo[a][13]=i.steal;
-			playerinfo[a][14]=i.blockShot;
-			playerinfo[a][15]=i.fault;
-			playerinfo[a][16]=i.foul;
-			playerinfo[a][17]=i.score;
-			playerinfo[a][18]=i.efficiency;
-			playerinfo[a][19]=i.GmScEfficiency;
-			playerinfo[a][20]=i.trueShotInRate;
-			playerinfo[a][21]=i.shootingEfficiency;
-			playerinfo[a][22]=i.reboundRate;
-			playerinfo[a][23]=i.offensiveReboundRate;
-			playerinfo[a][24]=i.defensiveReboundRate;
-			playerinfo[a][25]=i.secondaryAttackRate;
-			playerinfo[a][26]=i.stealRate;
-			playerinfo[a][27]=i.blockShotRate;
-			playerinfo[a][28]=i.faultRate;
-			playerinfo[a][29]=i.usageRate;
+			playerinfo1[a][1]=i.name;
+			playerinfo1[a][2]=switchTeamName(i.team);
+			playerinfo1[a][3]=i.score;
+			playerinfo1[a][4]=i.rebound;
+			playerinfo1[a][5]=i.secondaryAttack;
+			playerinfo1[a][6]=i.offensiveNum;
+			playerinfo1[a][7]=i.defensiveNum;
+			playerinfo1[a][8]=i.steal;
+			playerinfo1[a][9]=i.blockShot;
+			playerinfo1[a][10]=i.fault;
+			playerinfo1[a][11]=i.foul;
+			
+			playerinfo2[a][1]=i.name;
+			playerinfo2[a][2]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			playerinfo2[a][3]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			playerinfo2[a][4]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			playerinfo2[a][5]=String.valueOf((int) Math.floor(i.reboundRate*100))+"%";
+			playerinfo2[a][6]=String.valueOf((int) Math.floor(i.offensiveReboundRate*100))+"%";
+			playerinfo2[a][7]=String.valueOf((int) Math.floor(i.defensiveReboundRate*100))+"%";
+			playerinfo2[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackRate*100))+"%";
+			playerinfo2[a][9]=String.valueOf((int) Math.floor(i.stealRate*100))+"%";
+			playerinfo2[a][10]=String.valueOf((int) Math.floor(i.blockShotRate*100))+"%";
+			
+			playerinfo3[a][1]=i.name;
+			playerinfo3[a][2]=i.time;
+			playerinfo3[a][3]=i.gameNum;
+			playerinfo3[a][4]=i.startingNum;
+			playerinfo3[a][5]=String.valueOf((int) Math.floor(i.trueShotInRate*100))+"%";
+			playerinfo3[a][6]=String.valueOf((int) Math.floor(i.efficiency))+"%";
+			playerinfo3[a][7]=String.valueOf((int) Math.floor(i.GmScEfficiency))+"%";
+			playerinfo3[a][8]=String.valueOf((int) Math.floor(i.shootingEfficiency*100))+"%";
+			playerinfo3[a][9]=String.valueOf((int) Math.floor(i.faultRate*100))+"%";
+			playerinfo3[a][10]=String.valueOf((int) Math.floor(i.usageRate*100))+"%";
+			
 			playernames[a]=i.name;
 			a++;
 		}
@@ -394,35 +425,39 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		int a=0;
 		playernames=new String[totaldata.size()];
 		for(PlayerTechVO i:totaldata){
-			playerinfo[a][1]=i.name;
-			playerinfo[a][2]=switchTeamName(i.team);
-			playerinfo[a][3]=i.gameNum;
-			playerinfo[a][4]=i.startingNum;
-			playerinfo[a][5]=i.rebound;
-			playerinfo[a][6]=i.secondaryAttack;
-			playerinfo[a][7]=i.time;
-			playerinfo[a][8]=i.shotInRate;
-			playerinfo[a][9]=i.threeShotInRate;
-			playerinfo[a][10]=i.penaltyShotInRate;
-			playerinfo[a][11]=i.offensiveNum;
-			playerinfo[a][12]=i.defensiveNum;
-			playerinfo[a][13]=i.steal;
-			playerinfo[a][14]=i.blockShot;
-			playerinfo[a][15]=i.fault;
-			playerinfo[a][16]=i.foul;
-			playerinfo[a][17]=i.score;
-			playerinfo[a][18]=i.efficiency;
-			playerinfo[a][19]=i.GmScEfficiency;
-			playerinfo[a][20]=i.trueShotInRate;
-			playerinfo[a][21]=i.shootingEfficiency;
-			playerinfo[a][22]=i.reboundRate;
-			playerinfo[a][23]=i.offensiveReboundRate;
-			playerinfo[a][24]=i.defensiveReboundRate;
-			playerinfo[a][25]=i.secondaryAttackRate;
-			playerinfo[a][26]=i.stealRate;
-			playerinfo[a][27]=i.blockShotRate;
-			playerinfo[a][28]=i.faultRate;
-			playerinfo[a][29]=i.usageRate;
+			playerinfo1[a][1]=i.name;
+			playerinfo1[a][2]=switchTeamName(i.team);
+			playerinfo1[a][3]=i.score;
+			playerinfo1[a][4]=i.rebound;
+			playerinfo1[a][5]=i.secondaryAttack;
+			playerinfo1[a][6]=i.offensiveNum;
+			playerinfo1[a][7]=i.defensiveNum;
+			playerinfo1[a][8]=i.steal;
+			playerinfo1[a][9]=i.blockShot;
+			playerinfo1[a][10]=i.fault;
+			playerinfo1[a][11]=i.foul;
+			
+			playerinfo2[a][1]=i.name;
+			playerinfo2[a][2]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			playerinfo2[a][3]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			playerinfo2[a][4]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			playerinfo2[a][5]=String.valueOf((int) Math.floor(i.reboundRate*100))+"%";
+			playerinfo2[a][6]=String.valueOf((int) Math.floor(i.offensiveReboundRate*100))+"%";
+			playerinfo2[a][7]=String.valueOf((int) Math.floor(i.defensiveReboundRate*100))+"%";
+			playerinfo2[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackRate*100))+"%";
+			playerinfo2[a][9]=String.valueOf((int) Math.floor(i.stealRate*100))+"%";
+			playerinfo2[a][10]=String.valueOf((int) Math.floor(i.blockShotRate*100))+"%";
+			
+			playerinfo3[a][1]=i.name;
+			playerinfo3[a][2]=i.time;
+			playerinfo3[a][3]=i.gameNum;
+			playerinfo3[a][4]=i.startingNum;
+			playerinfo3[a][5]=String.valueOf((int) Math.floor(i.trueShotInRate*100))+"%";
+			playerinfo3[a][6]=String.valueOf((int) Math.floor(i.efficiency))+"%";
+			playerinfo3[a][7]=String.valueOf((int) Math.floor(i.GmScEfficiency))+"%";
+			playerinfo3[a][8]=String.valueOf((int) Math.floor(i.shootingEfficiency*100))+"%";
+			playerinfo3[a][9]=String.valueOf((int) Math.floor(i.faultRate*100))+"%";
+			playerinfo3[a][10]=String.valueOf((int) Math.floor(i.usageRate*100))+"%";
 			a++;
 			
 		}
@@ -432,35 +467,39 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	private void handleAverageData(ArrayList<PlayerTechVO> averagedata){
 		int a=0;
 		for(PlayerTechVO i:averagedata){
-			playerinfo[a][1]=i.name;
-			playerinfo[a][2]=switchTeamName(i.team);
-			playerinfo[a][3]=i.gameNum;
-			playerinfo[a][4]=i.startingNum;
-			playerinfo[a][5]=i.reboundave;
-			playerinfo[a][6]=i.secondaryAttackave;
-			playerinfo[a][7]=i.timeave;
-			playerinfo[a][8]=i.shotInRate;
-			playerinfo[a][9]=i.threeShotInRate;
-			playerinfo[a][10]=i.penaltyShotInRate;
-			playerinfo[a][11]=i.offensiveNumave;
-			playerinfo[a][12]=i.defensiveNumave;
-			playerinfo[a][13]=i.stealave;
-			playerinfo[a][14]=i.blockShotave;
-			playerinfo[a][15]=i.faultave;
-			playerinfo[a][16]=i.foulave;
-			playerinfo[a][17]=i.scoreave;
-			playerinfo[a][18]=i.efficiency;
-			playerinfo[a][19]=i.GmScEfficiency;
-			playerinfo[a][20]=i.trueShotInRate;
-			playerinfo[a][21]=i.shootingEfficiency;
-			playerinfo[a][22]=i.reboundRate;
-			playerinfo[a][23]=i.offensiveReboundRate;
-			playerinfo[a][24]=i.defensiveReboundRate;
-			playerinfo[a][25]=i.secondaryAttackRate;
-			playerinfo[a][26]=i.stealRate;
-			playerinfo[a][27]=i.blockShotRate;
-			playerinfo[a][28]=i.faultRate;
-			playerinfo[a][29]=i.usageRate;
+			playerinfo1[a][1]=i.name;
+			playerinfo1[a][2]=switchTeamName(i.team);
+			playerinfo1[a][3]=String.valueOf((int) Math.floor(i.scoreave));
+			playerinfo1[a][4]=String.valueOf((int) Math.floor(i.reboundave));
+			playerinfo1[a][5]=String.valueOf((int) Math.floor(i.secondaryAttackave));
+			playerinfo1[a][6]=String.valueOf((int) Math.floor(i.offensiveNumave));
+			playerinfo1[a][7]=String.valueOf((int) Math.floor(i.defensiveNumave));
+			playerinfo1[a][8]=String.valueOf((int) Math.floor(i.stealave));
+			playerinfo1[a][9]=String.valueOf((int) Math.floor(i.blockShotave));
+			playerinfo1[a][10]=String.valueOf((int) Math.floor(i.faultave));
+			playerinfo1[a][11]=String.valueOf((int) Math.floor(i.foulave));
+			
+			playerinfo2[a][1]=i.name;
+			playerinfo2[a][2]=String.valueOf((int) Math.floor(i.shotInRate*100))+"%";
+			playerinfo2[a][3]=String.valueOf((int) Math.floor(i.threeShotInRate*100))+"%";
+			playerinfo2[a][4]=String.valueOf((int) Math.floor(i.penaltyShotInRate*100))+"%";
+			playerinfo2[a][5]=String.valueOf((int) Math.floor(i.reboundRate*100))+"%";
+			playerinfo2[a][6]=String.valueOf((int) Math.floor(i.offensiveReboundRate*100))+"%";
+			playerinfo2[a][7]=String.valueOf((int) Math.floor(i.defensiveReboundRate*100))+"%";
+			playerinfo2[a][8]=String.valueOf((int) Math.floor(i.secondaryAttackRate*100))+"%";
+			playerinfo2[a][9]=String.valueOf((int) Math.floor(i.stealRate*100))+"%";
+			playerinfo2[a][10]=String.valueOf((int) Math.floor(i.blockShotRate*100))+"%";
+			
+			playerinfo3[a][1]=i.name;
+			playerinfo3[a][2]=String.valueOf((int) Math.floor(i.timeave));
+			playerinfo3[a][3]=i.gameNum;
+			playerinfo3[a][4]=i.startingNum;
+			playerinfo3[a][5]=String.valueOf((int) Math.floor(i.trueShotInRate*100))+"%";
+			playerinfo3[a][6]=String.valueOf((int) Math.floor(i.efficiency))+"%";
+			playerinfo3[a][7]=String.valueOf((int) Math.floor(i.GmScEfficiency))+"%";
+			playerinfo3[a][8]=String.valueOf((int) Math.floor(i.shootingEfficiency*100))+"%";
+			playerinfo3[a][9]=String.valueOf((int) Math.floor(i.faultRate*100))+"%";
+			playerinfo3[a][10]=String.valueOf((int) Math.floor(i.usageRate*100))+"%";
 			a++;
 		}
 		refreshtable();
@@ -490,7 +529,6 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			return img;
 		}
 	}
-
 	 //reference
 	/*
 	 * case "ATL":
@@ -641,39 +679,39 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 	//表格配置
-    public void table_config(){
+    public void table1_config(){
 		//------------------------------表格基本属性--------------------------
-		for(int i=0;i<playerinfo.length;i++){
-			playerinfo[i][0]=i+1;
+		for(int i=0;i<playerinfo1.length;i++){
+			playerinfo1[i][0]=i+1;
 		}
 		//表格属性设置
-		playertable=new JTable(playerinfo, columnName){
+		playertable1=new JTable(playerinfo1, columnName1){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) { 
 				return false;
 			}
 		};
 		//根据条目名自动调整列宽
-		playertable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		playertable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		//设置表格列不可移动
-		playertable.getTableHeader().setReorderingAllowed(false);
+		playertable1.getTableHeader().setReorderingAllowed(false);
 		//设置列名居中
-		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable.getTableHeader() .getDefaultRenderer();  
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable1.getTableHeader() .getDefaultRenderer();  
 		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
 		//设置表格数据及表头字体字号
-		playertable.setFont(PTPre.CellFont);
-		playertable.setForeground(PTPre.CellFg);
-		playertable.getTableHeader().setFont(PTPre.HeaderFont);
-		playertable.getTableHeader().setForeground(PTPre.TableFg);
-		playertable.getTableHeader().setOpaque(false);
-		playertable.getTableHeader().setBackground(PTPre.TableBg);
+		playertable1.setFont(PTPre.CellFont);
+		playertable1.setForeground(PTPre.CellFg);
+		playertable1.getTableHeader().setFont(PTPre.HeaderFont);
+		playertable1.getTableHeader().setForeground(PTPre.TableFg);
+		playertable1.getTableHeader().setOpaque(false);
+		playertable1.getTableHeader().setBackground(PTPre.TableBg);
 		//去除边框
-		playertable.setBorder(null);
+		playertable1.setBorder(null);
 
 //		playertable.setOpaque(false);
 		//按行修改表格背景
-		TableColumnModel model = playertable.getColumnModel();
+		TableColumnModel model = playertable1.getColumnModel();
 		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
 		{
 			TableColumn column = model.getColumn(i);
@@ -681,29 +719,23 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		}
 
 		//不显示单元格边框线
-		playertable.setShowHorizontalLines(false);
-		playertable.setShowVerticalLines(false);
+		playertable1.setShowHorizontalLines(false);
+		playertable1.setShowVerticalLines(false);
 		//设置选中颜色
-		playertable.setSelectionBackground(PTPre.LineSelected);
+		playertable1.setSelectionBackground(PTPre.LineSelected);
 
 		//设置行高
-		playertable.setRowHeight(ROWHEIGHT);
+		playertable1.setRowHeight(ROWHEIGHT);
 		//设置列宽
-		for(int i=0;i<COLUMNWIDTH.length;i++){
-			playertable.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH[i]);
+		for(int i=0;i<COLUMNWIDTH1.length;i++){
+			playertable1.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH1[i]);
 		}
-		
-//		for(int i=0;i<playernames.length;i++){
-//			playername=playernames[i];
-//			System.out.println(playername);
-//		playertable.getColumnModel().getColumn(1).setCellRenderer(new Showplayerimg(i,playername));
-//		}
 		//-----------------------------------------------------------------
 		//添加table表头点击事件
-		playertable.getTableHeader().addMouseListener(new MouseAdapter() {
+		playertable1.getTableHeader().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				HeaderColumn=playertable.columnAtPoint(e.getPoint());
-				String orderSource=playertable.getColumnName(HeaderColumn);
+				HeaderColumn=playertable1.columnAtPoint(e.getPoint());
+				String orderSource=playertable1.getColumnName(HeaderColumn);
 				//System.out.println(orderSource);
 				if(!orderSource.equals("排名")){
 					message.setText("当前排序依据:"+orderSource);
@@ -713,11 +745,204 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			}
 		});
 
+		playertable1.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e) {
+				   int row= playertable1.getSelectedRow();
+	               int column= playertable1.getSelectedColumn();
+	               if(column==1){
+	               //得到选中的单元格的值，表格中都是字符串
+	               Object value= playertable1.getValueAt(row, column);
+	               PlayerInfoPanel pip=new PlayerInfoPanel(Frame,String.valueOf(value),panelToRemove);
+	               Frame.remove(panelToRemove);
+	               Frame.add(pip);
+	               Frame.repaint();
+	               }
+				 }
+		});
+		
 	}
+    
+    
+    
+    public void table2_config(){
+		//------------------------------表格基本属性--------------------------
+		for(int i=0;i<playerinfo2.length;i++){
+			playerinfo2[i][0]=i+1;
+		}
+		//表格属性设置
+		playertable2=new JTable(playerinfo2, columnName2){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+		//根据条目名自动调整列宽
+		playertable2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		//设置表格列不可移动
+		playertable2.getTableHeader().setReorderingAllowed(false);
+		//设置列名居中
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable2.getTableHeader() .getDefaultRenderer();  
+		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		//设置表格数据及表头字体字号
+		playertable2.setFont(PTPre.CellFont);
+		playertable2.setForeground(PTPre.CellFg);
+		playertable2.getTableHeader().setFont(PTPre.HeaderFont);
+		playertable2.getTableHeader().setForeground(PTPre.TableFg);
+		playertable2.getTableHeader().setOpaque(false);
+		playertable2.getTableHeader().setBackground(PTPre.TableBg);
+		//去除边框
+		playertable2.setBorder(null);
+
+//		playertable.setOpaque(false);
+		//按行修改表格背景
+		TableColumnModel model = playertable2.getColumnModel();
+		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
+		{
+			TableColumn column = model.getColumn(i);
+			column.setCellRenderer(new RowRenderer());
+		}
+
+		//不显示单元格边框线
+		playertable2.setShowHorizontalLines(false);
+		playertable2.setShowVerticalLines(false);
+		//设置选中颜色
+		playertable2.setSelectionBackground(PTPre.LineSelected);
+
+		//设置行高
+		playertable2.setRowHeight(ROWHEIGHT);
+		//设置列宽
+		for(int i=0;i<COLUMNWIDTH2.length;i++){
+			playertable2.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH2[i]);
+		}
+		
+		//添加table表头点击事件
+		playertable2.getTableHeader().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				HeaderColumn=playertable2.columnAtPoint(e.getPoint());
+				String orderSource=playertable2.getColumnName(HeaderColumn);
+				//System.out.println(orderSource);
+				if(!orderSource.equals("排名")){
+					message.setText("当前排序依据:"+orderSource);
+					judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
+				}
+
+			}
+		});
+
+		playertable2.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e) {
+				   int row= playertable2.getSelectedRow();
+	               int column= playertable2.getSelectedColumn();
+	               if(column==1){
+	               //得到选中的单元格的值，表格中都是字符串
+	               Object value= playertable1.getValueAt(row, column);
+	               PlayerInfoPanel pip=new PlayerInfoPanel(Frame,String.valueOf(value),panelToRemove);
+	               Frame.remove(panelToRemove);
+	               Frame.add(pip);
+	               Frame.repaint();
+	               }
+				 }
+		});
+		
+	}
+    
+    
+    public void table3_config(){
+		//------------------------------表格基本属性--------------------------
+		for(int i=0;i<playerinfo3.length;i++){
+			playerinfo3[i][0]=i+1;
+		}
+		//表格属性设置
+		playertable3=new JTable(playerinfo3, columnName3){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
+		//根据条目名自动调整列宽
+		playertable3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		//设置表格列不可移动
+		playertable3.getTableHeader().setReorderingAllowed(false);
+		//设置列名居中
+		DefaultTableCellRenderer hr = (DefaultTableCellRenderer) playertable3.getTableHeader() .getDefaultRenderer();  
+		hr.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		//设置表格数据及表头字体字号
+		playertable3.setFont(PTPre.CellFont);
+		playertable3.setForeground(PTPre.CellFg);
+		playertable3.getTableHeader().setFont(PTPre.HeaderFont);
+		playertable3.getTableHeader().setForeground(PTPre.TableFg);
+		playertable3.getTableHeader().setOpaque(false);
+		playertable3.getTableHeader().setBackground(PTPre.TableBg);
+		//去除边框
+		playertable3.setBorder(null);
+
+//		playertable.setOpaque(false);
+		//按行修改表格背景
+		TableColumnModel model = playertable3.getColumnModel();
+		for (int i = 0, n = model.getColumnCount(); i < n; i++) 
+		{
+			TableColumn column = model.getColumn(i);
+			column.setCellRenderer(new RowRenderer());
+		}
+
+		//不显示单元格边框线
+		playertable3.setShowHorizontalLines(false);
+		playertable3.setShowVerticalLines(false);
+		//设置选中颜色
+		playertable3.setSelectionBackground(PTPre.LineSelected);
+
+		//设置行高
+		playertable3.setRowHeight(ROWHEIGHT);
+		//设置列宽
+		for(int i=0;i<COLUMNWIDTH3.length;i++){
+			playertable3.getColumnModel().getColumn(i).setPreferredWidth(COLUMNWIDTH3[i]);
+		}
+		
+		//-----------------------------------------------------------------
+		//添加table表头点击事件
+		playertable3.getTableHeader().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				HeaderColumn=playertable3.columnAtPoint(e.getPoint());
+				String orderSource=playertable3.getColumnName(HeaderColumn);
+				//System.out.println(orderSource);
+				if(!orderSource.equals("排名")){
+					message.setText("当前排序依据:"+orderSource);
+					judgeOrderSource(orderSource,(String) switchbox.getSelectedItem());
+				}
+
+			}
+		});
+
+		playertable3.addMouseListener(new MouseAdapter() {
+			 public void mouseClicked(MouseEvent e) {
+				   int row= playertable3.getSelectedRow();
+	               int column= playertable3.getSelectedColumn();
+	               if(column==1){
+	               //得到选中的单元格的值，表格中都是字符串
+	               Object value= playertable1.getValueAt(row, column);
+	               PlayerInfoPanel pip=new PlayerInfoPanel(Frame,String.valueOf(value),panelToRemove);
+	               Frame.remove(panelToRemove);
+	               Frame.add(pip);
+	               Frame.repaint();
+	               }
+				 }
+		});
+		
+	}
+    
 
 	public void refreshtable(){
-		table_config();
-		players.setViewportView(playertable);
+		table1_config();
+		table2_config();
+		table2_config();
+		if(first.isSelected())
+			players.setViewportView(playertable1);
+		else if(second.isSelected())
+			players.setViewportView(playertable2);
+		else if(third.isSelected())
+			players.setViewportView(playertable3);
 		Frame.repaint();
 	}
 
@@ -732,27 +957,27 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		case "所属球队":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("team");
 			break;
-		case "参赛场数":
+		case "参赛":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("gamenum");
 			break;
-		case "先发场数":
+		case "先发":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("startingnum");
 			break;
-		case "篮板数":
+		case "篮板":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("reboundave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("rebound");
 			}
 			break;
-		case "助攻数":
+		case "助攻":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("secondaryattackave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("secondaryattack");
 			}
 			break;
-		case "在场时间":
+		case "时间":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("timeave");
 			}else{
@@ -760,52 +985,52 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			}
 			break;
 			
-		case "投篮命中率":
+		case "命中%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("shotinrate");
 			break;
-		case "三分命中率":
+		case "三分%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("threeshotinrate");
 			break;
-		case "罚球命中率":
+		case "罚球%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("penaltyshotinrate");
 			break;
 			
-		case "进攻数":
+		case "进攻":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("offensivenumave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("offensivenum");
 				}
 			break;
-		case "防守数":
+		case "防守":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("defensivenumave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("defensivenum");
 				}
 			break;
-		case "抢断数":
+		case "抢断":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("stealave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("steal");
 				}
 			break;
-		case "盖帽数":
+		case "盖帽":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("blockshotave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("blockshot");
 				}
 			break;
-		case "失误数":
+		case "失误":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("faultave");
 			}else{
 				orderPlayerTechVO=importdata.getPlayerTechAscend("fault");
 				}
 			break;
-		case "犯规数":
+		case "犯规":
 			if(AvgOrTotal.equals("场均数据")){
 				orderPlayerTechVO=importdata.getPlayerTechAscend("foulave");
 			}else{
@@ -822,37 +1047,37 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		case "效率":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("efficiency");
 			break;
-		case "GmSc 效率值":
+		case "GmSc 效率":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("gmscefficiency");
 			break;
-		case "真实命中率":
+		case "真实命中%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("trueshotinrate");
 			break;
 		case "投篮效率":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("shootingefficiency");
 			break;
-		case "篮板率":
+		case "篮板%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("reboundrate");
 			break;
-		case "进攻篮板率":
+		case "进攻篮板%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("offensivereboundrate");
 			break;
-		case "防守篮板率":
+		case "防守篮板%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("defensivereboundrate");
 			break;
-		case "助攻率":
+		case "助攻%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("secondaryattackrate");
 			break;
-		case "抢断率":
+		case "抢断%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("stealrate");
 			break;
-		case "盖帽率":
+		case "盖帽%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("blockshotrate");
 			break;
-		case "失误率":
+		case "失误%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("faultrate");
 			break;
-		case "使用率":
+		case "使用%":
 			orderPlayerTechVO=importdata.getPlayerTechAscend("usagerate");
 			break;
 		}
@@ -866,27 +1091,27 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			case "所属球队":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("team");
 				break;
-			case "参赛场数":
+			case "参赛":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("gamenum");
 				break;
-			case "先发场数":
+			case "先发":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("startingnum");
 				break;
-			case "篮板数":
+			case "篮板":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("reboundave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("rebound");
 				}
 				break;
-			case "助攻数":
+			case "助攻":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattackave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattack");
 				}
 				break;
-			case "在场时间":
+			case "时间":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("timeave");
 				}else{
@@ -894,52 +1119,52 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				}
 				break;
 				
-			case "投篮命中率":
+			case "命中%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("shotinrate");
 				break;
-			case "三分命中率":
+			case "三分%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("threeshotinrate");
 				break;
-			case "罚球命中率":
+			case "罚球%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("penaltyshotinrate");
 				break;
 				
-			case "进攻数":
+			case "进攻":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenumave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("offensivenum");
 				}
 				break;
-			case "防守数":
+			case "防守":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenumave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("defensivenum");
 				}
 				break;
-			case "抢断数":
+			case "抢断":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("stealave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("steal");
 				}
 				break;
-			case "盖帽数":
+			case "盖帽":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("blockshotave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("blockshot");
 				}
 				break;
-			case "失误数":
+			case "失误":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("faultave");
 				}else{
 					orderPlayerTechVO=importdata.getPlayerTechDescend("fault");
 				}
 				break;
-			case "犯规数":
+			case "犯规":
 				if(AvgOrTotal.equals("场均数据")){
 					orderPlayerTechVO=importdata.getPlayerTechDescend("foulave");
 				}else{
@@ -956,37 +1181,37 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			case "效率":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("efficiency");
 				break;
-			case "GmSc 效率值":
+			case "GmSc 效率":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("gmscefficiency");
 				break;
-			case "真实命中率":
+			case "真实命中%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("trueshotinrate");
 				break;
 			case "投篮效率":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("shootingefficiency");
 				break;
-			case "篮板率":
+			case "篮板%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("reboundrate");
 				break;
-			case "进攻篮板率":
+			case "进攻篮板%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("offensivereboundrate");
 				break;
-			case "防守篮板率":
+			case "防守篮板%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("defensivereboundrate");
 				break;
-			case "助攻率":
+			case "助攻%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("secondaryattackrate");
 				break;
-			case "抢断率":
+			case "抢断%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("stealrate");
 				break;
-			case "盖帽率":
+			case "盖帽%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("blockshotrate");
 				break;
-			case "失误率":
+			case "失误%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("faultrate");
 				break;
-			case "使用率":
+			case "使用%":
 				orderPlayerTechVO=importdata.getPlayerTechDescend("usagerate");
 				break;
 			}
@@ -1002,7 +1227,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//滑动面板配置
 	public void scrollpane_config(){
 		//滑动面板信息
-		players=new JScrollPane(playertable);
+		players=new JScrollPane(playertable1);
 		players.setBounds(WIDTH-TABLEWIDTH-e_space-space,HEIGHT-TABLEHEIGHT-e_space-space,TABLEWIDTH,TABLEHEIGHT);
 		players.setHorizontalScrollBarPolicy( 
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); 
@@ -1079,6 +1304,8 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		ImageIcon im1=new ImageIcon("images/system_img/main_bg.png");
 		g.drawImage(im1.getImage(),0,0,this);
 	}
+	
+	
 
 	//按钮鼠标监听事件
 	@Override
@@ -1123,8 +1350,12 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			seniorsift.setSelected(true);
 			Frame.add(siftpanel);
 			Frame.add(this);
-			playertable.setEnabled(false);
-			playertable.getTableHeader().setEnabled(false);
+			playertable1.setEnabled(false);
+			playertable1.getTableHeader().setEnabled(false);
+			playertable2.setEnabled(false);
+			playertable2.getTableHeader().setEnabled(false);
+			playertable3.setEnabled(false);
+			playertable3.getTableHeader().setEnabled(false);
 			Frame.repaint();
 			}else{
 				Frame.remove(siftpanel);
@@ -1149,7 +1380,9 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 				System.out.println(screeningconditions.get(i).position+"--"+screeningconditions.get(i).division+"--"+screeningconditions.get(i).condition+"--"+screeningconditions.get(i).number);
 			}
 			ArrayList<PlayerTechVO> siftVO=importdata.sift(screeningconditions);
-			playerinfo=new Object[siftVO.size()][columnName.length];
+			playerinfo1=new Object[siftVO.size()][columnName1.length];
+			playerinfo2=new Object[siftVO.size()][columnName2.length];
+			playerinfo2=new Object[siftVO.size()][columnName3.length];
 			String switchboxsel=(String) switchbox.getSelectedItem();
 			if(switchboxsel.equals("赛季总数据")){
 				handleTotalData(siftVO);
@@ -1165,6 +1398,31 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 			PlayerTechPanel ptp=new PlayerTechPanel(Frame);
 			Frame.add(ptp);
 			Frame.repaint();
+		}
+		
+		if(arg0.getSource()==first){
+			if(!first.isSelected()){
+			first.setSelected(true);
+			second.setSelected(false);
+			third.setSelected(false);
+			refreshtable();
+			}
+		}
+		if(arg0.getSource()==second){
+			if(!second.isSelected()){
+			first.setSelected(false);
+			second.setSelected(true);
+			third.setSelected(false);
+			refreshtable();
+			}
+		}
+		if(arg0.getSource()==third){
+			if(!third.isSelected()){
+			first.setSelected(false);
+			second.setSelected(false);
+			third.setSelected(true);
+			refreshtable();
+			}
 		}
 		
 		if(arg0.getSource()==SeasonInfo){
