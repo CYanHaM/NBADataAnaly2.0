@@ -66,7 +66,7 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	//表格列宽
 	private static int[] COLUMNWIDTH1={40,120,160,61,50,50,50,50,50,50,50,50};
 	private static int[] COLUMNWIDTH2={40,120,75,75,75,60,80,80,60,60,56};
-	private static int[] COLUMNWIDTH3={40,120,70,50,50,80,80,80,80,60,73};
+	private static int[] COLUMNWIDTH3={40,120,70,50,50,80,80,80,80,60,71};
 
 	
 	//总数据与场均数据切换下拉框
@@ -195,14 +195,20 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 	}
 	
 	private void addletterbutton(){
-		trigger=new JButton("trigger");
-		trigger.setBounds(WIDTH-TABLEWIDTH-e_space-space+200, HEIGHT-TABLEHEIGHT-e_space-space-100-65, 50, 50);
+		trigger=new JButton(new ImageIcon("images/players/trigger_1.png"));
+		trigger.setBounds(WIDTH-TABLEWIDTH-e_space-space+650, HEIGHT-TABLEHEIGHT-e_space-space-100-65, 110, 30);
+		trigger.setBorderPainted(false);
+		trigger.setContentAreaFilled(false);
+		trigger.setFocusPainted(false);
+		trigger.setRolloverIcon(new ImageIcon("images/players/trigger_2.png"));
+		trigger.setPressedIcon(new ImageIcon("images/players/trigger_2.png"));
+		trigger.setSelectedIcon(new ImageIcon("images/players/trigger_3.png"));
 		trigger.addActionListener(this);
 		this.add(trigger);
 		
 		for(int i=0;i<letterbutton.length;i++){
 			letterbutton[i]=new JButton(new ImageIcon("images/buttons/letters/"+i+"_1.png"));
-			letterbutton[i].setBounds(WIDTH-TABLEWIDTH-e_space-space+i*30, HEIGHT-TABLEHEIGHT-e_space-space-100-40, 30, 30);
+			letterbutton[i].setBounds(WIDTH-TABLEWIDTH-e_space-space+i*30, HEIGHT-TABLEHEIGHT-e_space-space-100-30, 30, 30);
 			letterbutton[i].setBorderPainted(false);
 			letterbutton[i].setContentAreaFilled(false);
 			letterbutton[i].setFocusPainted(false);
@@ -262,13 +268,25 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		siftpanel.setViewportView(seniorsiftpanel);
 		this.add(siftpanel);
 		
-		add=new JButton("+");
+		add=new JButton(new ImageIcon("images/system_img/+_1.png"));
 		add.setBounds(WIDTH-TABLEWIDTH-e_space-space+420, HEIGHT-TABLEHEIGHT-e_space-space-100, 30, 30);
+		add.setBorderPainted(false);
+		add.setContentAreaFilled(false);
+		add.setFocusPainted(false);
+		add.setRolloverIcon(new ImageIcon("images/system_img/+_2.png"));
+		add.setPressedIcon(new ImageIcon("images/system_img/+_3.png"));
+		add.setSelectedIcon(new ImageIcon("images/system_img/+_3.png"));
 		add.addActionListener(this);
 		this.add(add);
 		
-		delete=new JButton("-");
+		delete=new JButton(new ImageIcon("images/system_img/-_1.png"));
 		delete.setBounds(WIDTH-TABLEWIDTH-e_space-space+420, HEIGHT-TABLEHEIGHT-e_space-space-100+30, 30, 30);
+		delete.setBorderPainted(false);
+		delete.setContentAreaFilled(false);
+		delete.setFocusPainted(false);
+		delete.setRolloverIcon(new ImageIcon("images/system_img/-_2.png"));
+		delete.setPressedIcon(new ImageIcon("images/system_img/-_3.png"));
+		delete.setSelectedIcon(new ImageIcon("images/system_img/-_3.png"));
 		delete.addActionListener(this);
 		this.add(delete);
 		
@@ -348,15 +366,33 @@ public class PlayerTechPanel extends JPanel implements ActionListener{
 		this.add(commit);
 		this.add(reset);
 		
-		first=new JButton("1");
+		first=new JButton(new ImageIcon("images/system_img/1_1.png"));
 		first.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		first.setBorderPainted(false);
+		first.setContentAreaFilled(false);
+		first.setFocusPainted(false);
+		first.setRolloverIcon(new ImageIcon("images/system_img/1_2.png"));
+		first.setPressedIcon(new ImageIcon("images/system_img/1_3.png"));
+		first.setSelectedIcon(new ImageIcon("images/system_img/1_3.png"));
 		first.setSelected(true);
 		first.addActionListener(this);
-		second=new JButton("2");
+		second=new JButton(new ImageIcon("images/system_img/2_1.png"));
 		second.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		second.setBorderPainted(false);
+		second.setContentAreaFilled(false);
+		second.setFocusPainted(false);
+		second.setRolloverIcon(new ImageIcon("images/system_img/2_2.png"));
+		second.setPressedIcon(new ImageIcon("images/system_img/2_3.png"));
+		second.setSelectedIcon(new ImageIcon("images/system_img/2_3.png"));
 		second.addActionListener(this);
-		third=new JButton("3");
+		third=new JButton(new ImageIcon("images/system_img/3_1.png"));
 		third.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20*2, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		third.setBorderPainted(false);
+		third.setContentAreaFilled(false);
+		third.setFocusPainted(false);
+		third.setRolloverIcon(new ImageIcon("images/system_img/3_2.png"));
+		third.setPressedIcon(new ImageIcon("images/system_img/3_3.png"));
+		third.setSelectedIcon(new ImageIcon("images/system_img/3_3.png"));
 		third.addActionListener(this);
 		this.add(first);
 		this.add(second);

@@ -73,9 +73,9 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 	private String[] columnName2={"排名","球队名称","场数","命中","出手","三分命中","三分出手","罚球命中","罚球出手","进攻篮板","防守篮板"};
 	private String[] columnName3={"排名","球队名称","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
 	//表格列宽
-	private static int[] COLUMNWIDTH1={50,200,60,80,80,80,80,80,80,80,60};
-	private static int[] COLUMNWIDTH2={50,200,80,80,80,80,80,80,80,80,80};
-	private static int[] COLUMNWIDTH3={50,200,80,80,80,80,80,80,80};
+	private static int[] COLUMNWIDTH1={50,200,57,57,60,57,60,60,60,60,60};
+	private static int[] COLUMNWIDTH2={50,200,57,57,60,57,60,60,60,60,60};
+	private static int[] COLUMNWIDTH3={50,200,75,77,75,75,77,75,77};
 	
 	private JButton first;
 	private JButton second;
@@ -162,15 +162,33 @@ public class TeamTechPanel extends JPanel implements ActionListener{
 		Hot=new JButton(new ImageIcon("images/system_img/hot_initial.png"));
 		sideButton_config(Hot, "hot", 4);
 		
-		first=new JButton("1");
+		first=new JButton(new ImageIcon("images/system_img/1_1.png"));
 		first.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		first.setBorderPainted(false);
+		first.setContentAreaFilled(false);
+		first.setFocusPainted(false);
+		first.setRolloverIcon(new ImageIcon("images/system_img/1_2.png"));
+		first.setPressedIcon(new ImageIcon("images/system_img/1_3.png"));
+		first.setSelectedIcon(new ImageIcon("images/system_img/1_3.png"));
 		first.setSelected(true);
 		first.addActionListener(this);
-		second=new JButton("2");
+		second=new JButton(new ImageIcon("images/system_img/2_1.png"));
 		second.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		second.setBorderPainted(false);
+		second.setContentAreaFilled(false);
+		second.setFocusPainted(false);
+		second.setRolloverIcon(new ImageIcon("images/system_img/2_2.png"));
+		second.setPressedIcon(new ImageIcon("images/system_img/2_3.png"));
+		second.setSelectedIcon(new ImageIcon("images/system_img/2_3.png"));
 		second.addActionListener(this);
-		third=new JButton("3");
+		third=new JButton(new ImageIcon("images/system_img/3_1.png"));
 		third.setBounds(WIDTH-TABLEWIDTH-e_space-space+(BOXWIDTH+10)*4+35+20*2, HEIGHT-TABLEHEIGHT-e_space-space-50+20, 20, 20);
+		third.setBorderPainted(false);
+		third.setContentAreaFilled(false);
+		third.setFocusPainted(false);
+		third.setRolloverIcon(new ImageIcon("images/system_img/3_2.png"));
+		third.setPressedIcon(new ImageIcon("images/system_img/3_3.png"));
+		third.setSelectedIcon(new ImageIcon("images/system_img/3_3.png"));
 		third.addActionListener(this);
 		this.add(first);
 		this.add(second);
